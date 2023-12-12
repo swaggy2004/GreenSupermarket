@@ -1,0 +1,26 @@
+.border-cus{
+    border: 3px solid #34a853;
+    border-radius: 28px;
+}
+
+.go-back-btn:hover{
+    transform: scale(105%);
+    transition: 0.1s ease-in-out;
+}
+
+.go-back {
+    color: orange;
+    text-decoration: none;
+}
+
+.go-back:active{
+    color: orange;
+}
+
+.go-back:visited{
+    color: orange;
+}
+
+.go-back:focus{
+    color: orange;
+}

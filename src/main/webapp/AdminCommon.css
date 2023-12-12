@@ -1,0 +1,77 @@
+.cus-btn{
+    background-color: white;
+    text-align: left;
+    border: none;
+    outline: none;
+    color: black;
+    padding: 18px;
+    border-radius: 0;
+    width: 100%;
+}
+
+.cus-btn:hover{
+    background-color: #EDF2EE;
+    color: black;
+    border-left: 4px solid #20b526;
+    transition: 0.1s ease-in-out;
+}
+
+.cus-btn:focus{
+    background-color: #EDF2EE;
+    color: black;
+    border-left: 4px solid #20b526;
+    transition: 0.1s ease-in-out;
+}
+
+.active{
+    background-color: #EDF2EE;
+    color: black;
+    border-left: 4px solid #20b526;
+    transition: 0.1s ease-in-out;
+}
+
+/* .btn-success{
+    border-radius: 43px;
+    background-color: #00b207;
+    border: none;
+    min-width: 150px;
+} */
+
+.edit-btn{
+    background-color: #00b207;
+    border: none;
+    border-radius: 10px;
+}
+
+.delete-btn{
+    background-color: #ff0000;
+    border: none;
+    border-radius: 10px;
+}
+
+.edit-btn:hover{
+    background-color: #00b207;
+    transform: scale(1.1);
+    transition: 0.1s ease-in-out;
+}
+
+.delete-btn:hover{
+    background-color: #ff0000;
+    transform: scale(1.1);
+    transition: 0.1s ease-in-out;
+}
+
+.border{
+    border: 3px solid #00b207;
+}
+
+.bg-ribbon{
+    background-color: #F2F4F5;
+}
+
+.pro-img{
+    min-width: 120px;
+    min-height: 120px;
+    max-width: 120px;
+    max-height: 120px;
+}
