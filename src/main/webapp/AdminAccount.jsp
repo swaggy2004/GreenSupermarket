@@ -73,7 +73,7 @@
                   type="button"
                   class="btn btn-success p-3 w-auto align-self-end align-self-md-auto"
                 >
-                <a href="AdminAddAccount.html" class="text-decoration-none text-white">Add Profile</a>
+                <a href="AdminAddAccount.jsp" class="text-decoration-none text-white">Add Profile</a>
                 </button>
               </div>
             </div>
