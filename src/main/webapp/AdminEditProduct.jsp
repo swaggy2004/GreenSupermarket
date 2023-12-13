@@ -137,7 +137,7 @@
                     class="form-control"
                   />
                 </div>
-                <div class="col col-md-2 mb-3 col-12">
+                <div class="col col-md-3 mb-3 col-12">
                   <label for="Visibility" class="form-label"
                     ><h5>Visibility</h5></label
                   >
@@ -169,13 +169,13 @@
                   <label for="selectableOptions" class="form-labe"
                     ><h5>Selectable Options</h5></label
                   >
-                  <textarea
-                    class="form-control"
-                    name="description"
-                    id="description"
-                    rows="4"
-                  >
-                  </textarea>
+                  <select class="form-select" name="selectableOptions">
+                      <option selected>Select Categories</option>
+                      <option value="1">
+                        <input type="checkbox" class="form-check-input" value="" name="veg">
+                        <label class="form-check-label" for="veg">Vegetables</label>
+                      </option>
+                  </select>
                 </div>
               </div>
               <input

@@ -1,3 +1,4 @@
+<%@page import="com.shaveen.greensupermarket.ManageConnection"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -85,6 +86,15 @@
           <div class="col">Actions</div>
         </div>
         <!-- made a row and made it responsive for extra small, small and large displays -->
+        <% ManageConnection mc = new ManageConnection(); 
+           var MC = new ManageConnection();
+           var accounts = MC.getAccounts();
+
+           for(var account : accounts){
+               Model.ManagerAccount acc = (Model.ManagerAccount)account;
+               out.print(Helpers.Generator.generateCard(acc));
+           }        
+        %>
         <div
                 class="row text-start gx-auto gx-md-0 my-auto py-2 px-md-5 border-bottom border-1 text-center text-md-start gap-2 gap-md-0"
         >
@@ -135,7 +145,7 @@
             </button>
           </div>
         </div>
-
+        
         <div
                 class="row text-start gx-auto gx-md-0 my-auto py-2 px-md-5 border-bottom border-1 text-center text-md-start gap-2 gap-md-0"
         >
