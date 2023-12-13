@@ -63,7 +63,7 @@
         </div>
 
         <form
-          action="Demo2Servlet"
+          action="<%=request.getContextPath()%>/AddAccountServlet"
           method="post"
           class="col col-md-9 p-md-4 mx-md-auto col-12 border rounded-3 border-opacity-25"
         >
@@ -96,22 +96,21 @@
 
           <div class="row mb-3">
             <div class="col-md-4 mb-3 col-12">
-              <label for="phoneNumber" class="form-label"
-                ><h5>Phone Number</h5></label
+              <label for="password" class="form-label"
+                ><h5>Password</h5></label
               >
               <input
                 type="text"
-                name="phoneNumber"
-                id="phoneNumber"
+                name="password"
+                id="password"
                 class="form-control"
               />
             </div>
             <div class="col-md-4 mb-3 col-12">
               <label for="role" class="form-label"><h5>Role</h5></label>
               <select name="role" id="role" class="form-select form-control">
-                <option value="1" id="1">Manager</option>
-                <option value="2" id="2">Employee</option>
-                <option value="3" id="3">Director</option>
+                <option value="M" id="M">Manager</option>
+                <option value="A" id="A">Admin</option>
               </select>
             </div>
           </div>
