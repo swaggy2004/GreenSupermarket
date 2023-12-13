@@ -90,9 +90,9 @@
 <p style="width: 30%; margin-left:3rem;">From your account dashboard. you can easily check & view your Recent Orders,
     manage your Shipping and Billing Addresses and edit your Password and Account Details.</p>
 
-<div class="row" style="margin: 2rem 2rem 0 2rem">
-    <div class="col">
-        <div class="card">
+<div class="row" style="margin: 2rem 2rem 0 2rem; " >
+    <div class="col" style="margin-top: 2rem;">
+        <div class="card" style="min-height: 340px">
             <div class="card-header">
                 Featured
             </div>
@@ -106,9 +106,9 @@
             </div>
         </div>
     </div>
-    <div class="col">
+    <div class="col" style="margin-top: 2rem">
         <div class="col">
-            <div class="card">
+            <div class="card" style="min-height: 340px">
                 <div class="card-header">
                     Billing Address
                 </div>
@@ -122,10 +122,10 @@
             </div>
         </div>
     </div>
-    <div class="col">
+    <div class="col" style="margin-top: 2rem">
         <div class="vstack gap-3">
             <div class="bg-light border">
-                <div class="card statcard">
+                <div class="card statcard" style="max-height: 100px">
                     <div class="card-body text-left">
                         <h5 class="card-title">Total Orders</h5>
                         <p class="card-stat">154</p>
@@ -134,7 +134,7 @@
             </div>
             <div class="bg-light border">
                 <div class="card statcard">
-                    <div class="card-body text-left">
+                    <div class="card-body text-left"  style="max-height: 100px">
                         <h5 class="card-title">Pending Orders</h5>
                         <p class="card-stat">05</p>
                     </div>
@@ -142,8 +142,8 @@
             </div>
             <div class="bg-light border">
                 <div class="card statcard">
-                    <div class="card-body text-left">
-                        <h5 class="card-title">Total Number of Orders</h5>
+                    <div class="card-body text-left" style="max-height: 100px">
+                        <h5 class="card-title">Completed Orders</h5>
                         <p class="card-stat">88</p>
                     </div>
                 </div>
