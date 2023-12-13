@@ -4,41 +4,9 @@
         <servlet-name>AddAccountServlet</servlet-name>
         <servlet-class>com.shaveen.greensupermarket.AddAccountServlet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>demo</servlet-name>
-        <servlet-class>com.shaveen.greensupermarket.resources.demo</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>demo2</servlet-name>
-        <servlet-class>testpackage.demo2</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>DemoServlet</servlet-name>
-        <servlet-class>DemoServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Demo2Servlet</servlet-name>
-        <servlet-class>Demo2Servlet</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>AddAccountServlet</servlet-name>
         <url-pattern>/AddAccountServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>demo</servlet-name>
-        <url-pattern>/demo</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>demo2</servlet-name>
-        <url-pattern>/demo2</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>DemoServlet</servlet-name>
-        <url-pattern>/DemoServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Demo2Servlet</servlet-name>
-        <url-pattern>/Demo2Servlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
