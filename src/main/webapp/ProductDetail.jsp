@@ -123,7 +123,7 @@
 <!--Grid for product image and details-->
 <!--product detail-->
 <div style="background-color:#D0F288;padding: 40px;margin-top: 90px;margin-left: 150px;margin-right: 150px;">
-    <div class="h4 pb-2 mb-4 text-black border-bottom border-danger"style="color=black;">
+    <div class="h4 pb-2 mb-4 text-black border-bottom border-danger"style="color:black;">
         <h3 >Product details</h3>
     </div>
     <h6><b>Product ID :</b> B493-DB427</h6><br/>
