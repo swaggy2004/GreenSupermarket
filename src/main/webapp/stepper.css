@@ -1,0 +1,63 @@
+.track{
+    position: relative;background-color: #EBF6EE; /*to change the color of the progress line*/
+    height: 7px;display: -webkit-box;
+    display: -ms-flexbox;display: flex;
+    margin-bottom: 60px;
+    margin-top: 50px
+}
+
+.track .step{
+    /*-webkit-box-flex: 1;
+    -ms-flex-positive: 1;*/
+    flex-grow: 1;
+    width: 25%;
+    margin-top: -18px;
+    text-align: center;
+    position: relative
+}
+.track .step.active:before{
+    background: #00B207; /*to change the background color of the progress lines completed set*/
+}
+.track .step::before{
+    height: 7px;
+    position: absolute;
+    content: "";
+    width: 100%;
+    left: 0;
+    top: 18px
+}
+
+.track .step.active .icon{
+    background: #00B207;
+    color: #ffffff
+}
+
+.track .icon{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    /*the issue is in this may be because this line and below three lines dos not apply properly but works when using vs code and does not work in intelij */
+    position: relative;
+    border-radius: 100%;
+    background: #EBF6EE /*to change the background color of the three dots*/
+}
+.track .step.active .text{
+    font-weight: 400;
+    color: #5c2e2e
+}
+
+.track .text{
+    display: block;
+    margin-top: 9px;
+    margin-bottom: 7px;
+}
+
+
+
+
+
+
+
+
+
+

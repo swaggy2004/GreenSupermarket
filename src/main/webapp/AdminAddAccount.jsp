@@ -63,7 +63,8 @@
         </div>
 
         <form
-          action=""
+          action="Demo2Servlet"
+          method="post"
           class="col col-md-9 p-md-4 mx-md-auto col-12 border rounded-3 border-opacity-25"
         >
           <button class="btn px-0 mb-4 go-back fw-semibold border border-0 go-back-btn">

@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: DELL
   Date: 12/12/2023
-  Time: 2:43 AM
+  Time: 2:47 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -96,22 +96,12 @@
 
 
         <div class="col-md-12">
-            <h1 style="margin-bottom: 50px;">My Cart</h1>
+            <h1 style="margin-bottom: 50px;">My Wishlist</h1>
             <div style="max-width: 1280px;">
                 <div class="row mb-2 d-none d-lg-flex">
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         <div class="card-body">
                             <h6>PRODUCT</h6>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="card-body">
-                            <h6>UNIT PRICE</h6>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="card-body">
-                            <h6>QTY</h6>
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -119,15 +109,25 @@
                             <h6>PRICE</h6>
                         </div>
                     </div>
+                    <div class="col-md-2">
+                        <div class="card-body">
+                            <h6>Stock Status</h6>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card-body">
+                            <h6></h6>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div class="card mb-3" style="max-width: 1280px;border-radius: 20px;">
                 <div class="row g-0">
-                    <div class="col-md-2 ">
-                        <img src="assets/vegi1.png" style="width: 100px" class="img-fluid rounded-start  " alt="...">
+                    <div class="col-md-2">
+                        <img src="assets/vegi1.png" style="width: 100px" class="img-fluid rounded-start" alt="...">
                     </div>
-                    <div class="col-md-4 my-auto ">
+                    <div class="col-md-3 my-auto ">
                         <div class="card-body">
                             <h5>Sweet Corn</h5>
                         </div>
@@ -139,31 +139,12 @@
                     </div>
                     <div class="col-md-2 my-auto ">
                         <div class="card-body">
-                            <div class="dropdown" >
-                                <button
-                                        class="btn btn-secondary dropdown-toggle "
-                                        type="button"
-                                        data-bs-toggle="dropdown"
-                                        aria-expanded="false"
-                                        style="background-color:#F6F7F8; color:black;border: none;"
-                                >
-                                    100g
-                                </button>
-                                <ul class="dropdown-menu" style="background-color: white;">
-                                    <li><button class="dropdown-item" type="button">100g</button></li>
-                                    <li>
-                                        <button class="dropdown-item" type="button">200g</button>
-                                    </li>
-                                    <li>
-                                        <button class="dropdown-item" type="button">300g</button>
-                                    </li>
-                                </ul>
-                            </div>
+                            <button type="button" class="btn btn-info btn-sm">In Stock</button>
                         </div>
                     </div>
-                    <div class="col-md-1 my-auto ">
+                    <div class="col-md-2 my-auto ">
                         <div class="card-body">
-                            <h5>$569</h5>
+                            <button type="button" class="btn btn-warning">Add to cart</button>
                         </div>
                     </div>
                     <div class="col-md-1 my-auto ">
@@ -178,7 +159,7 @@
                     <div class="col-md-2">
                         <img src="assets/vegi2.png" style="width: 100px" class="img-fluid rounded-start" alt="...">
                     </div>
-                    <div class="col-md-4 my-auto ">
+                    <div class="col-md-3 my-auto ">
                         <div class="card-body">
                             <h5>Sweet Corn</h5>
                         </div>
@@ -190,31 +171,12 @@
                     </div>
                     <div class="col-md-2 my-auto ">
                         <div class="card-body">
-                            <div class="dropdown" >
-                                <button
-                                        class="btn btn-secondary dropdown-toggle "
-                                        type="button"
-                                        data-bs-toggle="dropdown"
-                                        aria-expanded="false"
-                                        style="background-color:#F6F7F8; color:black;border: none;"
-                                >
-                                    100g
-                                </button>
-                                <ul class="dropdown-menu" style="background-color: white;">
-                                    <li><button class="dropdown-item" type="button">100g</button></li>
-                                    <li>
-                                        <button class="dropdown-item" type="button">200g</button>
-                                    </li>
-                                    <li>
-                                        <button class="dropdown-item" type="button">300g</button>
-                                    </li>
-                                </ul>
-                            </div>
+                            <button type="button" class="btn btn-info btn-sm">In Stock</button>
                         </div>
                     </div>
-                    <div class="col-md-1 my-auto ">
+                    <div class="col-md-2 my-auto">
                         <div class="card-body">
-                            <h5>$569</h5>
+                            <button type="button" class="btn btn-warning">Add to cart</button>
                         </div>
                     </div>
                     <div class="col-md-1 my-auto ">
@@ -230,7 +192,7 @@
                     <div class="col-md-2">
                         <img src="assets/vegi4.png" style="width: 100px" class="img-fluid rounded-start" alt="...">
                     </div>
-                    <div class="col-md-4 my-auto ">
+                    <div class="col-md-3 my-auto ">
                         <div class="card-body">
                             <h5>Sweet Corn</h5>
                         </div>
@@ -242,16 +204,12 @@
                     </div>
                     <div class="col-md-2 my-auto ">
                         <div class="card-body">
-                            <div class="input-group w-auto  justify-content-start align-items-center" >
-                                <button type="button" class="btn btn-outline-secondary rounded-circle icon-shape icon-sm mx-1 " style="font-size: 0.8rem;padding: 0.2rem 0.5rem;" onclick="decrementValue(event)" data-field="quantity">-</button>
-                                <input disabled type="number" step="1"  min="1"  value="1" name="quantity" class="form-control text-center " style="font-size: 0.8rem; padding: 0.2rem 0.2rem;max-width: 50px;  " >
-                                <button type="button" class="btn btn-outline-secondary rounded-circle icon-shape icon-sm mx-1"style="font-size: 0.8rem;padding: 0.2rem 0.5rem;" onclick="incrementValue(event)" data-field="quantity">+</button>
-                            </div>
+                            <button type="button" class="btn btn-info btn-sm">In Stock</button>
                         </div>
                     </div>
-                    <div class="col-md-1 my-auto ">
+                    <div class="col-md-2 my-auto ">
                         <div class="card-body">
-                            <h5>$569</h5>
+                            <button type="button" class="btn btn-warning">Add to cart</button>
                         </div>
                     </div>
                     <div class="col-md-1 my-auto ">
@@ -267,7 +225,7 @@
                     <div class="col-md-2">
                         <img src="assets/vegi1.png" style="width: 100px" class="img-fluid rounded-start" alt="...">
                     </div>
-                    <div class="col-md-4 my-auto ">
+                    <div class="col-md-3 my-auto ">
                         <div class="card-body">
                             <h5>Sweet Corn</h5>
                         </div>
@@ -279,31 +237,12 @@
                     </div>
                     <div class="col-md-2 my-auto ">
                         <div class="card-body">
-                            <div class="dropdown" >
-                                <button
-                                        class="btn btn-secondary dropdown-toggle "
-                                        type="button"
-                                        data-bs-toggle="dropdown"
-                                        aria-expanded="false"
-                                        style="background-color:#F6F7F8; color:black;border: none;"
-                                >
-                                    100g
-                                </button>
-                                <ul class="dropdown-menu" style="background-color: white;">
-                                    <li><button class="dropdown-item" type="button">100g</button></li>
-                                    <li>
-                                        <button class="dropdown-item" type="button">200g</button>
-                                    </li>
-                                    <li>
-                                        <button class="dropdown-item" type="button">300g</button>
-                                    </li>
-                                </ul>
-                            </div>
+                            <button type="button" class="btn btn-info btn-sm">Out of Stock</button>
                         </div>
                     </div>
-                    <div class="col-md-1 my-auto ">
+                    <div class="col-md-2 my-auto ">
                         <div class="card-body">
-                            <h5>$569</h5>
+                            <button type="button" class="btn btn-warning">Add to cart</button>
                         </div>
                     </div>
                     <div class="col-md-1 my-auto ">
@@ -314,73 +253,11 @@
                 </div>
             </div>
             <div class="row ">
-                <div class="col-md-2"><button type="button" class="btn btn-outline-dark" style="background-color: #ffffff;
+                <div class="col-md-2"><button type="button" class="btn btn-outline-dark"  style="background-color: #ffffff;
                     border-color: #34A853;"><img src="assets/MyCartArrowLeft.svg">&nbsp;Continue shopping</button></div>
                 <div class="col-md-8"></div>
-
-            </div>
-
-
-        </div>
-
-    </div>
-    <div class="row">
-        <div class="col-md-9"></div>
-        <div class="col-md-3"style="background-color:#F2F2F2;">
-            <div class="row mb-3 mt-3">
-                <div class="col-md-7"><b>Subtotal</b></div>
-                <div class="col-md-5">LKR900</div>
-            </div>
-            <div class="row mb-5">
-                <div class="col-md-7"><b>Delivery fee</b></div>
-                <div class="col-md-5">LKR 280</div>
-            </div>
-            <div class="row mb-2">
-                <div class="col-md-6"><h3>Total</h3></div>
-                <div class="col-md-6"><h3>LKR 1180</h3></div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-md-12 ">
-                    <div class="d-grid 2">
-                        <button class="btn btn-primary" style="background-color: #34A853; border-color: #34A853;" type="button" data-bs-toggle="modal" data-bs-target="#myModal">CheckOut</button>
-                        <div class="modal" id="myModal">
-                            <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <div class="container">
-                                            <div class="row">
-                                                <div class="col-md-3 ms-auto" style="text-align: left;"><button type="button" class="btn-info" style="background-color:white; border:none;"><img src="assets/MyCartpopuparrowback.svg" style="width: 40px;border:none; " class="img-thumbnail" alt="..."></button></div>
-                                                <div class="col-md-6 center"><h4 class="modal-title" style="text-align: center;">Order Placed</h4></div>
-                                                <div class="col-md-3 my-auto" style="text-align: right;"><button type="button"  class="btn-close " data-bs-dismiss="modal"></button></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="container">
-                                            <div class="row">
-                                                <div class="col-md-12 mb-3 mt-3" style="text-align: center;"><h4 class="modal-title">Order No #123826526578612</h4></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12" style="text-align: center;"><img src="assets/MyCartpopupcheck.svg" style="width: 100px" class="rounded" alt="..."></div>
-                                            </div>
-                                            <div class="row mt-4">
-                                                <div class="col-md-12" style="text-align: center;"><h5 class="modal-title">Success</h5></div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <div class="container">
-                                            <div class="row ">
-                                                <div class="col-md-12" style="text-align: center;"><div class="d-grid gap-2 col-3 mx-auto"><button type="submit" class="btn btn-primary">Submit</button></div></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="col-md-2" ><button type="button" class="btn btn-outline-light" style="background-color: #34A853;
+                    border-color: #34A853;">Add wishlist to cart&nbsp;<img src="assets/WishListArrowRight.svg"></button></div>
             </div>
 
         </div>
@@ -388,9 +265,9 @@
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-<script src="MyCartQuantityfunction.js"></script>
+
 </body>
 </html>
