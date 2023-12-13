@@ -30,12 +30,12 @@
     transition: 0.1s ease-in-out;
 }
 
-/* .btn-success{
+.btn-success{
     border-radius: 43px;
     background-color: #00b207;
     border: none;
     min-width: 150px;
-} */
+}
 
 .edit-btn{
     background-color: #00b207;

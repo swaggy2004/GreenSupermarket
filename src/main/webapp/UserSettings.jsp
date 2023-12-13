@@ -10,8 +10,8 @@
 <head>
     <title>User Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link href="UserSettings.css" rel="stylesheet">
 
+    <link href="UserSettings.css" rel="stylesheet">
     <style>
         /* Custom styles for the burger stack icon in mobile */
         @media (max-width: 767px) {
@@ -47,8 +47,6 @@
     </style>
 </head>
 <body>
-
-
 <nav style="background-color: #d0f288" class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand" href="#"><img style="width: 110px" alt="Navbar Logo" src="assets/NavLogo.svg"></a>
@@ -87,6 +85,10 @@
     </div>
 </nav>
 
+
+<div class="row" style="margin-top: 2rem;margin-left: 1rem">
+    <div class="col-2" style="" ><img style="width: 8rem " src="assets/Avatar.png" class="rounded-circle ms-2" alt="User Avatar"></div>
+
 <h1 style="margin-top: 2rem;margin-left: 1rem;">Account Settings</h1>
 <form name="usersettings" method="" action="">
 <div class="row" style="margin-top: 2rem;margin-left: 1rem; margin-right: 1rem">
@@ -96,12 +98,24 @@
         </div>
 
     </div>
+
     <div class="col-10">
         <div class="row">
             <div class="col-6">
                 <div class="col" style="margin-top: 2rem">
                     <div class="vstack gap-3">
                         <div >
+
+                            <label for="UserEmail" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="UserEmail" placeholder="name@example.com">
+                        </div>
+                        <div>
+                            <label for="UserPhone" class="form-label">Phone Number</label>
+                            <input type="text" class="form-control" id="UserPhone" placeholder="071-xxxxxxx">
+                        </div>
+                        <div class="bg-light border">
+                            <select class=" selectpicker countrypicker"></select>
+
                             <label for="Name" class="form-label">Name</label>
                             <input type="email" class="form-control" id="Name" placeholder="John Doe">
                         </div>
@@ -122,10 +136,13 @@
                                 <label class="input-group-text" for="inputGroupFile01">Edit Profile Avatar</label>
                                 <input type="file" class="form-control" id="inputGroupFile01">
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="col-6">col-4</div>
             <div class="col-6" style="margin-top: 2rem">
                 <div class="vstack gap-3">
                     <div >
@@ -277,10 +294,15 @@
                 </div>
 
             </div>
+
         </div>
     </div>
 </div>
 
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 
 <div class="container text-center" style="margin-top: 2rem">
 <div class="card">
@@ -339,6 +361,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select-country/dist/js/bootstrap-select-country.min.js"></script>
+
 
 </body>
 </html>
