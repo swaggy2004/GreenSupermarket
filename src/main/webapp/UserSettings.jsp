@@ -107,7 +107,16 @@
                         </div>
                         <div>
                             <label for="country">Country</label>
-                            <select class="form-control  countrypicker" id="country" selected="Sri Lanka"></select>
+                                        <select class="form-control" id="country">
+                                            <option value="AF">Afghanistan</option>
+                                            <option value="BD">Bangladesh</option>
+                                            <option value="BT">Bhutan</option>
+                                            <option value="IN">India</option>
+                                            <option value="MV">Maldives</option>
+                                            <option value="NP">Nepal</option>
+                                            <option value="PK">Pakistan</option>
+                                            <option value="LK" selected>Sri Lanka</option>
+                                        </select>
                         </div>
                         <div >
                             <div class="form-group">
@@ -160,21 +169,12 @@
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    Billing Adress
+                    Billing Address
                 </div>
                 <div class="card-body">
                     <form>
                         <table>
-                            <tr>
-                                <td>
-                                    <label for="Bill-FirstName" class="form-label">First Name</label>
-                                    <input type="text" class="form-control" id="Bill-FirstName" placeholder="Kevin">
-                                </td>
-                                <td>
-                                    <label for="Bill-LastName" class="form-label">Last Name</label>
-                                    <input type="text" class="form-control" id="Bill-LastName" placeholder="Gilbert">
-                                </td>
-                            </tr>
+                            
                             <tr>
                                 <td colspan="2">
                                     <label for="Bill-Address" class="form-label">Address</label>
@@ -196,7 +196,16 @@
                                 <td colspan="2">
                                     <div>
                                         <label for="country">Country</label>
-                                        <select class="form-control  countrypicker" id="country" selected="Sri Lanka"></select>
+                                        <select class="form-control" id="country">
+                                            <option value="AF">Afghanistan</option>
+                                            <option value="BD">Bangladesh</option>
+                                            <option value="BT">Bhutan</option>
+                                            <option value="IN">India</option>
+                                            <option value="MV">Maldives</option>
+                                            <option value="NP">Nepal</option>
+                                            <option value="PK">Pakistan</option>
+                                            <option value="LK" selected>Sri Lanka</option>
+                                        </select>
                                     </div>
                                 </td>
 
@@ -226,16 +235,7 @@
                 <div class="card-body">
                     <form>
                         <table>
-                            <tr>
-                                <td>
-                                    <label for="Shipping-FirstName" class="form-label">First Name</label>
-                                    <input type="text" class="form-control" id="Shipping-FirstName" placeholder="Kevin">
-                                </td>
-                                <td>
-                                    <label for="Shipping-LastName" class="form-label">Last Name</label>
-                                    <input type="text" class="form-control" id="Shipping-LastName" placeholder="Gilbert">
-                                </td>
-                            </tr>
+                            
                             <tr>
                                 <td colspan="2">
                                     <label for="Shipping-Address" class="form-label">Address</label>
@@ -256,8 +256,17 @@
                             <tr>
                                 <td colspan="2">
                                     <div>
-                                        <label for="Shipping-country">Country</label>
-                                        <select class="form-control  countrypicker" id="Shipping-country" selected="Sri Lanka"></select>
+                                        <label for="country">Country</label>
+                                        <select class="form-control" id="country">
+                                            <option value="AF">Afghanistan</option>
+                                            <option value="BD">Bangladesh</option>
+                                            <option value="BT">Bhutan</option>
+                                            <option value="IN">India</option>
+                                            <option value="MV">Maldives</option>
+                                            <option value="NP">Nepal</option>
+                                            <option value="PK">Pakistan</option>
+                                            <option value="LK" selected>Sri Lanka</option>
+                                        </select>
                                     </div>
                                 </td>
 
@@ -320,19 +329,7 @@
 
 </div>
 </div>
-<script>
-    $(document).ready(function () {
-        const countryCode = new URLSearchParams(window.location.search).get("country");
 
-        $('.countrypicker').countrypicker({
-            showFlag: true,
-            defaultCountry: "LK", // Set Sri Lanka as the default country
-        });
-    });
-
-
-
-</script>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
