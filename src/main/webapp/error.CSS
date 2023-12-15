@@ -1,0 +1,60 @@
+body{
+    font-family: 'Poppins', sans-serif;
+}
+.full-screen-background {
+background: url('assets/images/Login/error.svg') no-repeat center center fixed;
+background-size: cover;
+height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
+text-align: center;
+}
+.error-text {
+font-size: 10vw;  
+color: #00B207;
+font-size: 180px;
+font-weight: 700;
+word-wrap: break-word
+
+}
+.sub-text { 
+color: black;
+font-size: 48px;
+font-weight: 700;
+line-height: 57.60px;
+letter-spacing: 0.25px;
+word-wrap: break-word
+}
+
+.sub-text p{
+color: black;
+font-size: 20px;
+font-family: Inter;
+font-weight: 400;
+line-height: 28px;
+word-wrap: break-word
+}
+
+.full-screen-background a{
+background-color: #00B207;
+border: none;
+color: white;
+width: 15%;
+border-radius: 32px;
+padding: 15px;
+font-size: 16px;
+font-weight: 700;
+line-height: 19.20px;
+word-wrap: break-word;
+}
+
+.full-screen-background a:hover{
+background-color: black;
+}
+
+@media (min-width: 576px) {
+.full-screen-background a {
+    max-width: none; 
+}
+}
