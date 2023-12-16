@@ -1,3 +1,4 @@
+<%@page import="com.shaveen.greensupermarket.FetchProduct"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,107 +41,15 @@
       </div>
       <br>
       <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-3 col-md-6 card-spacing">
-            <div class="card card-custom">
-              <img src="assets/images/individual-catalogs/vegetables/img1.svg" class="card-img-top" alt="Ladies Fingers">
-              <div class="card-body">
-                <h5 class="card-title1">Corn (100g)</h5>
-                <h5 class="card-title2">LKR 80.00</h5>
-                <div class="circle">
-                  <img src="assets/images/individual-catalogs/vegetables/cart-icon.svg" class="circle-img" alt="cart-icon">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 card-spacing">
-            <div class="card card-custom">
-              <img src="assets/images/individual-catalogs/vegetables/img1.svg" class="card-img-top" alt="Ladies Fingers">
-              <div class="card-body">
-                <h5 class="card-title1">Corn (100g)</h5>
-                <h5 class="card-title2">LKR 80.00</h5>
-                <div class="circle">
-                  <img src="assets/images/individual-catalogs/vegetables/cart-icon.svg" class="circle-img" alt="cart-icon">
-                </div>
-               
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 card-spacing">
-            <div class="card card-custom">
-              <img src="assets/images/individual-catalogs/vegetables/img1.svg" class="card-img-top" alt="Ladies Fingers">
-              <div class="card-body">
-                <h5 class="card-title1">Corn (100g)</h5>
-                <h5 class="card-title2">LKR 80.00</h5>
-                <div class="circle">
-                  <img src="assets/images/individual-catalogs/vegetables/cart-icon.svg" class="circle-img" alt="cart-icon">
-                </div>
-                
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 card-spacing">
-            <div class="card card-custom">
-              <img src="assets/images/individual-catalogs/vegetables/img1.svg" class="card-img-top" alt="Ladies Fingers">
-              <div class="card-body">
-                <h5 class="card-title1">Corn (100g)</h5>
-                <h5 class="card-title2">LKR 80.00</h5>
-                <div class="circle">
-                  <img src="assets/images/individual-catalogs/vegetables/cart-icon.svg" class="circle-img" alt="cart-icon">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 card-spacing">
-            <div class="card card-custom">
-              <img src="assets/images/individual-catalogs/vegetables/img1.svg" class="card-img-top" alt="Ladies Fingers">
-              <div class="card-body">
-                <h5 class="card-title1">Corn (100g)</h5>
-                <h5 class="card-title2">LKR 80.00</h5>
-                <div class="circle">
-                  <img src="assets/images/individual-catalogs/vegetables/cart-icon.svg" class="circle-img" alt="cart-icon">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 card-spacing">
-            <div class="card card-custom">
-              <img src="assets/images/individual-catalogs/vegetables/img1.svg" class="card-img-top" alt="Ladies Fingers">
-              <div class="card-body">
-                <h5 class="card-title1">Corn (100g)</h5>
-                <h5 class="card-title2">LKR 80.00</h5>
-                <div class="circle">
-                  <img src="assets/images/individual-catalogs/vegetables/cart-icon.svg" class="circle-img" alt="cart-icon">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 card-spacing">
-            <div class="card card-custom">
-              <img src="assets/images/individual-catalogs/vegetables/img1.svg" class="card-img-top" alt="Ladies Fingers">
-              <div class="card-body">
-                <h5 class="card-title1">Corn (100g)</h5>
-                <h5 class="card-title2">LKR 80.00</h5>
-                <div class="circle">
-                  <img src="assets/images/individual-catalogs/vegetables/cart-icon.svg" class="circle-img" alt="cart-icon">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 card-spacing">
-            <a href="link-to-your-page.html" class="card-link text-body text-decoration-none">
-            <div class="card card-custom">
-              <img src="assets/images/individual-catalogs/vegetables/img1.svg" class="card-img-top" alt="Ladies Fingers">
-              <div class="card-body">
-                <h5 class="card-title1">Corn (100g)</h5>
-                <h5 class="card-title2">LKR 80.00</h5>
-                <div class="circle">
-                  <img src="assets/images/individual-catalogs/vegetables/cart-icon.svg" class="circle-img" alt="cart-icon">
-                </div>
-              </div>
-            </div>
-          </div>
-        </a>
+        <div class="justify-content-center d-flex flex-row flex-wrap">
+          <%  
+               var item = new FetchProduct();
+               var products = item.getProduct();
+               for(var product : products){
+                   Model.Product Singleproducts = (Model.Product) product;
+                   out.print(Helpers.Generator.generateItem(Singleproducts));
+               }        
+          %>
         </div>
       </div>
 </body>
