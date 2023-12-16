@@ -106,32 +106,11 @@
                             <input type="email" class="form-control" id="Name" placeholder="John Doe">
                         </div>
                         <div>
-                            <label for="country">Country</label>
-                                        <select class="form-control" id="country">
-                                            <option value="AF">Afghanistan</option>
-                                            <option value="BD">Bangladesh</option>
-                                            <option value="BT">Bhutan</option>
-                                            <option value="IN">India</option>
-                                            <option value="MV">Maldives</option>
-                                            <option value="NP">Nepal</option>
-                                            <option value="PK">Pakistan</option>
-                                            <option value="LK" selected>Sri Lanka</option>
-                                        </select>
-                        </div>
-                        <div >
-                            <div class="form-group">
-
-                                <label for="UserPhone" class="form-label">Phone Number</label>
+                            <label for="UserPhone" class="form-label">Phone Number</label>
                                 <input type="text" class="form-control" id="UserPhone" placeholder="071-xxxxxxx">
-                            </div>
-
                         </div>
-                        <div>
-                            <div class="input-group mb-3">
-                                <label class="input-group-text" for="inputGroupFile01">Edit Profile Avatar</label>
-                                <input type="file" class="form-control" id="inputGroupFile01">
-                            </div>
-                        </div>
+                        
+                       
                     </div>
                 </div>
             </div>
@@ -142,13 +121,10 @@
                         <input type="email" class="form-control" id="UserEmail" placeholder="name@example.com">
                     </div>
                     <div class="col">
-                        <label for="City" class="form-label">City</label>
-                        <input type="text" class="form-control" id="City" placeholder="New York">
+                        <label class="input-group-text" for="inputGroupFile01">Edit Profile Avatar</label>
+                        <input type="file" class="form-control" id="inputGroupFile01">
                     </div>
-                    <div class="col">
-                        <label for="PostalCode" class="form-label">Postal Code</label>
-                        <input type="text" class="form-control" id="PostalCode" placeholder="XXXXX">
-                    </div>
+                   
                 </div>
 
             </div>

@@ -26,24 +26,32 @@
                     <div class="input-box mx-auto px-3">
                         <header>Hello!</header>
                         <p class="header-p ">Sign Up to Start</p>
+                        <form name="register" action="/GreenSupermarket/CusRegisterServlet" method="post">
                         <div class="input-field1">
-                            <input type="text" class="input" id="fname" required autocomplete="off" placeholder="Full name">  
+                            <input type="text" class="input" name="fullname" id="fullname" required autocomplete="off" placeholder="Full name">  
                         </div>
                         <br>
                         <div class="input-field2">
-                            <input type="text" class="input" id="email" required autocomplete="off" placeholder="Email Address">  
+                            <input type="text" class="input" name="email"  id="email" required autocomplete="off" placeholder="Email Address">  
                         </div>
                         <br>
                         <div class="input-field3">
-                            <input type="text" class="input" id="pno" required autocomplete="off" placeholder="Phone number">  
+                            <input type="text" class="input"  name="pno"  id="pno" required autocomplete="off" placeholder="Phone number">  
                         </div>
                         <br>
                         <div class="input-field4">
-                            <input type="password" class="input" id="password" placeholder="Password" >  
+                            <input type="password" class="input" name="password" id="password" placeholder="Password" >  
                         </div>
                         <br>
                         <div class="input-field">
-                            <input type="button" class="submit" value="Register">
+                           
+                           <input type="submit" id="submit" name="submit" value="Register">
+                            
+                        </div>
+                        </form>
+                        <div class="forgot-password">
+                            
+                           <a href="login.jsp" style="color:black;">Login instead ?</a>
                         </div>
                          </div>
                     </div>

@@ -4,9 +4,41 @@
         <servlet-name>AddAccountServlet</servlet-name>
         <servlet-class>com.shaveen.greensupermarket.AddAccountServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CustomerRegister</servlet-name>
+        <servlet-class>com.shaveen.greensupermarket.CusRegisterServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerRegisterServlet</servlet-name>
+        <servlet-class>com.shaveen.greensupermarket.CusRegisterServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserSettingReterive</servlet-name>
+        <servlet-class>com.shaveen.greensupermarket.UserSettingReterive</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserSettingRetServlet</servlet-name>
+        <servlet-class>com.shaveen.greensupermarket.UserSettingRetServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddAccountServlet</servlet-name>
         <url-pattern>/AddAccountServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerRegister</servlet-name>
+        <url-pattern>/CustomerRegister</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerRegisterServlet</servlet-name>
+        <url-pattern>/CustomerRegisterServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserSettingReterive</servlet-name>
+        <url-pattern>/UserSettingReterive</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserSettingRetServlet</servlet-name>
+        <url-pattern>/UserSettingRetServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

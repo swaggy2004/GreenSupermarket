@@ -10,7 +10,7 @@ import java.util.*;
  */
 public class Instances {
     public List <ManagerAccount> ManagerAccounts = new ArrayList<ManagerAccount>();
-    
+      
 }
 
 
