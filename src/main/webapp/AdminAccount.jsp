@@ -86,7 +86,7 @@
           <div class="col">Actions</div>
         </div>
         <!-- made a row and made it responsive for extra small, small and large displays -->
-        <% ManageConnection mc = new ManageConnection(); 
+        <% 
            var MC = new ManageConnection();
            var accounts = MC.getAccounts();
 
