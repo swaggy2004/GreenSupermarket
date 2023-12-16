@@ -16,7 +16,7 @@
                 <div class="error-text display-1">404</div>
                 <div class="sub-text h4 mb-3">Oops, page not found</div>
                 <p class="text-black mb-4">404 not found. The server can not find the requested resource. The URL is not recognized.<br> In an API, this can also mean that the end point is valid but the resource doesn't exist .</p>
-                <a href="index.html" class="btn btn-primary btn-lg">Back to Home</a>
+                <a href="index.jsp" class="btn btn-primary btn-lg">Back to Home</a>
               </div>
             </div>
           </div>

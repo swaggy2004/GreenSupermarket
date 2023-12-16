@@ -14,7 +14,7 @@
                     <div class="col-md-9 --Gradient d-none d-md-flex">
                     <!--Gradient background-->
                     <img class="img" src="assets/images/Login/logo.png" alt="Logo"> <!-- Added class "img" -->
-                    <h1>Customer Login</h1>
+                    <h1>Admin Login</h1>
                     <div class="big-text">
                         <p>Green Choices, <span style="color: #53A60F;">Bright Future</span></p>
                     </div>
@@ -39,8 +39,7 @@
                             <input type="button" class="submit" value="Login">
                         </div>
                         <div class="forgot-password">
-                            
-                           <a href="signup.jsp">Sign up instead ?</a>
+                           <a href="#"> Forgot Password?</a>
                         </div>
 
                     </div>
