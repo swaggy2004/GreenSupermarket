@@ -1,3 +1,4 @@
+<%@page import="com.shaveen.greensupermarket.ManageConnection"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -63,8 +64,9 @@
         </div>
 
         <form
-          action=""
+          action="<%=request.getContextPath()%>/EditAccountServlet"
           class="col col-md-9 p-md-4 mx-md-auto col-12 border rounded-3 border-opacity-25"
+          method="post"
         >
           <button class="btn px-0 mb-4 go-back fw-semibold border border-0 go-back-btn">
             <a href="AdminAccount.html" class="go-back">
@@ -84,34 +86,36 @@
                 type="text"
                 name="fullName"
                 id="fullName"
-                class="form-control"
+                class="form-control"value="${account.fullName}"
+                
               />
             </div>
             <div class="col-md-4 mb-3 col-12">
               <label for="email" class="form-label"><h5>Email</h5></label>
-              <input type="text" name="email" id="email" class="form-control" />
+              <input type="text" name="email" id="email" class="form-control" value="${account.email}"/>
             </div>
           </div>
 
           <div class="row mb-3">
             <div class="col-md-4 mb-3 col-12">
-              <label for="phoneNumber" class="form-label"
-                ><h5>Phone Number</h5></label
+              <label for="password" class="form-label"
+                ><h5>Password</h5></label
               >
               <input
                 type="text"
-                name="phoneNumber"
-                id="phoneNumber"
+                name="password"
+                id="password"
                 class="form-control"
+                value="${account.password}"
               />
             </div>
             <div class="col-md-4 mb-3 col-12">
               <label for="role" class="form-label"><h5>Role</h5></label>
-              <select name="role" id="role" class="form-select form-control">
-                <option value="1" id="1">Manager</option>
-                <option value="2" id="2">Employee</option>
-                <option value="3" id="3">Director</option>
-              </select>
+        <select name="role" id="role" class="form-select form-control">
+                <option value="1" ${account.role == '1' ? 'selected' : ''}>Manager</option>
+                <option value="2" ${account.role == '2' ? 'selected' : ''}>Employee</option>
+                <option value="3" ${account.role == '3' ? 'selected' : ''}>Director</option>
+        </select>
             </div>
           </div>
 
