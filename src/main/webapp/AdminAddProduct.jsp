@@ -62,15 +62,16 @@
           </nav>
         </div>
 
-        <form action="" class="col col-md-9 p-md-4 mx-md-auto col-12">
+        <form action="<%=request.getContextPath()%>/AddProductServlet" class="col col-md-9 p-md-4 mx-md-auto col-12" method="post" enctype="multipart/form-data">
           <h3 class="mb-5 text-center text-md-start text-uppercase">Add Product</h3>
           <div class="row row-cols-md-12">
             <div class="col col-md-3 col-12">
               <input
-                type="image"
+                type="file"
                 src="baby-carrots.png"
                 alt="picture of a carrot"
                 class="img-fluid w-100 border-cus"
+                name="productImage"
               />
             </div>
             <div class="col col-md-9">
@@ -131,7 +132,7 @@
                     ><h5>Unit Price (LKR)</h5></label
                   >
                   <input
-                    type="text"
+                    type="number"
                     name="unitPrice"
                     id="unitPrice"
                     class="form-control"
@@ -164,20 +165,21 @@
                   ></textarea>
                 </div>
               </div>
-              <div class="row col-md-12 mb-3">
-                <div class="col col-md-12 mb-3 col-12">
-                  <label for="selectableOptions" class="form-labe"
-                    ><h5>Selectable Options</h5></label
-                  >
-                  <textarea
-                    class="form-control"
-                    name="description"
-                    id="description"
-                    rows="4"
-                  >
-                  </textarea>
+             <div class="col col-md-3 mb-3 col-12">
+                <label for="unitQuantity" class="form-label"
+                  ><h5>Unit Quantity</h5></label
+                >
+                <div class="input-group mb-3">
+                  <input 
+                    type="number" 
+                    name="unitQuantity"
+                    id="unitQuantity" 
+                    class="form-control" 
+                    />
+                  <span class="input-group-text">g</span>
+
                 </div>
-              </div>
+            </div>
               <input
                 type="submit"
                 value="Add Product"

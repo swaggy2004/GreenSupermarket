@@ -5,6 +5,8 @@
 package com.shaveen.greensupermarket;
 
 import Model.ManagerAccount;
+import Model.EditAccountAdmin;
+import Model.ProductInfo;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.*;
 import java.util.*;
@@ -23,17 +25,17 @@ public class ManageConnection {
         try {
             Connection con = Model.Connection.start();
 
-            String query = "SELECT Email, Type, Fname, Lname FROM manager";
+            String query = "SELECT Email, Type, FullName, FROM manager";
             try (PreparedStatement statement = con.prepareStatement(query)) {
                 ResultSet resultSet = statement.executeQuery();
 
                 while (resultSet.next()) {
                     String email = resultSet.getString("Email");
                     String role = resultSet.getString("Type");
-                    String fname = resultSet.getString("Fname");
-                    String lname = resultSet.getString("Lname");
+                    String fullname = resultSet.getString("FullName");
+                    
 
-                    ManagerAccount account = new ManagerAccount(fname, lname, email, role);
+                    ManagerAccount account = new ManagerAccount(fullname,email,role);
                     accounts.add(account);
                 }
             }
@@ -44,20 +46,18 @@ public class ManageConnection {
 
         return accounts;
     }
-    public void addAccount(String fullName, String email, String pwd, String role) {
+    public void addAccount(String FullName, String Email, String Pwd, String Role) {
         try {
             var con = Model.Connection.start();
             
-            String[] parts = fullName.split(" ");
-            String fname = parts[0];
-            String lname = parts[1];
-            String query = "INSERT INTO manager(Email, Pwd, Type, Fname, Lname) VALUES (?, ?, ?, ?, ?)";
+           
+            String query = "INSERT INTO manager(Email, Pwd, Type, FullName) VALUES (?, ?, ?, ?)";
             try (PreparedStatement statement = con.prepareStatement(query)) {
-                statement.setString(1, email);
-                statement.setString(2, pwd);
-                statement.setString(3, role);
-                statement.setString(4, fname);
-                statement.setString(5, lname);
+                statement.setString(1, Email);
+                statement.setString(2, Pwd);
+                statement.setString(3, Role);
+                statement.setString(4, FullName);
+               
 
                 int rowsInserted = statement.executeUpdate();
                 if (rowsInserted > 0) {
@@ -73,6 +73,127 @@ public class ManageConnection {
         } catch (Exception e) {
             System.out.println(e);
         }
+    }
+    /*Below code is to get the relavant persons data from the database to display in the edit account*/
+    public EditAccountAdmin getAccountByEmail(String email) {
+        try {
+            var con = Model.Connection.start();
+            
+            String query = "SELECT FullName, Type, Pwd, FROM manager WHERE Email = ?";
+            try (PreparedStatement statement = con.prepareStatement(query)) {
+                statement.setString(1, email);
+                ResultSet resultSet = statement.executeQuery();
+                if (resultSet.next()) {
+                     String fullname = resultSet.getString("FullName");
+                    String type = resultSet.getString("Type"); 
+                    String pwd = resultSet.getString("Pwd");
+                    
+                    return new EditAccountAdmin(fullname,email, type,pwd);
+                } 
+               
+            }
+                con.close();
+            }catch(Exception e){
+                System.out.println(e);
+            }
+           return null;
+        
+    }
+    
+    public void updateAccount(String FullName,String Email, String Pwd, String Role){
+        try{
+            var con = Model.Connection.start();
+            
+            String query = "UPDATE manager SET Pwd=?, Type=?, FullName=? WHERE Email=?";
+            
+            try(PreparedStatement statement = con.prepareStatement(query)){
+                 statement.setString(1, Pwd);
+                    statement.setString(2, Role);
+                    statement.setString(3, FullName);
+                    statement.setString(4, Email);
+                
+                int rowsInserted = statement.executeUpdate();
+                if (rowsInserted > 0) {
+                    System.out.println("Account Updated successfully!");
+                } else {
+                    System.out.println("Failed to Update account.");
+                }
+                con.close();
+            }
+
+        } catch( Exception e){
+          System.out.println(e);     
+        }
+    }
+    
+    
+     /* below code for product*/
+    
+    
+    
+
+    public void addProduct(String ProductID, String ProductName, String ProductCategory, String Visibility, String Description, float UnitPrice, int UnitQuantity, String DbFileName) {
+        try {
+            var con = Model.Connection.start();
+            
+            String query = "INSERT INTO product(ProductId, Name, Category, Visibility, Description, UnitQty, UnitPrice, ImagePath, StockQty) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0)";
+            try (PreparedStatement statement = con.prepareStatement(query)) {
+                statement.setString(1, ProductID);
+                statement.setString(2, ProductName);
+                statement.setString(3, ProductCategory);
+                statement.setString(4, Visibility);
+                statement.setString(5, Description);
+                 statement.setInt(6, UnitQuantity);
+                 statement.setFloat(7, UnitPrice);
+                statement.setString(8, DbFileName); 
+                
+                
+                
+     
+                System.out.println("Executing SQL query:"+statement.toString());
+                int rowsInserted = statement.executeUpdate();
+                if (rowsInserted > 0) {
+                    System.out.println("Product added successfully!");
+                } else {
+                    System.out.println("Failed to add product.");
+                }
+                con.close();
+            }
+            catch(Exception e){
+                System.out.println(e);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
+    
+    public List<ProductInfo> getProductsinfo(String productID){
+        ProductInfo productinfo = null;
+        List<ProductInfo> Productsinfo = new ArrayList<>();
+     try{
+      var con = Model.Connection.start();
+      
+      String query = "SELECT Name,UnitQty,UnitPrice,ImagePath from product WHERE ProductID=?";
+      PreparedStatement statement= con.prepareStatement(query);
+      statement.setString(1, productID);
+      
+      ResultSet set = statement.executeQuery();
+      while(set.next()){
+        productinfo = new ProductInfo();
+        productinfo.setProductName(set.getString("Name"));
+        productinfo.setUnitQuantity(set.getInt("UnitQty"));
+        productinfo.setUnitPrice(set.getFloat("UnitPrice"));
+        productinfo.setImagePath(set.getString("ImagePath"));
+        productinfo.setProductID(set.getString("ProductID"));
+        Productsinfo.add(productinfo);
+      }
+     }
+      
+     catch(SQLException exception){
+      exception.printStackTrace();
+     }
+     return Productsinfo;
     }
     
     
