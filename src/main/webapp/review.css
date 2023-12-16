@@ -1,0 +1,125 @@
+body, html {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    margin-top: 10px; 
+}
+
+
+.review-container {
+    width: 90%;
+    min-width: 92vw;
+    border: 2px solid green;
+    border-radius: 6px;
+    padding: 20px;
+    padding-left: 15; /* Corrected unit */
+    padding-right: 15; /* Corrected unit */
+    box-sizing: border-box;
+    height: 200;
+    overflow-y: auto; /* Allows vertical scrolling within the container */
+    max-height: calc(100% - 50px); /* Maximum height adjusted for the fixed top margin */
+}
+
+
+.review-text1 {
+    color: black;
+    font-size: 40px;
+    font-weight: 700;
+    word-wrap: break-word;
+    text-align: left;  
+}
+.review-text2 {
+    color: black;
+    font-size: 20px;
+    font-weight: 400;
+    word-wrap: break-word;
+    color: black;
+}
+.feedback-container {
+    height: 280px;
+    background-color:rgb(225, 225, 225);
+    padding: 20px;  
+    border-radius: 6px;  
+}
+.feedback-text {
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 56px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-left: 10px;  
+}
+
+.rating-text {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0em;
+    text-align: center;  
+    margin: 0;
+}
+
+.rating-image {
+    margin: 0;
+    width: 253px;
+    height: 45px;
+    
+}
+.thankyou-container {
+    margin-top: 10px;
+    height: 70px;
+    background-color:rgba(234, 247, 233, 1);
+    padding: 20px;  
+    border-radius: 6px;  
+}
+.thankyou-text {
+    color:rgba(52, 120, 9, 1);
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 29px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-left: 10px;  
+   
+
+}
+.written-review {
+    height: 280px;
+    background-color:rgb(225, 225, 225);
+    padding: 20px;  
+    border-radius: 6px;  
+    margin-top: 10px;
+}
+
+.review-textbox {
+    width: 797px;
+    height: 160.86px;
+    margin: 0 auto; /* Center the textbox */
+    border-radius: 13px;
+    outline: none;
+    
+}
+.review-textbox::placeholder {
+    font-family: 'Poppins', sans-serif;
+    color:rgb(60, 60, 60);
+
+}
+
+.submit-button {
+    width: 100%; /* Full width of the container */
+    height: 50px;
+    background-color: green;
+    color: white;
+    font-size: 20px; /* Adjust the font size as needed */
+    border: none; /* No border */
+    margin-top: 20px; /* Space above the button */
+}
+
+.submit-button:hover {
+    background-color: black;
+    color: white;
+}

@@ -1,0 +1,295 @@
+body {
+  margin: 0;
+  padding: 0;
+ 
+  font-family: 'Poppins', sans-serif;
+}
+/* Jumbotron*/
+.jumbotron {
+  background: url('assets/images/Product-images/carousel-image.svg') center center / cover no-repeat ;
+  height:   500px;  
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;  
+}
+
+.jumbotron-text {
+  color: black;
+  font-size: 55px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.50px;
+  word-wrap: break-word;
+  width: 1837px;
+  text-align: left;  
+  padding-left: 20px;  
+  text-transform: none;
+}
+/* catogory section headings*/
+.category-section {
+  text-align: center;
+  color: var(--branding-success, #00B207);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 14px;
+  letter-spacing: 0.28px;
+  text-transform: uppercase;
+  margin-top: 43px;
+  
+}
+.category-heading {
+color: var(--gray-scale-gray-900, #1A1A1A);
+text-align: center;
+font-size: 36px;
+font-weight: 600;
+line-height: 120%;
+width: 100%;
+margin: 20px auto;
+text-transform: none;
+}
+/* catogory section cards*/
+.card-custom {/*main card styles*/
+  height: 240px;
+  border: 3px solid #C7C7C7;
+  width: 250px;
+  position: relative;
+  transition: box-shadow 0.3s ease-in-out;
+}
+ 
+.card-custom:hover, .card-custom:active {/*main card hover/action*/
+  border: 2px solid green;
+  box-shadow: 0 4px 8px 0 rgba(66, 141, 80, 0.4); 
+  cursor: pointer;  
+}
+ 
+.card-spacing {/* spacing when the screen resizing in catogory sections cards */
+  padding: 10px;
+}
+
+@media (max-width: 767px) {/*  catogory cards center when screen resized*/
+  .card-custom {
+    margin: 0 auto; 
+  }
+}
+/*catogory section cards images*/
+.card-img-top {
+  width: 200px;
+  height: 150px;
+  margin-top: 23px;
+  margin-left: auto;
+  margin-right: auto;
+}
+/*catogory & product section cards title*/
+.card-title {
+  text-align: center;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 21px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+/* products section headings*/
+.products-section {
+  text-align: center;
+  color: var(--branding-success, #00B207);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 14px;
+  letter-spacing: 0.28px;
+  text-transform: uppercase;
+  margin-top: 43px;
+}
+.product-heading {
+  color: var(--gray-scale-gray-900, #1A1A1A);
+  text-align: center;
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 120%;
+  width: 100%;
+  margin: 20px auto;
+  text-transform: none;
+  }
+/* products section vegetable button card style*/
+.card-custom3 {
+    background-color: #F4EFEA;
+    position: relative;
+    border: 2px solid #e3e2e2;
+  }
+.card-title3 {/* products section vegetable button card text1*/
+    padding-top: 60px;
+    text-align: center;
+    font-size: 9px;
+    font-weight: 500;
+    line-height: 21px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+.card-title4 {/* products section vegetable button card text2*/
+    text-align: center;
+    color:#00B207;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-bottom: 30px;
+  }
+/* products section vegetable button in the card*/
+button.btn-vegetables {
+    width: 95%;
+    height: 45px;
+    background-color:#ffffff;
+    color:#00B207;
+    border:1.5px solid#00B207;
+    border-radius: 23px;
+    margin-bottom: 50px;
+  }
+button.btn-vegetables:hover {/* products section vegetable button hover*/
+    background-color:#00B207;
+    color:rgb(255, 255, 255);
+    border: #F4EFEA;
+  }
+    
+/* products section cards 1-4*/
+.card-custom2 {
+  border: 2px solid #e3e2e2;
+  position: relative;
+   
+}
+.card-custom2:hover, .card-custom2:focus { /* products section card hover*/
+  border: 2px solid #00B207;
+}
+/* products section card 2nd title*/
+.card-title2 {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+/* products section card add to favourites heart*/
+.heart-icon {
+  position: absolute;
+  top: 15px;
+  right: 17px;
+  width: 25px;
+  height: 25px;
+  background-image: url('assets/images/Product-images/heart.svg'); /* Default heart icon image */
+  background-size: cover;
+  z-index: 10;
+  cursor: pointer; 
+  border: none;  
+  padding: 0; /* Removing default button padding */
+  background-color: transparent; /* Removing default button background color */
+}
+ 
+.heart-icon:hover {/* products section card add to favourites heart hover that chages the image to a pink heart*/
+  background-image: url('assets/images/Product-images/heart2.svg'); /* Pink heart icon on hover */
+}
+/* products section card add to bag circle*/
+.circle {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;  
+  background-color: #dedddd;  
+  position: absolute;  
+  right: 20px;  
+  bottom: 30px;  
+}
+.circle:hover {/* products section card add to bag circle hover*/
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #EAF7E9;  
+  position: absolute;  
+  right: 20px; 
+  bottom: 30px;  
+}
+/* products section card add to bag image inside circle*/
+.circle-img {
+  width: 20px;
+  height: 20px;
+  position: absolute;  
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);  
+}
+
+/*products section over!!!!!!!!!!!*/
+
+/*large screen layout/ default laptop screen layout query*/
+
+.card-spacing2 {
+      margin-bottom: 1rem;  
+      
+    }
+/*discount section*/
+.discount-div {
+      height: 507px;
+      background-color:#D0F288;
+      padding: 10px;
+    }
+.inner-div {
+      background-color: green;
+      margin: 10px; /* Adjust this value to change the space between the inner divs */
+      margin-left: 40px;
+      margin-right: 40px;
+      height: calc(100% ); /* Adjust this value based on the margin */
+    }
+
+/*client review section*/
+.client-review {
+      background-color: #D0F288;
+      width: 340px;
+      height: 250px;
+      margin: 15px;
+      display: flex;
+     /* align-items: center;*/
+      justify-content: center;
+      flex-direction: column;
+    }
+.client-review img:first-child {
+      width: 32px;
+      height: 26px;
+      opacity: 0.7;
+      margin-bottom: 10px;
+      margin: 0 15px 10px;
+    }
+.client-review p {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 21px;
+      letter-spacing: 0em;
+      text-align: left;
+      margin: 0 15px 10px;
+}
+.client-review .info img {
+        margin-top: 10px;
+        width: 56px;
+        height: 56px;
+        margin-right: 15px;
+        opacity: 1;
+}
+.client-review .info .name {
+  margin-top: -60px;
+  margin-left: 90px;
+}
+.client-review .info .role {
+  font-size: 14px;
+  margin-top: -2px;
+  margin-left: 90px;
+  color: #706f6f;
+}
+.client-review .info .star {
+  font-size: 14px;
+  margin-top: -45px;
+  margin-left: 200px;
+  color: #706f6f;
+}
+
+.client-review .info .star img {
+ 
+  width: 104px;
+  height: 20px;
+  
+}

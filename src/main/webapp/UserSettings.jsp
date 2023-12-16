@@ -5,13 +5,20 @@
   Time: 07:32 pm
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="java.io.*,java.util.*,javax.servlet.*"%>
+<%@ page import="jakarta.servlet.http.*"%>
+<%@ page import="java.util.Map.*"%>
+<%@ page import="jakarta.servlet.http.HttpSession" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://xmlns.jcp.org/jsp/jstl/core" prefix="c" %>
+
+
 <html>
 <head>
     <title>User Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
     <link href="UserSettings.css" rel="stylesheet">
+
     <style>
         /* Custom styles for the burger stack icon in mobile */
         @media (max-width: 767px) {
@@ -47,6 +54,16 @@
     </style>
 </head>
 <body>
+
+<%
+    HttpSession session1 = request.getSession(false);
+
+    // Check if the session is not null and the isLoggedIn attribute is true
+    if (session1 != null && Boolean.TRUE.equals(session.getAttribute("isLoggedIn"))) {
+        // User is logged in, proceed with the rest of the page
+%>
+
+
 <nav style="background-color: #d0f288" class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand" href="#"><img style="width: 110px" alt="Navbar Logo" src="assets/NavLogo.svg"></a>
@@ -85,10 +102,6 @@
     </div>
 </nav>
 
-
-<div class="row" style="margin-top: 2rem;margin-left: 1rem">
-    <div class="col-2" style="" ><img style="width: 8rem " src="assets/Avatar.png" class="rounded-circle ms-2" alt="User Avatar"></div>
-
 <h1 style="margin-top: 2rem;margin-left: 1rem;">Account Settings</h1>
 <form name="usersettings" method="" action="">
 <div class="row" style="margin-top: 2rem;margin-left: 1rem; margin-right: 1rem">
@@ -98,65 +111,38 @@
         </div>
 
     </div>
-
+    
+    <form action="UserSettingsServlet" method="post">
+     <c:if test="${not empty userData}">   
     <div class="col-10">
         <div class="row">
             <div class="col-6">
                 <div class="col" style="margin-top: 2rem">
                     <div class="vstack gap-3">
                         <div >
-
-                            <label for="UserEmail" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="UserEmail" placeholder="name@example.com">
+                            <label for="Name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="Name" placeholder="John Doe" value="${userData.fullName}>
                         </div>
                         <div>
                             <label for="UserPhone" class="form-label">Phone Number</label>
-                            <input type="text" class="form-control" id="UserPhone" placeholder="071-xxxxxxx">
+                                <input type="text" class="form-control" id="UserPhone" placeholder="071-xxxxxxx" value="${userData.phoneNumber}">
                         </div>
-                        <div class="bg-light border">
-                            <select class=" selectpicker countrypicker"></select>
-
-                            <label for="Name" class="form-label">Name</label>
-                            <input type="email" class="form-control" id="Name" placeholder="John Doe">
-                        </div>
-                        <div>
-                            <label for="country">Country</label>
-                            <select class="form-control  countrypicker" id="country" selected="Sri Lanka"></select>
-                        </div>
-                        <div >
-                            <div class="form-group">
-
-                                <label for="UserPhone" class="form-label">Phone Number</label>
-                                <input type="text" class="form-control" id="UserPhone" placeholder="071-xxxxxxx">
-                            </div>
-
-                        </div>
-                        <div>
-                            <div class="input-group mb-3">
-                                <label class="input-group-text" for="inputGroupFile01">Edit Profile Avatar</label>
-                                <input type="file" class="form-control" id="inputGroupFile01">
-                            </div>
-
-                        </div>
+                        
+                       
                     </div>
                 </div>
             </div>
-
-            <div class="col-6">col-4</div>
             <div class="col-6" style="margin-top: 2rem">
                 <div class="vstack gap-3">
                     <div >
                         <label for="UserEmail" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="UserEmail" placeholder="name@example.com">
+                        <input type="email" class="form-control" id="UserEmail" placeholder="name@example.com" value="${userData.fullName}>
                     </div>
                     <div class="col">
-                        <label for="City" class="form-label">City</label>
-                        <input type="text" class="form-control" id="City" placeholder="New York">
+                        <label class="input-group-text" for="inputGroupFile01">Edit Profile Avatar</label>
+                        <input type="file" class="form-control" id="inputGroupFile01">
                     </div>
-                    <div class="col">
-                        <label for="PostalCode" class="form-label">Postal Code</label>
-                        <input type="text" class="form-control" id="PostalCode" placeholder="XXXXX">
-                    </div>
+                   
                 </div>
 
             </div>
@@ -165,7 +151,8 @@
             <button type="submit" class="btn btn-update">Update</button>
         </div>
     </div>
-
+     </c:if>
+</form>
 
 </div>
 
@@ -177,21 +164,12 @@
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    Billing Adress
+                    Billing Address
                 </div>
                 <div class="card-body">
                     <form>
                         <table>
-                            <tr>
-                                <td>
-                                    <label for="Bill-FirstName" class="form-label">First Name</label>
-                                    <input type="text" class="form-control" id="Bill-FirstName" placeholder="Kevin">
-                                </td>
-                                <td>
-                                    <label for="Bill-LastName" class="form-label">Last Name</label>
-                                    <input type="text" class="form-control" id="Bill-LastName" placeholder="Gilbert">
-                                </td>
-                            </tr>
+                            
                             <tr>
                                 <td colspan="2">
                                     <label for="Bill-Address" class="form-label">Address</label>
@@ -213,7 +191,16 @@
                                 <td colspan="2">
                                     <div>
                                         <label for="country">Country</label>
-                                        <select class="form-control  countrypicker" id="country" selected="Sri Lanka"></select>
+                                        <select class="form-control" id="country">
+                                            <option value="AF">Afghanistan</option>
+                                            <option value="BD">Bangladesh</option>
+                                            <option value="BT">Bhutan</option>
+                                            <option value="IN">India</option>
+                                            <option value="MV">Maldives</option>
+                                            <option value="NP">Nepal</option>
+                                            <option value="PK">Pakistan</option>
+                                            <option value="LK" selected>Sri Lanka</option>
+                                        </select>
                                     </div>
                                 </td>
 
@@ -243,16 +230,7 @@
                 <div class="card-body">
                     <form>
                         <table>
-                            <tr>
-                                <td>
-                                    <label for="Shipping-FirstName" class="form-label">First Name</label>
-                                    <input type="text" class="form-control" id="Shipping-FirstName" placeholder="Kevin">
-                                </td>
-                                <td>
-                                    <label for="Shipping-LastName" class="form-label">Last Name</label>
-                                    <input type="text" class="form-control" id="Shipping-LastName" placeholder="Gilbert">
-                                </td>
-                            </tr>
+                            
                             <tr>
                                 <td colspan="2">
                                     <label for="Shipping-Address" class="form-label">Address</label>
@@ -273,8 +251,17 @@
                             <tr>
                                 <td colspan="2">
                                     <div>
-                                        <label for="Shipping-country">Country</label>
-                                        <select class="form-control  countrypicker" id="Shipping-country" selected="Sri Lanka"></select>
+                                        <label for="country">Country</label>
+                                        <select class="form-control" id="country">
+                                            <option value="AF">Afghanistan</option>
+                                            <option value="BD">Bangladesh</option>
+                                            <option value="BT">Bhutan</option>
+                                            <option value="IN">India</option>
+                                            <option value="MV">Maldives</option>
+                                            <option value="NP">Nepal</option>
+                                            <option value="PK">Pakistan</option>
+                                            <option value="LK" selected>Sri Lanka</option>
+                                        </select>
                                     </div>
                                 </td>
 
@@ -294,15 +281,10 @@
                 </div>
 
             </div>
-
         </div>
     </div>
 </div>
 
-
-
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 
 <div class="container text-center" style="margin-top: 2rem">
 <div class="card">
@@ -342,19 +324,7 @@
 
 </div>
 </div>
-<script>
-    $(document).ready(function () {
-        const countryCode = new URLSearchParams(window.location.search).get("country");
 
-        $('.countrypicker').countrypicker({
-            showFlag: true,
-            defaultCountry: "LK", // Set Sri Lanka as the default country
-        });
-    });
-
-
-
-</script>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
@@ -362,6 +332,12 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select-country/dist/js/bootstrap-select-country.min.js"></script>
 
+<%
+    } else {
+        // User is not logged in, redirect to login.jsp
+        response.sendRedirect("login.jsp");
+    }
+%>
 
 </body>
 </html>
