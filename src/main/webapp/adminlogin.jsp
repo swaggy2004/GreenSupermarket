@@ -27,20 +27,20 @@
                     <div class="input-box mx-auto px-3">
                         <header>Hello!</header>
                         <p class="header-p">Welcome Back</p>
+                        <form action="ManagerLoginServlet" method="post">
                         <div class="input-field1">
-                            <input type="text" class="input" id="email" required autocomplete="off" placeholder="&nbsp;Email Address"> <!-- Corrected placeholder text -->
+                            <input type="text" class="input" id="email" name="email" required autocomplete="off" placeholder="&nbsp;Email Address"> <!-- Corrected placeholder text -->
                         </div>
                         <br>
                         <div class="input-field2">
-                            <input type="password" class="input" id="password" placeholder="&nbsp;Password" > <!-- Changed id to "password" -->
+                            <input type="password" class="input" id="password"  name="password" placeholder="&nbsp;Password" > <!-- Changed id to "password" -->
                         </div>
                         <br>
                         <div class="input-field">
-                            <input type="button" class="submit" value="Login">
+                            <input type="submit" value="Login">
                         </div>
-                        <div class="forgot-password">
-                           <a href="#"> Forgot Password?</a>
-                        </div>
+                        </form>
+                        
 
                     </div>
                     </div>
