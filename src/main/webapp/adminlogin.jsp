@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="login.CSS">
+    <link rel="styleSheet" href="login.CSS">
  </head>
 <body>
     <div class="wrapper">
@@ -14,7 +14,7 @@
                     <div class="col-md-9 --Gradient d-none d-md-flex">
                     <!--Gradient background-->
                     <img class="img" src="assets/images/Login/logo.png" alt="Logo"> <!-- Added class "img" -->
-                    <h1>Customer Login</h1>
+                    <h1>Admin Login</h1>
                     <div class="big-text">
                         <p>Green Choices, <span style="color: #53A60F;">Bright Future</span></p>
                     </div>
@@ -26,25 +26,21 @@
                     <div class="container">
                     <div class="input-box mx-auto px-3">
                         <header>Hello!</header>
-                        
-                        <form action="LoginServlet" method="post">
                         <p class="header-p">Welcome Back</p>
+                        <form action="ManagerLoginServlet" method="post">
                         <div class="input-field1">
-                            <input type="text" class="input" name="email" id="email" required autocomplete="off" placeholder="&nbsp;Email Address"> <!-- Corrected placeholder text -->
+                            <input type="text" class="input" id="email" name="email" required autocomplete="off" placeholder="&nbsp;Email Address"> <!-- Corrected placeholder text -->
                         </div>
                         <br>
                         <div class="input-field2">
-                            <input type="password" class="input" name="password" id="password" placeholder="&nbsp;Password" > <!-- Changed id to "password" -->
+                            <input type="password" class="input" id="password"  name="password" placeholder="&nbsp;Password" > <!-- Changed id to "password" -->
                         </div>
                         <br>
                         <div class="input-field">
-                            <input type="submit" id="submit" name="submit" value="Login">
+                            <input type="submit" value="Login">
                         </div>
                         </form>
-                        <div class="forgot-password">
-                            
-                           <a href="signup.jsp">Sign up instead ?</a>
-                        </div>
+                        
 
                     </div>
                     </div>
