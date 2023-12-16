@@ -5,6 +5,7 @@
         <servlet-class>com.shaveen.greensupermarket.AddAccountServlet</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
         <servlet-name>AddProductServlet</servlet-name>
         <servlet-class>com.shaveen.greensupermarket.AddProductServlet</servlet-class>
     </servlet>
@@ -19,12 +20,37 @@
     <servlet>
         <servlet-name>AdminProductServlet</servlet-name>
         <servlet-class>com.shaveen.greensupermarket.AdminProductServlet</servlet-class>
+=======
+        <servlet-name>CustomerRegister</servlet-name>
+        <servlet-class>com.shaveen.greensupermarket.CusRegisterServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerRegisterServlet</servlet-name>
+        <servlet-class>com.shaveen.greensupermarket.CusRegisterServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserSettingReterive</servlet-name>
+        <servlet-class>com.shaveen.greensupermarket.UserSettingReterive</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserSettingRetServlet</servlet-name>
+        <servlet-class>com.shaveen.greensupermarket.UserSettingRetServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.shaveen.greensupermarket.LoginServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserSettingsServlet</servlet-name>
+        <servlet-class>com.shaveen.greensupermarket.UserSettingsServlet</servlet-class>
+>>>>>>> ae2c17c996a3ac1af1917eef87dd44ef8eb13ac8
     </servlet>
     <servlet-mapping>
         <servlet-name>AddAccountServlet</servlet-name>
         <url-pattern>/AddAccountServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
         <servlet-name>AddProductServlet</servlet-name>
         <url-pattern>/AddProductServlet</url-pattern>
     </servlet-mapping>
@@ -39,6 +65,30 @@
     <servlet-mapping>
         <servlet-name>AdminProductServlet</servlet-name>
         <url-pattern>/AdminProductServlet</url-pattern>
+=======
+        <servlet-name>CustomerRegister</servlet-name>
+        <url-pattern>/CustomerRegister</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerRegisterServlet</servlet-name>
+        <url-pattern>/CustomerRegisterServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserSettingReterive</servlet-name>
+        <url-pattern>/UserSettingReterive</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserSettingRetServlet</servlet-name>
+        <url-pattern>/UserSettingRetServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserSettingsServlet</servlet-name>
+        <url-pattern>/UserSettingsServlet</url-pattern>
+>>>>>>> ae2c17c996a3ac1af1917eef87dd44ef8eb13ac8
     </servlet-mapping>
     <session-config>
         <session-timeout>

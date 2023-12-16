@@ -1,0 +1,106 @@
+body{
+    font-family: 'Poppins', sans-serif;
+}
+.full-screen-background {
+    background: url('assets/images/Order-review/review-popup.svg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    position: relative;
+    }
+
+.rectangle {
+        position: relative; 
+        width: 50%;
+        height: 70%;
+        background-color: white;
+        border: 2px solid rgba(0, 178, 7, 1); 
+        border-radius: 10px;
+        margin: auto;  
+        
+    }
+    @media (max-width: 768px) {
+        .rectangle {
+            width: 95%; 
+            height: auto;/* Increase width percentage for smaller screens */
+            /* Adjust other styles as needed */
+        }
+    }
+
+.icon {
+        position: absolute; /* Absolute positioning */
+    }
+    
+.icon-left {
+        Top:5px;
+        left: 5px;
+        width: 42.54px;
+        height: 44.65px;
+        background-image: url('assets/images/Order-review/left-arrow.svg'); /* Replace with your actual image path */
+        background-size: cover;
+    }
+    
+.icon-right {
+        Top:15px;
+        right: 15px;
+        width: 25px;
+        height: 25px;
+        background-image: url('assets/images/Order-review/right-x.svg'); /* Replace with your actual image path */
+        background-size: cover;
+    }
+.review-section {
+        text-align: center; /* Centers the content */
+        padding: 20px; /* Add padding as needed */
+        padding-top: 80px;
+    }
+    
+.review-text {
+        font-size: 25px;
+        font-weight: 600;
+        line-height: 38px;
+        letter-spacing: 0;
+        margin-bottom: 20px;  
+    }
+    
+.image-icon {
+        width: 126px;
+        height: 126px;
+        margin: 0 auto 20px; 
+        background-image: url('assets/images/Order-review/smiley-face.svg');  
+        background-size: cover;
+    }
+    
+.buttons {
+        display: flex;
+        margin-bottom: 10px; 
+    }
+
+.skip-button {
+        width: 228px;
+        height: 50px;
+        border-radius: 10px;
+        background-color: rgba(243, 122, 32, 1);  
+        color: white;  
+    }
+.skip-button:hover {
+        background-color: rgba(243, 122, 32, 1);  
+        color: white; 
+        box-shadow: 0 0 20px rgba(255, 74, 74, 0.3);  
+        transition: box-shadow 0.3s ease, transform 0.3s ease; 
+    }
+   
+.review-button {
+        width: 228px;
+        height: 50px;
+        border-radius: 10px;
+        background-color: rgba(0, 178, 7, 1); 
+        color: white;  
+        border: none;
+    }
+.review-button:hover {
+        background-color: rgba(0, 178, 7, 1); 
+        color: white; 
+        box-shadow: 0 0 20px rgba(0, 128, 0, 0.3);  
+        transition: box-shadow 0.3s ease, transform 0.3s ease; 
+    }
+ 
