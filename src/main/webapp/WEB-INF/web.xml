@@ -4,9 +4,41 @@
         <servlet-name>AddAccountServlet</servlet-name>
         <servlet-class>com.shaveen.greensupermarket.AddAccountServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddProductServlet</servlet-name>
+        <servlet-class>com.shaveen.greensupermarket.AddProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditAccountServlet</servlet-name>
+        <servlet-class>com.shaveen.greensupermarket.EditAccountServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditProductServler</servlet-name>
+        <servlet-class>com.shaveen.greensupermarket.EditProductServler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminProductServlet</servlet-name>
+        <servlet-class>com.shaveen.greensupermarket.AdminProductServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddAccountServlet</servlet-name>
         <url-pattern>/AddAccountServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddProductServlet</servlet-name>
+        <url-pattern>/AddProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditAccountServlet</servlet-name>
+        <url-pattern>/EditAccountServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditProductServler</servlet-name>
+        <url-pattern>/EditProductServler</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminProductServlet</servlet-name>
+        <url-pattern>/AdminProductServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

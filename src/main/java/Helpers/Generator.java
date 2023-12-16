@@ -17,7 +17,7 @@ public class Generator {
 "        >\n" +
 "          <!-- these are the items that will be include in the grid once received from the database -->\n" +
 "          <div class=\"col col-md-5 col-sm-12 col-12\">\n" +
-"            <div class=\"fs-4\">"+ manager_acc.getFname()+ " " + manager_acc.getLname() + "</div>\n" +
+"            <div class=\"fs-4\">"+ manager_acc.getFullName()+ "</div>\n" +
 "            <!-- made the overflow of the email scrollable because it will be too long -->\n" +
 "            <div\n" +
 "                    class=\"fs-6 float-center overflow-x-scroll overflow-md-none\"\n" +
@@ -38,5 +38,7 @@ public class Generator {
 "          </div>\n" +
 "        </div>";
     }
+    
+    
     
 }

@@ -1,26 +1,26 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSysem/Templates/Classes/Class.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Model;
 
 /**
  *
- * @author Shaveen
+ * @author DELL
  */
-public class ManagerAccount {
+public class EditAccountAdmin {
     private String FullName;
     private String Email;
     private String Type;
+    private String Pwd;
     
-    
-    public ManagerAccount(){}
+    public EditAccountAdmin(){}
    
-     public ManagerAccount(String FullName, String Email, String Type) {
+     public EditAccountAdmin(String FullName, String Email,String type, String Password) {
         this.FullName = FullName;
         this.Email = Email;
-        this.Type = Type;
-        
+        this.Type = type;
+        this.Pwd = Password;
     }
 
     public String getFullName() {
@@ -45,5 +45,12 @@ public class ManagerAccount {
 
     public void setType(String Type) {
         this.Type = Type;
+    }
+     public String getPwd() {
+        return Pwd;
+    }
+
+    public void setPwd(String Pwd) {
+        this.Pwd = Pwd;
     }
 }
