@@ -5,6 +5,10 @@
   Time: 2:43 AM
   To change this template use File | Settings | File Templates.
 --%>
+<%@page import="Helpers.Generator"%>
+<%@page import="com.shaveen.greensupermarket.FetchProduct"%>
+<%@page import="com.shaveen.greensupermarket.ShoppingCartConnection"%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
@@ -121,6 +125,36 @@
                     </div>
                 </div>
             </div>
+            
+           <%
+    try {
+        var cart = new ShoppingCartConnection();
+        var shoppingCarts = cart.getCart();
+
+        for (var shoppingCart : shoppingCarts) {
+            var productIDs = shoppingCart.getProductID();
+
+            if (productIDs != null && !productIDs.isEmpty()) {
+                var fetchProduct = new FetchProduct();
+
+                for (var productID : productIDs) {
+                    var products = fetchProduct.getProduct(productID.toString());
+
+                    for (var product : products) {
+                        Model.Product singleProduct = (Model.Product) product;
+                        out.print(Generator.generateCartItem(singleProduct));
+                    }
+                }
+            } else {
+                out.print("Cart is empty."); // Or handle empty cart case accordingly
+            }
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+        out.print("An error occurred."); // Or handle the error case accordingly
+    }
+%>
+
 
             <div class="card mb-3" style="max-width: 1280px;border-radius: 20px;">
                 <div class="row g-0">
