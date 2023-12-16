@@ -115,7 +115,7 @@ body {
     color: #333;  
     opacity: 0.3;  
 }
-.input-field input[type="button"] {
+.input-field input[type="submit"] {
     display: flex;
     width: 307px;
     padding: 18px 26px;
@@ -129,7 +129,7 @@ body {
     color: white;
     outline: none; 
 }
-.input-field input[type="button"]:hover {
+.input-field input[type="submit"]:hover {
     background: black;  
 }
 .forgot-password{

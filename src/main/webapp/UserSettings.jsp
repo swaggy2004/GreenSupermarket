@@ -5,7 +5,14 @@
   Time: 07:32 pm
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="java.io.*,java.util.*,javax.servlet.*"%>
+<%@ page import="jakarta.servlet.http.*"%>
+<%@ page import="java.util.Map.*"%>
+<%@ page import="jakarta.servlet.http.HttpSession" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://xmlns.jcp.org/jsp/jstl/core" prefix="c" %>
+
+
 <html>
 <head>
     <title>User Dashboard</title>
@@ -47,6 +54,14 @@
     </style>
 </head>
 <body>
+
+<%
+    HttpSession session1 = request.getSession(false);
+
+    // Check if the session is not null and the isLoggedIn attribute is true
+    if (session1 != null && Boolean.TRUE.equals(session.getAttribute("isLoggedIn"))) {
+        // User is logged in, proceed with the rest of the page
+%>
 
 
 <nav style="background-color: #d0f288" class="navbar navbar-expand-lg bg-body-tertiary">
@@ -96,6 +111,9 @@
         </div>
 
     </div>
+    
+    <form action="UserSettingsServlet" method="post">
+     <c:if test="${not empty userData}">   
     <div class="col-10">
         <div class="row">
             <div class="col-6">
@@ -103,11 +121,11 @@
                     <div class="vstack gap-3">
                         <div >
                             <label for="Name" class="form-label">Name</label>
-                            <input type="email" class="form-control" id="Name" placeholder="John Doe">
+                            <input type="text" class="form-control" id="Name" placeholder="John Doe" value="${userData.fullName}>
                         </div>
                         <div>
                             <label for="UserPhone" class="form-label">Phone Number</label>
-                                <input type="text" class="form-control" id="UserPhone" placeholder="071-xxxxxxx">
+                                <input type="text" class="form-control" id="UserPhone" placeholder="071-xxxxxxx" value="${userData.phoneNumber}">
                         </div>
                         
                        
@@ -118,7 +136,7 @@
                 <div class="vstack gap-3">
                     <div >
                         <label for="UserEmail" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="UserEmail" placeholder="name@example.com">
+                        <input type="email" class="form-control" id="UserEmail" placeholder="name@example.com" value="${userData.fullName}>
                     </div>
                     <div class="col">
                         <label class="input-group-text" for="inputGroupFile01">Edit Profile Avatar</label>
@@ -133,7 +151,8 @@
             <button type="submit" class="btn btn-update">Update</button>
         </div>
     </div>
-
+     </c:if>
+</form>
 
 </div>
 
@@ -312,6 +331,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select-country/dist/js/bootstrap-select-country.min.js"></script>
+
+<%
+    } else {
+        // User is not logged in, redirect to login.jsp
+        response.sendRedirect("login.jsp");
+    }
+%>
 
 </body>
 </html>
