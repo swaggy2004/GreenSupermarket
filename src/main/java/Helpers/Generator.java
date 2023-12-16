@@ -39,10 +39,10 @@ public class Generator {
 "        </div>";
     }
     
-<<<<<<< HEAD
+
     
     
-=======
+
     public static String generateItem(Model.Product product){
         return"<div class=\"col-lg-3 col-md-6 mb-3\">\n" +
 "            <div class=\"card card-custom\">\n" +
@@ -57,6 +57,7 @@ public class Generator {
 "            </div>\n" +
 "          </div>";
     }
+
     
     public static String generateCartItem(Model.Product cartItem){
         return "<div class=\"card mb-3\" style=\"max-width: 1280px;border-radius: 20px;\">\n" +
@@ -111,5 +112,5 @@ public class Generator {
 "                </div>\n" +
 "            </div>";
     }
->>>>>>> ae2c17c996a3ac1af1917eef87dd44ef8eb13ac8
+
 }
