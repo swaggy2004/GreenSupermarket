@@ -202,11 +202,12 @@ public class ManageConnection {
         try {
             var con = Model.Connection.start();
             
-            String query = "SELECT Name, Category, Visibility, Description, UnitQty, UnitPrice, ImagePath FROM product WHERE ProductID = ?";
+            String query = "SELECT ProductID,Name, Category, Visibility, Description, UnitQty, UnitPrice, ImagePath FROM product WHERE ProductID = ?";
             try (PreparedStatement statement = con.prepareStatement(query)) {
                 statement.setString(1, productId);
                 ResultSet resultSet = statement.executeQuery();
                 if (resultSet.next()) {
+                    String productID = resultSet.getString("ProductID");
                     String name = resultSet.getString("Name");
                     String category = resultSet.getString("Category");
                     Boolean visibitlity = resultSet.getBoolean("Visibility");
@@ -214,7 +215,7 @@ public class ManageConnection {
                     int unitqty = resultSet.getInt("UnitQty");
                     float price = resultSet.getFloat("UnitPrice");
                     String imgpath = resultSet.getString("ImagePath");
-                    String productID = resultSet.getString("ProductID");
+                    
             
                     return new ProductEdit(productID, name, unitqty, price, imgpath, category, description, visibitlity);
                 } 

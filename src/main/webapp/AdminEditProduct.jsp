@@ -1,5 +1,6 @@
 <%@page import="com.shaveen.greensupermarket.ManageConnection"%>
 <%@page import="Model.ProductEdit"%>
+<%@ page isELIgnored="false" %>
 <%
    String productId = request.getParameter("productId");
    ProductEdit product = ManageConnection.getProductById(productId);
@@ -75,9 +76,10 @@
             <div class="col col-md-3 col-12">
               <input
                 type="image"
-                src="baby-carrots.png"
-                alt="picture of a carrot"
+                src="${product.getImagePath()}"
+                alt="${product.getImagePath()}"
                 class="img-fluid w-100 border-cus"
+                
               />
             </div>
             <div class="col col-md-9">
@@ -151,14 +153,15 @@
                   <label for="Visibility" class="form-label"
                     ><h5>Visibility</h5></label
                   >
+                   <% System.out.println("Visibility: " + product.getVisibility()); %>
                   <select
                     class="form-select form-control"
                     name="Visibility"
                     id="Visibility"
-                    value="${product.getVisibility()}"
+                    
                   >
-                    <option value="1">Show</option>
-                    <option value="2">Hide</option>
+                    <option value="1"${product.getVisibility() == true ? 'selected' : ''}>Show</option>
+                    <option value="2"${product.getVisibility() == false ? 'selected' : ''}>Hide</option>
                   </select>
                 </div>
               </div>
@@ -172,25 +175,27 @@
                     name="description"
                     id="description"
                     rows="4"
-                    value="${product.getDescription()}"
                     
-                  ></textarea>
+                    
+                  >${product.getDescription()}</textarea>
                 </div>
               </div>
-              <div class="row col-md-12 mb-3">
-                <div class="col col-md-12 mb-3 col-12">
-                  <label for="selectableOptions" class="form-labe"
-                    ><h5>Selectable Options</h5></label
-                  >
-                  <select class="form-select" name="selectableOptions">
-                      <option selected>Select Categories</option>
-                      <option value="1">
-                        <input type="checkbox" class="form-check-input" value="" name="veg">
-                        <label class="form-check-label" for="veg">Vegetables</label>
-                      </option>
-                  </select>
+             <div class="col col-md-3 mb-3 col-12">
+                <label for="unitQuantity" class="form-label"
+                  ><h5>Unit Quantity</h5></label
+                >
+                <div class="input-group mb-3">
+                  <input 
+                    type="number" 
+                    name="unitQuantity"
+                    id="unitQuantity" 
+                    class="form-control" 
+                    value="${product.getUnitQuantity()}"
+                    />
+                  <span class="input-group-text">g</span>
+
                 </div>
-              </div>
+            </div>
               <input
                 type="submit"
                 value="Save Changes"
