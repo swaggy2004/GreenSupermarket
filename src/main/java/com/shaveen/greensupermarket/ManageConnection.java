@@ -168,6 +168,44 @@ public class ManageConnection {
         }
     }
     
+    public void editProduct(String ProductID, String ProductName, String ProductCategory, Boolean Visibility, String Description, float UnitPrice, int UnitQuantity, String DbFileName) {
+        try {
+            var con = Model.Connection.start();
+            
+            String query = "UPDATE product SET Name = ?, Category = ?, Visibility = ?, Description = ?, UnitQty = ?, UnitPrice = ?, ImagePath = ?, StockQty=0 WHERE ProductID = ?";
+            try (PreparedStatement statement = con.prepareStatement(query)) {
+                statement.setString(1, ProductName);
+                statement.setString(2, ProductCategory);
+                statement.setBoolean(3, Visibility);
+                statement.setString(4, Description);
+                statement.setInt(5, UnitQuantity);
+                statement.setFloat(6, UnitPrice);
+                statement.setString(7, DbFileName); 
+                statement.setString(8, ProductID);
+                
+                
+                
+                
+                 
+                 
+ 
+                System.out.println("Executing SQL query:"+statement.toString());
+                int rowsInserted = statement.executeUpdate();
+                if (rowsInserted > 0) {
+                    System.out.println("Product updated successfully!");
+                } else {
+                    System.out.println("Failed to update product.");
+                }
+                con.close();
+            }
+            catch(Exception e){
+                System.out.println(e);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
     /*Below is the method for the display product*/
     public static List<ProductInfo> getProductsinfo(){
         List<ProductInfo> Productsinfo = new ArrayList<>();
