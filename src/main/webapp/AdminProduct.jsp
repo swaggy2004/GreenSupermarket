@@ -1,5 +1,13 @@
 <%@page import="com.shaveen.greensupermarket.ManageConnection"%>
+<%@page import="Model.ProductInfo"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c"%>
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
+
+<%
+    List<ProductInfo> adminproducts = ManageConnection.getProductsinfo();
+    pageContext.setAttribute("adminproducts", adminproducts);
+%>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -62,6 +70,7 @@
         <!--this is the edit product panne-->
         <!-- made it wider than the nav section -->
         <form action="" class="col col-md-9 p-md-4 mx-md-auto">
+            
             <!-- made it inside a container and made all the text in here to be centered -->
             <div class="container text-center pt-4 pt-md-0">
                 <!-- this is the title pane with the currently selected option and add a product button -->
@@ -105,55 +114,37 @@
                     <div class="col text-uppercase">Unit Price</div>
                 </div>
                 <!-- made a row and made it responsive for extra small, small and large displays -->
+                
+            <c:forEach items="${adminproducts}" var="admproduct">
                 <div
                         class="row align-items-center row-cols-xs-1 row-cols-sm-1 row-cols-lg-5 border border-3 rounded-4 gx-5 py-1 my-2 text-nowrap"
                 >
                     <!-- these are the items that will be include in the grid once received from the database -->
-                    <div class="col d-sm-flex justify-content-center">B347-DB23</div>
+                    <div class="col d-sm-flex justify-content-center">${admproduct.getProductID()}</div>
                     <div class="col">
                         <img
-                                src="baby-carrots.png"
+                                src="${admproduct.getImagePath()}"
                                 alt=""
                                 srcset=""
                                 class="pro-img img-fluid img-thumbnail rounded-5 border border-3"
                         />
                     </div>
-                    <div class="col">Carrots (100g)</div>
-                    <div class="col">LKR 40.20</div>
+                    <div class="col">${admproduct.getProductName()}(${admproduct.getUnitQuantity()})</div>
+                    <div class="col">LKR${admproduct.getUnitPrice()}</div>
                     <div class="col">
-                        <button type="button" class="btn edit-btn">
+                        <a href="AdminEditProduct.jsp?productId=${admproduct.getProductID()}"><button type="button" class="btn edit-btn">
                             <i class="bi bi-pencil-square"></i>
-                        </button>
+                        </button></a>
+                        
                         <button type="button" class="btn delete-btn">
                             <i class="bi bi-trash"></i>
                         </button>
                     </div>
+                    
                 </div>
-                <div
-                        class="row align-items-center row-cols-xs-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-5 border border-3 rounded-4 gx-5 py-1 my-2 text-nowrap"
-                >
-                    <!-- these are the items that will be include in the grid once received from the database -->
-                    <div class="col">B347-DB23</div>
-                    <div class="col">
-                        <img
-                                src="baby-carrots.png"
-                                alt=""
-                                srcset=""
-                                class="pro-img img-fluid img-thumbnail rounded-5 border border-3"
-                        />
-                    </div>
-                    <div class="col text-wrap">Carrots (100g)</div>
-                    <div class="col">LKR 40.20</div>
-                    <div class="col">
-                        <button type="button" class="btn edit-btn">
-                            <i class="bi bi-pencil-square"></i>
-                        </button>
-                        <button type="button" class="btn delete-btn">
-                            <i class="bi bi-trash"></i>
-                        </button>
-                    </div>
-                </div>
-
+            </c:forEach>
+                
+              
                 <!-- added the pagination feature: Have to edit this -->
                 <div class="col d-flex justify-content-center">
                     <nav aria-label="Page navigation">
@@ -181,6 +172,7 @@
                     </nav>
                 </div>
             </div>
+            
         </form>
     </div>
 </div>

@@ -30,7 +30,7 @@ public class ProductInfo {
     }
 
     public String getProductID() {
-        return ProductID;
+        return this.ProductID;
     }
 
     public void setProductID(String ProductID) {
@@ -38,7 +38,7 @@ public class ProductInfo {
     }
 
     public String getProductName() {
-        return ProductName;
+        return this.ProductName;
     }
 
     public void setProductName(String ProductName) {
@@ -46,7 +46,7 @@ public class ProductInfo {
     }
 
      public int getUnitQuantity() {
-        return UnitQuantity;
+        return this.UnitQuantity;
     }
 
     public void setUnitQuantity(int UnitQuantity) {
@@ -54,14 +54,14 @@ public class ProductInfo {
     }
     
     public float getUnitPrice() {
-        return UnitPrice;
+        return this.UnitPrice;
     }
 
     public void setUnitPrice(float UnitPrice) {
         this.UnitPrice = UnitPrice;
     }
      public String getImagePath() {
-        return ImagePath;
+        return this.ImagePath;
     }
 
     public void setImagePath(String ImagePath) {

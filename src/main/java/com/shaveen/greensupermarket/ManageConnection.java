@@ -167,20 +167,19 @@ public class ManageConnection {
         }
     }
     
-    
-    public List<ProductInfo> getProductsinfo(String productID){
-        ProductInfo productinfo = null;
+    /*Below is the method for the display product*/
+    public static List<ProductInfo> getProductsinfo(){
         List<ProductInfo> Productsinfo = new ArrayList<>();
      try{
       var con = Model.Connection.start();
       
-      String query = "SELECT Name,UnitQty,UnitPrice,ImagePath from product WHERE ProductID=?";
+      String query = "SELECT Name,UnitQty,UnitPrice,ImagePath,ProductID from product";
       PreparedStatement statement= con.prepareStatement(query);
-      statement.setString(1, productID);
+      
       
       ResultSet set = statement.executeQuery();
       while(set.next()){
-        productinfo = new ProductInfo();
+        ProductInfo productinfo = new ProductInfo();
         productinfo.setProductName(set.getString("Name"));
         productinfo.setUnitQuantity(set.getInt("UnitQty"));
         productinfo.setUnitPrice(set.getFloat("UnitPrice"));

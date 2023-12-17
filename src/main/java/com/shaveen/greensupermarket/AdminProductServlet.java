@@ -58,11 +58,9 @@ public class AdminProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String productID = (String)request.getSession().getAttribute("productID");
-        
         ManageConnection Mconnection = new ManageConnection();
-        List<ProductInfo> Productsinfo = Mconnection.getProductsinfo(productID);
-        
+        List<ProductInfo> Productsinfo = Mconnection.getProductsinfo();
+
         request.setAttribute("Productsinfo", Productsinfo);
         request.getRequestDispatcher("/AdminProduct.jsp").forward(request, response);
          

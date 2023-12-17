@@ -1,4 +1,8 @@
-
+<%
+   String productId = request.getParameter("productId");
+   //product = ManageConnection.getProductById(productId)
+   //pageContext.setAttribute("product", product);
+%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -85,6 +89,7 @@
                     name="productID"
                     id="productID"
                     class="form-control"
+                    value=""
                   />
                 </div>
               </div>
