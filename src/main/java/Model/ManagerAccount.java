@@ -24,7 +24,7 @@ public class ManagerAccount {
     }
 
     public String getFullName() {
-        return FullName;
+        return this.FullName;
     }
 
     public void setFullName(String FullName) {
@@ -32,7 +32,7 @@ public class ManagerAccount {
     }
 
     public String getEmail() {
-        return Email;
+        return this.Email;
     }
 
     public void setEmail(String Email) {
@@ -40,7 +40,7 @@ public class ManagerAccount {
     }
 
     public String getType() {
-        return Type;
+        return this.Type;
     }
 
     public void setType(String Type) {

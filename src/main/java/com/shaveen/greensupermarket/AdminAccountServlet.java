@@ -4,6 +4,8 @@
  */
 package com.shaveen.greensupermarket;
 
+
+import Model.ManagerAccount;
 import jakarta.servlet.annotation.WebServlet;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,14 +13,15 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
+
 
 /**
  *
- * @author Shaveen
+ * @author DELL
  */
-
-@WebServlet (name = "AddAccountServlet", urlPatterns = {"/AddAccountServlet"})
-public class AddAccountServlet extends HttpServlet {
+@WebServlet(name = "AdminAccountServlet", urlPatterns = {"/AdminAccountServlet"})
+public class AdminAccountServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +40,10 @@ public class AddAccountServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddAccountServlet</title>");            
+            out.println("<title>Servlet AdminAccountServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AddAccountServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AdminAccountServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,7 +61,11 @@ public class AddAccountServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+       ManageConnection Managecon = new ManageConnection();
+        List<ManagerAccount> ManagerAccounts = Managecon.getManagerAccounts();
+
+        request.setAttribute("ManagerAccounts", ManagerAccounts);
+        request.getRequestDispatcher("/AdminAccount.jsp").forward(request, response);
     }
 
     /**
@@ -72,13 +79,7 @@ public class AddAccountServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String fullName = request.getParameter("fullName"),
-                email = request.getParameter("email"),
-                pwd = request.getParameter("password"),
-                role = request.getParameter("role");
-        ManageConnection SendData = new ManageConnection();
-        SendData.addAccount(fullName, email, pwd, role);
-        
+        processRequest(request, response);
     }
 
     /**

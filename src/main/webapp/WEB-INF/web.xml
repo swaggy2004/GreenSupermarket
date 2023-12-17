@@ -40,6 +40,10 @@
         <servlet-name>UserSettingsServlet</servlet-name>
         <servlet-class>com.shaveen.greensupermarket.UserSettingsServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminAccountServlet</servlet-name>
+        <servlet-class>com.shaveen.greensupermarket.AdminAccountServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddAccountServlet</servlet-name>
         <url-pattern>/AddAccountServlet</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>UserSettingsServlet</servlet-name>
         <url-pattern>/UserSettingsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminAccountServlet</servlet-name>
+        <url-pattern>/AdminAccountServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

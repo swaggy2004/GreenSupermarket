@@ -47,6 +47,32 @@ public class ManageConnection {
 
         return accounts;
     }
+    
+        public static List<ManagerAccount> getManagerAccounts(){
+        List<ManagerAccount> ManagerAccounts = new ArrayList<>();
+     try{
+      var con = Model.Connection.start();
+      
+      String query = "SELECT Email, Type, FullName from manager";
+      PreparedStatement statement= con.prepareStatement(query);
+      
+      
+      ResultSet set = statement.executeQuery();
+      while(set.next()){
+        ManagerAccount manageraccount = new ManagerAccount();
+        manageraccount.setEmail(set.getString("Email"));
+        manageraccount.setType(set.getString("Type"));
+        manageraccount.setFullName(set.getString("FullName"));
+        ManagerAccounts.add(manageraccount);
+      }
+     }
+      
+     catch(SQLException exception){
+      exception.printStackTrace();
+     }
+     return ManagerAccounts;
+    }
+        
     public void addAccount(String FullName, String Email, String Pwd, String Role) {
         try {
             var con = Model.Connection.start();
