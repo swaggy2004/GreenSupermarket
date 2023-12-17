@@ -7,6 +7,7 @@ package com.shaveen.greensupermarket;
 import Model.ManagerAccount;
 import Model.EditAccountAdmin;
 import Model.ProductInfo;
+import Model.ProductEdit;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.*;
 import java.util.*;
@@ -132,7 +133,7 @@ public class ManageConnection {
     
     
 
-    public void addProduct(String ProductID, String ProductName, String ProductCategory, String Visibility, String Description, float UnitPrice, int UnitQuantity, String DbFileName) {
+    public void addProduct(String ProductID, String ProductName, String ProductCategory, Boolean Visibility, String Description, float UnitPrice, int UnitQuantity, String DbFileName) {
         try {
             var con = Model.Connection.start();
             
@@ -141,7 +142,7 @@ public class ManageConnection {
                 statement.setString(1, ProductID);
                 statement.setString(2, ProductName);
                 statement.setString(3, ProductCategory);
-                statement.setString(4, Visibility);
+                statement.setBoolean(4, Visibility);
                 statement.setString(5, Description);
                  statement.setInt(6, UnitQuantity);
                  statement.setFloat(7, UnitPrice);
@@ -193,6 +194,38 @@ public class ManageConnection {
       exception.printStackTrace();
      }
      return Productsinfo;
+    }
+    
+    
+    
+        public static ProductEdit getProductById(String productId) {
+        try {
+            var con = Model.Connection.start();
+            
+            String query = "SELECT Name, Category, Visibility, Description, UnitQty, UnitPrice, ImagePath FROM product WHERE ProductID = ?";
+            try (PreparedStatement statement = con.prepareStatement(query)) {
+                statement.setString(1, productId);
+                ResultSet resultSet = statement.executeQuery();
+                if (resultSet.next()) {
+                    String name = resultSet.getString("Name");
+                    String category = resultSet.getString("Category");
+                    Boolean visibitlity = resultSet.getBoolean("Visibility");
+                    String description = resultSet.getString("Description");
+                    int unitqty = resultSet.getInt("UnitQty");
+                    float price = resultSet.getFloat("UnitPrice");
+                    String imgpath = resultSet.getString("ImagePath");
+                    String productID = resultSet.getString("ProductID");
+            
+                    return new ProductEdit(productID, name, unitqty, price, imgpath, category, description, visibitlity);
+                } 
+               
+            }
+                con.close();
+            }catch(Exception e){
+                System.out.println(e);
+            }
+           return null;
+        
     }
     
     

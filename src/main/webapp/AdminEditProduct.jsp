@@ -1,7 +1,9 @@
+<%@page import="com.shaveen.greensupermarket.ManageConnection"%>
+<%@page import="Model.ProductEdit"%>
 <%
    String productId = request.getParameter("productId");
-   //product = ManageConnection.getProductById(productId)
-   //pageContext.setAttribute("product", product);
+   ProductEdit product = ManageConnection.getProductById(productId);
+   pageContext.setAttribute("product", product);
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -89,7 +91,7 @@
                     name="productID"
                     id="productID"
                     class="form-control"
-                    value=""
+                    value="${product.getProductID()}"
                   />
                 </div>
               </div>
@@ -103,6 +105,7 @@
                     name="productName"
                     id="productName"
                     class="form-control"
+                    value="${product.getProductName()}"
                   />
                 </div>
               </div>
@@ -116,18 +119,18 @@
                     name="productCategory"
                     id="productCategory"
                   >
-                    <option value="1">Vegetable</option>
-                    <option value="2">Fruit</option>
-                    <option value="3">Meat</option>
-                    <option value="4">Seafood</option>
-                    <option value="5">Dairy</option>
-                    <option value="6">Beverage</option>
-                    <option value="7">Snack</option>
-                    <option value="8">Bakery</option>
-                    <option value="9">Frozen</option>
-                    <option value="10">Canned</option>
-                    <option value="11">Instant</option>
-                    <option value="12">Others</option>
+                    <option value="1"${product.getCategory() == '1' ? 'selected' : ''}>Vegetable</option>
+                    <option value="2"${product.getCategory() == '2' ? 'selected' : ''}>Fruit</option>
+                    <option value="3"${product.getCategory() == '3' ? 'selected' : ''}>Meat</option>
+                    <option value="4"${product.getCategory() == '4' ? 'selected' : ''}>Seafood</option>
+                    <option value="5"${product.getCategory() == '5' ? 'selected' : ''}>Dairy</option>
+                    <option value="6"${product.getCategory() == '6' ? 'selected' : ''}>Beverage</option>
+                    <option value="7"${product.getCategory() == '7' ? 'selected' : ''}>Snack</option>
+                    <option value="8"${product.getCategory() == '8' ? 'selected' : ''}>Bakery</option>
+                    <option value="9"${product.getCategory() == '9' ? 'selected' : ''}>Frozen</option>
+                    <option value="10"${product.getCategory() == '10' ? 'selected' : ''}>Canned</option>
+                    <option value="11"${product.getCategory() == '11' ? 'selected' : ''}>Instant</option>
+                    <option value="12"${product.getCategory() == '12' ? 'selected' : ''}>Others</option>
                   </select>
                 </div>
               </div>
@@ -141,6 +144,7 @@
                     name="unitPrice"
                     id="unitPrice"
                     class="form-control"
+                    value="${product.getUnitPrice()}"
                   />
                 </div>
                 <div class="col col-md-3 mb-3 col-12">
@@ -151,6 +155,7 @@
                     class="form-select form-control"
                     name="Visibility"
                     id="Visibility"
+                    value="${product.getVisibility()}"
                   >
                     <option value="1">Show</option>
                     <option value="2">Hide</option>
@@ -167,6 +172,8 @@
                     name="description"
                     id="description"
                     rows="4"
+                    value="${product.getDescription()}"
+                    
                   ></textarea>
                 </div>
               </div>
