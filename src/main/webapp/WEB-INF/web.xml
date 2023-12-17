@@ -85,4 +85,11 @@
             30
         </session-timeout>
     </session-config>
+    
+    <jsp-config>
+        <taglib>
+            <taglib-uri>http://java.sun.com/jstl/core</taglib-uri>
+            <taglib-location>tld/c-1_0.tld</taglib-location>
+        </taglib>
+    </jsp-config>
 </web-app>

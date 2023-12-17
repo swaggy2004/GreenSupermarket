@@ -48,7 +48,7 @@ public class AddProductServlet extends HttpServlet {
         String productID = request.getParameter("productID");
         String productName = request.getParameter("productName");
         String productCategory = request.getParameter("productCategory");
-        String visibility = request.getParameter("Visibility");
+        Boolean visibility = Boolean.parseBoolean(request.getParameter("Visibility"));
         String description = request.getParameter("description");
         float unitPrice = Float.parseFloat(request.getParameter("unitPrice"));
         int unitQuantity = Integer.parseInt(request.getParameter("unitQuantity"));
