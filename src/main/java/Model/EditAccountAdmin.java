@@ -16,15 +16,15 @@ public class EditAccountAdmin {
     
     public EditAccountAdmin(){}
    
-     public EditAccountAdmin(String FullName, String Email,String type, String Password) {
+     public EditAccountAdmin(String FullName, String Email,String Type, String Password) {
         this.FullName = FullName;
         this.Email = Email;
-        this.Type = type;
+        this.Type = Type;
         this.Pwd = Password;
     }
 
     public String getFullName() {
-        return FullName;
+        return this.FullName;
     }
 
     public void setFullName(String FullName) {
@@ -32,7 +32,7 @@ public class EditAccountAdmin {
     }
 
     public String getEmail() {
-        return Email;
+        return this.Email;
     }
 
     public void setEmail(String Email) {
@@ -40,14 +40,14 @@ public class EditAccountAdmin {
     }
 
     public String getType() {
-        return Type;
+        return this.Type;
     }
 
     public void setType(String Type) {
         this.Type = Type;
     }
      public String getPwd() {
-        return Pwd;
+        return this.Pwd;
     }
 
     public void setPwd(String Pwd) {

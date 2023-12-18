@@ -1,5 +1,12 @@
 <%@page import="com.shaveen.greensupermarket.ManageConnection"%>
+<%@page import="Model.ManagerAccount"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c"%>
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
+<%
+    List<ManagerAccount> ManagerAccounts = ManageConnection.getManagerAccounts();
+    pageContext.setAttribute("ManagerAccounts", ManagerAccounts);
+%>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -86,41 +93,37 @@
           <div class="col">Actions</div>
         </div>
         <!-- made a row and made it responsive for extra small, small and large displays -->
-        <% 
-           var MC = new ManageConnection();
-           var accounts = MC.getAccounts();
-
-           for(var account : accounts){
-               Model.ManagerAccount acc = (Model.ManagerAccount)account;
-               out.print(Helpers.Generator.generateCard(acc));
-           }        
-        %>
+    <c:forEach items="${ManagerAccounts}" var="MngAccount">
         <div
                 class="row text-start gx-auto gx-md-0 my-auto py-2 px-md-5 border-bottom border-1 text-center text-md-start gap-2 gap-md-0"
         >
           <!-- these are the items that will be include in the grid once received from the database -->
           <div class="col col-md-5 col-sm-12 col-12">
-            <div class="fs-4">Darren Victoria</div>
+            <div class="fs-4">${MngAccount.getFullName()}</div>
             <!-- made the overflow of the email scrollable because it will be too long -->
             <div
                     class="fs-6 float-center overflow-x-scroll overflow-md-none"
             >
-              jdvictoria@studnets.nsbm.ac.lk
+              ${MngAccount.getEmail()}
             </div>
           </div>
           <div class="col col-md-3 col-sm-12 col-12 align-self-md-center">
-            Manager
+            <c:choose>
+                <c:when test="${MngAccount.getType() eq 'M'}">Manager</c:when>
+                <c:when test="${MngAccount.getType() eq 'A'}">Admin</c:when>
+                <c:otherwise>Unknown</c:otherwise>
+            </c:choose>
           </div>
           <div class="col col-md-1 col-12 align-self-md-center">
-            <button type="button" class="btn edit-btn">
+           <a href="AccountEdit.jsp?admaccemail=${MngAccount.getEmail()}"> <button type="button" class="btn edit-btn">
               <i class="bi bi-pencil-square"></i>
-            </button>
+               </button></a>
             <button type="button" class="btn delete-btn">
               <i class="bi bi-trash"></i>
             </button>
           </div>
         </div>
-
+    </c:forEach>
         <div
                 class="row text-start gx-auto gx-md-0 my-auto py-2 px-md-5 border-bottom border-1 text-center text-md-start gap-2 gap-md-0"
         >
