@@ -108,12 +108,16 @@
             </div>
           </div>
           <div class="col col-md-3 col-sm-12 col-12 align-self-md-center">
-            ${MngAccount.getType()}
+            <c:choose>
+                <c:when test="${MngAccount.getType() eq 'M'}">Manager</c:when>
+                <c:when test="${MngAccount.getType() eq 'A'}">Admin</c:when>
+                <c:otherwise>Unknown</c:otherwise>
+            </c:choose>
           </div>
           <div class="col col-md-1 col-12 align-self-md-center">
-            <button type="button" class="btn edit-btn">
+           <a href="AccountEdit.jsp?admaccemail=${MngAccount.getEmail()}"> <button type="button" class="btn edit-btn">
               <i class="bi bi-pencil-square"></i>
-            </button>
+               </button></a>
             <button type="button" class="btn delete-btn">
               <i class="bi bi-trash"></i>
             </button>

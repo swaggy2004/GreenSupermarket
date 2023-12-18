@@ -20,7 +20,7 @@ public class ManageConnection {
 //    public void SetResponse(HttpServletResponse response){
 //        
 //    }
-    public List<ManagerAccount> getAccounts() {
+    /*public List<ManagerAccount> getAccounts() {
         List<ManagerAccount> accounts = new ArrayList<>();
 
         try {
@@ -46,7 +46,7 @@ public class ManageConnection {
         }
 
         return accounts;
-    }
+    }*/
     
         public static List<ManagerAccount> getManagerAccounts(){
         List<ManagerAccount> ManagerAccounts = new ArrayList<>();
@@ -101,21 +101,25 @@ public class ManageConnection {
             System.out.println(e);
         }
     }
+    
     /*Below code is to get the relavant persons data from the database to display in the edit account*/
-    public EditAccountAdmin getAccountByEmail(String email) {
+        public static EditAccountAdmin getAdmaccountByemail(String admaccemail) {
         try {
             var con = Model.Connection.start();
             
-            String query = "SELECT FullName, Type, Pwd, FROM manager WHERE Email = ?";
+            String query = "SELECT Email,Pwd, Type, FullName FROM manager WHERE Email = ?";
             try (PreparedStatement statement = con.prepareStatement(query)) {
-                statement.setString(1, email);
+                statement.setString(1, admaccemail);
                 ResultSet resultSet = statement.executeQuery();
                 if (resultSet.next()) {
-                     String fullname = resultSet.getString("FullName");
-                    String type = resultSet.getString("Type"); 
-                    String pwd = resultSet.getString("Pwd");
+                    String email = resultSet.getString("Email");
+                    String password = resultSet.getString("Pwd");
+                    String type = resultSet.getString("Type");
+                    String fullname = resultSet.getString("FullName");
                     
-                    return new EditAccountAdmin(fullname,email, type,pwd);
+                    
+            
+                    return new EditAccountAdmin(fullname, email, type, password);
                 } 
                
             }
@@ -127,6 +131,36 @@ public class ManageConnection {
         
     }
     
+        public void editAccount(String FullName,String Email, String Pwd, String Role) {
+        try {
+            var con = Model.Connection.start();
+            
+            String query = "UPDATE manager SET Pwd = ?, Type = ?, FullName = ? WHERE Email = ?";
+            try (PreparedStatement statement = con.prepareStatement(query)) {
+                statement.setString(1, Pwd);
+                statement.setString(2, Role);
+                statement.setString(3, FullName);
+                statement.setString(4, Email);
+                
+             
+                System.out.println("Executing SQL query:"+statement.toString());
+                int rowsInserted = statement.executeUpdate();
+                if (rowsInserted > 0) {
+                    System.out.println("Account updated successfully!");
+                } else {
+                    System.out.println("Failed to update Account.");
+                }
+                con.close();
+            }
+            catch(Exception e){
+                System.out.println(e);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
+           
     public void updateAccount(String FullName,String Email, String Pwd, String Role){
         try{
             var con = Model.Connection.start();

@@ -1,4 +1,11 @@
 <%@page import="com.shaveen.greensupermarket.ManageConnection"%>
+<%@page import="Model.EditAccountAdmin"%>
+<%@ page isELIgnored="false" %>
+<%
+   String admaccemail = request.getParameter("admaccemail");
+   EditAccountAdmin account = ManageConnection.getAdmaccountByemail(admaccemail);
+   pageContext.setAttribute("account", account);
+%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -86,13 +93,16 @@
                 type="text"
                 name="fullName"
                 id="fullName"
-                class="form-control"value="${account.fullName}"
+                class="form-control"
+                value="${account.getFullName()}"
                 
               />
             </div>
             <div class="col-md-4 mb-3 col-12">
-              <label for="email" class="form-label"><h5>Email</h5></label>
-              <input type="text" name="email" id="email" class="form-control" value="${account.email}"/>
+                <label for="email" class="form-label"><h5>Email</h5></label>
+                <input disabled type="text" name="email" id="email" class="form-control" value="${account.getEmail()}"/>
+                <input  type="hidden" name="email" id="email" class="form-control" value="${account.getEmail()}"/>
+
             </div>
           </div>
 
@@ -106,15 +116,14 @@
                 name="password"
                 id="password"
                 class="form-control"
-                value="${account.password}"
+                value="${account.getPwd()}"
               />
             </div>
             <div class="col-md-4 mb-3 col-12">
               <label for="role" class="form-label"><h5>Role</h5></label>
         <select name="role" id="role" class="form-select form-control">
-                <option value="1" ${account.role == '1' ? 'selected' : ''}>Manager</option>
-                <option value="2" ${account.role == '2' ? 'selected' : ''}>Employee</option>
-                <option value="3" ${account.role == '3' ? 'selected' : ''}>Director</option>
+                <option value="M" id="M" ${account.getType() == 'M' ? 'selected' : ''}>Manager</option>
+                <option value="A" id="A" ${account.getType() == 'A' ? 'selected' : ''}>Admin</option>
         </select>
             </div>
           </div>

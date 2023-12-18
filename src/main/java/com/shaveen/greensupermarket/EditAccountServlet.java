@@ -7,12 +7,11 @@ package com.shaveen.greensupermarket;
 import jakarta.servlet.annotation.WebServlet;
 import java.io.IOException;
 import java.io.PrintWriter;
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import Model.EditAccountAdmin;
+
 
 /**
  *
@@ -60,13 +59,7 @@ public class EditAccountServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            String email = request.getParameter("email");/*request.getSession().getAttribute("email")*/
-            ManageConnection GetData = new ManageConnection();
-            EditAccountAdmin eaccount = GetData.getAccountByEmail(email);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("AccountEdit.jsp");
-            request.setAttribute("account", eaccount);
-            
-            dispatcher.forward(request, response);
+           
             
     }
 
@@ -80,14 +73,15 @@ public class EditAccountServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-            String  email = request.getParameter("email"),
-             fullName = request.getParameter("fullName"),
-                   pwd = request.getParameter("password"),
-                   role = request.getParameter("role");
+        throws ServletException, IOException {
+        String fullName = request.getParameter("fullName"),
+                email = request.getParameter("email"),
+                password = request.getParameter("password"),
+                role = request.getParameter("role");
         ManageConnection SendData = new ManageConnection();
-        SendData.updateAccount(fullName,email, pwd, role);
-        /*response.sendRedirect(role);*/
+        SendData.editAccount(fullName, email, password, role);
+
+            
     }
 
     /**
