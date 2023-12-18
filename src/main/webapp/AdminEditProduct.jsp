@@ -70,15 +70,16 @@
           </nav>
         </div>
 
-        <form action="" class="col col-md-9 p-md-4 mx-md-auto col-12">
+        <form action="<%=request.getContextPath()%>/EditProductServlet" class="col col-md-9 p-md-4 mx-md-auto col-12" method="post" enctype="multipart/form-data">
           <h3 class="mb-5 text-center text-md-start text-uppercase">Edit Product</h3>
           <div class="row row-cols-md-12">
             <div class="col col-md-3 col-12">
               <input
-                type="image"
+                type="file"
                 src="${product.getImagePath()}"
                 alt="${product.getImagePath()}"
                 class="img-fluid w-100 border-cus"
+                name="productImage"
                 
               />
             </div>
@@ -89,12 +90,14 @@
                     ><h5>Product ID</h5></label
                   >
                   <input
+                    disabled
                     type="text"
                     name="productID"
                     id="productID"
                     class="form-control"
                     value="${product.getProductID()}"
                   />
+                  <input type="hidden" name="productID" value="${product.getProductID()}" />
                 </div>
               </div>
               <div class="row col-md-12 mb-3">
@@ -142,7 +145,7 @@
                     ><h5>Unit Price (LKR)</h5></label
                   >
                   <input
-                    type="text"
+                    type="number"
                     name="unitPrice"
                     id="unitPrice"
                     class="form-control"

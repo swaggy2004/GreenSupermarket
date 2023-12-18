@@ -47,6 +47,32 @@ public class ManageConnection {
 
         return accounts;
     }
+    
+        public static List<ManagerAccount> getManagerAccounts(){
+        List<ManagerAccount> ManagerAccounts = new ArrayList<>();
+     try{
+      var con = Model.Connection.start();
+      
+      String query = "SELECT Email, Type, FullName from manager";
+      PreparedStatement statement= con.prepareStatement(query);
+      
+      
+      ResultSet set = statement.executeQuery();
+      while(set.next()){
+        ManagerAccount manageraccount = new ManagerAccount();
+        manageraccount.setEmail(set.getString("Email"));
+        manageraccount.setType(set.getString("Type"));
+        manageraccount.setFullName(set.getString("FullName"));
+        ManagerAccounts.add(manageraccount);
+      }
+     }
+      
+     catch(SQLException exception){
+      exception.printStackTrace();
+     }
+     return ManagerAccounts;
+    }
+        
     public void addAccount(String FullName, String Email, String Pwd, String Role) {
         try {
             var con = Model.Connection.start();
@@ -157,6 +183,44 @@ public class ManageConnection {
                     System.out.println("Product added successfully!");
                 } else {
                     System.out.println("Failed to add product.");
+                }
+                con.close();
+            }
+            catch(Exception e){
+                System.out.println(e);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
+    public void editProduct(String ProductID, String ProductName, String ProductCategory, Boolean Visibility, String Description, float UnitPrice, int UnitQuantity, String DbFileName) {
+        try {
+            var con = Model.Connection.start();
+            
+            String query = "UPDATE product SET Name = ?, Category = ?, Visibility = ?, Description = ?, UnitQty = ?, UnitPrice = ?, ImagePath = ?, StockQty=0 WHERE ProductID = ?";
+            try (PreparedStatement statement = con.prepareStatement(query)) {
+                statement.setString(1, ProductName);
+                statement.setString(2, ProductCategory);
+                statement.setBoolean(3, Visibility);
+                statement.setString(4, Description);
+                statement.setInt(5, UnitQuantity);
+                statement.setFloat(6, UnitPrice);
+                statement.setString(7, DbFileName); 
+                statement.setString(8, ProductID);
+                
+                
+                
+                
+                 
+                 
+ 
+                System.out.println("Executing SQL query:"+statement.toString());
+                int rowsInserted = statement.executeUpdate();
+                if (rowsInserted > 0) {
+                    System.out.println("Product updated successfully!");
+                } else {
+                    System.out.println("Failed to update product.");
                 }
                 con.close();
             }

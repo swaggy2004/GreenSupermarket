@@ -13,8 +13,8 @@
         <servlet-class>com.shaveen.greensupermarket.EditAccountServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>EditProductServler</servlet-name>
-        <servlet-class>com.shaveen.greensupermarket.EditProductServler</servlet-class>
+        <servlet-name>EditProductServlet</servlet-name>
+        <servlet-class>com.shaveen.greensupermarket.EditProductServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AdminProductServlet</servlet-name>
@@ -40,6 +40,10 @@
         <servlet-name>UserSettingsServlet</servlet-name>
         <servlet-class>com.shaveen.greensupermarket.UserSettingsServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminAccountServlet</servlet-name>
+        <servlet-class>com.shaveen.greensupermarket.AdminAccountServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddAccountServlet</servlet-name>
         <url-pattern>/AddAccountServlet</url-pattern>
@@ -53,8 +57,8 @@
         <url-pattern>/EditAccountServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>EditProductServler</servlet-name>
-        <url-pattern>/EditProductServler</url-pattern>
+        <servlet-name>EditProductServlet</servlet-name>
+        <url-pattern>/EditProductServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AdminProductServlet</servlet-name>
@@ -80,12 +84,15 @@
         <servlet-name>UserSettingsServlet</servlet-name>
         <url-pattern>/UserSettingsServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminAccountServlet</servlet-name>
+        <url-pattern>/AdminAccountServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-    
     <jsp-config>
         <taglib>
             <taglib-uri>http://java.sun.com/jstl/core</taglib-uri>
