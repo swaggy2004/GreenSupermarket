@@ -78,15 +78,7 @@ public class AddAccountServlet extends HttpServlet {
                 role = request.getParameter("role");
         ManageConnection SendData = new ManageConnection();
         SendData.addAccount(fullName, email, pwd, role);
-        PrintWriter writer = response.getWriter();
         
-        var MC = new ManageConnection();
-        var accounts = MC.getAccounts();
-        
-        for(var account : accounts){
-            Model.ManagerAccount acc = (Model.ManagerAccount)account;
-            writer.print(Helpers.Generator.generateCard(acc));
-        }
     }
 
     /**

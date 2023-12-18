@@ -1,4 +1,11 @@
-
+<%@page import="com.shaveen.greensupermarket.ManageConnection"%>
+<%@page import="Model.ProductEdit"%>
+<%@ page isELIgnored="false" %>
+<%
+   String productId = request.getParameter("productId");
+   ProductEdit product = ManageConnection.getProductById(productId);
+   pageContext.setAttribute("product", product);
+%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -63,15 +70,17 @@
           </nav>
         </div>
 
-        <form action="" class="col col-md-9 p-md-4 mx-md-auto col-12">
+        <form action="<%=request.getContextPath()%>/EditProductServlet" class="col col-md-9 p-md-4 mx-md-auto col-12" method="post" enctype="multipart/form-data">
           <h3 class="mb-5 text-center text-md-start text-uppercase">Edit Product</h3>
           <div class="row row-cols-md-12">
             <div class="col col-md-3 col-12">
               <input
-                type="image"
-                src="baby-carrots.png"
-                alt="picture of a carrot"
+                type="file"
+                src="${product.getImagePath()}"
+                alt="${product.getImagePath()}"
                 class="img-fluid w-100 border-cus"
+                name="productImage"
+                
               />
             </div>
             <div class="col col-md-9">
@@ -81,11 +90,14 @@
                     ><h5>Product ID</h5></label
                   >
                   <input
+                    disabled
                     type="text"
                     name="productID"
                     id="productID"
                     class="form-control"
+                    value="${product.getProductID()}"
                   />
+                  <input type="hidden" name="productID" value="${product.getProductID()}" />
                 </div>
               </div>
               <div class="row col-md-12 mb-3">
@@ -98,6 +110,7 @@
                     name="productName"
                     id="productName"
                     class="form-control"
+                    value="${product.getProductName()}"
                   />
                 </div>
               </div>
@@ -111,18 +124,18 @@
                     name="productCategory"
                     id="productCategory"
                   >
-                    <option value="1">Vegetable</option>
-                    <option value="2">Fruit</option>
-                    <option value="3">Meat</option>
-                    <option value="4">Seafood</option>
-                    <option value="5">Dairy</option>
-                    <option value="6">Beverage</option>
-                    <option value="7">Snack</option>
-                    <option value="8">Bakery</option>
-                    <option value="9">Frozen</option>
-                    <option value="10">Canned</option>
-                    <option value="11">Instant</option>
-                    <option value="12">Others</option>
+                    <option value="1"${product.getCategory() == '1' ? 'selected' : ''}>Vegetable</option>
+                    <option value="2"${product.getCategory() == '2' ? 'selected' : ''}>Fruit</option>
+                    <option value="3"${product.getCategory() == '3' ? 'selected' : ''}>Meat</option>
+                    <option value="4"${product.getCategory() == '4' ? 'selected' : ''}>Seafood</option>
+                    <option value="5"${product.getCategory() == '5' ? 'selected' : ''}>Dairy</option>
+                    <option value="6"${product.getCategory() == '6' ? 'selected' : ''}>Beverage</option>
+                    <option value="7"${product.getCategory() == '7' ? 'selected' : ''}>Snack</option>
+                    <option value="8"${product.getCategory() == '8' ? 'selected' : ''}>Bakery</option>
+                    <option value="9"${product.getCategory() == '9' ? 'selected' : ''}>Frozen</option>
+                    <option value="10"${product.getCategory() == '10' ? 'selected' : ''}>Canned</option>
+                    <option value="11"${product.getCategory() == '11' ? 'selected' : ''}>Instant</option>
+                    <option value="12"${product.getCategory() == '12' ? 'selected' : ''}>Others</option>
                   </select>
                 </div>
               </div>
@@ -132,23 +145,26 @@
                     ><h5>Unit Price (LKR)</h5></label
                   >
                   <input
-                    type="text"
+                    type="number"
                     name="unitPrice"
                     id="unitPrice"
                     class="form-control"
+                    value="${product.getUnitPrice()}"
                   />
                 </div>
                 <div class="col col-md-3 mb-3 col-12">
                   <label for="Visibility" class="form-label"
                     ><h5>Visibility</h5></label
                   >
+                   <% System.out.println("Visibility: " + product.getVisibility()); %>
                   <select
                     class="form-select form-control"
                     name="Visibility"
                     id="Visibility"
+                    
                   >
-                    <option value="1">Show</option>
-                    <option value="2">Hide</option>
+                    <option value="1"${product.getVisibility() == true ? 'selected' : ''}>Show</option>
+                    <option value="2"${product.getVisibility() == false ? 'selected' : ''}>Hide</option>
                   </select>
                 </div>
               </div>
@@ -162,23 +178,27 @@
                     name="description"
                     id="description"
                     rows="4"
-                  ></textarea>
+                    
+                    
+                  >${product.getDescription()}</textarea>
                 </div>
               </div>
-              <div class="row col-md-12 mb-3">
-                <div class="col col-md-12 mb-3 col-12">
-                  <label for="selectableOptions" class="form-labe"
-                    ><h5>Selectable Options</h5></label
-                  >
-                  <select class="form-select" name="selectableOptions">
-                      <option selected>Select Categories</option>
-                      <option value="1">
-                        <input type="checkbox" class="form-check-input" value="" name="veg">
-                        <label class="form-check-label" for="veg">Vegetables</label>
-                      </option>
-                  </select>
+             <div class="col col-md-3 mb-3 col-12">
+                <label for="unitQuantity" class="form-label"
+                  ><h5>Unit Quantity</h5></label
+                >
+                <div class="input-group mb-3">
+                  <input 
+                    type="number" 
+                    name="unitQuantity"
+                    id="unitQuantity" 
+                    class="form-control" 
+                    value="${product.getUnitQuantity()}"
+                    />
+                  <span class="input-group-text">g</span>
+
                 </div>
-              </div>
+            </div>
               <input
                 type="submit"
                 value="Save Changes"

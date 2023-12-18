@@ -7,6 +7,7 @@ package com.shaveen.greensupermarket;
 import Model.ManagerAccount;
 import Model.EditAccountAdmin;
 import Model.ProductInfo;
+import Model.ProductEdit;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.*;
 import java.util.*;
@@ -46,6 +47,32 @@ public class ManageConnection {
 
         return accounts;
     }
+    
+        public static List<ManagerAccount> getManagerAccounts(){
+        List<ManagerAccount> ManagerAccounts = new ArrayList<>();
+     try{
+      var con = Model.Connection.start();
+      
+      String query = "SELECT Email, Type, FullName from manager";
+      PreparedStatement statement= con.prepareStatement(query);
+      
+      
+      ResultSet set = statement.executeQuery();
+      while(set.next()){
+        ManagerAccount manageraccount = new ManagerAccount();
+        manageraccount.setEmail(set.getString("Email"));
+        manageraccount.setType(set.getString("Type"));
+        manageraccount.setFullName(set.getString("FullName"));
+        ManagerAccounts.add(manageraccount);
+      }
+     }
+      
+     catch(SQLException exception){
+      exception.printStackTrace();
+     }
+     return ManagerAccounts;
+    }
+        
     public void addAccount(String FullName, String Email, String Pwd, String Role) {
         try {
             var con = Model.Connection.start();
@@ -132,7 +159,7 @@ public class ManageConnection {
     
     
 
-    public void addProduct(String ProductID, String ProductName, String ProductCategory, String Visibility, String Description, float UnitPrice, int UnitQuantity, String DbFileName) {
+    public void addProduct(String ProductID, String ProductName, String ProductCategory, Boolean Visibility, String Description, float UnitPrice, int UnitQuantity, String DbFileName) {
         try {
             var con = Model.Connection.start();
             
@@ -141,7 +168,7 @@ public class ManageConnection {
                 statement.setString(1, ProductID);
                 statement.setString(2, ProductName);
                 statement.setString(3, ProductCategory);
-                statement.setString(4, Visibility);
+                statement.setBoolean(4, Visibility);
                 statement.setString(5, Description);
                  statement.setInt(6, UnitQuantity);
                  statement.setFloat(7, UnitPrice);
@@ -167,20 +194,57 @@ public class ManageConnection {
         }
     }
     
+    public void editProduct(String ProductID, String ProductName, String ProductCategory, Boolean Visibility, String Description, float UnitPrice, int UnitQuantity, String DbFileName) {
+        try {
+            var con = Model.Connection.start();
+            
+            String query = "UPDATE product SET Name = ?, Category = ?, Visibility = ?, Description = ?, UnitQty = ?, UnitPrice = ?, ImagePath = ?, StockQty=0 WHERE ProductID = ?";
+            try (PreparedStatement statement = con.prepareStatement(query)) {
+                statement.setString(1, ProductName);
+                statement.setString(2, ProductCategory);
+                statement.setBoolean(3, Visibility);
+                statement.setString(4, Description);
+                statement.setInt(5, UnitQuantity);
+                statement.setFloat(6, UnitPrice);
+                statement.setString(7, DbFileName); 
+                statement.setString(8, ProductID);
+                
+                
+                
+                
+                 
+                 
+ 
+                System.out.println("Executing SQL query:"+statement.toString());
+                int rowsInserted = statement.executeUpdate();
+                if (rowsInserted > 0) {
+                    System.out.println("Product updated successfully!");
+                } else {
+                    System.out.println("Failed to update product.");
+                }
+                con.close();
+            }
+            catch(Exception e){
+                System.out.println(e);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
     
-    public List<ProductInfo> getProductsinfo(String productID){
-        ProductInfo productinfo = null;
+    /*Below is the method for the display product*/
+    public static List<ProductInfo> getProductsinfo(){
         List<ProductInfo> Productsinfo = new ArrayList<>();
      try{
       var con = Model.Connection.start();
       
-      String query = "SELECT Name,UnitQty,UnitPrice,ImagePath from product WHERE ProductID=?";
+      String query = "SELECT Name,UnitQty,UnitPrice,ImagePath,ProductID from product";
       PreparedStatement statement= con.prepareStatement(query);
-      statement.setString(1, productID);
+      
       
       ResultSet set = statement.executeQuery();
       while(set.next()){
-        productinfo = new ProductInfo();
+        ProductInfo productinfo = new ProductInfo();
         productinfo.setProductName(set.getString("Name"));
         productinfo.setUnitQuantity(set.getInt("UnitQty"));
         productinfo.setUnitPrice(set.getFloat("UnitPrice"));
@@ -194,6 +258,39 @@ public class ManageConnection {
       exception.printStackTrace();
      }
      return Productsinfo;
+    }
+    
+    
+    
+        public static ProductEdit getProductById(String productId) {
+        try {
+            var con = Model.Connection.start();
+            
+            String query = "SELECT ProductID,Name, Category, Visibility, Description, UnitQty, UnitPrice, ImagePath FROM product WHERE ProductID = ?";
+            try (PreparedStatement statement = con.prepareStatement(query)) {
+                statement.setString(1, productId);
+                ResultSet resultSet = statement.executeQuery();
+                if (resultSet.next()) {
+                    String productID = resultSet.getString("ProductID");
+                    String name = resultSet.getString("Name");
+                    String category = resultSet.getString("Category");
+                    Boolean visibitlity = resultSet.getBoolean("Visibility");
+                    String description = resultSet.getString("Description");
+                    int unitqty = resultSet.getInt("UnitQty");
+                    float price = resultSet.getFloat("UnitPrice");
+                    String imgpath = resultSet.getString("ImagePath");
+                    
+            
+                    return new ProductEdit(productID, name, unitqty, price, imgpath, category, description, visibitlity);
+                } 
+               
+            }
+                con.close();
+            }catch(Exception e){
+                System.out.println(e);
+            }
+           return null;
+        
     }
     
     
