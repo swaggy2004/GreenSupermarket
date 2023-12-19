@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+s<?xml version="1.0" encoding="UTF-8"?>
 <web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
     <servlet>
         <servlet-name>AddAccountServlet</servlet-name>
@@ -51,6 +51,8 @@
     <servlet>
         <servlet-name>DeleteProductServlet</servlet-name>
         <servlet-class>com.shaveen.greensupermarket.DeleteProductServlet</servlet-class>
+        <servlet-name>ProductFetchServlet</servlet-name>
+        <servlet-class>com.shaveen.greensupermarket.ProductFetchServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AddAccountServlet</servlet-name>
@@ -103,6 +105,8 @@
     <servlet-mapping>
         <servlet-name>DeleteProductServlet</servlet-name>
         <url-pattern>/DeleteProductServlet</url-pattern>
+        <servlet-name>ProductFetchServlet</servlet-name>
+        <url-pattern>/ProductFetchServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

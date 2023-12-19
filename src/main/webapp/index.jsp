@@ -38,7 +38,7 @@
     </div>
     <!--card2-->
     <div class="col-lg-3 col-md-6 card-spacing">
-      <a href="link-to-your-page.html" class="card-link text-body text-decoration-none">
+      <a href="ProductFetchServlet" class="card-link text-body text-decoration-none" name="Category1">
       <div class="card card-custom">
         <img src="assets/images/Product-images/fresh-vegetables.svg" class="card-img-top" alt="Ladies Fingers">
         <div class="card-body">
