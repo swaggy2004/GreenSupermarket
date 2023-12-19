@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Edit Promotion</title>
+    <title>Add Promotion</title>
 
     <!--getting bootstrap-->
     <link
@@ -74,7 +74,7 @@
             </a>
           </button>
           <h3 class="mb-5 text-center text-md-start text-uppercase">
-            Promotion Edit
+            Add Promotion
           </h3>
 
           <div class="row">
@@ -106,106 +106,109 @@
               <label for="appliedProducts" class="form-label"
                 ><h5>Applied Products</h5></label
               >
-              <div class="col col-auto border rounded-3 p-2 overflow-y-scroll" style="max-height: 80px;">
+              <div
+                class="col col-auto border rounded-3 p-2 overflow-y-scroll"
+                style="max-height: 80px"
+              >
                 <div class="form-check">
-                    <input
-                      type="checkbox"
-                      class="form-check-input"
-                      name="carrot"
-                      id="carrot"
-                    /><label class="form-check-label" for="carrot"
-                      >Carrotfjhhjshjdshkjfsdjhkfsdkjhfsdhkjdfshkjfsdkj</label
-                    >
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    name="carrot"
+                    id="carrot"
+                  /><label class="form-check-label" for="carrot"
+                    >Carrotfjhhjshjdshkjfsdjhkfsdkjhfsdhkjdfshkjfsdkj</label
+                  >
                 </div>
                 <div class="form-check">
-                    <input
-                      type="checkbox"
-                      class="form-check-input"
-                      name="carrot"
-                      id="carrot"
-                    /><label class="form-check-label" for="carrot"
-                      >Carrotfjhhjshjdshkjfsdjhkfsdkjhfsdhkjdfshkjfsdkj</label
-                    >
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    name="carrot"
+                    id="carrot"
+                  /><label class="form-check-label" for="carrot"
+                    >Carrotfjhhjshjdshkjfsdjhkfsdkjhfsdhkjdfshkjfsdkj</label
+                  >
                 </div>
                 <div class="form-check">
-                    <input
-                      type="checkbox"
-                      class="form-check-input"
-                      name="carrot"
-                      id="carrot"
-                    /><label class="form-check-label" for="carrot"
-                      >Carrotfjhhjshjdshkjfsdjhkfsdkjhfsdhkjdfshkjfsdkj</label
-                    >
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    name="carrot"
+                    id="carrot"
+                  /><label class="form-check-label" for="carrot"
+                    >Carrotfjhhjshjdshkjfsdjhkfsdkjhfsdhkjdfshkjfsdkj</label
+                  >
                 </div>
                 <div class="form-check">
-                    <input
-                      type="checkbox"
-                      class="form-check-input"
-                      name="carrot"
-                      id="carrot"
-                    /><label class="form-check-label" for="carrot"
-                      >Carrotfjhhjshjdshkjfsdjhkfsdkjhfsdhkjdfshkjfsdkj</label
-                    >
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    name="carrot"
+                    id="carrot"
+                  /><label class="form-check-label" for="carrot"
+                    >Carrotfjhhjshjdshkjfsdjhkfsdkjhfsdhkjdfshkjfsdkj</label
+                  >
                 </div>
                 <div class="form-check">
-                    <input
-                      type="checkbox"
-                      class="form-check-input"
-                      name="carrot"
-                      id="carrot"
-                    /><label class="form-check-label" for="carrot"
-                      >Carrotfjhhjshjdshkjfsdjhkfsdkjhfsdhkjdfshkjfsdkj</label
-                    >
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    name="carrot"
+                    id="carrot"
+                  /><label class="form-check-label" for="carrot"
+                    >Carrotfjhhjshjdshkjfsdjhkfsdkjhfsdhkjdfshkjfsdkj</label
+                  >
                 </div>
                 <div class="form-check">
-                    <input
-                      type="checkbox"
-                      class="form-check-input"
-                      name="carrot"
-                      id="carrot"
-                    /><label class="form-check-label" for="carrot"
-                      >Carrotfjhhjshjdshkjfsdjhkfsdkjhfsdhkjdfshkjfsdkj</label
-                    >
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    name="carrot"
+                    id="carrot"
+                  /><label class="form-check-label" for="carrot"
+                    >Carrotfjhhjshjdshkjfsdjhkfsdkjhfsdhkjdfshkjfsdkj</label
+                  >
                 </div>
                 <div class="form-check">
-                    <input
-                      type="checkbox"
-                      class="form-check-input"
-                      name="carrot"
-                      id="carrot"
-                    /><label class="form-check-label" for="carrot"
-                      >Carrotfjhhjshjdshkjfsdjhkfsdkjhfsdhkjdfshkjfsdkj</label
-                    >
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    name="carrot"
+                    id="carrot"
+                  /><label class="form-check-label" for="carrot"
+                    >Carrotfjhhjshjdshkjfsdjhkfsdkjhfsdhkjdfshkjfsdkj</label
+                  >
                 </div>
                 <div class="form-check">
-                    <input
-                      type="checkbox"
-                      class="form-check-input"
-                      name="carrot"
-                      id="carrot"
-                    /><label class="form-check-label" for="carrot"
-                      >Carrotfjhhjshjdshkjfsdjhkfsdkjhfsdhkjdfshkjfsdkj</label
-                    >
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    name="carrot"
+                    id="carrot"
+                  /><label class="form-check-label" for="carrot"
+                    >Carrotfjhhjshjdshkjfsdjhkfsdkjhfsdhkjdfshkjfsdkj</label
+                  >
                 </div>
                 <div class="form-check">
-                    <input
-                      type="checkbox"
-                      class="form-check-input"
-                      name="carrot"
-                      id="carrot"
-                    /><label class="form-check-label" for="carrot"
-                      >Carrotfjhhjshjdshkjfsdjhkfsdkjhfsdhkjdfshkjfsdkj</label
-                    >
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    name="carrot"
+                    id="carrot"
+                  /><label class="form-check-label" for="carrot"
+                    >Carrotfjhhjshjdshkjfsdjhkfsdkjhfsdhkjdfshkjfsdkj</label
+                  >
                 </div>
                 <div class="form-check">
-                    <input
-                      type="checkbox"
-                      class="form-check-input"
-                      name="carrot"
-                      id="carrot"
-                    /><label class="form-check-label" for="carrot"
-                      >Carrotfjhhjshjdshkjfsdjhkfsdkjhfsdhkjdfshkjfsdkj</label
-                    >
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    name="carrot"
+                    id="carrot"
+                  /><label class="form-check-label" for="carrot"
+                    >Carrotfjhhjshjdshkjfsdjhkfsdkjhfsdhkjdfshkjfsdkj</label
+                  >
                 </div>
               </div>
             </div>
