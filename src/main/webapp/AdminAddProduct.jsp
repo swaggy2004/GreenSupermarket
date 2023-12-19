@@ -77,19 +77,6 @@
             <div class="col col-md-9">
               <div class="row col-md-12 mb-3">
                 <div class="col col-3 mb-3 col-12">
-                  <label for="productID" class="form-label"
-                    ><h5>Product ID</h5></label
-                  >
-                  <input
-                    type="text"
-                    name="productID"
-                    id="productID"
-                    class="form-control"
-                  />
-                </div>
-              </div>
-              <div class="row col-md-12 mb-3">
-                <div class="col col-3 mb-3 col-12">
                   <label for="productName" class="form-label"
                     ><h5>Product Name</h5></label
                   >
