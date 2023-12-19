@@ -73,14 +73,14 @@
         <form action="<%=request.getContextPath()%>/EditProductServlet" class="col col-md-9 p-md-4 mx-md-auto col-12" method="post" enctype="multipart/form-data">
           <h3 class="mb-5 text-center text-md-start text-uppercase">Edit Product</h3>
           <div class="row row-cols-md-12">
+             
             <div class="col col-md-3 col-12">
-              <input
+              <img src="assets/${product.getImagePath()}" class="img-fluid w-100 border-cus">
+                <input
                 type="file"
-                src="${product.getImagePath()}"
-                alt="${product.getImagePath()}"
                 class="img-fluid w-100 border-cus"
                 name="productImage"
-                
+                value="assets/${product.getImagePath()}"
               />
             </div>
             <div class="col col-md-9">
@@ -156,7 +156,7 @@
                   <label for="Visibility" class="form-label"
                     ><h5>Visibility</h5></label
                   >
-                   <% System.out.println("Visibility: " + product.getVisibility()); %>
+                  
                   <select
                     class="form-select form-control"
                     name="Visibility"

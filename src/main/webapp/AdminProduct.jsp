@@ -69,7 +69,7 @@
 
         <!--this is the edit product panne-->
         <!-- made it wider than the nav section -->
-        <form action="" class="col col-md-9 p-md-4 mx-md-auto">
+        <form action="DeleteProductServlet" method="post" class="col col-md-9 p-md-4 mx-md-auto">
             
             <!-- made it inside a container and made all the text in here to be centered -->
             <div class="container text-center pt-4 pt-md-0">
@@ -79,9 +79,10 @@
                         <h3 class="">Product Edit</h3>
                     </div>
                     <div class="col d-md-flex justify-content-md-end">
-                        <button type="button" class="btn btn-success p-3 w-auto align-self-end align-self-md-auto">
+                        <a href="AdminAddProduct.jsp">
+                           <button type="button" class="btn btn-success p-3 w-auto align-self-end align-self-md-auto">
                             Add Product
-                        </button>
+                            </button></a>
                     </div>
                 </div>
 
@@ -123,7 +124,7 @@
                     <div class="col d-sm-flex justify-content-center">${admproduct.getProductID()}</div>
                     <div class="col">
                         <img
-                                src="${admproduct.getImagePath()}"
+                                src="assets/${admproduct.getImagePath()}"
                                 alt=""
                                 srcset=""
                                 class="pro-img img-fluid img-thumbnail rounded-5 border border-3"
@@ -136,9 +137,13 @@
                             <i class="bi bi-pencil-square"></i>
                         </button></a>
                         
-                        <button type="button" class="btn delete-btn">
-                            <i class="bi bi-trash"></i>
-                        </button>
+                        <input type="hidden" name="productId" value="${admproduct.getProductID()}">
+                        <button 
+                        type="submit" 
+                        class="btn delete-btn"
+                        >
+                        <i class="bi bi-trash"></i></button>
+                        
                     </div>
                     
                 </div>
