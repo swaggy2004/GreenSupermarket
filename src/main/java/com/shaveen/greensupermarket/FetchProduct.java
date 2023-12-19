@@ -16,15 +16,15 @@ import Model.Product;
 public class FetchProduct {
     public static List<Product> SearchProduct(){
         List <Product> products = new ArrayList<>();
-        Connection connection = Model.Connection.start();
         try {
+            var connection = Model.Connection.start();
             String query = "SELECT * FROM product";
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
             while(resultSet.next()){
                 Product product = new Product();
                 product.setProductID(resultSet.getString("ProductID"));
-                product.setProductName(resultSet.getNString("Name"));
+                product.setProductName(resultSet.getString("Name"));
                 product.setUnitQty(resultSet.getInt("UnitQty"));
                 product.setStockQty(resultSet.getInt("StockQty"));
                 product.setCategory(resultSet.getString("Category"));

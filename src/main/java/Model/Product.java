@@ -32,7 +32,7 @@ public class Product {
     }
 
     public float getPrice() {
-        return Price;
+        return this.Price;
     }
 
     public void setPrice(float Price) {
@@ -40,7 +40,7 @@ public class Product {
     }
 
     public String getProductID() {
-        return ProductID;
+        return this.ProductID;
     }
 
     public void setProductID(String ProductID) {
@@ -48,7 +48,7 @@ public class Product {
     }
 
     public String getProductName() {
-        return ProductName;
+        return this.ProductName;
     }
 
     public void setProductName(String ProductName) {
@@ -56,7 +56,7 @@ public class Product {
     }
 
     public int getUnitQty() {
-        return UnitQty;
+        return this.UnitQty;
     }
 
     public void setUnitQty(int UnitQty) {
@@ -64,7 +64,7 @@ public class Product {
     }
 
     public int getStockQty() {
-        return StockQty;
+        return this.StockQty;
     }
 
     public void setStockQty(int StockQty) {
@@ -72,7 +72,7 @@ public class Product {
     }
 
     public String getCategory() {
-        return Category;
+        return this.Category;
     }
 
     public void setCategory(String Category) {
@@ -80,7 +80,7 @@ public class Product {
     }
 
     public Boolean getVisibility() {
-        return Visibility;
+        return this.Visibility;
     }
 
     public void setVisibility(Boolean Visibility) {
@@ -88,7 +88,7 @@ public class Product {
     }
 
     public String getDescription() {
-        return Description;
+        return this.Description;
     }
 
     public void setDescription(String Description) {
