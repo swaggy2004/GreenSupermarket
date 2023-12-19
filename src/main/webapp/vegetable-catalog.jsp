@@ -1,6 +1,12 @@
+<%@page import="java.util.List"%>
+<%@page import="com.shaveen.greensupermarket.FetchProduct"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c"%>
 <%@page import="Model.Product"%>
 <!DOCTYPE html>
+<%
+    List<Product> products = FetchProduct.SearchProduct();
+    pageContext.setAttribute("products", products);
+%>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -9,8 +15,6 @@
   <title>Vegetable Catalogue</title>
   <link rel="stylesheet" href="vegetables.CSS">
 </head>
-<body>
-     
       <div class="jumbotron d-none d-sm-block">
         <div class="jumbotron-text">
          <br><br> Vegetables
@@ -44,7 +48,7 @@
       <div class="container">
         <div class="justify-content-center d-flex flex-row flex-wrap">
             
-            <c:forEach items="${requestScope.products}" var = "product" varStatus="loop">
+            <c:forEach items="${products}" var = "product">
                     <div class="col-lg-3 col-md-6 mb-3">
                         <img src="assets/images/individual-catalogs/vegetables/img1.svg" class="card-img-top" alt="Ladies Fingers">
                         <div class="card-body">
@@ -57,7 +61,6 @@
                     </div>
                 </c:forEach>
           </div>
-        </div>
-      </div>
+        </div </div>
 </body>
 </html>
