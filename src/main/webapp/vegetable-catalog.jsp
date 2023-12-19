@@ -1,15 +1,20 @@
+<%@page import="java.util.List"%>
 <%@page import="com.shaveen.greensupermarket.FetchProduct"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c"%>
+<%@page import="Model.Product"%>
 <!DOCTYPE html>
+<%
+    List<Product> products = FetchProduct.SearchProduct();
+    pageContext.setAttribute("products", products);
+%>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <title>Vegetable Catalog</title>
+  <title>Vegetable Catalogue</title>
   <link rel="stylesheet" href="vegetables.CSS">
 </head>
-<body>
-     
       <div class="jumbotron d-none d-sm-block">
         <div class="jumbotron-text">
          <br><br> Vegetables
@@ -42,15 +47,22 @@
       <br>
       <div class="container">
         <div class="justify-content-center d-flex flex-row flex-wrap">
-          <%  
-               var item = new FetchProduct();
-               var products = item.getProduct();
-               for(var product : products){
-                   Model.Product Singleproducts = (Model.Product) product;
-                   out.print(Helpers.Generator.generateItem(Singleproducts));
-               }        
-          %>
-        </div>
-      </div>
+            
+            <c:forEach items="${products}" var = "product">
+                <div class="col-lg-3 col-md-6 card-spacing">
+                    <div class="card card-custom">
+                      <img src="assets/images/individual-catalogs/vegetables/img1.svg" class="card-img-top" alt="Ladies Fingers">
+                      <div class="card-body">
+                        <h5 class="card-title1">${product.getProductName()} ${product.getUnitQty()}g</h5>
+                        <h5 class="card-title2">LKR ${product.getPrice()}</h5>
+                        <div class="circle">
+                          <img src="assets/images/individual-catalogs/vegetables/cart-icon.svg" class="circle-img" alt="cart-icon">
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </c:forEach>
+          </div>
+        </div </div>
 </body>
 </html>
