@@ -4,58 +4,38 @@
  */
 package com.shaveen.greensupermarket;
 
-import java.sql.*;
-import Model.Product;
 import java.util.*;
-
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import Model.Product;
 /**
  *
  * @author Shaveen
  */
 public class FetchProduct {
-    public List<Product> getProduct(){
-        List<Product> products = new ArrayList<>();
+    public static List<Product> SearchProduct(){
+        List <Product> products = new ArrayList<>();
+        Connection connection = Model.Connection.start();
         try {
-        Connection con = Model.Connection.start();
-        String query = "SELECT ProductID, Name, UnitQty, StockQty, Category, Visibility, UnitPrice, Description FROM product";
-        try (PreparedStatement statement = con.prepareCall(query)){
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()){
-                String ProductID = resultSet.getString("ProductID");
-                String ProductName = resultSet.getString("Name");
-                int units = resultSet.getInt("UnitQty");
-                int stock = resultSet.getInt("StockQty");
-                String category = resultSet.getString("Category");
-                Boolean visibitlity = resultSet.getBoolean("Visibility");
-                float price = resultSet.getFloat("UnitPrice");
-                String description = resultSet.getString("Description");
-                
-                Product item = new Product();
-                item.setProductName(ProductName);
-                item.setProductID(ProductID);
-                item.setPrice(price);
-                item.setVisibility(visibitlity);
-                item.setUnitQty(units);
-                item.setStockQty(stock);
-                item.setCategory(category);
-                item.setDescription(description);
-                
-                products.add(item);
-                }
+            String query = "SELECT * FROM product";
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            while(resultSet.next()){
+                Product product = new Product();
+                product.setProductID(resultSet.getString("ProductID"));
+                product.setProductName(resultSet.getNString("Name"));
+                product.setUnitQty(resultSet.getInt("UnitQty"));
+                product.setStockQty(resultSet.getInt("StockQty"));
+                product.setCategory(resultSet.getString("Category"));
+                product.setDescription(resultSet.getString("Description"));
+                product.setVisibility(resultSet.getBoolean("Visibility"));
+                product.setPrice(resultSet.getFloat("UnitPrice"));
+                products.add(product);
             }
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return products;
-    }
-
-    List<Product> SearchProduct() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    List<Product> SearchProduct(String category) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-  
+     }
 }
