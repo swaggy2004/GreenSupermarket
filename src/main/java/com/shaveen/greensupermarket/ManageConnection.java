@@ -102,6 +102,28 @@ public class ManageConnection {
         }
     }
     
+    public static void deleteAccountByEmail(String email) {
+        String query = "DELETE FROM manager WHERE Email = ?";
+        try (
+             var con = Model.Connection.start();
+            PreparedStatement statement = con.prepareStatement(query)) {
+
+            statement.setString(1, email);
+            int rowsDeleted = statement.executeUpdate();
+                if (rowsDeleted < 10) {
+                    System.out.println("Account deleted successfully!");
+                } else {
+                    System.out.println("Failed to delete account.");
+                }
+                con.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace(); 
+        }
+    }
+    
+    
+    
     /*Below code is to get the relavant persons data from the database to display in the edit account*/
         public static EditAccountAdmin getAdmaccountByemail(String admaccemail) {
         try {
@@ -193,20 +215,20 @@ public class ManageConnection {
     
     
 
-    public void addProduct(String ProductID, String ProductName, String ProductCategory, Boolean Visibility, String Description, float UnitPrice, int UnitQuantity, String DbFileName) {
+    public void addProduct( String ProductName, String ProductCategory, Boolean Visibility, String Description, float UnitPrice, int UnitQuantity, String DbFileName) {
         try {
             var con = Model.Connection.start();
             
-            String query = "INSERT INTO product(ProductId, Name, Category, Visibility, Description, UnitQty, UnitPrice, ImagePath, StockQty) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0)";
+            String query = "INSERT INTO product(Name, Category, Visibility, Description, UnitQty, UnitPrice, ImagePath, StockQty) VALUES ( ?, ?, ?, ?, ?, ?, ?, 0)";
             try (PreparedStatement statement = con.prepareStatement(query)) {
-                statement.setString(1, ProductID);
-                statement.setString(2, ProductName);
-                statement.setString(3, ProductCategory);
-                statement.setBoolean(4, Visibility);
-                statement.setString(5, Description);
-                 statement.setInt(6, UnitQuantity);
-                 statement.setFloat(7, UnitPrice);
-                statement.setString(8, DbFileName); 
+                
+                statement.setString(1, ProductName);
+                statement.setString(2, ProductCategory);
+                statement.setBoolean(3, Visibility);
+                statement.setString(4, Description);
+                 statement.setInt(5, UnitQuantity);
+                 statement.setFloat(6, UnitPrice);
+                statement.setString(7, DbFileName); 
                 
                 
                 
@@ -265,6 +287,28 @@ public class ManageConnection {
             System.out.println(e);
         }
     }
+    
+    public static void deleteProductByProductID(String productId) {
+        String query = "DELETE FROM product WHERE  ProductID = ?";
+        try (
+             var con = Model.Connection.start();
+            PreparedStatement statement = con.prepareStatement(query)) {
+
+            statement.setString(1, productId);
+            int rowsDeleted = statement.executeUpdate();
+                if (rowsDeleted < 10) {
+                    System.out.println("Product deleted successfully!");
+                } else {
+                    System.out.println("Failed to delete Product.");
+                }
+                con.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace(); 
+        }
+    }
+    
+    
     
     /*Below is the method for the display product*/
     public static List<ProductInfo> getProductsinfo(){

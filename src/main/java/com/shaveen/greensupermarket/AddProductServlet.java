@@ -4,8 +4,8 @@ import jakarta.servlet.annotation.WebServlet;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
+//import java.nio.file.Files;
+//import java.nio.file.StandardCopyOption;
 import jakarta.servlet.http.Part;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -13,12 +13,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.annotation.MultipartConfig;
 
+
 @WebServlet(name = "AddProductServlet", urlPatterns = {"/AddProductServlet"})
 @MultipartConfig
 public class AddProductServlet extends HttpServlet {
 
-    public static final String UPLOAD_DIR = "assets";
-    public String dbFileName = "";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -45,7 +44,7 @@ public class AddProductServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String productID = request.getParameter("productID");
+        
         String productName = request.getParameter("productName");
         String productCategory = request.getParameter("productCategory");
         Boolean visibility = Boolean.parseBoolean(request.getParameter("Visibility"));
@@ -53,61 +52,27 @@ public class AddProductServlet extends HttpServlet {
         float unitPrice = Float.parseFloat(request.getParameter("unitPrice"));
         int unitQuantity = Integer.parseInt(request.getParameter("unitQuantity"));
         
-
-        Part filePart = request.getPart("productImage");
-        String fileName = extractFileName(filePart);
-
-        String applicationPath = getServletContext().getRealPath("");
-        String uploadPath = applicationPath + File.separator + UPLOAD_DIR;
-
-        File fileUploadDirectory = new File(uploadPath);
-        if (!fileUploadDirectory.exists()) {
-            fileUploadDirectory.mkdirs();
-        }
-        String savePath = uploadPath + File.separator + fileName;
-
-        try {
-            if (filePart != null) {
-                try (var input = filePart.getInputStream()) {
-                    Files.copy(input, new File(savePath).toPath(), StandardCopyOption.REPLACE_EXISTING);
-                }
-
-                dbFileName = UPLOAD_DIR + File.separator + fileName;
-
-                // Use ManageConnection class to add the product to the database
-                ManageConnection sendData = new ManageConnection();
-                sendData.addProduct(productID, productName, productCategory, visibility, description, unitPrice, unitQuantity, dbFileName);
-
-                
-
-                
-
-                // Redirect to a success page or display a success message
-                /*response.sendRedirect("success.jsp");*/
-            } else {
-                response.getWriter().println("No file selected.");
-            }
-
-        } catch (Exception e) {
-            response.getWriter().println(e.getMessage());
-        }
-    }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }
-
-    private String extractFileName(Part part) {
-        if (part != null) {
-            String contentDisp = part.getHeader("content-disposition");
-            String[] items = contentDisp.split(";");
-            for (String s : items) {
-                if (s.trim().startsWith("filename")) {
-                    return s.substring(s.indexOf("=") + 2, s.length() - 1);
-                }
+        
+        String imageSavedDirectoryPath = request.getServletContext().getRealPath("/assets/");
+        File imageSavedDirectory = new File(imageSavedDirectoryPath);
+        if (!imageSavedDirectory.exists()) {
+            try {
+                imageSavedDirectory.mkdirs();
+            } catch (SecurityException ex) {
+                System.out.println("Please fix directory permissions");
+                return;
             }
         }
-        return "";
-    }
+
+    
+        Part imgPart = request.getPart("productImage");
+        String imgName = imgPart.getSubmittedFileName();
+        imgPart.write(imageSavedDirectoryPath + File.separator + imgName);
+
+        ManageConnection sendData = new ManageConnection();
+        sendData.addProduct(productName, productCategory, visibility, description, unitPrice, unitQuantity, imgName);
+        }
 }
+
+
+      
