@@ -13,13 +13,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-
 /**
  *
  * @author Jude Darren Victoria
  */
-@WebServlet(name = "DeleteAccountServlet", urlPatterns = {"/DeleteAccountServlet"})
-public class DeleteAccountServlet extends HttpServlet {
+@WebServlet(name = "LogoutServlet", urlPatterns = {"/LogoutServlet"})
+public class LogoutServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +37,10 @@ public class DeleteAccountServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DeleteAccountServlet</title>");            
+            out.println("<title>Servlet LogoutServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DeleteAccountServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet LogoutServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,7 +58,7 @@ public class DeleteAccountServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        deleteaccount(request, response);
+        performLogout(request, response);
     }
 
     /**
@@ -73,33 +72,19 @@ public class DeleteAccountServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        deleteaccount(request, response);
+        performLogout(request, response);
     }
-
-
-    private void deleteaccount(HttpServletRequest request, HttpServletResponse response)
+    
+    private void performLogout(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        // Retrieve email from the session
+        // Invalidate the session (clears all session attributes)
         HttpSession session = request.getSession();
-        String email = (String) session.getAttribute("email");
+        session.invalidate();
 
-        // Check if the email is not null before proceeding
-        if (email != null) {
-            // Delete the user account from the database
-            UserDatabaseInteraction.deleteUserAccount(email);
-
-            // Clear the session attributes
-            session.invalidate();
-
-            // Redirect to the login page
-            response.sendRedirect("login.jsp");
-        } else {
-            // Handle the case where the email is not in the session
-            // You can redirect to an error page or the login page
-            response.sendRedirect("error.jsp");
-        }
+        // Redirect to the login page
+        response.sendRedirect("login.jsp");
     }
+
     /**
      * Returns a short description of the servlet.
      *

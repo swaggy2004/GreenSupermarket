@@ -4,6 +4,7 @@
  */
 package com.shaveen.greensupermarket;
 
+import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -17,7 +18,7 @@ import jakarta.servlet.http.HttpSession;
  *
  * @author Jude Darren Victoria
  */
-@WebServlet (name = "UserSettingServlet", urlPatterns = {"/UserSettingServlet"})
+@WebServlet (name = "UserSettingsServlet", urlPatterns = {"/UserSettingsServlet"})
 public class UserSettingsServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -60,17 +61,7 @@ public class UserSettingsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Retrieve email from the session
-        HttpSession session = request.getSession(false);
-        String email = (String) session.getAttribute("email");
 
-        // Retrieve user data
-        UserData userData = UserDatabaseInteraction.getUserData(email);
-
-        // Set user data as an attribute in the request
-        request.setAttribute("userData", userData);
-
-        // Forward to the JSP page for display
-        request.getRequestDispatcher("UserSettings.jsp").forward(request, response);
     }
 
     /**
@@ -85,18 +76,17 @@ public class UserSettingsServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Retrieve form data
+        String email = request.getParameter("email");
         String fullName = request.getParameter("fullName");
-        String phoneNumber = request.getParameter("phoneNumber");
+        String phoneNumber = request.getParameter("UserPhone");
 
-        // Retrieve email from the session
-        HttpSession session = request.getSession(false);
-        String email = (String) session.getAttribute("email");
 
         // Update user data in the database
         UserDatabaseInteraction.updateUserData(email, fullName, phoneNumber);
 
-        // Redirect to the user settings page
-        response.sendRedirect(request.getContextPath() + "/UserSettingsServlet");
+         response.sendRedirect("UserSettings.jsp");
+        
+        
     }
 
     /**

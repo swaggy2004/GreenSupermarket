@@ -1,3 +1,4 @@
+
 <%--
   Created by IntelliJ IDEA.
   User: Jude Darren Victoria
@@ -5,7 +6,20 @@
   Time: 07:32 pm
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="jakarta.servlet.http.HttpServletResponse" %>
+<%@ page import="com.shaveen.greensupermarket.UserDatabaseInteraction" %>
+<%@ page import="com.shaveen.greensupermarket.OrderData" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="com.shaveen.greensupermarket.UserData" %>
+<%@ page import="com.shaveen.greensupermarket.UserDatabaseInteraction" %>
+<%@ page isELIgnored="false" %>
+<%@ page import="java.io.*,java.util.*" %>
+<%@ page import="jakarta.servlet.*,jakarta.servlet.http.*" %>
+<%@ page import="java.sql.*" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+
 <html>
 <head>
     <title>User Dashboard</title>
@@ -45,6 +59,35 @@
     </style>
 </head>
 <body>
+    <%
+    String email = (String) session.getAttribute("email");
+    boolean isLoggedIn = session.getAttribute("isLoggedIn") != null && (boolean) session.getAttribute("isLoggedIn");
+
+    if (email == null || !isLoggedIn) {
+                
+        %>
+        <script>
+            window.location.href = "<%=request.getContextPath()%>/login.jsp";
+        </script>
+        <%
+    } else {
+        // Retrieve user data
+        UserData userData = UserDatabaseInteraction.getUserData(email);
+        
+        int totalOrdersCount = UserDatabaseInteraction.getTotalOrdersCount(email);
+        int completedOrdersCount = UserDatabaseInteraction.getCompletedOrdersCount(email);
+        
+        userData.setTotalOrders(totalOrdersCount);
+        userData.setCompletedOrders(completedOrdersCount);
+        
+        // Set user data as an attribute in the request
+        request.setAttribute("userData", userData);
+        
+        List<OrderData> orderList = UserDatabaseInteraction.getAllOrders(email);
+        pageContext.setAttribute("orderList", orderList);
+    }
+%>
+
 <nav style="background-color: #d0f288" class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand" href="#"><img style="width: 110px" alt="Navbar Logo" src="assets/NavLogo.svg"></a>
@@ -86,7 +129,7 @@
 
 
 
-<h1 style="margin-top: 1rem ; margin-left:3rem; margin-right:3rem; ">Hello Kevin</h1>
+<h1 style="margin-top: 1rem ; margin-left:3rem; margin-right:3rem; ">Hello ${userData.getFullName()}</h1>
 <p style="width: 30%; margin-left:3rem;">From your account dashboard. you can easily check & view your Recent Orders,
     manage your Shipping and Billing Addresses and edit your Password and Account Details.</p>
 
@@ -97,12 +140,10 @@
                 Featured
             </div>
             <div class="card-body ">
-                <h3 class="card-title">Kevin Gilbert</h3>
-                <p class="card-text">Country/Region : Dhaka - 1207, Bangladesh</p>
-                <p class="card-text">Email : kevin.gilbert@gmail.com</p>
-                <p class="card-text">Secondary Email :  kevin12345@gmail.com</p>
-                <p class="card-text">Phone: :  +1-202-555-0118</p>
-                <a href="#" class="btn btn-success">Edit account</a>
+                <h3 class="card-title">${userData.getFullName()}</h3>
+                <p class="card-text">Email : ${userData.getEmail()}</p>
+                <p class="card-text">Phone: : ${userData.getPhoneNumber()}</p>
+                <a href="UserSettings.jsp" class="btn btn-success">Edit account</a>
             </div>
         </div>
     </div>
@@ -110,33 +151,35 @@
         <div class="col">
             <div class="card" style="min-height: 340px">
                 <div class="card-header">
-                    Billing Address
+                    Address
                 </div>
                 <div class="card-body ">
-                    <h5 class="card-title">Kevin Gilbert</h5>
-                    <p class="card-text">East Tejturi Bazar, Word No. 04, Road No.<br> 13/x, House no. 1320/C, Flat No. 5D,<br> Dhaka - 1200, Bangladesh</p>
-                    <p class="card-text">Phone Number: +1-202-555-0118</p>
-                    <p class="card-text">Email :  kevin12345@gmail.com</p>
-                    <a href="#" class="btn btn-success">Edit address</a>
+
+                    <p class="card-text"> Address Line : ${userData.getSA_Adress()}  </p>
+                    <p class="card-text"> City :  ${userData.getSA_City()}   </p>
+                    <p class="card-text"> Zipcode :  ${userData.getSA_ZipCode()} </p>
+                    <p class="card-text"> Country : ${userData.getSA_Region()}</p>
+                    <p class="card-text">Phone Number: ${userData.getSA_PhoneNumber()}</p>
+                    <p class="card-text">Email :  ${userData.getEmail()} </p>
+                    <a href="UserSettings.jsp" class="btn btn-success">Edit address</a>
                 </div>
             </div>
         </div>
     </div>
+    
+    
+    <button class="btn btn-update" style="margin-top: 2rem; background-color: red;" onclick="logout()">Logout from Account</button>
+    
+    
+    
+    
     <div class="col" style="margin-top: 2rem">
         <div class="vstack gap-3">
             <div class="bg-light border">
                 <div class="card statcard" style="max-height: 100px">
                     <div class="card-body text-left">
                         <h5 class="card-title">Total Orders</h5>
-                        <p class="card-stat">154</p>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-light border">
-                <div class="card statcard">
-                    <div class="card-body text-left"  style="max-height: 100px">
-                        <h5 class="card-title">Pending Orders</h5>
-                        <p class="card-stat">05</p>
+                        <p class="card-stat">${userData.getTotalOrders()}</p>
                     </div>
                 </div>
             </div>
@@ -144,7 +187,7 @@
                 <div class="card statcard">
                     <div class="card-body text-left" style="max-height: 100px">
                         <h5 class="card-title">Completed Orders</h5>
-                        <p class="card-stat">88</p>
+                        <p class="card-stat">${userData.getCompletedOrders()}</p>
                     </div>
                 </div>
             </div>
@@ -160,62 +203,36 @@
         <th scope="col">Order ID</th>
         <th scope="col">Status</th>
         <th scope="col">Date</th>
+        <th scope="col">No of Products</th>
         <th scope="col">Total</th>
-        <th scope="col">Action</th>
+        
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <th scope="row">#9737363</th>
-        <td>In Progress</td>
-        <td>Dec 30, 2019 05:18</td>
-        <td>LKR 3500(5 Products)</td>
-        <td><button type="button" class="btn btn-success">View Details</button></td>
-    </tr>
-    <tr>
-        <th scope="row">#9737363</th>
-        <td>Delivered</td>
-        <td>Dec 30, 2019 05:18</td>
-        <td>LKR 3500(5 Products)</td>
-        <td><button type="button" class="btn btn-success">View Details</button></td>
-    </tr>
-    <tr>
-        <th scope="row">#9737363</th>
-        <td>Cancelled</td>
-        <td>Dec 30, 2019 05:18</td>
-        <td>LKR 3500(5 Products)</td>
-        <td><button type="button" class="btn btn-success">View Details</button></td>
-    </tr>
-    <tr >
-        <th scope="row">#9737363</th>
-        <td>In Progress</td>
-        <td>Dec 30, 2019 05:18</td>
-        <td>LKR 3500(5 Products)</td>
-        <td><button type="button" class="btn btn-success">View Details</button></td>
-    </tr>
+        
+        <c:forEach items="${orderList}" var="order" >
+                <tr>
+                    <th scope="row">${order.getOrderID()}</th>
+                    <td>${order.getOrderStatusDelivered() == 1 ? 'Delivered' : 'In Progress'}</td>
+                    <td>${order.getOrderDate()}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+        </c:forEach>
+    
 
     </tbody>
 </table>
-<div class="col d-flex justify-content-center">
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</div>
 
+
+
+ <script>
+  function logout() {
+        window.location.href = "<%=request.getContextPath()%>/LogoutServlet";
+  }
+</script>   
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 

@@ -13,13 +13,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-
 /**
  *
  * @author Jude Darren Victoria
  */
-@WebServlet(name = "DeleteAccountServlet", urlPatterns = {"/DeleteAccountServlet"})
-public class DeleteAccountServlet extends HttpServlet {
+@WebServlet(name = "PasswordUpdateServlet", urlPatterns = {"/PasswordUpdateServlet"})
+public class PasswordUpdateServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +37,10 @@ public class DeleteAccountServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DeleteAccountServlet</title>");            
+            out.println("<title>Servlet PasswordUpdateServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DeleteAccountServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet PasswordUpdateServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,7 +58,7 @@ public class DeleteAccountServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        deleteaccount(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -73,33 +72,39 @@ public class DeleteAccountServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        deleteaccount(request, response);
-    }
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            // Retrieve email from the session
+            HttpSession session = request.getSession();
+            String email = (String) session.getAttribute("email");
 
+            // Check if the email is not null before proceeding
+            if (email != null) {
+                // Retrieve form data
+                String currentPassword = request.getParameter("CurrentPassword");
+                String newPassword = request.getParameter("NewPassword");
+                String confirmPassword = request.getParameter("ConfirmPassword");
 
-    private void deleteaccount(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        // Retrieve email from the session
-        HttpSession session = request.getSession();
-        String email = (String) session.getAttribute("email");
-
-        // Check if the email is not null before proceeding
-        if (email != null) {
-            // Delete the user account from the database
-            UserDatabaseInteraction.deleteUserAccount(email);
-
-            // Clear the session attributes
-            session.invalidate();
-
-            // Redirect to the login page
-            response.sendRedirect("login.jsp");
-        } else {
-            // Handle the case where the email is not in the session
-            // You can redirect to an error page or the login page
-            response.sendRedirect("error.jsp");
+                // Validate current password before updating
+                if (UserDatabaseInteraction.validateUserPassword(email, currentPassword)) {
+                    // Current password is valid, proceed with password update
+                    if (newPassword.equals(confirmPassword)) {
+                        // Passwords match, update the password in the database
+                        UserDatabaseInteraction.updateUserPassword(email, newPassword);
+                        out.println("<h3>Password updated successfully!</h3>");
+                    } else {
+                        out.println("<h3>New password and confirmation do not match. Please try again.</h3>");
+                    }
+                } else {
+                    out.println("<h3>Invalid current password. Please enter the correct current password.</h3>");
+                }
+            } else {
+                // Handle the case where the email is not in the session
+                out.println("<h3>Email not found in session. Please log in again.</h3>");
+            }
         }
     }
+
     /**
      * Returns a short description of the servlet.
      *
