@@ -68,7 +68,7 @@
 
     <!--this is the edit product panne-->
     <!-- made it wider than the nav section -->
-    <form action="DeleteAccountServlet"method="post" class="col col-md-9 p-md-4 mx-md-auto">
+    <form action="DeleteAdminAccountServlet"method="post" class="col col-md-9 p-md-4 mx-md-auto">
       <!-- made it inside a container and made all the text in here to be centered -->
       <div class="container text-center pt-4 pt-md-0">
         <!-- this is the title pane with the currently selected option and add a product button -->
