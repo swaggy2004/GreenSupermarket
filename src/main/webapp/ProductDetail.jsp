@@ -5,7 +5,20 @@
   Time: 2:57 AM
   To change this template use File | Settings | File Templates.
 --%>
+<%@page import="com.shaveen.greensupermarket.FetchProduct"%>
+<%@page import="Model.Product"%>
+<%@page import="java.util.List"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c"%>
+
+<%
+        String ProductID = request.getParameter("PID");
+        // Call the SearchProduct method to retrieve a list of products
+        Product product = FetchProduct.SearchProduct(ProductID);
+
+        // Set the productList as an attribute in the page context
+        pageContext.setAttribute("productList", productList);     
+%>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -67,7 +80,7 @@
                     <li class="breadcrumb-item active" aria-current="page">Vegetables</li>
                 </ol>
             </nav>
-            <h2>Green Lettuce (100g)</h2>
+            <h2>${productList.getProductName()}</h2>
             <p>Availability: In stock</p>
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque exercitationem aliquam nulla atque, laboriosam, numquam vero quis ipsa in repellendus non quibusdam asperiores facilis dolorem. Nobis, iste veritatis. Voluptates, temporibus.</p>
             <h3 style="color: #276A07;font-weight: 700;">LKR 29</h3>
