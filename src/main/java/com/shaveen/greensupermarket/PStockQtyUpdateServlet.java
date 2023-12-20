@@ -6,18 +6,18 @@ package com.shaveen.greensupermarket;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.annotation.WebServlet;
 
 /**
  *
  * @author DELL
  */
-@WebServlet(name = "DeleteAccountServlet", urlPatterns = {"/DeleteAccountServlet"})
-public class DeleteAccountServlet extends HttpServlet {
+@WebServlet(name = "PStockQtyUpdateServlet", urlPatterns = {"/PStockQtyUpdateServlet"})
+public class PStockQtyUpdateServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,10 +36,10 @@ public class DeleteAccountServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DeleteAccountServlet</title>");            
+            out.println("<title>Servlet PStockQtyUpdate</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DeleteAccountServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet PStockQtyUpdate at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -71,13 +71,14 @@ public class DeleteAccountServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String email = request.getParameter("email");
-
+        String productId = request.getParameter("productId");
+        int stockquantity = Integer.parseInt(request.getParameter("stock_count"));
         // Perform the deletion in the database using the ManageConnection class
-        ManageConnection.deleteAccountByEmail(email);
+        PStockManagement SendData = new PStockManagement();
+        SendData.updateProductStockQtyById(productId,stockquantity);
 
         // Redirect back to the page displaying manager accounts
-        response.sendRedirect("AdminAccount.jsp");
+        response.sendRedirect("StockManagement.jsp");
     }
 
     /**

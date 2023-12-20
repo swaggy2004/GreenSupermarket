@@ -45,17 +45,20 @@
         <servlet-class>com.shaveen.greensupermarket.AdminAccountServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>DeleteAccountServlet</servlet-name>
-        <servlet-class>com.shaveen.greensupermarket.DeleteAccountServlet</servlet-class>
+        <servlet-name>DeleteAdminAccountServlet</servlet-name>
+        <servlet-class>com.shaveen.greensupermarket.DeleteAdminAccountServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DeleteProductServlet</servlet-name>
         <servlet-class>com.shaveen.greensupermarket.DeleteProductServlet</servlet-class>
-        
     </servlet>
     <servlet>
         <servlet-name>ProductFetchServlet</servlet-name>
         <servlet-class>com.shaveen.greensupermarket.ProductFetchServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PStockQtyUpdateServlet</servlet-name>
+        <servlet-class>com.shaveen.greensupermarket.PStockQtyUpdateServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AddAccountServlet</servlet-name>
@@ -102,8 +105,8 @@
         <url-pattern>/AdminAccountServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>DeleteAccountServlet</servlet-name>
-        <url-pattern>/DeleteAccountServlet</url-pattern>
+        <servlet-name>DeleteAdminAccountServlet</servlet-name>
+        <url-pattern>/DeleteAdminAccountServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DeleteProductServlet</servlet-name>
@@ -112,6 +115,10 @@
     <servlet-mapping>
         <servlet-name>ProductFetchServlet</servlet-name>
         <url-pattern>/ProductFetchServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PStockQtyUpdateServlet</servlet-name>
+        <url-pattern>/PStockQtyUpdateServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
