@@ -1,11 +1,12 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Jude Darren Victoria
-  Date: 06/12/2023
-  Time: 07:32 pm
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page import="com.shaveen.greensupermarket.PStockManagement"%>
+<%@page import="Model.ProductStock"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c"%>
+<%@page import="java.util.List"%>
+<!doctype html>
+<%
+     List<ProductStock> ProductStocks = PStockManagement.getProductStock();
+    pageContext.setAttribute("ProductStocks", ProductStocks);
+%>
 <html>
 <head>
     <title>Stock Management</title>
@@ -118,28 +119,12 @@
 
 </ul>
 
-<div class="row" style="margin-top: 2rem">
+<div class="row justify-content-end" style="margin-top: 2rem">
     <!-- Select Box 1 -->
-    <div class="col-md-3 mb-3" style="padding-left: 2rem;">
-
-        <select class="form-select" id="selectBox1" aria-label="Select Box 1">
-            <option value="0">Select Category</option>
-            <option value="1">Vegetables</option>
-            <option value="2">Fruits</option>
-            <option value="3">Meat</option>
-        </select>
-    </div>
+    
 
     <!-- Select Box 2 -->
-    <div class="col-md-3 mb-3">
-
-        <select class="form-select" id="selectBox2" aria-label="Select Box 2">
-            <option value="0">Stock Status</option>
-            <option value="1">In Stock</option>
-            <option value="2">Running Out</option>
-            <option value="3">Out of Stock</option>
-        </select>
-    </div>
+    
 
     <!-- Empty Space -->
     <div class="col-md-3 mb-3"></div>
@@ -158,46 +143,52 @@
 
 
 
-<table style="margin-top: 2rem ; margin-left: 2rem ; margin-right: 2rem;" class="table">
-    <thead>
-    <tr>
-        <th scope="col">Product ID</th>
-        <th scope="col">Stock Status</th>
-        <th scope="col">Name</th>
-        <th scope="col">Stock Count</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <th scope="row">#9737363</th>
-        <td>Running Out</td>
-        <td>Sweet Corn</td>
-        <td>
-            <div class="input-group w-auto  align-items-center">
-                <input type="button" value="-" class="button-minus border rounded-circle icon-shape icon-sm mx-1" data-field="stock_count">
-                <input disabled type="number" step="1" value="0" name="stock_count" class="quantity-field border-0 text-center w-25">
-                <input type="button" value="+" class="button-plus border rounded-circle icon-shape icon-sm" data-field="stock_count">
-            </div>
-        </td>
 
-    </tr>
-    <tr>
-        <th scope="row">#9737363</th>
-        <td>Running Out</td>
-        <td>Sweet Corn</td>
-        <td>
-            <div class="input-group w-auto  align-items-center">
-                <input type="button" value="-" class="button-minus border rounded-circle icon-shape icon-sm mx-1" data-field="stock_count">
-                <input disabled type="number" step="1" value="0" name="stock_count" class="quantity-field border-0 text-center w-25">
-                <input type="button" value="+" class="button-plus border rounded-circle icon-shape icon-sm" data-field="stock_count">
-            </div>
-        </td>
+    <table style="margin-top: 2rem ; margin-left: 2rem ; margin-right: 2rem;" class="table">
+        <thead>
+        <tr>
+            <th scope="col">Product ID</th>
+            <th scope="col">Stock Status</th>
+            <th scope="col">Name</th>
+            <th scope="col">Stock Count</th>
+        </tr>
+        </thead>
+        <tbody>
 
-    </tr>
+        <c:forEach items="${ProductStocks}" var="ProductSt">
+        <form action="PStockQtyUpdateServlet" method="Post">
+        <tr>
+            <th scope="row">${ProductSt.getProductID()}</th>
+            <td>
+                <c:choose>
+                    <c:when test="${ProductSt.getStockQty() eq 0}">
+                        Out of Stock
+                    </c:when>
+                    <c:when test="${ProductSt.getStockQty() lt 15}">
+                        Running Out
+                    </c:when>
+                    <c:otherwise>
+                        In Stock
+                    </c:otherwise>
+                </c:choose>
+            </td>
+            <td>${ProductSt.getProductName()}</td>
+            <td>
+                <div class="input-group w-auto  align-items-center">
+                    <input type="number" min="0" step="1" value="${ProductSt.getStockQty()}" name="stock_count" class="quantity-field border-0 text-center ">
+                    <input type="hidden" name="productId" value="${ProductSt.getProductID()}">
+                    <button type="submit" class="text-uppercase btn btn-success btn-sm ">Update Stock</button>
+                </div>
+            </td>
 
 
-    </tbody>
-</table>
+        </tr>
+        </form>
+        </c:forEach>
+
+        </tbody>
+    </table>
+
 <div class="col d-flex justify-content-center">
     <nav aria-label="Page navigation example">
         <ul class="pagination">
@@ -221,51 +212,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 
-<script>
-    if (typeof jQuery !== 'undefined') {
-        // jQuery is loaded, proceed with your code
-        $(document).ready(function () {
-            // Your existing script
-        });
-    } else {
-        console.error('jQuery is not loaded!');
-    }
 
-    $(document).ready(function () {
-        $(document).on('click', '.input-group .button-plus', function (e) {
-            incrementValue(e);
-        });
-
-        $(document).on('click', '.input-group .button-minus', function (e) {
-            decrementValue(e);
-        });
-    });
-
-    function incrementValue(e) {
-        e.preventDefault();
-        var fieldName = $(e.target).data('field');
-        var parent = $(e.target).closest('div');
-        var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
-
-        if (!isNaN(currentVal)) {
-            parent.find('input[name=' + fieldName + ']').val(currentVal + 1);
-        } else {
-            parent.find('input[name=' + fieldName + ']').val(0);
-        }
-    }
-
-    function decrementValue(e) {
-        e.preventDefault();
-        var fieldName = $(e.target).data('field');
-        var parent = $(e.target).closest('div');
-        var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
-
-        if (!isNaN(currentVal) && currentVal > 0) {
-            parent.find('input[name=' + fieldName + ']').val(currentVal - 1);
-        } else {
-            parent.find('input[name=' + fieldName + ']').val(0);
-        }
-    }
-</script>
 </body>
 </html>
