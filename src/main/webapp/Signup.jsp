@@ -26,7 +26,7 @@
                     <div class="input-box mx-auto px-3">
                         <header>Hello!</header>
                         <p class="header-p ">Sign Up to Start</p>
-                        <form name="register" action="/GreenSupermarket/CusRegisterServlet" method="post">
+                        <form name="register" action="<%=request.getContextPath()%>/CusRegisterServlet" method="post">
                         <div class="input-field1">
                             <input type="text" class="input" name="fullname" id="fullname" required autocomplete="off" placeholder="Full name">  
                         </div>
