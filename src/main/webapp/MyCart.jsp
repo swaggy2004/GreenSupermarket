@@ -5,11 +5,35 @@
   Time: 2:43 AM
   To change this template use File | Settings | File Templates.
 --%>
-<%@page import="Helpers.Generator"%>
 <%@page import="com.shaveen.greensupermarket.FetchProduct"%>
-<%@page import="com.shaveen.greensupermarket.ShoppingCartConnection"%>
-
+<%@page import="Model.Product"%>
+<%@page import="java.util.logging.Logger"%>
+<%@page import="java.util.logging.Level"%>
+<%@page import="com.shaveen.greensupermarket.ShoppingCartServlet"%>
+<%@page import="java.sql.SQLException"%>
+<%@page import="com.shaveen.greensupermarket.FetchShoppingCart"%>
+<%@page import="Model.ShoppingCart"%>
+<%@page import="java.util.List"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
+<%
+        String customerEmail = request.getParameter("customerEmail");
+
+        List<ShoppingCart> cartList = FetchShoppingCart.searchCart(customerEmail);
+        List<Product> products = null;
+        for (ShoppingCart cartItem : cartList) {
+                int productId = cartItem.getPID();
+                products = FetchProduct.SearchProduct(productId);
+                for (Product product : products){
+                    cartItem.setTotPrice(cartItem.getPQty() * product.getPrice());
+                }
+        }
+        pageContext.setAttribute("products", products);
+        pageContext.setAttribute("cartItem", cartList);
+        
+%>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -126,234 +150,62 @@
                 </div>
             </div>
             
-           <%
-    try {
-        var cart = new ShoppingCartConnection();
-        var shoppingCarts = cart.getCart();
-
-        for (var shoppingCart : shoppingCarts) {
-            var productIDs = shoppingCart.getProductID();
-
-            if (productIDs != null && !productIDs.isEmpty()) {
-                var fetchProduct = new FetchProduct();
-
-                for (var productID : productIDs) {
-                    var products = fetchProduct.getProduct(productID.toString());
-
-                    for (var product : products) {
-                        Model.Product singleProduct = (Model.Product) product;
-                        out.print(Generator.generateCartItem(singleProduct));
-                    }
-                }
-            } else {
-                out.print("Cart is empty."); // Or handle empty cart case accordingly
-            }
-        }
-    } catch (Exception e) {
-        e.printStackTrace();
-        out.print("An error occurred."); // Or handle the error case accordingly
-    }
-%>
-
-
-            <div class="card mb-3" style="max-width: 1280px;border-radius: 20px;">
-                <div class="row g-0">
-                    <div class="col-md-2 ">
-                        <img src="assets/vegi1.png" style="width: 100px" class="img-fluid rounded-start  " alt="...">
-                    </div>
-                    <div class="col-md-4 my-auto ">
-                        <div class="card-body">
-                            <h5>Sweet Corn</h5>
+            <c:forEach items="${products}" var="product">
+                <c:forEach items="${cartItem}" var="item">
+                <div class="card mb-3" style="max-width: 1280px;border-radius: 20px;">
+                    <div class="row g-0">
+                        <div class="col-md-2 ">
+                            <img src="assets/vegi1.png" style="width: 100px; border-radius: 20px;" class="img-fluid rounded-start  " alt="...">
                         </div>
-                    </div>
-                    <div class="col-md-2 my-auto ">
-                        <div class="card-body">
-                            <h5>$569</h5>
+                        <div class="col-md-4 my-auto ">
+                            <div class="card-body">
+                                <h5>${product.getProductName()}</h5>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-2 my-auto ">
-                        <div class="card-body">
-                            <div class="dropdown" >
-                                <button
-                                        class="btn btn-secondary dropdown-toggle "
-                                        type="button"
-                                        data-bs-toggle="dropdown"
-                                        aria-expanded="false"
-                                        style="background-color:#F6F7F8; color:black;border: none;"
-                                >
-                                    100g
-                                </button>
-                                <ul class="dropdown-menu" style="background-color: white;">
-                                    <li><button class="dropdown-item" type="button">100g</button></li>
-                                    <li>
-                                        <button class="dropdown-item" type="button">200g</button>
-                                    </li>
-                                    <li>
-                                        <button class="dropdown-item" type="button">300g</button>
-                                    </li>
-                                </ul>
+                        <div class="col-md-2 my-auto ">
+                            <div class="card-body">
+                                <h5>LKR ${product.getPrice()}</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-2 my-auto ">
+                            <div class="card-body">
+                                <div class="dropdown" >
+                                    <button
+                                            class="btn btn-secondary dropdown-toggle "
+                                            type="button"
+                                            data-bs-toggle="dropdown"
+                                            aria-expanded="false"
+                                            style="background-color:#F6F7F8; color:black;border: none;"
+                                    >
+                                        100g
+                                    </button>
+                                    <ul class="dropdown-menu" style="background-color: white;">
+                                        <li><button class="dropdown-item" type="button">100g</button></li>
+                                        <li>
+                                            <button class="dropdown-item" type="button">200g</button>
+                                        </li>
+                                        <li>
+                                            <button class="dropdown-item" type="button">300g</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1 my-auto ">
+                            <div class="card-body">
+                              <h5>LKR ${item.getTotPrice()}</h5>
+
+                            </div>
+                        </div>
+                        <div class="col-md-1 my-auto ">
+                            <div class="card-body">
+                                <button type="button" class="btn-close" aria-label="Close"></button>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-1 my-auto ">
-                        <div class="card-body">
-                            <h5>$569</h5>
-                        </div>
-                    </div>
-                    <div class="col-md-1 my-auto ">
-                        <div class="card-body">
-                            <button type="button" class="btn-close" aria-label="Close"></button>
-                        </div>
-                    </div>
                 </div>
-            </div>
-            <div class="card mb-3" style="max-width: 1280px;border-radius: 20px;">
-                <div class="row g-0">
-                    <div class="col-md-2">
-                        <img src="assets/vegi2.png" style="width: 100px" class="img-fluid rounded-start" alt="...">
-                    </div>
-                    <div class="col-md-4 my-auto ">
-                        <div class="card-body">
-                            <h5>Sweet Corn</h5>
-                        </div>
-                    </div>
-                    <div class="col-md-2 my-auto ">
-                        <div class="card-body">
-                            <h5>$569</h5>
-                        </div>
-                    </div>
-                    <div class="col-md-2 my-auto ">
-                        <div class="card-body">
-                            <div class="dropdown" >
-                                <button
-                                        class="btn btn-secondary dropdown-toggle "
-                                        type="button"
-                                        data-bs-toggle="dropdown"
-                                        aria-expanded="false"
-                                        style="background-color:#F6F7F8; color:black;border: none;"
-                                >
-                                    100g
-                                </button>
-                                <ul class="dropdown-menu" style="background-color: white;">
-                                    <li><button class="dropdown-item" type="button">100g</button></li>
-                                    <li>
-                                        <button class="dropdown-item" type="button">200g</button>
-                                    </li>
-                                    <li>
-                                        <button class="dropdown-item" type="button">300g</button>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-1 my-auto ">
-                        <div class="card-body">
-                            <h5>$569</h5>
-                        </div>
-                    </div>
-                    <div class="col-md-1 my-auto ">
-                        <div class="card-body">
-                            <button type="button" class="btn-close" aria-label="Close"></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card mb-3" style="max-width: 1280px;border-radius: 20px;">
-                <div class="row g-0">
-                    <div class="col-md-2">
-                        <img src="assets/vegi4.png" style="width: 100px" class="img-fluid rounded-start" alt="...">
-                    </div>
-                    <div class="col-md-4 my-auto ">
-                        <div class="card-body">
-                            <h5>Sweet Corn</h5>
-                        </div>
-                    </div>
-                    <div class="col-md-2 my-auto ">
-                        <div class="card-body">
-                            <h5>$569</h5>
-                        </div>
-                    </div>
-                    <div class="col-md-2 my-auto ">
-                        <div class="card-body">
-                            <div class="input-group w-auto  justify-content-start align-items-center" >
-                                <button type="button" class="btn btn-outline-secondary rounded-circle icon-shape icon-sm mx-1 " style="font-size: 0.8rem;padding: 0.2rem 0.5rem;" onclick="decrementValue(event)" data-field="quantity">-</button>
-                                <input disabled type="number" step="1"  min="1"  value="1" name="quantity" class="form-control text-center " style="font-size: 0.8rem; padding: 0.2rem 0.2rem;max-width: 50px;  " >
-                                <button type="button" class="btn btn-outline-secondary rounded-circle icon-shape icon-sm mx-1"style="font-size: 0.8rem;padding: 0.2rem 0.5rem;" onclick="incrementValue(event)" data-field="quantity">+</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-1 my-auto ">
-                        <div class="card-body">
-                            <h5>$569</h5>
-                        </div>
-                    </div>
-                    <div class="col-md-1 my-auto ">
-                        <div class="card-body">
-                            <button type="button" class="btn-close" aria-label="Close"></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card mb-3" style="max-width: 1280px;border-radius: 20px;">
-                <div class="row g-0">
-                    <div class="col-md-2">
-                        <img src="assets/vegi1.png" style="width: 100px" class="img-fluid rounded-start" alt="...">
-                    </div>
-                    <div class="col-md-4 my-auto ">
-                        <div class="card-body">
-                            <h5>Sweet Corn</h5>
-                        </div>
-                    </div>
-                    <div class="col-md-2 my-auto ">
-                        <div class="card-body">
-                            <h5>$569</h5>
-                        </div>
-                    </div>
-                    <div class="col-md-2 my-auto ">
-                        <div class="card-body">
-                            <div class="dropdown" >
-                                <button
-                                        class="btn btn-secondary dropdown-toggle "
-                                        type="button"
-                                        data-bs-toggle="dropdown"
-                                        aria-expanded="false"
-                                        style="background-color:#F6F7F8; color:black;border: none;"
-                                >
-                                    100g
-                                </button>
-                                <ul class="dropdown-menu" style="background-color: white;">
-                                    <li><button class="dropdown-item" type="button">100g</button></li>
-                                    <li>
-                                        <button class="dropdown-item" type="button">200g</button>
-                                    </li>
-                                    <li>
-                                        <button class="dropdown-item" type="button">300g</button>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-1 my-auto ">
-                        <div class="card-body">
-                            <h5>$569</h5>
-                        </div>
-                    </div>
-                    <div class="col-md-1 my-auto ">
-                        <div class="card-body">
-                            <button type="button" class="btn-close" aria-label="Close"></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row ">
-                <div class="col-md-2"><button type="button" class="btn btn-outline-dark" style="background-color: #ffffff;
-                    border-color: #34A853;"><img src="assets/MyCartArrowLeft.svg">&nbsp;Continue shopping</button></div>
-                <div class="col-md-8"></div>
-
-            </div>
-
+                </c:forEach>
+            </c:forEach>
 
         </div>
 
