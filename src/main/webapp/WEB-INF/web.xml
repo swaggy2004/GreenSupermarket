@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
+
     <!-- Servlet Declarations -->
     <servlet>
         <servlet-name>AddAccountServlet</servlet-name>
@@ -56,25 +57,7 @@
         <servlet-class>com.shaveen.greensupermarket.AdminAccountServlet</servlet-class>
     </servlet>
     
-    <servlet>
-        <servlet-name>DeleteAccountServlet</servlet-name>
-        <servlet-class>com.shaveen.greensupermarket.DeleteAccountServlet</servlet-class>
-    </servlet>
-    
-    <servlet>
-        <servlet-name>DeleteProductServlet</servlet-name>
-        <servlet-class>com.shaveen.greensupermarket.DeleteProductServlet</servlet-class>
-    </servlet>
-    
-    <servlet>
-        <servlet-name>ProductFetchServlet</servlet-name>
-        <servlet-class>com.shaveen.greensupermarket.ProductFetchServlet</servlet-class>
-    </servlet>
-    
-    <servlet>
-        <servlet-name>ShoppingCartServlet</servlet-name>
-        <servlet-class>com.shaveen.greensupermarket.ShoppingCartServlet</servlet-class>
-    </servlet>
+    <!-- Add your additional servlet declarations here -->
 
     <!-- Servlet Mappings -->
     <servlet-mapping>
@@ -132,25 +115,7 @@
         <url-pattern>/AdminAccountServlet</url-pattern>
     </servlet-mapping>
     
-    <servlet-mapping>
-        <servlet-name>DeleteAccountServlet</servlet-name>
-        <url-pattern>/DeleteAccountServlet</url-pattern>
-    </servlet-mapping>
-    
-    <servlet-mapping>
-        <servlet-name>DeleteProductServlet</servlet-name>
-        <url-pattern>/DeleteProductServlet</url-pattern>
-    </servlet-mapping>
-    
-    <servlet-mapping>
-        <servlet-name>ProductFetchServlet</servlet-name>
-        <url-pattern>/ProductFetchServlet</url-pattern>
-    </servlet-mapping>
-    
-    <servlet-mapping>
-        <servlet-name>ShoppingCartServlet</servlet-name>
-        <url-pattern>/ShoppingCartServlet</url-pattern>
-    </servlet-mapping>
+    <!-- Add your additional servlet mappings here -->
 
     <!-- Session Configuration -->
     <session-config>
