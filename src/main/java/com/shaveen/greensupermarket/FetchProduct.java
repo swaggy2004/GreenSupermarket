@@ -67,5 +67,33 @@ public class FetchProduct {
         }
         return products;
     }
-
+    
+    public static Product SearchProduct(String PID) {
+        try (Connection connection = Model.Connection.start()){
+            String query = "SELECT * FROM product WHERE ProductID = ?";
+            try (PreparedStatement statement = connection.prepareStatement(query)){
+                statement.setString(1, PID);
+          
+   
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (resultSet.next()) {
+                        Product product = new Product();
+                        product.setProductID(resultSet.getInt("ProductID"));
+                        product.setProductName(resultSet.getString("Name"));
+                        product.setUnitQty(resultSet.getInt("UnitQty"));
+                        product.setStockQty(resultSet.getInt("StockQty"));
+                        product.setCategory(resultSet.getString("Category"));
+                        product.setDescription(resultSet.getString("Description"));
+                        product.setVisibility(resultSet.getBoolean("Visibility"));
+                        product.setPrice(resultSet.getFloat("UnitPrice"));
+                        return product;
+                    }
+                }
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace(); // Handle the exception appropriately in a production environment
+        }
+        return null;
+    }
 }

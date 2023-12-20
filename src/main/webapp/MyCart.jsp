@@ -16,7 +16,6 @@
 <%@page import="java.util.List"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <%
         String customerEmail = request.getParameter("customerEmail");
@@ -169,26 +168,7 @@
                         </div>
                         <div class="col-md-2 my-auto ">
                             <div class="card-body">
-                                <div class="dropdown" >
-                                    <button
-                                            class="btn btn-secondary dropdown-toggle "
-                                            type="button"
-                                            data-bs-toggle="dropdown"
-                                            aria-expanded="false"
-                                            style="background-color:#F6F7F8; color:black;border: none;"
-                                    >
-                                        100g
-                                    </button>
-                                    <ul class="dropdown-menu" style="background-color: white;">
-                                        <li><button class="dropdown-item" type="button">100g</button></li>
-                                        <li>
-                                            <button class="dropdown-item" type="button">200g</button>
-                                        </li>
-                                        <li>
-                                            <button class="dropdown-item" type="button">300g</button>
-                                        </li>
-                                    </ul>
-                                </div>
+                                <input type="number" name="PQty" value="${item.getPQty()}">
                             </div>
                         </div>
                         <div class="col-md-1 my-auto ">
