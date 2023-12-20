@@ -48,8 +48,8 @@ public class ManageConnection {
         return accounts;
     }*/
     
-        public static List<ManagerAccount> getManagerAccounts(){
-        List<ManagerAccount> ManagerAccounts = new ArrayList<>();
+    public static List<ManagerAccount> getManagerAccounts(){
+    List<ManagerAccount> ManagerAccounts = new ArrayList<>();
      try{
       var con = Model.Connection.start();
       
