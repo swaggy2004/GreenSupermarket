@@ -9,7 +9,7 @@ package Model;
  * @author Shaveen
  */
 public class Product {
-    private String ProductID;
+    private int ProductID;
     private String ProductName;
     private int UnitQty; 
     private int StockQty;
@@ -20,7 +20,7 @@ public class Product {
     
     public void Product() {}
     
-    public void Product(String ProductID, String ProductName, int UnitQty, int StockQty, String Category, Boolean Visibility, String Description, float Price){
+    public void Product(int ProductID, String ProductName, int UnitQty, int StockQty, String Category, Boolean Visibility, String Description, float Price){
         this.ProductID = ProductID;
         this.ProductName = ProductName;
         this.UnitQty = UnitQty;
@@ -39,11 +39,11 @@ public class Product {
         this.Price = Price;
     }
 
-    public String getProductID() {
+    public int getProductID() {
         return this.ProductID;
     }
 
-    public void setProductID(String ProductID) {
+    public void setProductID(int ProductID) {
         this.ProductID = ProductID;
     }
 

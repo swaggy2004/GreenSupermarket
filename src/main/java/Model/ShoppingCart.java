@@ -12,25 +12,56 @@ import java.util.List;
  */
 public class ShoppingCart {
     private int CartID;
-    private int ProductQty;
+    private int PQty;
+    private int PID;
+    private String CEmail;
+    private float totPrice;
+    
     public ShoppingCart(){};
-    public ShoppingCart(int CartID, int ProductQty){
+    
+    public ShoppingCart(int CartID, int PQty, int PID, String CEmail){
        this.CartID = CartID;
-       this.ProductQty = ProductQty;
+       this.PQty = PQty;
+       this.PID = PID;
+       this.CEmail = CEmail;
+    }
+
+    public float getTotPrice() {
+        return this.totPrice;
+    }
+
+    public void setTotPrice(float totPrice) {
+        this.totPrice = totPrice;
+    }
+
+    public String getCEmail() {
+        return this.CEmail;
+    }
+
+    public void setCEmail(String CEmail) {
+        this.CEmail = CEmail;
+    }
+
+    public int getPID() {
+        return this.PID;
+    }
+
+    public void setPID(int PID) {
+        this.PID = PID;
     }
     public int getCartID() {
-        return CartID;
+        return this.CartID;
     }
 
     public void setCartID(int CartID) {
         this.CartID = CartID;
     }
 
-    public int getProductQty() {
-        return ProductQty;
+    public int getPQty() {
+        return this.PQty;
     }
 
-    public void setProductQty(int ProductQty) {
-        this.ProductQty = ProductQty;
+    public void setPQty(int ProductQty) {
+        this.PQty = ProductQty;
     }
 }
