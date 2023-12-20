@@ -1,130 +1,128 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
+
+    <!-- Servlet Declarations -->
     <servlet>
         <servlet-name>AddAccountServlet</servlet-name>
         <servlet-class>com.shaveen.greensupermarket.AddAccountServlet</servlet-class>
     </servlet>
+    
     <servlet>
         <servlet-name>AddProductServlet</servlet-name>
         <servlet-class>com.shaveen.greensupermarket.AddProductServlet</servlet-class>
     </servlet>
+    
     <servlet>
         <servlet-name>EditAccountServlet</servlet-name>
         <servlet-class>com.shaveen.greensupermarket.EditAccountServlet</servlet-class>
     </servlet>
+    
     <servlet>
         <servlet-name>EditProductServlet</servlet-name>
         <servlet-class>com.shaveen.greensupermarket.EditProductServlet</servlet-class>
     </servlet>
+    
     <servlet>
         <servlet-name>AdminProductServlet</servlet-name>
         <servlet-class>com.shaveen.greensupermarket.AdminProductServlet</servlet-class>
     </servlet>
+    
     <servlet>
         <servlet-name>CustomerRegister</servlet-name>
         <servlet-class>com.shaveen.greensupermarket.CusRegisterServlet</servlet-class>
     </servlet>
+    
     <servlet>
         <servlet-name>UserSettingReterive</servlet-name>
         <servlet-class>com.shaveen.greensupermarket.UserSettingReterive</servlet-class>
     </servlet>
+    
     <servlet>
         <servlet-name>UserSettingRetServlet</servlet-name>
         <servlet-class>com.shaveen.greensupermarket.UserSettingRetServlet</servlet-class>
     </servlet>
+    
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>com.shaveen.greensupermarket.LoginServlet</servlet-class>
     </servlet>
+    
     <servlet>
         <servlet-name>UserSettingsServlet</servlet-name>
         <servlet-class>com.shaveen.greensupermarket.UserSettingsServlet</servlet-class>
     </servlet>
+    
     <servlet>
         <servlet-name>AdminAccountServlet</servlet-name>
         <servlet-class>com.shaveen.greensupermarket.AdminAccountServlet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>DeleteAccountServlet</servlet-name>
-        <servlet-class>com.shaveen.greensupermarket.DeleteAccountServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>DeleteProductServlet</servlet-name>
-        <servlet-class>com.shaveen.greensupermarket.DeleteProductServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ProductFetchServlet</servlet-name>
-        <servlet-class>com.shaveen.greensupermarket.ProductFetchServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ShoppingCartServlet</servlet-name>
-        <servlet-class>com.shaveen.greensupermarket.ShoppingCartServlet</servlet-class>
-    </servlet>
+    
+    <!-- Add your additional servlet declarations here -->
+
+    <!-- Servlet Mappings -->
     <servlet-mapping>
         <servlet-name>AddAccountServlet</servlet-name>
         <url-pattern>/AddAccountServlet</url-pattern>
     </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>AddProductServlet</servlet-name>
         <url-pattern>/AddProductServlet</url-pattern>
     </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>EditAccountServlet</servlet-name>
         <url-pattern>/EditAccountServlet</url-pattern>
     </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>EditProductServlet</servlet-name>
         <url-pattern>/EditProductServlet</url-pattern>
     </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>AdminProductServlet</servlet-name>
         <url-pattern>/AdminProductServlet</url-pattern>
     </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>CustomerRegister</servlet-name>
         <url-pattern>/CustomerRegister</url-pattern>
     </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>UserSettingReterive</servlet-name>
         <url-pattern>/UserSettingReterive</url-pattern>
     </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>UserSettingRetServlet</servlet-name>
         <url-pattern>/UserSettingRetServlet</url-pattern>
     </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
     </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>UserSettingsServlet</servlet-name>
         <url-pattern>/UserSettingsServlet</url-pattern>
     </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>AdminAccountServlet</servlet-name>
         <url-pattern>/AdminAccountServlet</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>DeleteAccountServlet</servlet-name>
-        <url-pattern>/DeleteAccountServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>DeleteProductServlet</servlet-name>
-        <url-pattern>/DeleteProductServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ProductFetchServlet</servlet-name>
-        <url-pattern>/ProductFetchServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ShoppingCartServlet</servlet-name>
-        <url-pattern>/ShoppingCartServlet</url-pattern>
-    </servlet-mapping>
+    
+    <!-- Add your additional servlet mappings here -->
+
+    <!-- Session Configuration -->
     <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
+        <session-timeout>30</session-timeout>
     </session-config>
+
+    <!-- JSP Configuration -->
     <jsp-config>
         <taglib>
             <taglib-uri>http://java.sun.com/jstl/core</taglib-uri>
