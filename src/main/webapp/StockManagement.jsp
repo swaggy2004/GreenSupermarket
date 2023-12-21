@@ -130,6 +130,7 @@
     <div class="col-md-3 mb-3"></div>
 
     <!-- Search Box -->
+    <!--<form>-->
     <div class="col-md-3 mb-3" style="padding-right: 2rem;">
 
         <div class="input-group">

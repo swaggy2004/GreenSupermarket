@@ -1,11 +1,12 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Jude Darren Victoria
-  Date: 09/12/2023
-  Time: 01:00 pm
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page import="com.shaveen.greensupermarket.CIndividualFeedbackManagement"%>
+<%@page import="Model.IndividualFeedbackManagement"%>
+<%@ page isELIgnored="false" %>
+<%
+    String feedbackID = request.getParameter("feedbackID");
+    IndividualFeedbackManagement cfeedback = CIndividualFeedbackManagement.getinfoByFeedbackID(feedbackID);
+    pageContext.setAttribute("cfeedback", cfeedback);
+%>
+<!DOCTYPE html>
 <html>
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -60,28 +61,29 @@
 <body>
 <div class="card mb-3" style=" margin: 3rem 2rem 0 2rem; min-height:300px">
     <div class="card-header">
-        <h3 >Customer Review #43</h3>
+        <h3 >Feedback ID:${cfeedback.getFeedbackID()}</h3>
     </div>
     <div class="card-body">
         <div class="d-flex align-items-start justify-content-between"> <!-- Use 'justify-content-between' for spacing -->
             <div>
-                <h4 class="mb-0">Order #123826526578612</h4>
-                <span class="text-muted">Posted on: 13 December, 2023 at 11.30 AM</span>
+                <h4 class="mb-0">Order ID:${cfeedback.getOrderID()}</h4>
+                <span class="text-muted">${cfeedback.getFeedbackTime()}</span>
             </div>
             <div class="text-end d-flex align-items-center"> <!-- Right-align these elements and align them vertically -->
                 <div>
-                    <h3 class="mb-0">Robert Fox</h3>
+                    <h3 class="mb-0">${cfeedback.getCName()}</h3>
                     <span class="text-muted">Customer<br></span>
                     <div class="star-container" id="starContainer">
                         <!-- Stars will be dynamically added here -->
                     </div>
                 </div>
+                <!--<img src="assets/${cfeedback.getCAvatar()}" class="rounded-circle ms-2" alt="User Avatar">  Move the avatar to the right of the text -->
                 <img src="assets/Avatar.png" class="rounded-circle ms-2" alt="User Avatar"> <!-- Move the avatar to the right of the text -->
             </div>
         </div>
 
         <p class="card-text mt-2">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            ${cfeedback.getFeedbackText()}
         </p>
     </div>
 </div>
@@ -98,7 +100,7 @@
         window.history.back();
     }
     // Initialize the star rating with default value
-    let currentRating = 3.5; // Set your initial rating value here
+    let currentRating = ${cfeedback.getFeedbackRating()}; // Set your initial rating value here
     updateRating(currentRating);
 
     // Function to update the star rating based on a variable
@@ -112,7 +114,7 @@
         // Create stars based on the rating
         for (let i = 1; i <= 5; i++) {
             const star = document.createElement('span');
-            star.innerHTML = '★'; // You can use an SVG or an image for a more customized star
+            star.innerHTML = '&#9733;'; // You can use an SVG or an image for a more customized star
             star.className = i <= currentRating ? 'star rated' : 'star';
             document.getElementById('starContainer').appendChild(star);
         }
