@@ -1,6 +1,13 @@
 
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page import="com.shaveen.greensupermarket.CFeedbackManagement"%>
+<%@page import="Model.CustFeedbackManagement"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c"%>
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
+<%
+    List<CustFeedbackManagement> CustFeedbackManagements = CFeedbackManagement.getCustFeedbackManagement();
+    pageContext.setAttribute("CustFeedbackManagements", CustFeedbackManagements);
+%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -33,10 +40,10 @@
         <a class="nav-link "  href="#">Dashboard</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#">Order Management</a>
+        <a class="nav-link" aria-current="page" href="#">Order Management</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">Feedback Management</a>
+        <a class="nav-link active" href="#">Feedback Management</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="#">Stock Management</a>
@@ -65,7 +72,7 @@
 <table style="margin-top: 2rem ; margin-left: 2rem ; margin-right: 2rem;" class="table">
     <thead>
     <tr>
-        <th scope="col">Order ID</th>
+        <th scope="col">Feedback ID </th>
         <th scope="col">Rating</th>
         <th scope="col">Date</th>
         <th scope="col">Name</th>
@@ -73,62 +80,18 @@
     </tr>
     </thead>
     <tbody>
+    <c:forEach items="${CustFeedbackManagements}" var="CustFbManagement">
+    
     <tr>
-        <th scope="row">#9737363</th>
-        <td>In Progress</td>
-        <td>Dec 30, 2019 05:18</td>
-        <td>LKR 3500(5 Products)</td>
-        <td><button type="button" class="btn btn-success">View Details</button></td>
+        <th scope="row">${CustFbManagement.getFeedbackID()}</th>
+        <td>${CustFbManagement.getFeedbackRating()}/5</td>
+        <td>${CustFbManagement.getFeedbackTime()}</td>
+        <td>${CustFbManagement.getCName()}</td>
+        <td><a href="IndividualFeedback.jsp?feedbackID=${CustFbManagement.getFeedbackID()}"><button type="button" class="btn btn-success">View Details</button></a></td>
     </tr>
-    <tr >
-        <th scope="row">#9737363</th>
-        <td>Delivered</td>
-        <td>Dec 30, 2019 05:18</td>
-        <td>LKR 3500(5 Products)</td>
-        <td><button type="button" class="btn btn-success">View Details</button></td>
-    </tr>
-    <tr >
-        <th scope="row">#9737363</th>
-        <td>Cancelled</td>
-        <td>Dec 30, 2019 05:18</td>
-        <td>LKR 3500(5 Products)</td>
-        <td><button type="button" class="btn btn-success">View Details</button></td>
-    </tr>
-    <tr >
-        <th scope="row">#9737363</th>
-        <td>In Progress</td>
-        <td>Dec 30, 2019 05:18</td>
-        <td>LKR 3500(5 Products)</td>
-        <td><button type="button" class="btn btn-success">View Details</button></td>
-    </tr>
-    <tr >
-        <th scope="row">#9737363</th>
-        <td>In Progress</td>
-        <td>Dec 30, 2019 05:18</td>
-        <td>LKR 3500(5 Products)</td>
-        <td><button type="button" class="btn btn-success">View Details</button></td>
-    </tr>
-    <tr >
-        <th scope="row">#9737363</th>
-        <td>In Progress</td>
-        <td>Dec 30, 2019 05:18</td>
-        <td>LKR 3500(5 Products)</td>
-        <td><button type="button" class="btn btn-success">View Details</button></td>
-    </tr>
-    <tr >
-        <th scope="row">#9737363</th>
-        <td>In Progress</td>
-        <td>Dec 30, 2019 05:18</td>
-        <td>LKR 3500(5 Products)</td>
-        <td><button type="button" class="btn btn-success">View Details</button></td>
-    </tr>
-    <tr >
-        <th scope="row">#9737363</th>
-        <td>In Progress</td>
-        <td>Dec 30, 2019 05:18</td>
-        <td>LKR 3500(5 Products)</td>
-        <td><button type="button" class="btn btn-success">View Details</button></td>
-    </tr>
+    
+    </c:forEach>
+    
     </tbody>
 </table>
 <div class="col d-flex justify-content-center">
@@ -173,7 +136,7 @@
         // Create stars based on the rating
         for (let i = 1; i <= 5; i++) {
             const star = document.createElement('span');
-            star.innerHTML = '★'; // You can use an SVG or an image for a more customized star
+            star.innerHTML = '&#9733;'; // You can use an SVG or an image for a more customized star
             star.className = i <= currentRating ? 'star rated' : 'star';
             document.getElementById('starContainer').appendChild(star);
         }
