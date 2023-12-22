@@ -1,11 +1,24 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Jude Darren Victoria
-  Date: 07/12/2023
-  Time: 12:48 am
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c"%>
+<%@page import="com.shaveen.greensupermarket.CIndividualOrderManagement"%>
+<%@page import="Model.IndividualOrderManagement"%>
+<%@page import="Model.IndividualProdOrderManagement" %>
+<%@page import="java.util.List"%>
+<%@page import="java.text.SimpleDateFormat" %>
+<%@page import="java.util.Date" %>
+<%@page isELIgnored="false" %>
+<%
+    String orderIDString = request.getParameter("orderId");
+    int OrderID = Integer.parseInt(orderIDString);
+    
+    IndividualOrderManagement corder = CIndividualOrderManagement.getinfoByOrderID(OrderID);
+    
+    List<IndividualProdOrderManagement> OrderedProducts = CIndividualOrderManagement.getProdinfoByOrderID(OrderID);
+
+    
+    pageContext.setAttribute("corder", corder);
+    pageContext.setAttribute("OrderedProducts", OrderedProducts);
+%>
 <html>
 <head>
     <title>Individual Order</title>
@@ -15,41 +28,35 @@
 <body>
 <div class="card order-placement" style="width: 80%; margin-top:2rem; margin-left: 10%; text-align: center">
     <div class="card-body">
-        <h5 class="card-title"style="margin-bottom: 2%">Order #12343342842394</h5>
+        <h5 class="card-title"style="margin-bottom: 2%">Order ${corder.getOrderId()}</h5>
         <h6 class="card-subtitle mb-2 text-body-secondary">2 Products</h6>
-        <p class="card-text">Order Placed on 12 December, 2023 at 10.34 PM</p>
+        <p class="card-text">${corder.getOrderPlacedDateTime()}</p>
     </div>
 </div>
 
 <div style="text-align:center;">
     <h3 style=" margin-top:5%">Order Details</h3>
+    <c:forEach items="${OrderedProducts}" var="product">
     <div class="card mb-3 w-80 mx-auto" style="max-width: 540px;">
         <div class="row g-0">
-            <div class="col-md-4">
-                <img src="assets/corn.jpg" style="width: 100px" class="img-fluid rounded-start" alt="...">
-            </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title">Sweet Corn</h5>
-                    <p class="card-text"><small class="text-body-secondary">LKR 372</small></p>
+                    <h5 class="card-title">${product.getProductName()}</h5>
+                    <p class="card-text"><small class="text-body-secondary">LKR${product.getProductPrice()}</small></p>
+                    <p class="card-text"><small class="text-body-secondary">Qty${product.getProductQuantity()}</small></p>
+                </div>
+                
+            </div>
+            <div class="col-md-4">
+               <div class="card-body">
+                    <h5 class="card-title">Total</h5>
+                    <p class="card-text"><small class="text-body-secondary">LKR(${product.getProductPrice()}*{product.getProductQuantity()})</small></p>
                 </div>
             </div>
         </div>
     </div>
-    <div class="card mb-3 w-80 mx-auto" style="max-width: 540px;">
-        <div class="row g-0">
-            <div class="col-md-4">
-                <img src="assets/corn.jpg" style="width: 100px" class="img-fluid rounded-start" alt="...">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">Sweet Corn</h5>
-                    <p class="card-text"><small class="text-body-secondary">LKR 372</small></p>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    </c:forEach>
+  
     <div style="display: flex; justify-content: center; align-items: center;  margin: 0;">
                  <hr style="background-color: black; height: 5px; border: none; width:25%;">
     </div>
@@ -61,7 +68,7 @@
             <div class="col-md-8">
                 <div class="card-body">
                     <h5 class="card-title text-start">Total</h5>
-                    <h2 class="card-text text-end ">LKR 372</h2>
+                    <h2 class="card-text text-end ">LKR ${corder.getTotalPrice()}</h2>
                 </div>
             </div>
         </div>
@@ -75,7 +82,7 @@
 
     <form action="" method="">
         <div class="btn-group" role="group" aria-label="Outlined Checkbox Buttons" style="min-width: 520px">
-            <input type="checkbox" class="btn-check" name="options-outlined-1" id="success-outlined-1" autocomplete="off">
+            <input type="checkbox"  class="btn-check" name="options-outlined-1" id="success-outlined-1" autocomplete="off">
             <label class="btn btn-outline-success" for="success-outlined-1" style="width: 100%;">
                 <svg style="margin-right: 2%" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-receipt" viewBox="0 0 16 16">
                     <path d="M1.92.506a.5.5 0 0 1 .434.14L3 1.293l.646-.647a.5.5 0 0 1 .708 0L5 1.293l.646-.647a.5.5 0 0 1 .708 0L7 1.293l.646-.647a.5.5 0 0 1 .708 0L9 1.293l.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .801.13l.5 1A.5.5 0 0 1 15 2v12a.5.5 0 0 1-.053.224l-.5 1a.5.5 0 0 1-.8.13L13 14.707l-.646.647a.5.5 0 0 1-.708 0L11 14.707l-.646.647a.5.5 0 0 1-.708 0L9 14.707l-.646.647a.5.5 0 0 1-.708 0L7 14.707l-.646.647a.5.5 0 0 1-.708 0L5 14.707l-.646.647a.5.5 0 0 1-.708 0L3 14.707l-.646.647a.5.5 0 0 1-.801-.13l-.5-1A.5.5 0 0 1 1 14V2a.5.5 0 0 1 .053-.224l.5-1a.5.5 0 0 1 .367-.27m.217 1.338L2 2.118v11.764l.137.274.51-.51a.5.5 0 0 1 .707 0l.646.647.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.509.509.137-.274V2.118l-.137-.274-.51.51a.5.5 0 0 1-.707 0L12 1.707l-.646.647a.5.5 0 0 1-.708 0L10 1.707l-.646.647a.5.5 0 0 1-.708 0L8 1.707l-.646.647a.5.5 0 0 1-.708 0L6 1.707l-.646.647a.5.5 0 0 1-.708 0L4 1.707l-.646.647a.5.5 0 0 1-.708 0z"/>

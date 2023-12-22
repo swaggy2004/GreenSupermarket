@@ -1,3 +1,4 @@
+
 <%--
   Created by IntelliJ IDEA.
   User: Jude Darren Victoria
@@ -5,7 +6,14 @@
   Time: 07:32 pm
   To change this template use File | Settings | File Templates.
 --%>
+
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.shaveen.greensupermarket.OrderDatabaseInteraction" %>
+<%@ page import="com.shaveen.greensupermarket.OrderDataManager" %>
+<%@ page import="java.util.List" %>
+
 <html>
 <head>
     <title>Order Management</title>
@@ -45,6 +53,13 @@
     </style>
 </head>
 <body>
+
+    
+    <%
+        List<OrderDataManager> orders = OrderDatabaseInteraction.getAllOrders();
+        pageContext.setAttribute("orders", orders);
+    %>
+
 <nav style="background-color: #d0f288" class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand" href="#"><img style="width: 110px" alt="Navbar Logo" src="assets/NavLogo.svg"></a>
@@ -120,34 +135,17 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <th scope="row">#9737363</th>
-        <td>In Progress</td>
-        <td>Dec 30, 2019 05:18</td>
-        <td>LKR 3500(5 Products)</td>
-        <td><button type="button" class="btn btn-success">View Details</button></td>
-    </tr>
-    <tr>
-        <th scope="row">#9737363</th>
-        <td>Delivered</td>
-        <td>Dec 30, 2019 05:18</td>
-        <td>LKR 3500(5 Products)</td>
-        <td><button type="button" class="btn btn-success">View Details</button></td>
-    </tr>
-    <tr>
-        <th scope="row">#9737363</th>
-        <td>Cancelled</td>
-        <td>Dec 30, 2019 05:18</td>
-        <td>LKR 3500(5 Products)</td>
-        <td><button type="button" class="btn btn-success">View Details</button></td>
-    </tr>
-    <tr >
-        <th scope="row">#9737363</th>
-        <td>In Progress</td>
-        <td>Dec 30, 2019 05:18</td>
-        <td>LKR 3500(5 Products)</td>
-        <td><button type="button" class="btn btn-success">View Details</button></td>
-    </tr>
+
+    
+            <c:forEach items="${orders}" var="order">
+                    <tr>
+                        <th scope="row">${order.orderId}</th>
+                        <td>${order.orderStatusDelivered == 1 ? 'Delivered' : 'In Progress'}</td>
+                        <td>${order.orderDate}</td>
+                        <td>LKR ${order.totalPrice}</td>
+                        <td><a href="IndividualOrder.jsp?orderId=${order.orderId}" class="btn btn-success">View Details</a></td>
+                    </tr>
+            </c:forEach>
 
     </tbody>
 </table>

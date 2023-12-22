@@ -6,7 +6,7 @@ package com.shaveen.greensupermarket;
 
 import Model.IndividualFeedbackManagement;
 import java.sql.*;
-import java.util.*;
+
 /**
  *
  * @author DELL
@@ -51,6 +51,7 @@ public class CIndividualFeedbackManagement {
                 } 
                
             }
+            
                 con.close();
             }catch(Exception e){
                 System.out.println(e);
