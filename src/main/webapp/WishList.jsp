@@ -5,7 +5,23 @@
   Time: 2:47 AM
   To change this template use File | Settings | File Templates.
 --%>
+<%@page import="com.shaveen.greensupermarket.FetchProduct"%>
+<%@page import="Model.Product"%>
+<%@page import="com.shaveen.greensupermarket.FetchWishList"%>
+<%@page import="Model.WishList"%>
+<%@page import="java.util.List"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c"%>
+
+<%
+    String CID = request.getParameter("CEmail");
+    List<WishList> wishlist = FetchWishList.searchWishlist(CID);
+    List<Product> product = null;
+    for( WishList witem : wishlist){
+        product = FetchProduct.SearchProduct(witem.getPID());
+    }
+    pageContext.setAttribute("product", product);
+%>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -121,39 +137,44 @@
                     </div>
                 </div>
             </div>
-
-            <div class="card mb-3" style="max-width: 1280px;border-radius: 20px;">
+            
+            <c:forEach items= "${product}" var="item">
+                <div class="card mb-3" style="max-width: 1280px;border-radius: 20px;">
                 <div class="row g-0">
                     <div class="col-md-2">
                         <img src="assets/vegi1.png" style="width: 100px" class="img-fluid rounded-start" alt="...">
                     </div>
                     <div class="col-md-3 my-auto ">
                         <div class="card-body">
-                            <h5>Sweet Corn</h5>
+                            <h5>${item.getProductName()}</h5>
                         </div>
                     </div>
                     <div class="col-md-2 my-auto ">
                         <div class="card-body">
-                            <h5>$569</h5>
+                            <h5>${item.getPrice()}</h5>
                         </div>
                     </div>
                     <div class="col-md-2 my-auto ">
                         <div class="card-body">
-                            <button type="button" class="btn btn-info btn-sm">In Stock</button>
+                            <button type="button" class="btn btn-info btn-sm">${item.getStockQty() > 0 ? "In Stock" : "Out of Stock"}</button>
                         </div>
                     </div>
-                    <div class="col-md-2 my-auto ">
-                        <div class="card-body">
-                            <button type="button" class="btn btn-warning">Add to cart</button>
+                    <form action="AddToCartServletPID=${product.getProductID()}&CID=customer1@email.com" method="post">
+                        <div class="col-md-2 my-auto ">
+                            <div class="card-body">
+                                <input type="submit" value="Add to cart" class="btn btn-warning">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-1 my-auto ">
-                        <div class="card-body">
-                            <button type="button" class="btn-close" aria-label="Close"></button>
+                    </form>
+                        <div class="col-md-1 my-auto ">
+                            <div class="card-body">
+                                <button type="button" class="btn-close" aria-label="Close"></button>
+                            </div>
                         </div>
-                    </div>
                 </div>
             </div>
+            </c:forEach>
+            
             <div class="card mb-3" style="max-width: 1280px;border-radius: 20px;">
                 <div class="row g-0">
                     <div class="col-md-2">

@@ -83,7 +83,7 @@
             <h2>${product.getProductName()}</h2>
             <p>Availability: In stock</p>
             <p>${product.getDescription()}</p>
-            <h3 style="color: #276A07;font-weight: 700;">LKR ${product.getPrice()}</h3>
+            <h3 style="color: #276A07;font-weight: 700;">USD ${product.getPrice()}</h3>
             <table class="table table-borderless"style="width: 250px; ">
                 <tbody>
                 <tr>
@@ -112,7 +112,7 @@
                 </tbody>
             </table>
             <div class="btn-group" role="group" aria-label="Basic example">
-                <a href="AddToCartServlet?PID=${product.getProductID()}&CID=customer1@email.com">
+                <form action="AddToCartServletPID=${product.getProductID()}&CID=customer1@email.com">
                     <button
                         type="button"
                         class="btn btn-primary"
@@ -120,14 +120,15 @@
                     >
                         Add to bag
                     </button>
-                <button
-                        type="button"
-                        class="btn btn-primary"
-                        style="background-color: #34A853;border-color: #34A853 "
-                >
-                    USD ${product.getPrice()}
-                </button>
-               </a>
+                    <button
+                            type="button"
+                            class="btn btn-primary"
+                            style="background-color: #34A853;border-color: #34A853 "
+                    >
+                        USD ${product.getPrice()}
+                    </button>
+                </form>
+
             </div>
             <button type="button" class="btn btn-light"><img src="assets/ProductDetailHeartIcon.svg"></button>
 
