@@ -78,4 +78,29 @@ public class CIndividualOrderManagement {
     }
     return OrderedProducts;
 }
+    
+    public static void updateOrderStatusByOrderID(int orderId,int orderplaced,int orderpackaged,int orderdelivered ){
+        String query = "UPDATE placed_order SET OrderStatus_Delivered = ?, OrderStatus_Placed = ?, OrderStatus_Packaging = ? WHERE OrderID  = ?";
+        try (
+             var con = Model.Connection.start();
+            PreparedStatement statement = con.prepareStatement(query)) {
+
+            statement.setInt(1,orderdelivered);
+            statement.setInt(2,orderplaced);
+            statement.setInt(3,orderpackaged);
+            statement.setInt(4,orderId);
+            
+            System.out.println("Executing SQL query:"+statement.toString());
+                int rowsInserted = statement.executeUpdate();
+                if (rowsInserted > 0) {
+                    System.out.println("OrderStatus updated successfully!");
+                } else {
+                    System.out.println("Failed to update OrderStatus.");
+                }
+                con.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace(); 
+        }
+    }
 }

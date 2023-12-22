@@ -6,6 +6,15 @@
    EditAccountAdmin account = ManageConnection.getAdmaccountByemail(admaccemail);
    pageContext.setAttribute("account", account);
 %>
+<%
+
+String email = (String) session.getAttribute("email");
+String role = (String) session.getAttribute("role");
+boolean isLoggedIn =  session.getAttribute("isLoggedIn")!= null && (boolean) session.getAttribute("isLoggedIn");
+
+if ("A".equals(role) && isLoggedIn  && email != null) {
+   
+%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -155,3 +164,9 @@
     ></script>
   </body>
 </html>
+<%
+} else {
+    // Redirect back to the login page
+    response.sendRedirect("adminlogin.jsp");
+}
+%>
