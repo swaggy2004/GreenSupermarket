@@ -17,7 +17,7 @@
         Product product = FetchProduct.SearchProduct(ProductID);
 
         // Set the productList as an attribute in the page context
-        pageContext.setAttribute("productList", productList);     
+        pageContext.setAttribute("product", product);     
 %>
 <html lang="en">
 <head>
@@ -80,10 +80,10 @@
                     <li class="breadcrumb-item active" aria-current="page">Vegetables</li>
                 </ol>
             </nav>
-            <h2>${productList.getProductName()}</h2>
+            <h2>${product.getProductName()}</h2>
             <p>Availability: In stock</p>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque exercitationem aliquam nulla atque, laboriosam, numquam vero quis ipsa in repellendus non quibusdam asperiores facilis dolorem. Nobis, iste veritatis. Voluptates, temporibus.</p>
-            <h3 style="color: #276A07;font-weight: 700;">LKR 29</h3>
+            <p>${product.getDescription()}</p>
+            <h3 style="color: #276A07;font-weight: 700;">USD ${product.getPrice()}</h3>
             <table class="table table-borderless"style="width: 250px; ">
                 <tbody>
                 <tr>
@@ -112,21 +112,23 @@
                 </tbody>
             </table>
             <div class="btn-group" role="group" aria-label="Basic example">
-                <button
+                <form action="AddToCartServletPID=${product.getProductID()}&CID=customer1@email.com">
+                    <button
                         type="button"
                         class="btn btn-primary"
-                        style="background-color:#34A853; border-color: #34A853"
-                >
-                    Add to bag
-                </button>
+                        style="background-color: #34A853; border-color: #34A853"
+                    >
+                        Add to bag
+                    </button>
+                    <button
+                            type="button"
+                            class="btn btn-primary"
+                            style="background-color: #34A853;border-color: #34A853 "
+                    >
+                        USD ${product.getPrice()}
+                    </button>
+                </form>
 
-                <button
-                        type="button"
-                        class="btn btn-primary"
-                        style="background-color: #34A853;border-color: #34A853 "
-                >
-                    LKR 25
-                </button>
             </div>
             <button type="button" class="btn btn-light"><img src="assets/ProductDetailHeartIcon.svg"></button>
 
@@ -139,9 +141,9 @@
     <div class="h4 pb-2 mb-4 text-black border-bottom border-danger"style="color:black;">
         <h3 >Product details</h3>
     </div>
-    <h6><b>Product ID :</b> B493-DB427</h6><br/>
-    <h6><b>Availability:</b> In stock</h6> <br/>
-    <h6><b>Category:</b> Vegetables</h6>
+    <h6><b>Product ID : </b>${product.getProductID()}</h6><br/>
+    <h6><b>Availability: </b>${product.getStockQty() > 0 ? "In Stock" : "Out of Stock"}</h6><br/>
+    <h6><b>Category : </b> ${product.getCategory()}</h6>
 </div>
 <!--product detail-->
 <!--Carousel-->

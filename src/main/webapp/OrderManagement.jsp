@@ -53,12 +53,12 @@
     </style>
 </head>
 <body>
-
-    
+  
     <%
         List<OrderDataManager> orders = OrderDatabaseInteraction.getAllOrders();
         pageContext.setAttribute("orders", orders);
     %>
+
 
 <nav style="background-color: #d0f288" class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
@@ -136,6 +136,7 @@
     </thead>
     <tbody>
 
+
     
             <c:forEach items="${orders}" var="order">
                     <tr>
@@ -146,6 +147,7 @@
                         <td><a href="IndividualOrder.jsp?orderId=${order.orderId}" class="btn btn-success">View Details</a></td>
                     </tr>
             </c:forEach>
+
 
     </tbody>
 </table>

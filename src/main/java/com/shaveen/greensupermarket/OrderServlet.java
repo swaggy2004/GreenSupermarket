@@ -4,23 +4,27 @@
  */
 package com.shaveen.greensupermarket;
 
-import jakarta.servlet.RequestDispatcher;
+import Model.Order;
+import Model.Product;
+import Model.ShoppingCart;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
- * @author Jude Darren Victoria
+ * @author Shaveen
  */
-@WebServlet (name = "UserSettingsServlet", urlPatterns = {"/UserSettingsServlet"})
-public class UserSettingsServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+public class OrderServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +43,10 @@ public class UserSettingsServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UserSettingsServlet</title>");            
+            out.println("<title>Servlet OrderServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet UserSettingsServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet OrderServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,8 +64,7 @@ public class UserSettingsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Retrieve email from the session
-
+        processRequest(request, response);
     }
 
     /**
@@ -75,18 +78,28 @@ public class UserSettingsServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Retrieve form data
-        String email = request.getParameter("email");
-        String fullName = request.getParameter("fullName");
-        String phoneNumber = request.getParameter("UserPhone");
-
-
-        // Update user data in the database
-        UserDatabaseInteraction.updateUserData(email, fullName, phoneNumber);
-
-        response.sendRedirect("UserSettings.jsp");
-        
-        
+        HttpSession session = request.getSession();
+        String Email = (String) session.getAttribute("Email");
+        List<ShoppingCart> cart = null;
+        List<Product> products = null;
+        float totPrice = 0;
+        try {
+            cart = FetchShoppingCart.searchCart(Email);
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        for (ShoppingCart item : cart)
+        {
+            for (Product product : products)
+            {
+                products = FetchProduct.SearchProduct(item.getPID());
+                totPrice += item.getPQty() * product.getPrice();
+            }
+        }
+        Order order = new Order();
+        order.setCEmail(Email);
+        order.setTotalPrice(totPrice);
+        OrderDAO.insertOrderDetails(Email, totPrice);
     }
 
     /**

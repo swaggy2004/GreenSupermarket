@@ -43,29 +43,19 @@ public class FetchShoppingCart {
 
         return cart;
     }
+    
+    public static void insertToCart(String CEmail, int PID, int PQty) throws SQLException{
+        try (var connection = Model.Connection.start();
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO shopping_cart (CEmail, PQty, Product_ID) VALUES(?, ?, ?)")){
+            statement.setString(1, CEmail);
+            statement.setInt(2, PQty);
+            statement.setInt(3, PID);
+            statement.executeUpdate();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            throw e;
+        }
+    }
 }
 
-    
-//    public static List<ShoppingCart> searchCart(String CEmail) throws SQLException{
-//        List<ShoppingCart> cart = new ArrayList<>();
-//        try{
-//            var connection = Model.Connection.start();
-//            String query = "SELECT * FROM shopping_cart WHERE CEmail = ?";
-//            try(PreparedStatement preparedstatement = connection.prepareStatement(query)){
-//                preparedstatement.setString(1, CEmail);
-//                ResultSet resultSet = preparedstatement.executeQuery();
-//                while(resultSet.next()){
-//                    ShoppingCart CartDetail = new ShoppingCart();
-//                    CartDetail.setCartID(resultSet.getInt("CartID"));
-//                    CartDetail.setPID(resultSet.getInt("Product_ID"));
-//                    CartDetail.setPQty(resultSet.getInt("PQty"));
-//                    CartDetail.setCEmail(CEmail);
-//
-//                    cart.add(CartDetail);
-//                }
-//            }
-//        }
-//        catch (SQLException e){
-//        }
-//        return cart;
-//    }

@@ -45,16 +45,9 @@
         <servlet-name>AdminAccountServlet</servlet-name>
         <servlet-class>com.shaveen.greensupermarket.AdminAccountServlet</servlet-class>
     </servlet>
-    <!-- Add your additional servlet declarations here -->
+    <!-- Removed duplicate servlet declarations -->
+    
     <!-- Servlet Mappings -->
-    <servlet>
-        <servlet-name>DeleteAdminAccountServlet</servlet-name>
-        <servlet-class>com.shaveen.greensupermarket.DeleteAdminAccountServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>PStockQtyUpdateServlet</servlet-name>
-        <servlet-class>com.shaveen.greensupermarket.PStockQtyUpdateServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>AddAccountServlet</servlet-name>
         <url-pattern>/AddAccountServlet</url-pattern>
@@ -99,19 +92,13 @@
         <servlet-name>AdminAccountServlet</servlet-name>
         <url-pattern>/AdminAccountServlet</url-pattern>
     </servlet-mapping>
-    <!-- Add your additional servlet mappings here -->
+    <!-- Removed duplicate servlet mappings -->
+    
     <!-- Session Configuration -->
-    <servlet-mapping>
-        <servlet-name>DeleteAdminAccountServlet</servlet-name>
-        <url-pattern>/DeleteAdminAccountServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>PStockQtyUpdateServlet</servlet-name>
-        <url-pattern>/PStockQtyUpdateServlet</url-pattern>
-    </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
+    
     <!-- JSP Configuration -->
     <jsp-config>
         <taglib>
