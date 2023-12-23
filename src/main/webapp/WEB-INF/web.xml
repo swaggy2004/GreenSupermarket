@@ -45,12 +45,8 @@
         <servlet-name>AdminAccountServlet</servlet-name>
         <servlet-class>com.shaveen.greensupermarket.AdminAccountServlet</servlet-class>
     </servlet>
-    <!-- Removed duplicate servlet declarations -->
+
     <!-- Servlet Mappings -->
-    <servlet>
-        <servlet-name>UpdateIndividualOrderStatusServlet</servlet-name>
-        <servlet-class>com.shaveen.greensupermarket.UpdateIndividualOrderStatusServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>AddAccountServlet</servlet-name>
         <url-pattern>/AddAccountServlet</url-pattern>
@@ -95,15 +91,12 @@
         <servlet-name>AdminAccountServlet</servlet-name>
         <url-pattern>/AdminAccountServlet</url-pattern>
     </servlet-mapping>
-    <!-- Removed duplicate servlet mappings -->
+
     <!-- Session Configuration -->
-    <servlet-mapping>
-        <servlet-name>UpdateIndividualOrderStatusServlet</servlet-name>
-        <url-pattern>/UpdateIndividualOrderStatusServlet</url-pattern>
-    </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
+
     <!-- JSP Configuration -->
     <jsp-config>
         <taglib>
