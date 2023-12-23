@@ -14,7 +14,7 @@ import java.sql.Statement;
  * @author Shaveen
  */
 public class OrderDAO {
-    public static void insertOrderDetails(String CEmail, float totPrice) throws Exception {
+    public static int insertOrderDetails(String CEmail, float totPrice) throws Exception {
     try (var connection = Model.Connection.start();
          PreparedStatement statement = connection.prepareStatement("INSERT INTO placed_order (CEmail, TotalPrice) VALUES(?, ?)", Statement.RETURN_GENERATED_KEYS)) {
         statement.setString(1, CEmail);
@@ -27,9 +27,10 @@ public class OrderDAO {
                 if (generatedKeys.next()) {
                     int lastOrderId = generatedKeys.getInt(1);
                     System.out.println("Last inserted OrderID: " + lastOrderId);
-
+                    
                     // Now you can use lastOrderId in subsequent statements...
-                    insertProductsIntoOrder((Connection) connection, lastOrderId, CEmail);
+                    insertProductsIntoOrder(lastOrderId, CEmail);
+                    return lastOrderId;
                 } else {
                     System.out.println("No generated keys returned.");
                 }
@@ -41,10 +42,12 @@ public class OrderDAO {
         e.printStackTrace();
         throw e;
     }
+        return 0;
 }
 
-    private static void insertProductsIntoOrder(Connection connection, int lastOrderId, String CEmail) {
-    try (PreparedStatement productStatement = connection.prepareStatement(
+    private static void insertProductsIntoOrder(int lastOrderId, String CEmail) {
+    try (var connection = Model.Connection.start();
+            PreparedStatement productStatement = connection.prepareStatement(
             "INSERT INTO order_product (OrderID, ProductID, PName, OPqty, PPrice) " +
                     "SELECT ?, sp.Product_ID, p.Name, sp.PQty, p.UnitPrice " +
                     "FROM shopping_cart sp " +

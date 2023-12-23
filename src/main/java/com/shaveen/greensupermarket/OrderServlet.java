@@ -98,8 +98,15 @@ public class OrderServlet extends HttpServlet {
         }
         Order order = new Order();
         order.setCEmail(Email);
+        int orderID = 0;
         order.setTotalPrice(totPrice);
-        OrderDAO.insertOrderDetails(Email, totPrice);
+        try {
+            orderID = OrderDAO.insertOrderDetails(Email, totPrice);
+        } catch (Exception ex) {
+            Logger.getLogger(OrderServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String OID = String.valueOf(orderID);
+        session.setAttribute("orderID", OID);
     }
 
     /**
