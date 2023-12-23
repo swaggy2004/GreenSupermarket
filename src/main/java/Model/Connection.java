@@ -5,6 +5,7 @@
 package Model;
 
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 /**
  *
  * @author Shaveen

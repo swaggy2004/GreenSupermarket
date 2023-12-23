@@ -4,20 +4,26 @@
  */
 package com.shaveen.greensupermarket;
 
+import Model.Order;
+import Model.Product;
+import Model.ShoppingCart;
 import java.io.IOException;
 import java.io.PrintWriter;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
- * @author DELL
+ * @author Shaveen
  */
-@WebServlet(name = "DeleteAdminAccountServlet", urlPatterns = {"/DeleteAdminAccountServlet"})
-public class DeleteAdminAccountServlet extends HttpServlet {
+public class OrderServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,10 +42,10 @@ public class DeleteAdminAccountServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DeleteAdminAccountServlet</title>");            
+            out.println("<title>Servlet OrderServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DeleteAdminAccountServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet OrderServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -71,13 +77,35 @@ public class DeleteAdminAccountServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String email = request.getParameter("email");
-
-        // Perform the deletion in the database using the ManageConnection class
-        ManageConnection.deleteAccountByEmail(email);
-
-        // Redirect back to the page displaying manager accounts
-        response.sendRedirect("AdminAccount.jsp");
+        HttpSession session = request.getSession();
+        String Email = (String) session.getAttribute("Email");
+        List<ShoppingCart> cart = null;
+        List<Product> products = null;
+        float totPrice = 0;
+        try {
+            cart = FetchShoppingCart.searchCart(Email);
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        for (ShoppingCart item : cart)
+        {
+            for (Product product : products)
+            {
+                products = FetchProduct.SearchProduct(item.getPID());
+                totPrice += item.getPQty() * product.getPrice();
+            }
+        }
+        Order order = new Order();
+        order.setCEmail(Email);
+        int orderID = 0;
+        order.setTotalPrice(totPrice);
+        try {
+            orderID = OrderCustomerDAO.insertOrderDetails(Email, totPrice);
+        } catch (Exception ex) {
+            Logger.getLogger(OrderServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String OID = String.valueOf(orderID);
+        session.setAttribute("orderID", OID);
     }
 
     /**

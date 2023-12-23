@@ -145,6 +145,19 @@ body {
     margin-left: -60px;  
   }
 
- 
+.backbutton{
+    display: flex;
+    width: 307px;
+    padding: 18px 26px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 30px;
+    background: #53A60F;
+    border: none;
+    color: white;
+    outline: none;
+}
 
  

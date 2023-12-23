@@ -6,18 +6,19 @@ package com.shaveen.greensupermarket;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.annotation.WebServlet;
+
 
 /**
  *
  * @author DELL
  */
-@WebServlet(name = "DeleteAdminAccountServlet", urlPatterns = {"/DeleteAdminAccountServlet"})
-public class DeleteAdminAccountServlet extends HttpServlet {
+@WebServlet(name = "UpdateIndividualOrderStatusServlet", urlPatterns = {"/UpdateIndividualOrderStatusServlet"})
+public class UpdateIndividualOrderStatusServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,10 +37,10 @@ public class DeleteAdminAccountServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DeleteAdminAccountServlet</title>");            
+            out.println("<title>Servlet UpdateIndividualOrderStatusServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DeleteAdminAccountServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet UpdateIndividualOrderStatusServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -71,13 +72,16 @@ public class DeleteAdminAccountServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String email = request.getParameter("email");
+        int OrderId = Integer.parseInt(request.getParameter("orderId"));
+        int orderPlaced = request.getParameter("options-outlined-1") != null ? 1 : 0;
+        int orderPackaged = request.getParameter("options-outlined-2") != null ? 1 : 0;
+        int orderDelivered = request.getParameter("options-outlined-3") != null ? 1 : 0;
 
         // Perform the deletion in the database using the ManageConnection class
-        ManageConnection.deleteAccountByEmail(email);
+        CIndividualOrderManagement.updateOrderStatusByOrderID(OrderId,orderPlaced,orderPackaged,orderDelivered);
 
         // Redirect back to the page displaying manager accounts
-        response.sendRedirect("AdminAccount.jsp");
+        response.sendRedirect("OrderManagement.jsp");
     }
 
     /**

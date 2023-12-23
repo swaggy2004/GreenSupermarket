@@ -84,7 +84,7 @@ public class UserSettingsServlet extends HttpServlet {
         // Update user data in the database
         UserDatabaseInteraction.updateUserData(email, fullName, phoneNumber);
 
-         response.sendRedirect("UserSettings.jsp");
+        response.sendRedirect("UserSettings.jsp");
         
         
     }

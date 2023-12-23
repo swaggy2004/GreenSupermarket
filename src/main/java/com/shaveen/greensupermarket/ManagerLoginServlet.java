@@ -84,7 +84,8 @@ public class ManagerLoginServlet extends HttpServlet {
             HttpSession session = request.getSession(true);
             session.setAttribute("email", email);
             session.setAttribute("role", role);
-            
+            session.setAttribute("isLoggedIn", true);
+
             System.out.println("email: " + email);
             System.out.println(role);
 
