@@ -45,6 +45,17 @@
         <servlet-name>AdminAccountServlet</servlet-name>
         <servlet-class>com.shaveen.greensupermarket.AdminAccountServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddToCartServlet</servlet-name>
+        <servlet-class>com.shaveen.greensupermarket.AddToCartServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OrderServlet</servlet-name>
+        <servlet-class>com.shaveen.greensupermarket.OrderServlet</servlet-class>
+    </servlet>
+
+
+
 
     <!-- Servlet Mappings -->
     <servlet-mapping>
@@ -90,6 +101,14 @@
     <servlet-mapping>
         <servlet-name>AdminAccountServlet</servlet-name>
         <url-pattern>/AdminAccountServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddToCartServlet</servlet-name>
+        <url-pattern>/AddToCartServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderServlet</servlet-name>
+        <url-pattern>/OrderServlet</url-pattern>
     </servlet-mapping>
 
     <!-- Session Configuration -->

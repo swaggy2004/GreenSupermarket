@@ -112,23 +112,10 @@
                 </tbody>
             </table>
             <div class="btn-group" role="group" aria-label="Basic example">
-                <form action="AddToCartServletPID=${product.getProductID()}&CID=customer1@email.com">
-                    <button
-                        type="button"
-                        class="btn btn-primary"
-                        style="background-color: #34A853; border-color: #34A853"
-                    >
-                        Add to bag
-                    </button>
-                    <button
-                            type="button"
-                            class="btn btn-primary"
-                            style="background-color: #34A853;border-color: #34A853 "
-                    >
-                        USD ${product.getPrice()}
-                    </button>
+                <form action="AddToCartServlet" method="post">                    
+                    <input type="hidden" name="PID" value="${product.getProductID()}">
+                    <button type="submit" ${product.getStockQty() > 0 ? '' : 'disabled'} class="btn btn-primary" style="background-color: #34A853; border-color: #34A853">Add to Cart</button>
                 </form>
-
             </div>
             <button type="button" class="btn btn-light"><img src="assets/ProductDetailHeartIcon.svg"></button>
 
@@ -176,7 +163,7 @@
                             <h5 class="card-title">Chanise Cabbage (100g)</h5>
                         </div>
                         <div class="col-md-6">
-                            <p class="card-text"><b>LKR 24</b></p>
+                            <p class="card-text"><b>USD 24</b></p>
                         </div>
                         <div class="col-md-6" style="text-align: right;">
                             <button type="button" class="btn btn-light"><img src="assets/ProductDetailBagIcon.svg"></button>
@@ -194,7 +181,7 @@
                             <h5 class="card-title">Corn (100g)</h5>
                         </div>
                         <div class="col-md-6">
-                            <p class="card-text"><b>LKR 24</b></p>
+                            <p class="card-text"><b>USD 24</b></p>
                         </div>
                         <div class="col-md-6" style="text-align: right;">
                             <button type="button" class="btn btn-light"><img src="assets/ProductDetailBagIcon.svg"></button>

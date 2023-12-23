@@ -64,13 +64,8 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
                         href="AdminAccount.jsp"
                 ><i class="bi bi-person-circle me-2"></i> Account Management</a
                 >
-                <a class="nav-link cus-btn" aria-current="page" href="#"
-                ><i class="bi bi-percent me-2"></i> Promotion</a
-                >
-                <a class="nav-link cus-btn" aria-current="page" href="#"
-                ><i class="bi bi-gear-wide-connected me-2"></i> Settings</a
-                >
-                <a class="nav-link cus-btn" aria-current="page" href="#">
+              
+                <a class="nav-link cus-btn" aria-current="page" href="adminLogin.jsp">
                     <i class="bi bi-box-arrow-right me-2"></i> Log-out</a
                 >
             </nav>
