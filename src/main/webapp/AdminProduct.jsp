@@ -2,6 +2,15 @@
 <%@page import="Model.ProductInfo"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c"%>
 <%@page import="java.util.List"%>
+<%
+
+String email = (String) session.getAttribute("email");
+String role = (String) session.getAttribute("role");
+boolean isLoggedIn =  session.getAttribute("isLoggedIn")!= null && (boolean) session.getAttribute("isLoggedIn");
+
+if ("A".equals(role) && isLoggedIn  && email != null) {
+   
+%>
 <!DOCTYPE html>
 
 <%
@@ -188,3 +197,9 @@
 ></script>
 </body>
 </html>
+<%
+} else {
+    // Redirect back to the login page
+    response.sendRedirect("adminlogin.jsp");
+}
+%>

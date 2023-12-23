@@ -8,7 +8,15 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
 
+<%
 
+String email = (String) session.getAttribute("email");
+String role = (String) session.getAttribute("role");
+boolean isLoggedIn =  session.getAttribute("isLoggedIn")!= null && (boolean) session.getAttribute("isLoggedIn");
+
+if ("M".equals(role) && isLoggedIn  && email != null) {
+   
+%>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -110,19 +118,19 @@
 
 <ul class="nav nav-tabs" style="margin-top: 1rem; ">
     <li class="nav-item" style="margin-left: 1rem;">
-        <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
+        <a class="nav-link active "  href="ManagerDashboard.jsp">Dashboard</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">Order Management</a>
+        <a class="nav-link" aria-current="page" href="OrderManagement.jsp">Order Management</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">Feedback Management</a>
+        <a class="nav-link" href="FeedbackManagement.jsp">Feedback Management</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">Stock Management</a>
+        <a class="nav-link" href="StockManagement.jsp">Stock Management</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">Logout</a>
+        <a class="nav-link" href="LogoutServlet">Logout</a>
     </li>
 
 </ul>
@@ -296,3 +304,9 @@
 
 </body>
 </html>
+<%
+} else {
+    // Redirect back to the login page
+    response.sendRedirect("adminlogin.jsp");
+}
+%>
