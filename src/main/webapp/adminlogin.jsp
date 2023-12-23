@@ -41,7 +41,9 @@
                         </div>
                         </form>
                         
-
+                        <div class='back'style='margin-top: 2rem'>
+                            <a href="index.jsp" ><button type="button" class="btn btn-warning"style=' border-radius: 30px;'>Go to Homepage</button></a>
+                        </div>
                     </div>
                     </div>
                 </div>

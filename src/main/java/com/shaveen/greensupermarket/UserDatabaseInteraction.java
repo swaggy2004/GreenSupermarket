@@ -172,57 +172,84 @@ public class UserDatabaseInteraction {
     
     
     public static List<OrderData> getAllOrders(String userEmail) {
-        List<OrderData> orderList = new ArrayList<>();
-        Connection connection = Model.Connection.start();
+    List<OrderData> orderList = new ArrayList<>();
+    Connection connection = Model.Connection.start();
 
-        try {
-            String query = "SELECT * FROM placed_order WHERE CEmail = ?";
+    try {
+        String query = "SELECT o.*, COUNT(op.ProductID) AS ProductCount " +
+                       "FROM placed_order o " +
+                       "LEFT JOIN order_product op ON o.OrderID = op.OrderID " +
+                       "WHERE o.CEmail = ? " +
+                       "GROUP BY o.OrderID";
 
-            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-                preparedStatement.setString(1, userEmail);
-                try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                    while (resultSet.next()) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, userEmail);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    OrderData order = new OrderData();
+                    order.setOrderID(resultSet.getInt("OrderID"));
+                    order.setOrderDate(resultSet.getDate("OrderDate"));
+                    order.setOrderStatusPlaced(resultSet.getInt("OrderStatus_Placed"));
+                    order.setOrderStatusPackaging(resultSet.getInt("OrderStatus_Packaging"));
+                    order.setOrderStatusDelivered(resultSet.getInt("OrderStatus_Delivered"));
+                    order.setOrderStatusPackageTime(resultSet.getTimestamp("OrderStatus_PackageTime"));
+                    order.setOrderStatusOrderPlacedTime(resultSet.getTime("OrderStatus_OrderPlacedTime"));
+                    order.setOrderStatusDeliveredTime(resultSet.getTimestamp("OrderStatus_DeliveredTime"));
+                    order.setCustomerEmail(resultSet.getString("CEmail"));
+                    order.setFeedbackID(resultSet.getInt("FeedbackID"));
+                    order.settotalamount(resultSet.getFloat("TotalPrice"));
+                    order.setnumber_products(resultSet.getInt("ProductCount"));
 
-                        OrderData order = new OrderData();
-                        order.setOrderID(resultSet.getInt("OrderID"));
-                        order.setOrderDate(resultSet.getDate("OrderDate"));                    
-                        order.setOrderStatusPlaced(resultSet.getInt("OrderStatus_Placed"));
-                        order.setOrderStatusPackaging(resultSet.getInt("OrderStatus_Packaging"));
-                        order.setOrderStatusDelivered(resultSet.getInt("OrderStatus_Delivered"));
-                        order.setOrderStatusPackageTime(resultSet.getTimestamp("OrderStatus_PackageTime"));
-                        order.setOrderStatusOrderPlacedTime(resultSet.getTime("OrderStatus_OrderPlacedTime"));
-                        order.setOrderStatusDeliveredTime(resultSet.getTimestamp("OrderStatus_DeliveredTime"));
-                        order.setCustomerEmail(resultSet.getString("CEmail"));
-                        order.setFeedbackID(resultSet.getInt("FeedbackID"));
+                    System.out.println("OrderID: " + order.getOrderID());
+                    System.out.println("OrderDate: " + order.getOrderDate());
+                    System.out.println("ProductCount: " + order.getnumber_products());
 
-                        System.out.println("OrderID: " + order.getOrderID());
-                        System.out.println("OrderDate: " + order.getOrderDate());
-                       
-
-
-                        orderList.add(order);
-                    }
+                    orderList.add(order);
                 }
             }
-        } catch (SQLException e) {
-
-            e.printStackTrace();
-            // Handle exception
-
-
         }
-
-
-
-        // Close connection if needed
-
-        
-        return orderList;
+    } catch (SQLException e) {
+        e.printStackTrace();
+        // Handle exception
     }
+
+    return orderList;
+}
+
     
    
     
-    
+    public static int getTotalProductCount(String email) {
+    int totalProductsCount = 0;
+
+    try (Connection connection = Model.Connection.start();
+         PreparedStatement orderPreparedStatement = connection.prepareStatement("SELECT OrderID FROM placed_order WHERE CEmail = ?");
+         PreparedStatement productCountPreparedStatement = connection.prepareStatement("SELECT COUNT(*) FROM order_product WHERE OrderID = ?")) {
+
+        // Get the OrderID for the provided email
+        orderPreparedStatement.setString(1, email);
+        ResultSet orderResultSet = orderPreparedStatement.executeQuery();
+
+        if (orderResultSet.next()) {
+            int orderID = orderResultSet.getInt("OrderID");
+
+            // Get the count of products for the retrieved OrderID
+            productCountPreparedStatement.setInt(1, orderID);
+            ResultSet productCountResultSet = productCountPreparedStatement.executeQuery();
+
+            if (productCountResultSet.next()) {
+                totalProductsCount = productCountResultSet.getInt(1);
+            }
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+        // Handle exceptions appropriately
+    }
+
+    return totalProductsCount;
+}
+
     
    
 }
