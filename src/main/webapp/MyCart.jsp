@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@page import="com.shaveen.greensupermarket.FetchProduct"%>
+<%@page import="jakarta.servlet.*, jakarta.servlet.http.*"%>
 <%@page import="Model.Product"%>
 <%@page import="java.util.logging.Logger"%>
 <%@page import="java.util.logging.Level"%>
@@ -17,10 +18,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c"%>
 
-<%
-        String customerEmail = request.getParameter("customerEmail");
 
-        List<ShoppingCart> cartList = FetchShoppingCart.searchCart(customerEmail);
+<%
+        String Email = (String) session.getAttribute("Email");
+        System.out.println("Email: " + Email);
+        List<ShoppingCart> cartList = FetchShoppingCart.searchCart(Email);
         List<Product> products = null;
         for (ShoppingCart cartItem : cartList) {
                 int productId = cartItem.getPID();
@@ -163,7 +165,7 @@
                         </div>
                         <div class="col-md-2 my-auto ">
                             <div class="card-body">
-                                <h5>LKR ${product.getPrice()}</h5>
+                                <h5>USD ${product.getPrice()}</h5>
                             </div>
                         </div>
                         <div class="col-md-2 my-auto ">
@@ -173,7 +175,7 @@
                         </div>
                         <div class="col-md-1 my-auto ">
                             <div class="card-body">
-                              <h5>LKR ${item.getTotPrice()}</h5>
+                              <h5>USD ${item.getTotPrice()}</h5>
 
                             </div>
                         </div>
@@ -193,22 +195,17 @@
     <div class="row">
         <div class="col-md-9"></div>
         <div class="col-md-3"style="background-color:#F2F2F2;">
-            <div class="row mb-3 mt-3">
-                <div class="col-md-7"><b>Subtotal</b></div>
-                <div class="col-md-5">LKR900</div>
-            </div>
-            <div class="row mb-5">
-                <div class="col-md-7"><b>Delivery fee</b></div>
-                <div class="col-md-5">LKR 280</div>
-            </div>
             <div class="row mb-2">
                 <div class="col-md-6"><h3>Total</h3></div>
-                <div class="col-md-6"><h3>LKR 1180</h3></div>
+                <div class="col-md-6"><h3>USD</h3></div>
             </div>
             <div class="row mb-3">
                 <div class="col-md-12 ">
                     <div class="d-grid 2">
-                        <button class="btn btn-primary" style="background-color: #34A853; border-color: #34A853;" type="button" data-bs-toggle="modal" data-bs-target="#myModal">CheckOut</button>
+                        <form action="OrderServlet" method="post">                   
+                            <button class="btn btn-primary" style="background-color: #34A853; border-color: #34A853;" type="submit" data-bs-toggle="modal" data-bs-target="#myModal">Check Out</button>
+                            
+                        </form>
                         <div class="modal" id="myModal">
                             <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
                                 <div class="modal-content">
@@ -238,7 +235,7 @@
                                     <div class="modal-footer">
                                         <div class="container">
                                             <div class="row ">
-                                                <div class="col-md-12" style="text-align: center;"><div class="d-grid gap-2 col-3 mx-auto"><button type="submit" class="btn btn-primary">Submit</button></div></div>
+                                                <div class="col-md-12" style="text-align: center;"><div class="d-grid gap-2 col-3 mx-auto"><button type="submit" class="btn btn-primary">Proceed To Payment</button></div></div>
                                             </div>
                                         </div>
                                     </div>
