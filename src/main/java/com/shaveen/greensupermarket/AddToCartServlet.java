@@ -4,6 +4,7 @@
  */
 package com.shaveen.greensupermarket;
 
+import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -14,6 +15,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
@@ -47,17 +49,27 @@ public class AddToCartServlet extends HttpServlet {
             out.println("</html>");
         }
     }
+
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        String Email = (String) session.getAttribute("Email");
         String Para = request.getParameter("PID");
-        int PID = Integer.parseInt(Para);
-        String CID = request.getParameter("CID");
+        int PID = 0;
+        try{
+            PID = Integer.parseInt(Para);
+        }
+        catch (NumberFormatException e)
+        {
+            e.printStackTrace();
+        }
         int qty = 1;
         try {
-            FetchShoppingCart.insertToCart(CID, PID, qty);
+            FetchShoppingCart.insertToCart(Email, PID, qty);
         } catch (SQLException ex) {
             Logger.getLogger(AddToCartServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/MyCart.jsp");
+        dispatcher.forward(request, response);
     }
 }
