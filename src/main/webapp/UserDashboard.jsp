@@ -6,19 +6,19 @@
   Time: 07:32 pm
   To change this template use File | Settings | File Templates.
 --%>
-<%@ taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="jakarta.servlet.http.HttpServletResponse" %>
-<%@ page import="com.shaveen.greensupermarket.UserDatabaseInteraction" %>
-<%@ page import="com.shaveen.greensupermarket.OrderData" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="com.shaveen.greensupermarket.UserData" %>
-<%@ page import="com.shaveen.greensupermarket.UserDatabaseInteraction" %>
-<%@ page isELIgnored="false" %>
-<%@ page import="java.io.*,java.util.*" %>
-<%@ page import="jakarta.servlet.*,jakarta.servlet.http.*" %>
-<%@ page import="java.sql.*" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %>
+<%@taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page import="jakarta.servlet.http.HttpServletResponse" %>
+<%@page import="com.shaveen.greensupermarket.UserDatabaseInteraction" %>
+<%@page import="com.shaveen.greensupermarket.OrderData" %>
+<%@page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page import="com.shaveen.greensupermarket.UserData" %>
+<%@page import="com.shaveen.greensupermarket.UserDatabaseInteraction" %>
+<%@page isELIgnored="false" %>
+<%@page import="java.io.*,java.util.*" %>
+<%@page import="jakarta.servlet.*,jakarta.servlet.http.*" %>
+<%@page import="java.sql.*" %>
+<%@page import="java.util.List" %>
+<%@page import="java.util.ArrayList" %>
 
 <html>
 <head>
@@ -75,9 +75,12 @@
         UserData userData = UserDatabaseInteraction.getUserData(email);
         
         int totalOrdersCount = UserDatabaseInteraction.getTotalOrdersCount(email);
+//        int totalProductsCount = UserDatabaseInteraction.getTotalProductCount(email);
+        
         int completedOrdersCount = UserDatabaseInteraction.getCompletedOrdersCount(email);
         
         userData.setTotalOrders(totalOrdersCount);
+//        OrderData.setnumber_products(totalProductsCount);
         userData.setCompletedOrders(completedOrdersCount);
         
         // Set user data as an attribute in the request
@@ -205,6 +208,7 @@
         <th scope="col">Date</th>
         <th scope="col">No of Products</th>
         <th scope="col">Total</th>
+        <th scope="col">Action</th>
         
     </tr>
     </thead>
@@ -215,9 +219,9 @@
                     <th scope="row">${order.getOrderID()}</th>
                     <td>${order.getOrderStatusDelivered() == 1 ? 'Delivered' : 'In Progress'}</td>
                     <td>${order.getOrderDate()}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>${order.getnumber_products()}</td>
+                    <td>${String.format("%.2f",order.gettotalamount())}</td>
+                    <td><a href="OrderStatus1.jsp?orderId=${order.getOrderID()}" class="btn btn-success">View Details</a></td>
                 </tr>
 
         </c:forEach>

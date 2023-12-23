@@ -23,7 +23,8 @@ public class OrderData {
     private Date orderStatusDeliveredTime;
     private String customerEmail;
     private int feedbackID;
-
+    private int number_products;
+    private float totalamount;
     /**
      * @return the orderID
      */
@@ -169,6 +170,26 @@ public class OrderData {
         this.feedbackID = feedbackID;
     }
     
+    public int getnumber_products() {
+        return number_products;
+    }
+
+    /**
+     * @param number_products the number of products to set
+     */
+    public void setnumber_products(int number_products) {
+        this.number_products = number_products;
+    }
     
+    public float gettotalamount() {
+        return totalamount;
+    }
+
+    /**
+     * @param totalamount the totalamount to set
+     */
+    public void settotalamount(float totalamount) {
+        this.totalamount = totalamount;
     
+    }
 }

@@ -30,6 +30,8 @@ public class UserData {
         
         private int totalOrders;
         private int completedOrders;
+        
+        
 
     /**
      * @return the totalOrders
@@ -259,6 +261,7 @@ public class UserData {
     public void setSA_PhoneNumber(String SA_PhoneNumber) {
         this.SA_PhoneNumber = SA_PhoneNumber;
     }
+    
     
    
         

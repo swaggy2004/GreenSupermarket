@@ -5,7 +5,15 @@
   Time: 2:50 AM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page import="com.shaveen.greensupermarket.UserOrderDetails"%>
+<%@page import="Model.OrderStatusInfo"%>
+<%@page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+  String orderID = request.getParameter("orderId");
+    int OrderID = Integer.parseInt(orderID);
+   OrderStatusInfo orderstatus = UserOrderDetails.getoOrderStatusInfoByOrderID(OrderID);
+   pageContext.setAttribute("orderstatus", orderstatus);
+%>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -102,20 +110,20 @@
                 <div class="row g-0">
                     <div class="col-md-10">
                         <div class="card-body">
-                            <h3 class="card-title">Order #123826526578612</h3>
-                            <p class="card-text"><small class="text-body-secondary">4 products . Order Placed on 12 December, 2023 at 10.34 PM</small></p>
+                            <h3 class="card-title">ORDER ID #${orderstatus.getOrderId()}</h3>
+                            <p class="card-text"><small class="text-body-secondary">Order Placed on ${orderstatus.getOrderPlacedDateTime()}</small></p>
                         </div>
                     </div>
 
                     <div class="col-md-2 my-auto ">
                         <div class="card-body">
-                            <h3 style="color: #276A07;font-weight: 700;letter-spacing: 0.5px;">LKR 1129</h3>
+                            <h3 style="color: #276A07;font-weight: 700;letter-spacing: 0.5px;">LKR ${orderstatus.getTotalPrice()}</h3>
                         </div>
                     </div>
                 </div>
             </div>
             <!--below code is to display the order expected date-->
-            <div style="max-width: 1280px;">
+<!--            <div style="max-width: 1280px;">
                 <div class="row ">
                     <div class="col-md-12">
                         <div class="card-body">
@@ -124,7 +132,7 @@
                     </div>
 
                 </div>
-            </div>
+            </div>-->
 
 
         </div>
@@ -142,17 +150,17 @@
                     <div class="card-body">
 
                         <div class="track justify-content-center">
-                            <div class="step active">
+                            <div class="step ${orderstatus.getOrderStatusPlaced() == 1 ? 'active' : ''}">
 
                                 <img src="assets/StepperCheckIcon.svg" class="icon">
 
                             </div>
-                            <div class="step ">
+                            <div class="step ${orderstatus.getOrderStatusPackaging() == 1 ? 'active' : ''}">
 
                                 <img src="assets/StepperCheckIcon.svg" class="icon">
 
                             </div>
-                            <div class="step ">
+                            <div class="step ${orderstatus.getOrderStatusDelivered() == 1 ? 'active' : ''}">
 
                                 <img src="assets/StepperCheckIcon.svg" class="icon">
 

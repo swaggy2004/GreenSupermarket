@@ -9,6 +9,15 @@
 <%@page import="java.text.DecimalFormat" %>
 <%@page isELIgnored="false" %>
 <%
+
+String email = (String) session.getAttribute("email");
+String role = (String) session.getAttribute("role");
+boolean isLoggedIn =  session.getAttribute("isLoggedIn")!= null && (boolean) session.getAttribute("isLoggedIn");
+
+if ("M".equals(role) && isLoggedIn  && email != null) {
+   
+%>
+<%
     String orderIDString = request.getParameter("orderId");
     int OrderID = Integer.parseInt(orderIDString);
     
@@ -21,15 +30,7 @@
     pageContext.setAttribute("OrderedProducts", OrderedProducts);
 %>
 
-<%
 
-String email = (String) session.getAttribute("email");
-String role = (String) session.getAttribute("role");
-boolean isLoggedIn =  session.getAttribute("isLoggedIn")!= null && (boolean) session.getAttribute("isLoggedIn");
-
-if ("M".equals(role) && isLoggedIn  && email != null) {
-   
-%>
 <html>
 <head>
     <title>Individual Order</title>
