@@ -1,38 +1,27 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
-AuthorizePaymentServlet class - requests PayPal for payment.
- * @author Nam Ha Minh taken, altered and Reused as needed by Darren Victoria 
- *
  */
 package paypalpayment;
 
-import Model.OrderDetail;
-import Model.OrderProduct;
 import java.io.IOException;
-import java.io.PrintWriter;
-import jakarta.servlet.ServletException;
+import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 
+import com.paypal.api.payments.*;
 import com.paypal.base.rest.PayPalRESTException;
-import java.util.ArrayList;
-import java.util.List;
 
+import paypalpayment.OrderDAO;
+import Model.OrderDetail;
+import java.io.PrintWriter;
 /**
  *
  * @author Jude Darren Victoria
  */
+@WebServlet("/review_payment")
+public class ReviewPaymentServlet extends HttpServlet {
 
-@WebServlet("/authorize_payment")
-public class AuthorizePaymentServlet extends HttpServlet {
-     private static final long serialVersionUID = 1L;
-     
-     public AuthorizePaymentServlet() {
-    }
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -50,10 +39,10 @@ public class AuthorizePaymentServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AuthorizePaymentServlet</title>");            
+            out.println("<title>Servlet ReviewPaymentServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AuthorizePaymentServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ReviewPaymentServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -71,8 +60,44 @@ public class AuthorizePaymentServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        String paymentId = request.getParameter("paymentId");
+        String payerId = request.getParameter("PayerID");
+
+        try {
+            PaymentServices paymentServices = new PaymentServices();
+            Payment payment = paymentServices.getPaymentDetails(paymentId);
+
+            PayerInfo payerInfo = payment.getPayer().getPayerInfo();
+            Transaction transaction = payment.getTransactions().get(0);
+            ShippingAddress shippingAddress = transaction.getItemList().getShippingAddress();
+            
+            HttpSession session = request.getSession();
+            int orderId = 1; //TODO: Get the OrderID from the session
+
+            // Retrieve OrderDetail from the database using OrderDAO
+            
+            OrderDAO orderDAO = new OrderDAO();
+            OrderDetail orderDetail = orderDAO.getOrderDetailById(orderId);
+
+            // Pass orderDetail to the JSP for display
+            request.setAttribute("orderDetail", orderDetail);
+            request.setAttribute("payer", payerInfo);
+            request.setAttribute("transaction", transaction);
+            request.setAttribute("shippingAddress", shippingAddress);
+
+            String url = "reviewpay.jsp?paymentId=" + paymentId + "&PayerID=" + payerId;
+
+            request.getRequestDispatcher(url).forward(request, response);
+
+        } catch (PayPalRESTException ex) {
+            request.setAttribute("errorMessage", ex.getMessage());
+            ex.printStackTrace();
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+        }
+        
     }
+    
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -85,18 +110,7 @@ public class AuthorizePaymentServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        OrderDetail orderDetail = new OrderDAO().getOrderDetailById(1); //TODO: Get the OrderID from the session
-
-        try {
-            PaymentServices paymentServices = new PaymentServices();
-            String approvalLink = paymentServices.authorizePayment(orderDetail);
-            response.sendRedirect(approvalLink);
-        } catch (PayPalRESTException ex) {
-            request.setAttribute("errorMessage", ex.getMessage());
-            ex.printStackTrace();
-            request.getRequestDispatcher("error.jsp").forward(request, response);
-        }
-        
+        processRequest(request, response);
     }
 
     /**
