@@ -22,7 +22,7 @@
                         <p><span class="bold" style="font-weight: 900;">Login</span> to your Sustainable Supermarket</p>
                     </div>
                 </div>
-                <div class="col-12 col-md-3 mx-auto">
+                <div class="col-12 col-md-3 mx-auto" style="margin-top: 5rem">
                     <div class="container">
                     <div class="input-box mx-auto px-3">
                         <header>Hello!</header>
@@ -43,10 +43,11 @@
                         </form>
                         <div class="forgot-password">
                             
-                           <a href="signup.jsp">Sign up instead ?</a>
+                           <a href="Signup.jsp">Sign up instead ?</a>
                         </div>
-
-                    </div>
+                        <div class='back'style='margin-top: 2rem'>
+                            <a href="index.jsp" ><button type="button" class="btn btn-warning"style=' border-radius: 30px;'>Go to Homepage</button></a>
+                        </div>
                     </div>
                 </div>
             </div>

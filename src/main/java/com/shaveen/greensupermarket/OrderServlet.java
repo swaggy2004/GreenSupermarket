@@ -101,7 +101,7 @@ public class OrderServlet extends HttpServlet {
         int orderID = 0;
         order.setTotalPrice(totPrice);
         try {
-            orderID = OrderDAO.insertOrderDetails(Email, totPrice);
+            orderID = OrderCustomerDAO.insertOrderDetails(Email, totPrice);
         } catch (Exception ex) {
             Logger.getLogger(OrderServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -9,11 +9,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import java.sql.PreparedStatement;
+
 /**
  *
  * @author Shaveen
  */
-public class OrderDAO {
+public class OrderCustomerDAO {
     public static int insertOrderDetails(String CEmail, float totPrice) throws Exception {
     try (var connection = Model.Connection.start();
          PreparedStatement statement = connection.prepareStatement("INSERT INTO placed_order (CEmail, TotalPrice) VALUES(?, ?)", Statement.RETURN_GENERATED_KEYS)) {

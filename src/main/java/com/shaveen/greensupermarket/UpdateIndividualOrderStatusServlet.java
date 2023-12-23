@@ -7,18 +7,18 @@ package com.shaveen.greensupermarket;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.annotation.WebServlet;
+
 
 /**
  *
- * @author Jude Darren Victoria
+ * @author DELL
  */
-@WebServlet (name = "ManagerLoginServlet", urlPatterns = {"/ManagerLoginServlet"})
-public class ManagerLoginServlet extends HttpServlet {
+@WebServlet(name = "UpdateIndividualOrderStatusServlet", urlPatterns = {"/UpdateIndividualOrderStatusServlet"})
+public class UpdateIndividualOrderStatusServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +37,10 @@ public class ManagerLoginServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LoginServlet</title>");            
+            out.println("<title>Servlet UpdateIndividualOrderStatusServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet UpdateIndividualOrderStatusServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -72,40 +72,18 @@ public class ManagerLoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
+        int OrderId = Integer.parseInt(request.getParameter("orderId"));
+        int orderPlaced = request.getParameter("options-outlined-1") != null ? 1 : 0;
+        int orderPackaged = request.getParameter("options-outlined-2") != null ? 1 : 0;
+        int orderDelivered = request.getParameter("options-outlined-3") != null ? 1 : 0;
 
-        if (ManagerLoginValidation.validateLogin(email, password)) {
-            // Valid credentials
-            String role = ManagerLoginValidation.getRole(email);
+        // Perform the deletion in the database using the ManageConnection class
+        CIndividualOrderManagement.updateOrderStatusByOrderID(OrderId,orderPlaced,orderPackaged,orderDelivered);
 
-            // Set up the session with email and role attributes
-            HttpSession session = request.getSession(true);
-            session.setAttribute("email", email);
-            session.setAttribute("role", role);
-            session.setAttribute("isLoggedIn", true);
-
-            System.out.println("email: " + email);
-            System.out.println(role);
-
-            if ("A".equals(role)) {
-                response.sendRedirect("AdminProduct.jsp");
-            } else {
-                response.sendRedirect("ManagerDashboard.jsp");
-            }
-            
-
-            // You can redirect to a welcome page or perform other actions here
-            
-        } else {
-            // Invalid credentials
-            response.sendRedirect("adminlogin.jsp"); // Redirect back to the login page
-        }
-        
+        // Redirect back to the page displaying manager accounts
+        response.sendRedirect("OrderManagement.jsp");
     }
-        
-   
+
     /**
      * Returns a short description of the servlet.
      *

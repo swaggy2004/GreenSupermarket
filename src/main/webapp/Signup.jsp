@@ -21,7 +21,7 @@
                         <p><span class="bold" style="font-weight: 900;">Register</span> with your Sustainable Supermarket</p>
                     </div>
                 </div>
-                <div class="col-12 col-md-3 mx-auto">
+                <div class="col-12 col-md-3 mx-auto" style="margin-top: 5rem">
                     <div class="container">
                     <div class="input-box mx-auto px-3">
                         <header>Hello!</header>

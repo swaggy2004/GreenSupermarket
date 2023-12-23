@@ -2,6 +2,15 @@
 <%@page import="Model.ProductStock"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c"%>
 <%@page import="java.util.List"%>
+<%
+
+String email = (String) session.getAttribute("email");
+String role = (String) session.getAttribute("role");
+boolean isLoggedIn =  session.getAttribute("isLoggedIn")!= null && (boolean) session.getAttribute("isLoggedIn");
+
+if ("M".equals(role) && isLoggedIn  && email != null) {
+   
+%>
 <!doctype html>
 <%
      List<ProductStock> ProductStocks = PStockManagement.getProductStock();
@@ -102,19 +111,19 @@
 
 <ul class="nav nav-tabs" style="margin-top: 1rem; ">
     <li class="nav-item" style="margin-left: 1rem;">
-        <a class="nav-link "  href="#">Dashboard</a>
+        <a class="nav-link "  href="ManagerDashboard.jsp">Dashboard</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link "  href="#">Order Management</a>
+        <a class="nav-link " aria-current="page" href="OrderManagement.jsp">Order Management</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">Feedback Management</a>
+        <a class="nav-link" href="FeedbackManagement.jsp">Feedback Management</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#">Stock Management</a>
+        <a class="nav-link active" href="StockManagement.jsp">Stock Management</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">Logout</a>
+        <a class="nav-link" href="LogoutServlet">Logout</a>
     </li>
 
 </ul>
@@ -216,3 +225,9 @@
 
 </body>
 </html>
+<%
+} else {
+    // Redirect back to the login page
+    response.sendRedirect("adminlogin.jsp");
+}
+%>

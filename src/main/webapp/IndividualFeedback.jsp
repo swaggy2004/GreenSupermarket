@@ -6,6 +6,15 @@
     IndividualFeedbackManagement cfeedback = CIndividualFeedbackManagement.getinfoByFeedbackID(feedbackID);
     pageContext.setAttribute("cfeedback", cfeedback);
 %>
+<%
+
+String email = (String) session.getAttribute("email");
+String role = (String) session.getAttribute("role");
+boolean isLoggedIn =  session.getAttribute("isLoggedIn")!= null && (boolean) session.getAttribute("isLoggedIn");
+
+if ("M".equals(role) && isLoggedIn  && email != null) {
+   
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -124,3 +133,9 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 </body>
 </html>
+<%
+} else {
+    // Redirect back to the login page
+    response.sendRedirect("adminlogin.jsp");
+}
+%>
