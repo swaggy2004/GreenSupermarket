@@ -41,7 +41,7 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
     </style>
 </head>
 <body>
-
+<%@ include file="header.jsp"%> 
 
 
 <ul class="nav nav-tabs" style="margin-top: 1rem; ">
@@ -127,7 +127,7 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
 
 
 
-
+<%@ include file="footer.jsp"%>
 
 <script>
     // Initialize the star rating with default value

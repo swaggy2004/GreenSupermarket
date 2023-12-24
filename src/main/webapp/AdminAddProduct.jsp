@@ -33,6 +33,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
     <link rel="stylesheet" href="AdminEditProduct.css" />
   </head>
   <body>
+      <%@ include file="header.jsp"%> 
     <!--main container for all the body elements-->
     <div class="container-fluid">
       <!--starting a row, removing the gutter value and adding a padding-->
@@ -186,6 +187,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
         </form>
       </div>
     </div>
+    <%@ include file="footer.jsp"%>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"

@@ -108,6 +108,6 @@ public class EditProductServlet extends HttpServlet {
         // Use ManageConnection class to add the product to the database
         ManageConnection sendData = new ManageConnection();
         sendData.editProduct(productID, productName, productCategory, visibility, description, unitPrice, unitQuantity, imgName);
-
+        response.sendRedirect("AdminProduct.jsp");
         }
 }

@@ -55,22 +55,34 @@ public class UserDatabaseInteraction {
         return null;
     }
 
-    public static void updateUserData(String email,  String fullName, String phoneNumber) {
-        // Connect to the database and update user data
-        try (Connection connection = Model.Connection.start()) {
-            String query = "UPDATE customer SET FullName = ?, PhoneNumber = ? WHERE Email = ?";
-            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-                preparedStatement.setString(1, fullName);
-                preparedStatement.setString(2, phoneNumber);
-                preparedStatement.setString(3, email);
+    public static void updateUserData(String Email, String FullName, String PhoneNumber, String billing_A, String billing_city, String billing_zipcode, String billing_country, String billing_phone, String shipping_A, String shipping_city, String shipping_zipcode, String shipping_country, String shipping_phone, String avatar_path) {
+    // Connect to the database and update user data
+    try (Connection connection = Model.Connection.start()) {
+        String query = "UPDATE customer SET FullName = ?, PhoneNumber = ?, AvatarPath = ?, BA_Address = ?, BA_City = ?, BA_ZipCode = ?, BA_Region = ?, BA_PhoneNumber = ?, SA_Address = ?, SA_City = ?, SA_ZipCode = ?, SA_Region = ?, SA_PhoneNumber = ? WHERE Email = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, FullName);
+            preparedStatement.setString(2, PhoneNumber);
+            preparedStatement.setString(3, avatar_path);
+            preparedStatement.setString(4, billing_A);
+            preparedStatement.setString(5, billing_city);
+            preparedStatement.setString(6, billing_zipcode);
+            preparedStatement.setString(7, billing_country);
+            preparedStatement.setString(8, billing_phone);
+            preparedStatement.setString(9, shipping_A);
+            preparedStatement.setString(10, shipping_city);
+            preparedStatement.setString(11, shipping_zipcode);
+            preparedStatement.setString(12, shipping_country);
+            preparedStatement.setString(13, shipping_phone);
+            preparedStatement.setString(14, Email);
 
-                // Execute the update query
-                preparedStatement.executeUpdate();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+            // Execute the update query
+            preparedStatement.executeUpdate();
         }
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
+}
+
     
     public static boolean validateUserPassword(String email, String currentPassword) {
         try (Connection connection = Model.Connection.start()) {

@@ -71,6 +71,7 @@ public class AddProductServlet extends HttpServlet {
 
         ManageConnection sendData = new ManageConnection();
         sendData.addProduct(productName, productCategory, visibility, description, unitPrice, unitQuantity, imgName);
+        response.sendRedirect("AdminAddProduct.jsp");
         }
 }
 
