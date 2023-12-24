@@ -20,39 +20,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"/>
     <link href="UserSettings.css" rel="stylesheet" />
 
-    <style>
-        /* Custom styles for the burger stack icon in mobile */
-        @media (max-width: 767px) {
-            .icons-container {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-        }
-
-        /* Custom styles for desktop view */
-        @media (min-width: 768px) {
-            .icons-container {
-                display: flex;
-                justify-content: flex-start;
-                align-items: center;
-                margin-left: auto;
-            }
-
-            .icons-container img {
-                margin-right: 5px; /* Add some space between the icons */
-            }
-
-            .icons-container img:hover {
-                opacity: 0.8; /* Add a hover effect */
-            }
-            .nav-link{
-                color:#347809 ;
-            }
-        }
-
-
-    </style>
+    
 </head>
 <body>
 
@@ -82,55 +50,21 @@
 
 
 
-<nav style="background-color: #d0f288" class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img style="width: 110px" alt="Navbar Logo" src="assets/NavLogo.svg"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Meats</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link active" aria-current="page" href="#">Fruits</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Vegetables</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Snacks</a>
-                </li>
-            </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-            <div class="icons-container"> <!-- Container for icons in mobile view -->
-                <!-- Desktop icons -->
-                <a class="nav-link active" aria-current="page" href="#"><img src="assets/shopping_bag.svg" alt="Cart"></a>
-                <a class="nav-link active" aria-current="page" href="#"><img src="assets/favorite.svg" alt="Favorite"></a>
-                <a class="nav-link active" aria-current="page" href="#"><img src="assets/person_2.svg" alt="Profile"></a>
-            </div>
-        </div>
-    </div>
-</nav>
+<%@ include file="header.jsp"%> 
 
 <h1 style="margin-top: 2rem;margin-left: 1rem;">Account Settings</h1>
 <div class="row" style="margin-top: 2rem;margin-left: 1rem; margin-right: 1rem">
+    <form action="<%=request.getContextPath()%>/UserSettingsServlet" method="post" enctype="multipart/form-data">
     <div class="col-12 col-sm-2 avatar-container" >
         <div class="d-flex align-items-center">
-            <img style="width: 130px; margin-top:2rem; " src="assets/Avatar.png" class="rounded-circle ms-2" alt="User Avatar">
+            <img style="width: 130px; margin-top:2rem; " src="assets/${userData.getAvatarPath()}" class="rounded-circle ms-2" alt="User Avatar">
         </div>
 
     </div>
 
-  <form action="<%=request.getContextPath()%>/UserSettingsServlet" method="post">
+  
      
+      
             <div class="col-10">
                 <div class="row">
                     <div class="col-6">
@@ -158,7 +92,7 @@
                             </div>
                             <div class="col">
                                 <label class="input-group-text" for="inputGroupFile01">Edit Profile Avatar</label>
-                                <input type="file" class="form-control" id="inputGroupFile01" value="${userData.getAvatarPath()}">
+                                <input type="file" class="form-control" name="inputGroupFile01" id="inputGroupFile01" value="${userData.getAvatarPath()}">
                             </div>
 
                         </div>
@@ -191,25 +125,25 @@
                             <tr>
                                 <td colspan="2">
                                     <label for="Bill-Address" class="form-label">Address</label>
-                                    <input type="text" class="form-control" id="Bill-Address" placeholder="Road No. 13/x, House no. 1320/C, Flat No. 5D" value="${userData.getBA_Adress()}">
+                                    <input type="text" class="form-control" id="Bill-Address" name="Bill-Address" placeholder="Road No. 13/x, House no. 1320/C, Flat No. 5D" value="${userData.getBA_Adress()}">
                                 </td>
 
                             </tr>
                             <tr>
                                 <td>
                                     <label for="Bill-City" class="form-label">City</label>
-                                    <input type="text" class="form-control" id="Bill-City" placeholder="Negombo" value="${userData.getBA_City()}">
+                                    <input type="text" class="form-control" id="Bill-City" name="Bill-City" placeholder="Negombo" value="${userData.getBA_City()}">
                                 </td>
                                 <td>
                                     <label for="Bill-PC" class="form-label">Postal Code</label>
-                                    <input type="text" class="form-control" id="Bill-PC" placeholder="11500" value="${userData.getBA_ZipCode()}">
+                                    <input type="text" class="form-control" id="Bill-PC" name="Bill-PC" placeholder="11500" value="${userData.getBA_ZipCode()}">
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2">
                                     <div>
                                         <label for="Bill-country">Country</label>
-                                        <select class="form-control" id="Bill-country">
+                                        <select class="form-control" id="Bill-country" name="Bill-country">
                                             <option value="AF" ${userData.getBA_Region() == 'AF' ? 'selected' : ''}>Afghanistan</option>
                                             <option value="BD" ${userData.getBA_Region() == 'BD' ? 'selected' : ''}>Bangladesh</option>
                                             <option value="BT" ${userData.getBA_Region() == 'BT' ? 'selected' : ''}>Bhutan</option>
@@ -226,7 +160,7 @@
                             <tr>
                                 <td colspan="2">
                                 <label for="Bill-Phone" class="form-label">Phone Number</label>
-                                <input type="text" class="form-control" id="Bill-Phone" placeholder="071-xxxxxxx" value="${userData.getBA_PhoneNumber()}">
+                                <input type="text" class="form-control" id="Bill-Phone" name="Bill-Phone" placeholder="071-xxxxxxx" value="${userData.getBA_PhoneNumber()}">
                                 </td>
                             </tr>
                         </table>
@@ -252,25 +186,25 @@
                             <tr>
                                 <td colspan="2">
                                     <label for="Shipping-Address" class="form-label">Address</label>
-                                    <input type="text" class="form-control" id="Shipping-Address" placeholder="Road No. 13/x, House no. 1320/C, Flat No. 5D" value="${userData.getSA_Adress()}">
+                                    <input type="text" class="form-control" id="Shipping-Address" name="Shipping-Address" placeholder="Road No. 13/x, House no. 1320/C, Flat No. 5D" value="${userData.getSA_Adress()}">
                                 </td>
 
                             </tr>
                             <tr>
                                 <td>
                                     <label for="Shipping-City" class="form-label">City</label>
-                                    <input type="text" class="form-control" id="Shipping-City" placeholder="Negombo" value="${userData.getSA_City()}">
+                                    <input type="text" class="form-control" id="Shipping-City" name="Shipping-City" placeholder="Negombo" value="${userData.getSA_City()}">
                                 </td>
                                 <td>
                                     <label for="Shipping-PC" class="form-label">Postal Code</label>
-                                    <input type="text" class="form-control" id="Shipping-PC" placeholder="11500" value="${userData.getSA_ZipCode()}">
+                                    <input type="text" class="form-control" id="Shipping-PC" name="Shipping-PC" placeholder="11500" value="${userData.getSA_ZipCode()}">
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2">
                                     <div>
                                         <label for="Shipping-country">Country</label>
-                                        <select class="form-control" id="Shipping-country">
+                                        <select class="form-control" id="Shipping-country" name="Shipping-country">
                                             <option value="AF" ${userData.getSA_Region() == 'AF' ? 'selected' : ''}>Afghanistan</option>
                                             <option value="BD" ${userData.getSA_Region() == 'BD' ? 'selected' : ''}>Bangladesh</option>
                                             <option value="BT" ${userData.getSA_Region() == 'BT' ? 'selected' : ''}>Bhutan</option>
@@ -287,7 +221,7 @@
                             <tr>
                                 <td colspan="2">
                                     <label for="Shipping-UserPhone" class="form-label">Phone Number</label>
-                                    <input type="text" class="form-control" id="Shipping-UserPhone" placeholder="071-xxxxxxx" value="${userData.getSA_PhoneNumber()}">
+                                    <input type="text" class="form-control" id="Shipping-UserPhone" name="Shipping-UserPhone" placeholder="071-xxxxxxx" value="${userData.getSA_PhoneNumber()}">
                                 </td>
                             </tr>
                         </table>
@@ -351,6 +285,7 @@
 
 </div>
 </div>
+<%@ include file="footer.jsp"%>
 
 <script>
   function deleteacc() {

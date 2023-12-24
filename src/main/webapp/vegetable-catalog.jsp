@@ -15,6 +15,8 @@
   <title>Vegetable Catalogue</title>
   <link rel="stylesheet" href="vegetables.CSS">
 </head>
+<body>
+    <%@ include file="header.jsp"%> 
       <div class="jumbotron d-none d-sm-block">
         <div class="jumbotron-text">
          <br><br> Vegetables
@@ -63,6 +65,7 @@
                 </div>
             </c:forEach>
           </div>
-        </div </div>
+      </div> 
+<%@ include file="footer.jsp"%>
 </body>
 </html>

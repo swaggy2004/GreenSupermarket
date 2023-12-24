@@ -16,6 +16,7 @@
     </style>
 </head>
 <body>
+    <%@ include file="header.jsp"%> 
     <div align="center">
         <h1>Please Review Before Paying</h1>
         <form action="execute_payment" method="post">
@@ -106,5 +107,6 @@
             </table>
         </form>
     </div>
+    <%@ include file="footer.jsp"%>
 </body>
 </html>

@@ -17,6 +17,7 @@
     </style>
 </head>
 <body>
+    <%@ include file="header.jsp"%> 
 <div align="center">
     <h1>Payment Done. Thank you for purchasing our products</h1>
     <br/>
@@ -64,4 +65,10 @@
         </tr>
         <tr>
             <td><b>Shipping:</b></td>
-     
+        </tr>
+    </table>
+</div>
+<%@ include file="footer.jsp"%>
+        
+</body>
+</html>
