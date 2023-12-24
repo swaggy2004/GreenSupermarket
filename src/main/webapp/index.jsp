@@ -9,6 +9,10 @@
   <link rel="stylesheet" href="index.CSS">
 </head>
 <body>
+  <%@ include file="header.jsp"%>  
+    
+    
+    
 <!--Jumbotron-->
 <div class="jumbotron">
   <div class="jumbotron-text">
