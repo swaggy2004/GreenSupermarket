@@ -14,7 +14,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c"%>
 
 <%
-    String CID = request.getParameter("CEmail");
+    String CID = (String) session.getAttribute("email");
     List<WishList> wishlist = FetchWishList.searchWishlist(CID);
     List<Product> product = null;
     for( WishList witem : wishlist){
@@ -87,7 +87,7 @@
                             <button type="button" class="btn btn-info btn-sm">${item.getStockQty() > 0 ? "In Stock" : "Out of Stock"}</button>
                         </div>
                     </div>
-                    <form action="AddToCartServletPID=${product.getProductID()}&CID=customer1@email.com" method="post">
+                    <form action="">
                         <div class="col-md-2 my-auto ">
                             <div class="card-body">
                                 <input type="submit" value="Add to cart" class="btn btn-warning">
@@ -102,105 +102,6 @@
                 </div>
             </div>
             </c:forEach>
-            
-            <div class="card mb-3" style="max-width: 1280px;border-radius: 20px;">
-                <div class="row g-0">
-                    <div class="col-md-2">
-                        <img src="assets/vegi2.png" style="width: 100px" class="img-fluid rounded-start" alt="...">
-                    </div>
-                    <div class="col-md-3 my-auto ">
-                        <div class="card-body">
-                            <h5>Sweet Corn</h5>
-                        </div>
-                    </div>
-                    <div class="col-md-2 my-auto ">
-                        <div class="card-body">
-                            <h5>$569</h5>
-                        </div>
-                    </div>
-                    <div class="col-md-2 my-auto ">
-                        <div class="card-body">
-                            <button type="button" class="btn btn-info btn-sm">In Stock</button>
-                        </div>
-                    </div>
-                    <div class="col-md-2 my-auto">
-                        <div class="card-body">
-                            <button type="button" class="btn btn-warning">Add to cart</button>
-                        </div>
-                    </div>
-                    <div class="col-md-1 my-auto ">
-                        <div class="card-body">
-                            <button type="button" class="btn-close" aria-label="Close"></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card mb-3" style="max-width: 1280px;border-radius: 20px;">
-                <div class="row g-0">
-                    <div class="col-md-2">
-                        <img src="assets/vegi4.png" style="width: 100px" class="img-fluid rounded-start" alt="...">
-                    </div>
-                    <div class="col-md-3 my-auto ">
-                        <div class="card-body">
-                            <h5>Sweet Corn</h5>
-                        </div>
-                    </div>
-                    <div class="col-md-2 my-auto ">
-                        <div class="card-body">
-                            <h5>$569</h5>
-                        </div>
-                    </div>
-                    <div class="col-md-2 my-auto ">
-                        <div class="card-body">
-                            <button type="button" class="btn btn-info btn-sm">In Stock</button>
-                        </div>
-                    </div>
-                    <div class="col-md-2 my-auto ">
-                        <div class="card-body">
-                            <button type="button" class="btn btn-warning">Add to cart</button>
-                        </div>
-                    </div>
-                    <div class="col-md-1 my-auto ">
-                        <div class="card-body">
-                            <button type="button" class="btn-close" aria-label="Close"></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card mb-3" style="max-width: 1280px;border-radius: 20px;">
-                <div class="row g-0">
-                    <div class="col-md-2">
-                        <img src="assets/vegi1.png" style="width: 100px" class="img-fluid rounded-start" alt="...">
-                    </div>
-                    <div class="col-md-3 my-auto ">
-                        <div class="card-body">
-                            <h5>Sweet Corn</h5>
-                        </div>
-                    </div>
-                    <div class="col-md-2 my-auto ">
-                        <div class="card-body">
-                            <h5>$569</h5>
-                        </div>
-                    </div>
-                    <div class="col-md-2 my-auto ">
-                        <div class="card-body">
-                            <button type="button" class="btn btn-info btn-sm">Out of Stock</button>
-                        </div>
-                    </div>
-                    <div class="col-md-2 my-auto ">
-                        <div class="card-body">
-                            <button type="button" class="btn btn-warning">Add to cart</button>
-                        </div>
-                    </div>
-                    <div class="col-md-1 my-auto ">
-                        <div class="card-body">
-                            <button type="button" class="btn-close" aria-label="Close"></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="row ">
                 <div class="col-md-2"><button type="button" class="btn btn-outline-dark"  style="background-color: #ffffff;
                     border-color: #34A853;"><img src="assets/MyCartArrowLeft.svg">&nbsp;Continue shopping</button></div>

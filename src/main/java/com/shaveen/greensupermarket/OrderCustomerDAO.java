@@ -6,7 +6,6 @@ package com.shaveen.greensupermarket;
 
 import Model.Connection;
 import Model.Order;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -19,8 +18,9 @@ import java.sql.PreparedStatement;
 public class OrderCustomerDAO {
     public static int insertOrderDetails(Order order) throws Exception {
         try (var connection = Connection.start();
-             PreparedStatement statement = connection.prepareStatement("INSERT INTO placed_order (CEmail, TotalPrice) VALUES(?, ?)", Statement.RETURN_GENERATED_KEYS)) {
-            
+             PreparedStatement statement = connection.prepareStatement("INSERT INTO `placed_order`(`CEmail`, " +
+                     "`TotalPrice`) VALUES(?, ?)", Statement.RETURN_GENERATED_KEYS)) {
+
             statement.setString(1, order.getCEmail());
             statement.setFloat(2, order.getTotalPrice());
 
