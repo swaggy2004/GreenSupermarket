@@ -64,4 +64,32 @@ public class PStockManagement {
             System.out.println(e);
         }
     }
+    
+    
+     public static List<ProductStock> searchProductStock(String searchQuery) {
+        List<ProductStock> searchResults = new ArrayList<>();
+
+        try (Connection con = Model.Connection.start()) {
+            String query = "SELECT ProductID, Name, StockQty FROM product WHERE ProductID LIKE ? OR Name LIKE ? OR StockQty LIKE ?";
+            try (PreparedStatement statement = con.prepareStatement(query)) {
+                statement.setString(1, "%" + searchQuery + "%");
+                statement.setString(2, "%" + searchQuery + "%");
+                statement.setString(3, "%" + searchQuery + "%");
+
+                try (ResultSet set = statement.executeQuery()) {
+                    while (set.next()) {
+                        ProductStock productstocks = new ProductStock();
+                        productstocks.setProductID(set.getString("ProductID"));
+                        productstocks.setProductName(set.getString("Name"));
+                        productstocks.setStockQty(set.getInt("StockQty"));
+                        searchResults.add(productstocks);
+                    }
+                }
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+
+        return searchResults;
+    }
 }
