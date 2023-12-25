@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="review.css">
 </head>
 <body>
+    <%@ include file="header.jsp"%> 
     <div class="review-container">
         <p class="review-text1">Order Review</p>
         <p class="review-text2"><b>Order</b> #1234567891012</p>
@@ -25,6 +26,7 @@
             <textarea class="form-control review-textbox" rows="5" placeholder="How’s the quality of the products? Is it worth the price?"></textarea>
         </div>
         <button type="submit" class="btn submit-button">Submit&nbsp; ✔</button>
-    </div>    
+    </div> 
+    <%@ include file="footer.jsp"%>
 </body>
 </html>

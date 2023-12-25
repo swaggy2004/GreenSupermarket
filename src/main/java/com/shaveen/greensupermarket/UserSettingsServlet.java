@@ -13,12 +13,16 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.annotation.MultipartConfig;
+import jakarta.servlet.http.Part;
+import java.io.File;
 
 /**
  *
  * @author Jude Darren Victoria
  */
 @WebServlet (name = "UserSettingsServlet", urlPatterns = {"/UserSettingsServlet"})
+@MultipartConfig
 public class UserSettingsServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -79,10 +83,39 @@ public class UserSettingsServlet extends HttpServlet {
         String email = request.getParameter("email");
         String fullName = request.getParameter("fullName");
         String phoneNumber = request.getParameter("UserPhone");
+        String b_adress = request.getParameter("Bill-Address");
+        String b_city = request.getParameter("Bill-City");
+        String b_Zipc = request.getParameter("Bill-PC");
+        String b_Country = request.getParameter("Bill-country");
+        String b_Phone = request.getParameter("Bill-Phone");
+         String s_adress = request.getParameter("Shipping-Address");
+        String s_city = request.getParameter("Shipping-City");
+        String s_Zipc = request.getParameter("Shipping-PC");
+        String s_Country = request.getParameter("Shipping-country");
+        String s_Phone = request.getParameter("Shipping-UserPhone");
+        
+        
+        
+        
+        String avatarSavedDirectoryPath = request.getServletContext().getRealPath("/assets/");
+        File avatarSavedDirectory = new File(avatarSavedDirectoryPath);
+        if (!avatarSavedDirectory.exists()) {
+            try {
+                avatarSavedDirectory.mkdirs();
+            } catch (SecurityException ex) {
+                System.out.println("Please fix directory permissions");
+                return;
+            }
+        }
+
+        Part avatarPart = request.getPart("inputGroupFile01");
+        String avatar_userprof = avatarPart.getSubmittedFileName();
+//        in the log its pointing out the below line as the error
+        avatarPart.write(avatarSavedDirectoryPath + File.separator + avatar_userprof);
 
 
         // Update user data in the database
-        UserDatabaseInteraction.updateUserData(email, fullName, phoneNumber);
+        UserDatabaseInteraction.updateUserData(email, fullName, phoneNumber,b_adress,b_city, b_Zipc, b_Country, b_Phone, s_adress, s_city, s_Zipc, s_Country, s_Phone, avatar_userprof);
 
         response.sendRedirect("UserSettings.jsp");
         

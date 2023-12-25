@@ -80,6 +80,7 @@ public class EditAccountServlet extends HttpServlet {
                 role = request.getParameter("role");
         ManageConnection SendData = new ManageConnection();
         SendData.editAccount(fullName, email, password, role);
+        response.sendRedirect("AdminAccount.jsp");
 
             
     }

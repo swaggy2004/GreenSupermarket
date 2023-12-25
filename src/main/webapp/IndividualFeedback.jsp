@@ -68,6 +68,7 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
     </style>
 </head>
 <body>
+    <%@ include file="header.jsp"%> 
 <div class="card mb-3" style=" margin: 3rem 2rem 0 2rem; min-height:300px">
     <div class="card-header">
         <h3 >Feedback ID:${cfeedback.getFeedbackID()}</h3>
@@ -103,7 +104,7 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
 
 
 
-
+<%@ include file="footer.jsp"%>
 <script>
     function goBack() {
         window.history.back();
