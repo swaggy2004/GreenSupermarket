@@ -77,36 +77,52 @@ public class OrderServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        String Email = (String) session.getAttribute("Email");
-        List<ShoppingCart> cart = null;
-        List<Product> products = null;
-        float totPrice = 0;
         try {
-            cart = FetchShoppingCart.searchCart(Email);
+            HttpSession session = request.getSession();
+            String email = (String) session.getAttribute("email");
+
+            if (email != null) {
+                List<ShoppingCart> cart = FetchShoppingCart.searchCart(email);
+                Product product = null;
+                float totPrice = 0;
+
+                for (ShoppingCart item : cart) {
+                    int productId = item.getPID();
+                    product = FetchProduct.searchProduct(productId);
+                    totPrice += item.getPQty() * product.getPrice();
+                }
+
+                // Create an order and set customer details
+                Order order = new Order();
+                order.setCEmail(email);
+                order.setTotalPrice(totPrice);
+
+                // Insert order details into the database and retrieve the order ID
+                int orderID = 0;
+                try {
+                    orderID = OrderCustomerDAO.insertOrderDetails(order);
+                } catch (Exception ex) {
+                    Logger.getLogger(OrderServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                // Set the order ID in the session attribute
+                session.setAttribute("orderID", orderID);
+//
+//                // Redirect to a confirmation page or do further processing
+//                response.sendRedirect("orderConfirmation.jsp");  // Adjust the URL accordingly
+
+            } else {
+//                // Handle the case where the email is not set in the session
+//                // You might want to redirect the user to a login page or take appropriate action
+//                response.sendRedirect("login.jsp");  // Adjust the URL accordingly
+            }
         } catch (SQLException ex) {
             Logger.getLogger(OrderServlet.class.getName()).log(Level.SEVERE, null, ex);
+//            // Handle the SQL exception appropriately (e.g., display an error message)
+//            response.sendRedirect("error.jsp");  // Adjust the URL accordingly
         }
-        for (ShoppingCart item : cart)
-        {
-            for (Product product : products)
-            {
-                products = FetchProduct.SearchProduct(item.getPID());
-                totPrice += item.getPQty() * product.getPrice();
-            }
-        }
-        Order order = new Order();
-        order.setCEmail(Email);
-        int orderID = 0;
-        order.setTotalPrice(totPrice);
-        try {
-            orderID = OrderCustomerDAO.insertOrderDetails(Email, totPrice);
-        } catch (Exception ex) {
-            Logger.getLogger(OrderServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        String OID = String.valueOf(orderID);
-        session.setAttribute("orderID", OID);
     }
+
 
     /**
      * Returns a short description of the servlet.
