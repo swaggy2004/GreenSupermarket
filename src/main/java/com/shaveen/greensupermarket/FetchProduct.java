@@ -43,8 +43,7 @@ public class FetchProduct {
     }
     
     public static List<Product> SearchProduct(int PID) {
-        List <Product> products = new ArrayList<>();
-
+        List<Product> products = new ArrayList<>();
         try (Connection connection = Model.Connection.start();
              PreparedStatement statement = connection.prepareStatement("SELECT * FROM product WHERE ProductID = ?")) {
             statement.setInt(1, PID);
@@ -68,13 +67,11 @@ public class FetchProduct {
         return products;
     }
     
-    public static Product SearchProduct(String PID) {
+    public static Product searchProduct(int PID) {
         try (Connection connection = Model.Connection.start()){
             String query = "SELECT * FROM product WHERE ProductID = ?";
             try (PreparedStatement statement = connection.prepareStatement(query)){
-                statement.setString(1, PID);
-          
-   
+                statement.setInt(1, PID);
                 try (ResultSet resultSet = statement.executeQuery()) {
                     if (resultSet.next()) {
                         Product product = new Product();
