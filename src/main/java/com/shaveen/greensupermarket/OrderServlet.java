@@ -77,18 +77,20 @@ public class OrderServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        PrintWriter out = new PrintWriter(System.out);
         try {
             HttpSession session = request.getSession();
             String email = (String) session.getAttribute("email");
 
             if (email != null) {
                 List<ShoppingCart> cart = FetchShoppingCart.searchCart(email);
-                Product product = null;
                 float totPrice = 0;
 
                 for (ShoppingCart item : cart) {
                     int productId = item.getPID();
-                    product = FetchProduct.searchProduct(productId);
+                    System.out.println("ProductID = " + productId);
+                    Product product = FetchProduct.searchProduct(productId);
+                    System.out.println("Product = " + product.getProductName());
                     totPrice += item.getPQty() * product.getPrice();
                 }
 
