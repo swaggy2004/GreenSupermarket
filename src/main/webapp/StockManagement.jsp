@@ -56,21 +56,67 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
     <div class="col-md-3 mb-3"></div>
 
     <!-- Search Box -->
-    <!--<form>-->
+    <form action="StockSearchServlet" method="get">
     <div class="col-md-3 mb-3" style="padding-right: 2rem;">
 
         <div class="input-group">
-            <input type="text" class="form-control" id="searchBox" placeholder="Search" aria-label="Search" aria-describedby="button-addon">
-            <button class="btn btn-outline-secondary" type="button" id="button-addon">Search</button>
+            <input type="text" class="form-control" id="searchBox" name="searchBox" placeholder="Search" aria-label="Search" aria-describedby="button-addon">
+            <button class="btn btn-outline-secondary" type="submit"  id="button-addon">Search</button>
         </div>
     </div>
+    </form>
 </div>
 
 
+    <c:if test="${not empty searchResults}">
+        <h3>Search Results:</h3>
+        <table style="margin-top: 2rem ; margin-left: 2rem ; margin-right: 2rem;" class="table">
+            <!-- Table structure for search results -->
+            <thead>
+                <tr>
+                    <th scope="col">Product ID</th>
+                    <th scope="col">Stock Status</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Stock Count</th>
+                </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${searchResults}" var="searchResult">
+                    <!-- Code to display each search result -->
+            <form action="PStockQtyUpdateServlet" method="Post">
+                <tr>
+                    <th scope="row">${searchResult.getProductID()}</th>
+                    <td>
+                        <c:choose>
+                            <c:when test="${searchResult.getStockQty() eq 0}">
+                                Out of Stock
+                            </c:when>
+                            <c:when test="${searchResult.getStockQty() lt 15}">
+                                Running Out
+                            </c:when>
+                            <c:otherwise>
+                                In Stock
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
+                    <td>${searchResult.getProductName()}</td>
+                    <td>
+                        <div class="input-group w-auto  align-items-center">
+                            <input type="number" min="0" step="1" id="PQty" value="${searchResult.getStockQty()}" name="stock_count" class="quantity-field border-0 text-center ">
+                            <input type="hidden" name="productId" value="${searchResult.getProductID()}">
+                            <button type="submit" class="text-uppercase btn btn-success btn-sm ">Update Stock</button>
+                        </div>
+                    </td>
 
 
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </c:if>
 
 
+    <h3>All Results</h3>
     <table style="margin-top: 2rem ; margin-left: 2rem ; margin-right: 2rem;" class="table">
         <thead>
         <tr>
@@ -115,6 +161,8 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
 
         </tbody>
     </table>
+    
+    
 
 <div class="col d-flex justify-content-center">
     <nav aria-label="Page navigation example">
