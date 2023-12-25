@@ -12,9 +12,11 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c"%>
 
 <%
-        String ProductID = request.getParameter("PID");
+        String ProductID = (String) request.getParameter("PID");
+        int PID = Integer.parseInt(ProductID);
+
         // Call the SearchProduct method to retrieve a list of products
-        Product product = FetchProduct.SearchProduct(ProductID);
+        Product product = FetchProduct.searchProduct(PID);
 
         // Set the productList as an attribute in the page context
         pageContext.setAttribute("product", product);     
@@ -81,7 +83,9 @@
                     <button type="submit" ${product.getStockQty() > 0 ? '' : 'disabled'} class="btn btn-primary" style="background-color: #34A853; border-color: #34A853">Add to Cart</button>
                 </form>
             </div>
-            <button type="button" class="btn btn-light"><img src="assets/ProductDetailHeartIcon.svg"></button>
+                <form action="AddToWishListServlet"></form>
+                <input type="hidden" name="PID" value="${product.getProductID()}">
+            <button type="submit" class="btn btn-light"><img src="assets/ProductDetailHeartIcon.svg"></button>
 
         </div>
     </div>
