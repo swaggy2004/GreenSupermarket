@@ -3,10 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c"%>
 <%@page import="Model.Product"%>
 <!DOCTYPE html>
-<%
-    List<Product> products = FetchProduct.SearchProduct();
-    pageContext.setAttribute("products", products);
-%>
+<c:set var="category" value="${param.category}" />
+<c:if test="${not empty category}">
+    <c:set var="products" value="${FetchProduct.SearchProduct(category)}" />
+    <c:set var="products" scope="page" value="${products}" />
+</c:if>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -57,9 +58,12 @@
                       <div class="card-body">
                         <h5 class="card-title1">${product.getProductName()} ${product.getUnitQty()}g</h5>
                         <h5 class="card-title2">USD ${product.getPrice()}</h5>
-                        <div class="circle">
-                          <img src="assets/images/individual-catalogs/vegetables/cart-icon.svg" class="circle-img" alt="cart-icon">
-                        </div>
+                            <div class="circle">
+                                <form action="AddToCartServlet" method="post">
+                                    <input type="hidden" id="PID" name="PID" value="${product.getProductID()}">
+                                    <img src="assets/images/individual-catalogs/vegetables/cart-icon.svg" class="circle-img" alt="cart-icon">
+                                </form>
+                            </div>
                       </div>
                     </div>
                 </div>

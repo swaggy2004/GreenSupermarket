@@ -43,7 +43,7 @@
     </div>
     <!--card2-->
     <div class="col-lg-3 col-md-6 card-spacing">
-      <a href="ProductFetchServlet" class="card-link text-body text-decoration-none" name="Category1">
+      <a href="vegetable-catalog.jsp?category=Vegetable" class="card-link text-body text-decoration-none" name="vegetables">
       <div class="card card-custom">
         <img src="assets/images/Product-images/fresh-vegetables.svg" class="card-img-top" alt="Ladies Fingers">
         <div class="card-body">

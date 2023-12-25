@@ -27,7 +27,6 @@ public class FetchShoppingCart {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     ShoppingCart cartDetail = new ShoppingCart();
-                    cartDetail.setCartID(resultSet.getInt("CartID"));
                     cartDetail.setPID(resultSet.getInt("Product_ID"));
                     cartDetail.setPQty(resultSet.getInt("PQty"));
                     cartDetail.setCEmail(CEmail);

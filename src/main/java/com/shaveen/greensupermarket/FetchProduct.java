@@ -67,6 +67,31 @@ public class FetchProduct {
         return products;
     }
     
+    public static List<Product> SearchProduct(String category) {
+        List<Product> products = new ArrayList<>();
+        try (Connection connection = Model.Connection.start();
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM product WHERE Category = ?")) {
+            statement.setString(1, category);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Product product = new Product();
+                    product.setProductID(resultSet.getInt("ProductID"));
+                    product.setProductName(resultSet.getString("Name"));
+                    product.setUnitQty(resultSet.getInt("UnitQty"));
+                    product.setStockQty(resultSet.getInt("StockQty"));
+                    product.setCategory(resultSet.getString("Category"));
+                    product.setDescription(resultSet.getString("Description"));
+                    product.setVisibility(resultSet.getBoolean("Visibility"));
+                    product.setPrice(resultSet.getFloat("UnitPrice"));
+                    products.add(product);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Handle the exception appropriately in a production environment
+        }
+        return products;
+    }
+    
     public static Product searchProduct(int PID) {
         try (Connection connection = Model.Connection.start()){
             String query = "SELECT * FROM product WHERE ProductID = ?";
