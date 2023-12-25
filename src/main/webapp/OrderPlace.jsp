@@ -7,6 +7,7 @@
     <title>Place Order</title>
 </head>
 <body>
+    <%@ include file="header.jsp"%> 
     <h2>Place Your Order</h2>
     
     <form action="authorize_payment" method="post">
@@ -19,5 +20,6 @@
         
         <input type="submit" value="Place Order">
     </form>
+    <%@ include file="footer.jsp"%>
 </body>
 </html>

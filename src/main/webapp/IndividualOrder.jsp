@@ -38,10 +38,11 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
     <link href="IndividualOrder.css" rel="stylesheet">
 </head>
 <body>
+    <%@ include file="header.jsp"%> 
 <div class="card order-placement" style="width: 80%; margin-top:2rem; margin-left: 10%; text-align: center">
     <div class="card-body">
-        <h5 class="card-title"style="margin-bottom: 2%">Order ${corder.getOrderId()}</h5>
-        <h6 class="card-subtitle mb-2 text-body-secondary">2 Products</h6>
+        <h5 class="card-title"style="margin-bottom: 2%">Order ID #${corder.getOrderId()}</h5>
+<!--        <h6 class="card-subtitle mb-2 text-body-secondary">2 Products</h6>-->
         <p class="card-text">${corder.getOrderPlacedDateTime()}</p>
     </div>
 </div>
@@ -54,7 +55,7 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
             <div class="col-md-8">
                 <div class="card-body">
                     <h5 class="card-title">${product.getProductName()}</h5>
-                    <p class="card-text"><small class="text-body-secondary">LKR${product.getProductPrice()}</small></p>
+                    <p class="card-text"><small class="text-body-secondary">USD${product.getProductPrice()}</small></p>
                     <p class="card-text"><small class="text-body-secondary">Qty${product.getProductQuantity()}</small></p>
                 </div>
                 
@@ -63,7 +64,7 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
                
                 <div class="card-body">
                     <h5 class="card-title">Total</h5>
-                    <p class="card-text"><small class="text-body-secondary">LKR ${String.format("%.2f", product.getProductPrice() * product.getProductQuantity())}</small></p>
+                    <p class="card-text"><small class="text-body-secondary">USD ${String.format("%.2f", product.getProductPrice() * product.getProductQuantity())}</small></p>
                 </div>
             </div>
         </div>
@@ -81,7 +82,7 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
             <div class="col-md-8">
                 <div class="card-body">
                     <h5 class="card-title text-start">Total</h5>
-                    <h2 class="card-text text-end ">LKR ${corder.getTotalPrice()}</h2>
+                    <h2 class="card-text text-end ">USD ${corder.getTotalPrice()}</h2>
                 </div>
             </div>
         </div>
@@ -133,7 +134,7 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
     </form>
 </div>
 
-
+<%@ include file="footer.jsp"%>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 </body>
