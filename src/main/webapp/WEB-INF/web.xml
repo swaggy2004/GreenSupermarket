@@ -53,11 +53,11 @@
         <servlet-name>OrderServlet</servlet-name>
         <servlet-class>com.shaveen.greensupermarket.OrderServlet</servlet-class>
     </servlet>
-
-
-
-
     <!-- Servlet Mappings -->
+    <servlet>
+        <servlet-name>AddToWishListServlet</servlet-name>
+        <servlet-class>com.shaveen.greensupermarket.AddToWishListServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddAccountServlet</servlet-name>
         <url-pattern>/AddAccountServlet</url-pattern>
@@ -110,12 +110,14 @@
         <servlet-name>OrderServlet</servlet-name>
         <url-pattern>/OrderServlet</url-pattern>
     </servlet-mapping>
-
     <!-- Session Configuration -->
+    <servlet-mapping>
+        <servlet-name>AddToWishListServlet</servlet-name>
+        <url-pattern>/AddToWishListServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
-
     <!-- JSP Configuration -->
     <jsp-config>
         <taglib>
