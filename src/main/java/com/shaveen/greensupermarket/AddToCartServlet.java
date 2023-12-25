@@ -53,7 +53,7 @@ public class AddToCartServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        String Email = (String) session.getAttribute("Email");
+        String Email = (String) session.getAttribute("email");
         String Para = request.getParameter("PID");
         int PID = 0;
         try{

@@ -5,7 +5,7 @@
 package com.shaveen.greensupermarket;
 
 import Model.Connection;
-import java.sql.PreparedStatement;
+import Model.Order;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -16,51 +16,59 @@ import java.sql.PreparedStatement;
  * @author Shaveen
  */
 public class OrderCustomerDAO {
-    public static int insertOrderDetails(String CEmail, float totPrice) throws Exception {
-    try (var connection = Model.Connection.start();
-         PreparedStatement statement = connection.prepareStatement("INSERT INTO placed_order (CEmail, TotalPrice) VALUES(?, ?)", Statement.RETURN_GENERATED_KEYS)) {
-        statement.setString(1, CEmail);
-        statement.setFloat(2, totPrice);
+    public static int insertOrderDetails(Order order) throws Exception {
+        try (var connection = Connection.start();
+             PreparedStatement statement = connection.prepareStatement("INSERT INTO `placed_order`(`CEmail`, " +
+                     "`TotalPrice`) VALUES(?, ?)", Statement.RETURN_GENERATED_KEYS)) {
 
-        int affectedRows = statement.executeUpdate();
+            statement.setString(1, order.getCEmail());
+            statement.setFloat(2, order.getTotalPrice());
 
-        if (affectedRows > 0) {
-            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
-                if (generatedKeys.next()) {
-                    int lastOrderId = generatedKeys.getInt(1);
-                    System.out.println("Last inserted OrderID: " + lastOrderId);
-                    
-                    // Now you can use lastOrderId in subsequent statements...
-                    insertProductsIntoOrder(lastOrderId, CEmail);
-                    return lastOrderId;
-                } else {
-                    System.out.println("No generated keys returned.");
+            int affectedRows = statement.executeUpdate();
+
+            if (affectedRows > 0) {
+                try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        int lastOrderId = generatedKeys.getInt(1);
+                        System.out.println("Last inserted OrderID: " + lastOrderId);
+                        
+                        // Use a transaction for both inserts
+                        connection.setAutoCommit(false);
+                        insertProductsIntoOrder(lastOrderId, order.getCEmail());
+                        connection.commit();
+                        
+                        return lastOrderId;
+                    } else {
+                        System.out.println("No generated keys returned.");
+                    }
                 }
+            } else {
+                System.out.println("Insert into placed_order failed, no rows affected.");
             }
-        } else {
-            System.out.println("Insert into placed_order failed, no rows affected.");
+        } catch (Exception e) {
+            // Log the exception or throw it as needed
+            e.printStackTrace();
+            throw e;
         }
-    } catch (Exception e) {
-        e.printStackTrace();
-        throw e;
-    }
         return 0;
-}
+    }
 
     private static void insertProductsIntoOrder(int lastOrderId, String CEmail) {
-    try (var connection = Model.Connection.start();
-            PreparedStatement productStatement = connection.prepareStatement(
-            "INSERT INTO order_product (OrderID, ProductID, PName, OPqty, PPrice) " +
-                    "SELECT ?, sp.Product_ID, p.Name, sp.PQty, p.UnitPrice " +
-                    "FROM shopping_cart sp " +
-                    "JOIN product p ON sp.Product_ID = p.ProductID " +
-                    "WHERE sp.CEmail = ?")) {
-        productStatement.setInt(1, lastOrderId);
-        productStatement.setString(2, CEmail);
-        productStatement.executeUpdate();
-    } catch (Exception e) {
-        e.printStackTrace();
-        // Handle the exception or throw it as needed
+        try (var connection = Connection.start();
+                PreparedStatement productStatement = connection.prepareStatement(
+                "INSERT INTO order_product (OrderID, ProductID, PName, OPqty, PPrice) " +
+                        "SELECT ?, sp.Product_ID, p.Name, sp.PQty, p.UnitPrice " +
+                        "FROM shopping_cart sp " +
+                        "JOIN product p ON sp.Product_ID = p.ProductID " +
+                        "WHERE sp.CEmail = ?")) {
+            
+            productStatement.setInt(1, lastOrderId);
+            productStatement.setString(2, CEmail);
+            productStatement.executeUpdate();
+            
+        } catch (Exception e) {
+            // Log the exception or throw it as needed
+            e.printStackTrace();
+        }
     }
-}
 }

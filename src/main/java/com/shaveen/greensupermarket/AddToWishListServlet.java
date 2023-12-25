@@ -4,26 +4,23 @@
  */
 package com.shaveen.greensupermarket;
 
-import Model.Order;
-import Model.Product;
-import Model.ShoppingCart;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author Shaveen
  */
-public class OrderServlet extends HttpServlet {
+public class AddToWishListServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,10 +39,10 @@ public class OrderServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet OrderServlet</title>");            
+            out.println("<title>Servlet AddToWishListServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet OrderServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AddToWishListServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -77,54 +74,27 @@ public class OrderServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out = new PrintWriter(System.out);
-        try {
-            HttpSession session = request.getSession();
-            String email = (String) session.getAttribute("email");
-
-            if (email != null) {
-                List<ShoppingCart> cart = FetchShoppingCart.searchCart(email);
-                float totPrice = 0;
-
-                for (ShoppingCart item : cart) {
-                    int productId = item.getPID();
-                    System.out.println("ProductID = " + productId);
-                    Product product = FetchProduct.searchProduct(productId);
-                    System.out.println("Product = " + product.getProductName());
-                    totPrice += item.getPQty() * product.getPrice();
-                }
-
-                // Create an order and set customer details
-                Order order = new Order();
-                order.setCEmail(email);
-                order.setTotalPrice(totPrice);
-
-                // Insert order details into the database and retrieve the order ID
-                int orderID = 0;
-                try {
-                    orderID = OrderCustomerDAO.insertOrderDetails(order);
-                } catch (Exception ex) {
-                    Logger.getLogger(OrderServlet.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-                // Set the order ID in the session attribute
-                session.setAttribute("orderID", orderID);
-//
-//                // Redirect to a confirmation page or do further processing
-//                response.sendRedirect("orderConfirmation.jsp");  // Adjust the URL accordingly
-
-            } else {
-//                // Handle the case where the email is not set in the session
-//                // You might want to redirect the user to a login page or take appropriate action
-//                response.sendRedirect("login.jsp");  // Adjust the URL accordingly
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(OrderServlet.class.getName()).log(Level.SEVERE, null, ex);
-//            // Handle the SQL exception appropriately (e.g., display an error message)
-//            response.sendRedirect("error.jsp");  // Adjust the URL accordingly
+        
+        HttpSession session = request.getSession();
+        String Email = (String) session.getAttribute("email");
+        String Para = request.getParameter("PID");
+        int PID = 0;
+        try{
+            PID = Integer.parseInt(Para);
         }
+        catch (NumberFormatException e)
+        {
+            e.printStackTrace();
+        }
+        int qty = 1;
+        try {
+            FetchWishList.insertToWishList(Email, PID);
+        } catch (SQLException ex) {
+            Logger.getLogger(AddToCartServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WishList.jsp");
+        dispatcher.forward(request, response);
     }
-
 
     /**
      * Returns a short description of the servlet.

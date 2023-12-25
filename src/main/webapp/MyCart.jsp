@@ -5,49 +5,65 @@
   Time: 2:43 AM
   To change this template use File | Settings | File Templates.
 --%>
+<%@page import="java.io.PrintWriter"%>
 <%@page import="com.shaveen.greensupermarket.FetchProduct"%>
 <%@page import="jakarta.servlet.*, jakarta.servlet.http.*"%>
 <%@page import="Model.Product"%>
 <%@page import="java.util.logging.Logger"%>
 <%@page import="java.util.logging.Level"%>
-<%@page import="com.shaveen.greensupermarket.ShoppingCartServlet"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="com.shaveen.greensupermarket.FetchShoppingCart"%>
 <%@page import="Model.ShoppingCart"%>
-<%@page import="java.util.List"%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
-
-<%
-        String Email = (String) session.getAttribute("Email");
-        System.out.println("Email: " + Email);
-        List<ShoppingCart> cartList = FetchShoppingCart.searchCart(Email);
-        List<Product> products = null;
-        for (ShoppingCart cartItem : cartList) {
-                int productId = cartItem.getPID();
-                products = FetchProduct.SearchProduct(productId);
-                for (Product product : products){
-                    cartItem.setTotPrice(cartItem.getPQty() * product.getPrice());
-                }
-        }
-        pageContext.setAttribute("products", products);
-        pageContext.setAttribute("cartItem", cartList);
-        
-%>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
-
-    
 </head>
 <body>
+<nav style="background-color: #d0f288;" class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img style="width: 110px" alt="Navbar Logo" src="assets/NavLogo.svg"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Meats</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link active" aria-current="page" href="#">Fruits</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Vegetables</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Snacks</a>
+                </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+            <div class="icons-container">  Container for icons in mobile view 
+                 Desktop icons 
+                <a class="nav-link active" aria-current="page" href="#"><img src="assets/shopping_bag.svg" alt="Cart"></a>
+                <a class="nav-link active" aria-current="page" href="#"><img src="assets/favorite.svg" alt="Favorite"></a>
+                <a class="nav-link active" aria-current="page" href="#"><img src="assets/person_2.svg" alt="Profile"></a>
+            </div>
+        </div>
+    </div>
+</nav>
 <%@ include file="header.jsp"%> 
-
 <div class="container mt-5">
     <div class="row">
 
@@ -79,44 +95,48 @@
                 </div>
             </div>
             
-            <c:forEach items="${products}" var="product">
-                <c:forEach items="${cartItem}" var="item">
-                <div class="card mb-3" style="max-width: 1280px;border-radius: 20px;">
-                    <div class="row g-0">
-                        <div class="col-md-2 ">
-                            <img src="assets/vegi1.png" style="width: 100px; border-radius: 20px;" class="img-fluid rounded-start  " alt="...">
-                        </div>
-                        <div class="col-md-4 my-auto ">
-                            <div class="card-body">
-                                <h5>${product.getProductName()}</h5>
-                            </div>
-                        </div>
-                        <div class="col-md-2 my-auto ">
-                            <div class="card-body">
-                                <h5>USD ${product.getPrice()}</h5>
-                            </div>
-                        </div>
-                        <div class="col-md-2 my-auto ">
-                            <div class="card-body">
-                                <input type="number" name="PQty" value="${item.getPQty()}">
-                            </div>
-                        </div>
-                        <div class="col-md-1 my-auto ">
-                            <div class="card-body">
-                              <h5>USD ${item.getTotPrice()}</h5>
+            <c:set var="email" value="${sessionScope.email}" />
 
+            <c:forEach var="cartItem" items="${FetchShoppingCart.searchCart(email)}">
+                <c:set var="productId" value="${cartItem.PID}" />
+                <c:set var="products" value="${FetchProduct.SearchProduct(productId)}" />
+
+                <c:forEach var="product" items="${products}">
+                    <div class="card mb-3" style="max-width: 1280px; border-radius: 20px;">
+                        <div class="row g-0">
+                            <div class="col-md-2 mx-2 border">
+                                <img src="assets/vegi1.png" style="width: 100px; border-radius: 20px;" class="img-fluid rounded-start " alt="...">
                             </div>
-                        </div>
-                        <div class="col-md-1 my-auto ">
-                            <div class="card-body">
-                                <button type="button" class="btn-close" aria-label="Close"></button>
+                            <div class="col-md-4 my-auto ">
+                                <div class="card-body">
+                                    <h5>${product.productName}</h5>
+                                </div>
+                            </div>
+                            <div class="col-md-2 my-auto ">
+                                <div class="card-body">
+                                    <h5>USD ${product.price}</h5>
+                                </div>
+                            </div>
+                            <div class="col-md-1 my-auto">
+                                <div class="card-body">
+                                    <input type="number" class="form-control" name="PQty" value="${cartItem.PQty}">
+                                </div>
+                            </div>
+                            <div class="col-md-1 my-auto">
+                                <div class="card-body">
+                                    <h5>USD ${String.format("%.2f", cartItem.PQty * product.price)}</h5>
+                                </div>
+                            </div>
+
+                            <div class="col-md-1 my-auto ">
+                                <div class="card-body">
+                                    <button type="button" class="btn-close" aria-label="Close"></button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 </c:forEach>
             </c:forEach>
-
         </div>
 
     </div>
@@ -130,10 +150,11 @@
             <div class="row mb-3">
                 <div class="col-md-12 ">
                     <div class="d-grid 2">
-                        <form action="OrderServlet" method="post">                   
-                            <button class="btn btn-primary" style="background-color: #34A853; border-color: #34A853;" type="submit" data-bs-toggle="modal" data-bs-target="#myModal">Check Out</button>
-                            
+                        
+                        <form id="checkoutForm" action="OrderServlet" method="post">
+                            <button id="checkoutBtn" class="btn btn-primary" style="background-color: #34A853; border-color: #34A853;" type="submit">Check Out</button>
                         </form>
+                        
                         <div class="modal" id="myModal">
                             <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
                                 <div class="modal-content">
