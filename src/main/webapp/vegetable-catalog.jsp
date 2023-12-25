@@ -54,7 +54,7 @@
                       <img src="assets/images/individual-catalogs/vegetables/img1.svg" class="card-img-top" alt="Ladies Fingers">
                       <div class="card-body">
                         <h5 class="card-title1">${product.getProductName()} ${product.getUnitQty()}g</h5>
-                        <h5 class="card-title2">LKR ${product.getPrice()}</h5>
+                        <h5 class="card-title2">USD ${product.getPrice()}</h5>
                         <div class="circle">
                           <img src="assets/images/individual-catalogs/vegetables/cart-icon.svg" class="circle-img" alt="cart-icon">
                         </div>
