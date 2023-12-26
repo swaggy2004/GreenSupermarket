@@ -60,6 +60,10 @@
         <servlet-name>StockSearchServlet</servlet-name>
         <servlet-class>com.shaveen.greensupermarket.StockSearchServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UserFedbackReviewServlet</servlet-name>
+        <servlet-class>com.shaveen.greensupermarket.UserFedbackReviewServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddAccountServlet</servlet-name>
         <url-pattern>/AddAccountServlet</url-pattern>
@@ -118,6 +122,10 @@
         <url-pattern>/AddToWishListServlet</url-pattern>
         <servlet-name>StockSearchServlet</servlet-name>
         <url-pattern>/StockSearchServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserFedbackReviewServlet</servlet-name>
+        <url-pattern>/UserFedbackReviewServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
