@@ -58,32 +58,42 @@ public class AddToWishListServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         HttpSession session = request.getSession();
         String Email = (String) session.getAttribute("email");
-        if (Email != null){
-            String Para = request.getParameter("PID");
-            int PID = 0;
-            try{
-                PID = Integer.parseInt(Para);
-            }
-            catch (NumberFormatException e)
-            {
-                e.printStackTrace();
-            }
-            try {
-                FetchWishList.insertToWishList(Email, PID);
-            } catch (SQLException ex) {
-                Logger.getLogger(AddToWishListServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WishList.jsp");
-            dispatcher.forward(request, response);
+        String Para = request.getParameter("PID");
+        int PID = 0;
+        try{
+            PID = Integer.parseInt(Para);
         }
-        else{
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
-            dispatcher.forward(request, response);
+        catch (NumberFormatException e)
+        {
+            e.printStackTrace();
         }
+        int qty = 1;
+        try {
+            FetchWishList.insertToWishList(Email, PID);
+        } catch (SQLException ex) {
+            Logger.getLogger(AddToCartServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WishList.jsp");
+        dispatcher.forward(request, response);
     }
 
     /**

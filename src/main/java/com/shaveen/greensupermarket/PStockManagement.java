@@ -64,7 +64,6 @@ public class PStockManagement {
             System.out.println(e);
         }
     }
-<<<<<<< HEAD
     
     
      public static List<ProductStock> searchProductStock(String searchQuery) {
@@ -93,6 +92,4 @@ public class PStockManagement {
 
         return searchResults;
     }
-=======
->>>>>>> main
 }

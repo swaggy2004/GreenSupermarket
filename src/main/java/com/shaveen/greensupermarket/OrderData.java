@@ -23,12 +23,8 @@ public class OrderData {
     private Date orderStatusDeliveredTime;
     private String customerEmail;
     private int feedbackID;
-<<<<<<< HEAD
     private int number_products;
     private float totalamount;
-=======
-
->>>>>>> main
     /**
      * @return the orderID
      */
@@ -174,7 +170,6 @@ public class OrderData {
         this.feedbackID = feedbackID;
     }
     
-<<<<<<< HEAD
     public int getnumber_products() {
         return number_products;
     }
@@ -197,8 +192,4 @@ public class OrderData {
         this.totalamount = totalamount;
     
     }
-=======
-    
-    
->>>>>>> main
 }

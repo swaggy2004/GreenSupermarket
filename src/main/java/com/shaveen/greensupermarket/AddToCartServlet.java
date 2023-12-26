@@ -28,10 +28,10 @@ public class AddToCartServlet extends HttpServlet {
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
-     * @param request  servlet request
+     * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException      if an I/O error occurs
+     * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -41,7 +41,7 @@ public class AddToCartServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddToCartServlet</title>");
+            out.println("<title>Servlet AddToCartServlet</title>");            
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet AddToCartServlet at " + request.getContextPath() + "</h1>");
@@ -54,27 +54,22 @@ public class AddToCartServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         String Email = (String) session.getAttribute("email");
-        if (Email != null) {
-            String Para = request.getParameter("PID");
-            int PID = 0;
-            try {
-                PID = Integer.parseInt(Para);
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-            }
-            int qty = 1;
-            try {
-                FetchShoppingCart.insertToCart(Email, PID, qty);
-            } catch (SQLException ex) {
-                Logger.getLogger(AddToCartServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/MyCart.jsp");
-            dispatcher.forward(request, response);
+        String Para = request.getParameter("PID");
+        int PID = 0;
+        try{
+            PID = Integer.parseInt(Para);
         }
-        else
+        catch (NumberFormatException e)
         {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
-            dispatcher.forward(request, response);
+            e.printStackTrace();
         }
+        int qty = 1;
+        try {
+            FetchShoppingCart.insertToCart(Email, PID, qty);
+        } catch (SQLException ex) {
+            Logger.getLogger(AddToCartServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/MyCart.jsp");
+        dispatcher.forward(request, response);
     }
 }
