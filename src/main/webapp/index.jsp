@@ -17,7 +17,7 @@
 <div class="jumbotron">
   <div class="jumbotron-text">
     Unpack a world<br>of freshness in<br>every bag
-    <a href="UserDashboard.jsp">Here click</a>
+    
   </div>
 </div>
 <!--Catory section headings-->

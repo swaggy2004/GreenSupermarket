@@ -4,6 +4,8 @@
  */
 package paypalpayment;
 
+import Model.EOrderDetail;
+import Model.OrderProduct;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -16,6 +18,7 @@ import jakarta.servlet.annotation.WebServlet;
 import com.paypal.api.payments.*;
 import com.paypal.base.rest.PayPalRESTException;
 import jakarta.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  *
@@ -91,15 +94,64 @@ public class ExecutePaymentServlet extends HttpServlet {
             request.setAttribute("payer", payerInfo);
             request.setAttribute("transaction", transaction); 
             
+//            HttpSession session = request.getSession();
+            
             HttpSession session = request.getSession();
-            OrderDAO.updateOrderStatusPlaced(session);
- 
+            
+            Integer orderId = (Integer) session.getAttribute("orderID");
+
+        // Debugging: Print orderId to console
+        System.out.println("orderId from session: " + orderId);
+        
+       
+         
+
+        OrderDAO.updateOrderStatusPlaced(orderId);
+        
+        EOrderDetail orderDetails = OrderDAO.getOrderDetails(orderId);
+        
+            
+            
+                   int orderNumber = orderId;
+                   String orderDate = orderDetails.getOrderDate();
+                   String customerEmail = orderDetails.getCustomerEmail();
+                   float totalPrice = orderDetails.getTotalPrice();
+        
+            
+            
+                   String host = "smtp-relay.brevo.com";
+                   String port = "587";
+                   String mailFrom = "greensupermarketa@gmail.com";
+                   String password = "IaWxFzTVJm7bKQ49";
+
+                   // outgoing message information
+                   
+                   String subject = "Order Confirmation - Order No" + orderNumber ;
+                   String message = "Thank you for choosing Green Supermarket for your recent purchase! " +
+                "We are thrilled to confirm that your order has been successfully received and is currently being processed.\n\n\n" +
+                "Order Number: " + orderNumber + "\n" +
+                " Order Date: " + orderDate + "\n" +
+                "Total Price: " + totalPrice + "\n" +
+                "Customer Email: " +customerEmail  ;
+                   
+                   
+                   PlainTextEmailSender mailer = new PlainTextEmailSender();
+
+                   try {
+                       mailer.sendPlainTextEmail(host, port, mailFrom, password, customerEmail,
+                               subject, message);
+                       System.out.println("Email sent.");
+                   } catch (Exception ex) {
+                       System.out.println("Failed to sent email.");
+                       ex.printStackTrace();
+                   }
+                       
             request.getRequestDispatcher("receipt.jsp").forward(request, response);
              
         } catch (PayPalRESTException ex) {
             request.setAttribute("errorMessage", ex.getMessage());
             ex.printStackTrace();
-            request.getRequestDispatcher("error.jsp").forward(request, response);
+            request.getRequestDispatcher("Error.jsp").forward(request, response);
         }
         
         

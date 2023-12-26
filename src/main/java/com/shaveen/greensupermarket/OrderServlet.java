@@ -77,7 +77,7 @@ public class OrderServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out = new PrintWriter(System.out);
+        
         try {
             HttpSession session = request.getSession();
             String email = (String) session.getAttribute("email");
@@ -109,6 +109,8 @@ public class OrderServlet extends HttpServlet {
 
                 // Set the order ID in the session attribute
                 session.setAttribute("orderID", orderID);
+                System.out.println("Order ID stored in session: " + session.getAttribute("orderID"));
+                
 //
 //                // Redirect to a confirmation page or do further processing
 //                response.sendRedirect("orderConfirmation.jsp");  // Adjust the URL accordingly
@@ -123,6 +125,8 @@ public class OrderServlet extends HttpServlet {
 //            // Handle the SQL exception appropriately (e.g., display an error message)
 //            response.sendRedirect("error.jsp");  // Adjust the URL accordingly
         }
+        
+        response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/authorize_payment"));
     }
 
 

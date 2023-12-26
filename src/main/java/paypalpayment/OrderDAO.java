@@ -4,9 +4,13 @@
  */
 package paypalpayment;
 
+import Model.EOrderDetail;
+import Model.OrderCustomerDetail;
 import Model.OrderDetail;
 import Model.OrderProduct;
 import com.paypal.api.payments.Order;
+import com.paypal.api.payments.Payer;
+import com.paypal.api.payments.PayerInfo;
 import jakarta.servlet.http.HttpSession;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -134,17 +138,17 @@ public class OrderDAO {
         return new OrderProduct(productId, name, quantity, unitPrice);
     }
     
-    public static void updateOrderStatusPlaced(HttpSession session) {
+    public static void updateOrderStatusPlaced(int orderId) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
         try {
-            int orderId = 1; //TODO: Get the OrderID from the session
+//            int orderId = 1; //TODO: Get the OrderID from the session
             // Assume you have a method to get a database connection
             connection = Model.Connection.start();
 
             // SQL query to update OrderStatus_Placed to 1
-            String updateQuery = "UPDATE order_placed SET OrderStatus_Placed = 1 WHERE OrderID = ?";
+            String updateQuery = "UPDATE placed_order SET OrderStatus_Placed = 1 WHERE OrderID = ?";
 
             preparedStatement = connection.prepareStatement(updateQuery);
             preparedStatement.setInt(1, orderId);
@@ -156,7 +160,108 @@ public class OrderDAO {
             e.printStackTrace(); // Handle or log the exception as needed
         } finally {
             // Close resources in a finally block
-            Model.Connection.start();
+            Model.Connection.end();
         }
     }
+    
+    
+    public OrderCustomerDetail getCustomerInformationForOrder(String customerEmail) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        OrderCustomerDetail customer = null;
+
+        try {
+            // Establish database connection (replace with your connection logic)
+            connection = Model.Connection.start();
+
+            // SQL query to retrieve customer information based on email
+            String sql = "SELECT FullName, Email FROM customer WHERE Email = ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, customerEmail);
+            resultSet = preparedStatement.executeQuery();
+
+            // If a matching customer is found, retrieve data
+            if (resultSet.next()) {
+                String fullName = resultSet.getString("FullName");
+                String email = resultSet.getString("Email");
+
+                // Create a Customer object
+                customer = new OrderCustomerDetail(fullName, email);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Handle the exception appropriately in your application
+        } finally {
+            // Close resources (Connection, PreparedStatement, ResultSet)
+            Model.Connection.end();
+        }
+
+        return customer;
+    }
+    
+    
+    public String getCustomerEmailForOrder(String orderId) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        String customerEmail = null;
+
+        try {
+            // Establish database connection (replace with your connection logic)
+            connection = Model.Connection.start();
+
+            // SQL query to retrieve customer email from placed_order based on OrderID
+            String sql = "SELECT CEmail FROM placed_order WHERE OrderID = ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, orderId);
+            resultSet = preparedStatement.executeQuery();
+
+            // If a matching order is found, retrieve customer email
+            if (resultSet.next()) {
+                customerEmail = resultSet.getString("CEmail");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Handle the exception appropriately in your application
+        } finally {
+            // Close resources (Connection, PreparedStatement, ResultSet)
+            Model.Connection.end();
+        }
+
+        return customerEmail;
+    }
+    
+    
+    public static EOrderDetail getOrderDetails(int orderId) {
+    EOrderDetail orderDetails = null;
+    try (Connection connection = Model.Connection.start()) {
+        String sql = "SELECT OrderDate, CEmail, TotalPrice FROM placed_order WHERE OrderID = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, orderId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    String orderDate = resultSet.getString("OrderDate");
+                    String customerEmail = resultSet.getString("CEmail");
+                    float totalPrice = resultSet.getFloat("TotalPrice");
+
+                    // Create an OrderDetails object to hold the retrieved data
+                    orderDetails = new EOrderDetail(orderDate, customerEmail, totalPrice);
+                }
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace(); // Handle the exception appropriately
+    }
+    return orderDetails;
+}
+
+
+    
+    
+    
+   
+    
+
+
+   
+
 }
