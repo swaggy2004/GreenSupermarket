@@ -2,7 +2,6 @@
 <%@page import="Model.ProductStock"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c"%>
 <%@page import="java.util.List"%>
-<<<<<<< HEAD
 <%
 
 String email = (String) session.getAttribute("email");
@@ -12,8 +11,6 @@ boolean isLoggedIn =  session.getAttribute("isLoggedIn")!= null && (boolean) ses
 if ("M".equals(role) && isLoggedIn  && email != null) {
    
 %>
-=======
->>>>>>> main
 <!doctype html>
 <%
      List<ProductStock> ProductStocks = PStockManagement.getProductStock();
@@ -112,7 +109,6 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
                     </td>
 
 
-<<<<<<< HEAD
                 </tr>
             </c:forEach>
             </tbody>
@@ -159,59 +155,14 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
             </td>
 
 
-=======
-
-
-    <table style="margin-top: 2rem ; margin-left: 2rem ; margin-right: 2rem;" class="table">
-        <thead>
-        <tr>
-            <th scope="col">Product ID</th>
-            <th scope="col">Stock Status</th>
-            <th scope="col">Name</th>
-            <th scope="col">Stock Count</th>
-        </tr>
-        </thead>
-        <tbody>
-
-        <c:forEach items="${ProductStocks}" var="ProductSt">
-        <form action="PStockQtyUpdateServlet" method="Post">
-        <tr>
-            <th scope="row">${ProductSt.getProductID()}</th>
-            <td>
-                <c:choose>
-                    <c:when test="${ProductSt.getStockQty() eq 0}">
-                        Out of Stock
-                    </c:when>
-                    <c:when test="${ProductSt.getStockQty() lt 15}">
-                        Running Out
-                    </c:when>
-                    <c:otherwise>
-                        In Stock
-                    </c:otherwise>
-                </c:choose>
-            </td>
-            <td>${ProductSt.getProductName()}</td>
-            <td>
-                <div class="input-group w-auto  align-items-center">
-                    <input type="number" min="0" step="1" value="${ProductSt.getStockQty()}" name="stock_count" class="quantity-field border-0 text-center ">
-                    <input type="hidden" name="productId" value="${ProductSt.getProductID()}">
-                    <button type="submit" class="text-uppercase btn btn-success btn-sm ">Update Stock</button>
-                </div>
-            </td>
-
-
->>>>>>> main
         </tr>
         </form>
         </c:forEach>
 
         </tbody>
     </table>
-<<<<<<< HEAD
     
     
-=======
->>>>>>> main
 
 <div class="col d-flex justify-content-center">
     <nav aria-label="Page navigation example">
@@ -251,11 +202,7 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 
-<<<<<<< HEAD
 <%@ include file="footer.jsp"%>
-=======
-
->>>>>>> main
 </body>
 </html>
 <%

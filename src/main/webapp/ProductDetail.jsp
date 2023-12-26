@@ -27,7 +27,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="ProductDetails.css">
-    <title>${product.getProductName()}</title>
+    <title>Bootstrap demo</title>
 
 </head>
 <body>
@@ -82,11 +82,11 @@
                     <input type="hidden" name="PID" value="${product.getProductID()}">
                     <button type="submit" ${product.getStockQty() > 0 ? '' : 'disabled'} class="btn btn-primary" style="background-color: #34A853; border-color: #34A853">Add to Cart</button>
                 </form>
-                <form action="AddToWishListServlet" method="post">
-                    <input type="hidden" name="PID" value="${product.getProductID()}">
-                    <button type="submit" class="btn btn-light"><img src="assets/ProductDetailHeartIcon.svg"></button>
-                </form>
             </div>
+                <form action="AddToWishListServlet"></form>
+                <input type="hidden" name="PID" value="${product.getProductID()}">
+            <button type="submit" class="btn btn-light"><img src="assets/ProductDetailHeartIcon.svg"></button>
+
         </div>
     </div>
 </div>

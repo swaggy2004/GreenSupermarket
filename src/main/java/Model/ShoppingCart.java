@@ -11,6 +11,7 @@ import java.util.List;
  * @author Shaveen
  */
 public class ShoppingCart {
+    private int CartID;
     private int PQty;
     private int PID;
     private String CEmail;
@@ -18,7 +19,8 @@ public class ShoppingCart {
     
     public ShoppingCart(){};
     
-    public ShoppingCart(int PQty, int PID, String CEmail){
+    public ShoppingCart(int CartID, int PQty, int PID, String CEmail){
+       this.CartID = CartID;
        this.PQty = PQty;
        this.PID = PID;
        this.CEmail = CEmail;
@@ -46,6 +48,13 @@ public class ShoppingCart {
 
     public void setPID(int PID) {
         this.PID = PID;
+    }
+    public int getCartID() {
+        return this.CartID;
+    }
+
+    public void setCartID(int CartID) {
+        this.CartID = CartID;
     }
 
     public int getPQty() {
