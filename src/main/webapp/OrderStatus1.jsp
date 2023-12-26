@@ -136,12 +136,14 @@
 
 
     </div>
+    
+    <a href="review.jsp?orderId=${orderstatus.getOrderId()}" class="btn btn-success">Give Feedback</a>
     <!--Stepper end-->
-    <div class="container mt-3 mb-4" style="border: 1px solid #D6D4D4">
-        <div class="row">
+<!--    <div class="container mt-3 mb-4" style="border: 1px solid #D6D4D4">
+        <div class="row">-->
 
 
-            <div class="col-md-12">
+<!--            <div class="col-md-12">
                 <h4 style="margin-bottom: 10px;">Order Activity</h4>
 
                 <div class="card mb-3" style="max-width: 1280px;border:none;">
@@ -175,10 +177,10 @@
 
 
 
-            </div>
+            </div>-->
 
-        </div>
-    </div>
+<!--        </div>
+    </div>-->
 
 </div>
 
