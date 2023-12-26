@@ -7,14 +7,14 @@
     color: #fff;
 }
 
-.btn-update, .btn-back {
+.custom-update-btn .btn-update {
     padding: 10px 20px;
     border-radius: 43px;
     cursor: pointer;
     transition: background-color 0.3s ease, opacity 0.3s ease;
 }
 
-.btn-update {
+.custom-update-btn .btn-update {
     background-color: #28a745;
     color: #fff;
     border: none;
@@ -26,6 +26,7 @@
     border: none;
 }
 
-.btn-update:hover, .btn-back:hover {
+.custom-update-btn .btn-update:hover {
     opacity: 0.8;
 }
+

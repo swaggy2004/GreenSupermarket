@@ -71,9 +71,13 @@ public class ReviewPaymentServlet extends HttpServlet {
             PayerInfo payerInfo = payment.getPayer().getPayerInfo();
             Transaction transaction = payment.getTransactions().get(0);
             ShippingAddress shippingAddress = transaction.getItemList().getShippingAddress();
-            
+
             HttpSession session = request.getSession();
-            int orderId = 1; //TODO: Get the OrderID from the session
+            Integer orderId = (Integer) session.getAttribute("orderID");
+             
+            
+            
+//            int orderId = 1; //TODO: Get the OrderID from the session
 
             // Retrieve OrderDetail from the database using OrderDAO
             

@@ -17,18 +17,19 @@
     </style>
 </head>
 <body>
+    <c:set var="orderID" value="${sessionScope.orderID}" />
     <%@ include file="header.jsp"%> 
 <div align="center">
     <h1>Payment Done. Thank you for purchasing our products</h1>
     <br/>
     <h2>Receipt Details:</h2>
-    <table>
+    <table border="1">
         <tr>
             <td><b>Merchant:</b></td>
             <td>Green SuperMarket</td>
         </tr>
         <tr>
-            <td colspan="2"><b>Payer:</b></td>
+            <td colspan="2"><b>Payers Details</b></td>
         </tr>
         <tr>
             <td>First Name:</td>
@@ -52,7 +53,7 @@
                         <th>Unit Price</th>
                         <th>Subtotal</th>
                     </tr>
-                    <c:forEach var="product" items="${orderDetail.products}">
+                    <c:forEach var="product" items="${orderProduct.products}">
                         <tr>
                             <td>${product.name}</td>
                             <td>${product.quantity}</td>
@@ -65,9 +66,11 @@
         </tr>
         <tr>
             <td><b>Shipping:</b></td>
+            <td>$ 1</td>
         </tr>
     </table>
 </div>
+            <a href="OrderStatus1.jsp?orderId=${orderID}" >View Details</a>
 <%@ include file="footer.jsp"%>
         
 </body>

@@ -33,6 +33,8 @@
     <servlet>
         <servlet-name>PStockQtyUpdateServlet</servlet-name>
         <servlet-class>com.shaveen.greensupermarket.PStockQtyUpdateServlet</servlet-class>
+        <servlet-name>UserFedbackReviewServlet</servlet-name>
+        <servlet-class>com.shaveen.greensupermarket.UserFedbackReviewServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AddAccountServlet</servlet-name>
@@ -105,6 +107,8 @@
     <servlet-mapping>
         <servlet-name>PStockQtyUpdateServlet</servlet-name>
         <url-pattern>/PStockQtyUpdateServlet</url-pattern>
+        <servlet-name>UserFedbackReviewServlet</servlet-name>
+        <url-pattern>/UserFedbackReviewServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

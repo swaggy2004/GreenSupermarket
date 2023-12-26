@@ -1,38 +1,24 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
-AuthorizePaymentServlet class - requests PayPal for payment.
- * @author Nam Ha Minh taken, altered and Reused as needed by Darren Victoria 
- *
  */
-package paypalpayment;
+package com.shaveen.greensupermarket;
 
-import Model.OrderDetail;
-import Model.OrderProduct;
+import jakarta.servlet.annotation.WebServlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.*;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import com.paypal.base.rest.PayPalRESTException;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
- * @author Jude Darren Victoria
+ * @author DELL
  */
+@WebServlet(name = "UserFedbackReviewServlet", urlPatterns = {"/UserFedbackReviewServlet"})
+public class UserFedbackReviewServlet extends HttpServlet {
 
-@WebServlet("/authorize_payment")
-public class AuthorizePaymentServlet extends HttpServlet {
-     private static final long serialVersionUID = 1L;
-     
-     public AuthorizePaymentServlet() {
-    }
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -50,10 +36,10 @@ public class AuthorizePaymentServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AuthorizePaymentServlet</title>");            
+            out.println("<title>Servlet UserFedbackReviewServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AuthorizePaymentServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet UserFedbackReviewServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -71,28 +57,7 @@ public class AuthorizePaymentServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        HttpSession session = request.getSession();
-        Integer orderID = (Integer) session.getAttribute("orderID");
-
-
-        OrderDetail orderDetail = new OrderDAO().getOrderDetailById(orderID);
-        
-        
-         //TODO: Get the OrderID from the session
-
-        try {
-            PaymentServices paymentServices = new PaymentServices();
-            
-            String approvalLink = paymentServices.authorizePayment(orderDetail,String.valueOf(orderID));
-            response.sendRedirect(approvalLink);
-        } catch (PayPalRESTException ex) {
-            request.setAttribute("errorMessage", ex.getMessage());
-            ex.printStackTrace();
-            request.getRequestDispatcher("error.jsp").forward(request, response);
-        }
-        
-     
+        processRequest(request, response);
     }
 
     /**
@@ -106,9 +71,23 @@ public class AuthorizePaymentServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-           processRequest(request, response);
-        
+        int OrderID = Integer.parseInt(request.getParameter("OrderId"));
+        int RatingVal = Integer.parseInt(request.getParameter("flexRadioDefault"));
+        String WrittenReview = request.getParameter("writtenReview");
+
+        // Perform database update
+        try {
+            UserFeedbackReview.insertFeedback(OrderID, RatingVal, WrittenReview);
+            // Forward the request to the Review.jsp page for displaying the result
+            request.getRequestDispatcher("/review.jsp");
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error processing the request");
+        }
     }
+
+   
+
 
     /**
      * Returns a short description of the servlet.

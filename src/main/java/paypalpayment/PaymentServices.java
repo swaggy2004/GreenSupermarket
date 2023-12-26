@@ -5,8 +5,11 @@
 package paypalpayment;
 
 
+import Model.OrderCustomerDetail;
 import Model.OrderDetail;
 import Model.OrderProduct;
+
+
 import java.util.*;
  
 import com.paypal.api.payments.*;
@@ -21,10 +24,12 @@ public class PaymentServices {
             private static final String CLIENT_SECRET = "EF1ucW39V9ZGs4ldgZ0u7EDQeKjILqzyin7VyzGHi_cnRlNwx2ve5-G08aWzymelEc3nPUt-39CloYNx";
             private static final String MODE = "sandbox";
 
-            public String authorizePayment(OrderDetail orderDetail)        
-                    throws PayPalRESTException {       
+            public String authorizePayment(OrderDetail orderDetail, String OrderID)        
+                    throws PayPalRESTException {
+                
+//                String OrderID= "1"; //TO-DO Feed order ID
 
-                Payer payer = getPayerInformation();
+                Payer payer = getPayerInformation(OrderID);
                 RedirectUrls redirectUrls = getRedirectURLs();
                 List<Transaction> listTransaction = getTransactionInformation(orderDetail);
 
@@ -42,19 +47,34 @@ public class PaymentServices {
  
     }
             
-        private Payer getPayerInformation() {
-        Payer payer = new Payer();
-        payer.setPaymentMethod("paypal");
+                OrderDAO orderdet = new OrderDAO();
+                
+                private Payer getPayerInformation(String orderId) {
+                Payer payer = new Payer();
+                payer.setPaymentMethod("paypal");
 
-        PayerInfo payerInfo = new PayerInfo();
-        payerInfo.setFirstName("William")
-                 .setLastName("Peterson")
-                 .setEmail("william.peterson@company.com");
+                // Retrieve email from placed_order table based on OrderID
+                String customerEmail = orderdet.getCustomerEmailForOrder(orderId);
 
-        payer.setPayerInfo(payerInfo);
+                if (customerEmail != null) {
+                    // Retrieve customer information based on email
+                    OrderCustomerDetail customer = orderdet.getCustomerInformationForOrder(customerEmail);
 
-        return payer;
-    }
+                    if (customer != null) {
+                        // Set PayerInfo using customer information
+                        PayerInfo payerInfo = new PayerInfo();
+                        payerInfo.setFirstName(customer.getFullName())
+                                 .setEmail(customer.getEmail());
+
+                        payer.setPayerInfo(payerInfo);
+                    }
+                }
+
+                return payer;
+            }
+
+            
+
         
     private RedirectUrls getRedirectURLs() {
     RedirectUrls redirectUrls = new RedirectUrls();
