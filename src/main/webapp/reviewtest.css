@@ -17,7 +17,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 
 .rating_stars span .fa, .rating_stars span.active-low .fa-star-o, .rating_stars span.active-high .fa-star-o{
-	display: none;
+
 }
 
 .rating_stars span .fa-star-o{
@@ -25,7 +25,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 
 .rating_stars span.s.active-high .fa-star{
-	display: inline-block; color: #feb645;
+	display: inline-block;
+	color: #feb645;
 }
 
 .rating_stars span.s.active-low .fa-star-half-o{
@@ -40,6 +41,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 	left: 0;
 }
 
+.fa-star-o{
+	border: 2px yellow solid;
+}
 .rating_stars span.r.r0_5 {left:0px;}
 .rating_stars span.r.r1 {left:10px; width: 11px;}
 .rating_stars span.r.r1_5 {left:21px; width: 13px;}

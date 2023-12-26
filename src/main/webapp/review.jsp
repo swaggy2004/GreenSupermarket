@@ -21,13 +21,14 @@
                     <input class="ratingvalue" type="text" name="rating" id="rating_val" value="0" />
                 </div>
             </div>
-            <span class="rating_stars rating_0">
-                <span class='s' data-low='0.5' data-high='1'><i class="fa fa-star-o"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star"></i></span>
+            <span class="rating_stars rating_0 border">
+                <span class='s border' data-low='0.5' data-high='1'><i class="fa fa-star-o border"></i><i
+                        class="fa fa-star-half-o border"></i><i class="fa fa-star border"></i></span>
                 <span class='s' data-low='1.5' data-high='2'><i class="fa fa-star-o"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star"></i></span>
                 <span class='s' data-low='2.5' data-high='3'><i class="fa fa-star-o"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star"></i></span>
                 <span class='s' data-low='3.5' data-high='4'><i class="fa fa-star-o"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star"></i></span>
                 <span class='s' data-low='4.5' data-high='5'><i class="fa fa-star-o"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star"></i></span>			
-                <span class='r r0_5' data-rating='1' data-value='0.5'></span>
+                <span class='r r0_5 border' data-rating='1' data-value='0.5'></span>
                 <span class='r r1' data-rating='1' data-value='1'></span>
                 <span class='r r1_5' data-rating='15' data-value='1.5'></span>
                 <span class='r r2' data-rating='2' data-value='2'></span>

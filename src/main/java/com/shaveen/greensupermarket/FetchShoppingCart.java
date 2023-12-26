@@ -56,5 +56,19 @@ public class FetchShoppingCart {
             throw e;
         }
     }
+
+    public static void increaseQty(String CEmail, int PQty, int PID) {
+        try (var connection = Model.Connection.start();
+             PreparedStatement statement = connection.prepareStatement(
+                     "UPDATE shopping_cart SET PQty = ? WHERE CEmail = ? AND Product_ID = ?;")) {
+            statement.setInt(1, PQty);
+            statement.setString(2, CEmail);
+            statement.setInt(3, PID);
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
 

@@ -57,8 +57,14 @@
     <servlet>
         <servlet-name>AddToWishListServlet</servlet-name>
         <servlet-class>com.shaveen.greensupermarket.AddToWishListServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>StockSearchServlet</servlet-name>
         <servlet-class>com.shaveen.greensupermarket.StockSearchServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChangePqtyServlet</servlet-name>
+        <servlet-class>com.shaveen.greensupermarket.ChangePqtyServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AddAccountServlet</servlet-name>
@@ -116,8 +122,14 @@
     <servlet-mapping>
         <servlet-name>AddToWishListServlet</servlet-name>
         <url-pattern>/AddToWishListServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>StockSearchServlet</servlet-name>
         <url-pattern>/StockSearchServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangePqtyServlet</servlet-name>
+        <url-pattern>/ChangePqtyServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
