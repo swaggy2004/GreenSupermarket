@@ -71,7 +71,28 @@ public class AuthorizePaymentServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        HttpSession session = request.getSession();
+        Integer orderID = (Integer) session.getAttribute("orderID");
+
+
+        OrderDetail orderDetail = new OrderDAO().getOrderDetailById(orderID);
+        
+        
+         //TODO: Get the OrderID from the session
+
+        try {
+            PaymentServices paymentServices = new PaymentServices();
+            
+            String approvalLink = paymentServices.authorizePayment(orderDetail,String.valueOf(orderID));
+            response.sendRedirect(approvalLink);
+        } catch (PayPalRESTException ex) {
+            request.setAttribute("errorMessage", ex.getMessage());
+            ex.printStackTrace();
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+        }
+        
+     
     }
 
     /**
@@ -85,17 +106,7 @@ public class AuthorizePaymentServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        OrderDetail orderDetail = new OrderDAO().getOrderDetailById(1); //TODO: Get the OrderID from the session
-
-        try {
-            PaymentServices paymentServices = new PaymentServices();
-            String approvalLink = paymentServices.authorizePayment(orderDetail);
-            response.sendRedirect(approvalLink);
-        } catch (PayPalRESTException ex) {
-            request.setAttribute("errorMessage", ex.getMessage());
-            ex.printStackTrace();
-            request.getRequestDispatcher("error.jsp").forward(request, response);
-        }
+           processRequest(request, response);
         
     }
 

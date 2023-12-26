@@ -5,6 +5,7 @@
 --%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +17,18 @@
     </style>
 </head>
 <body>
+    <%
+    
+    // Get the orderId from the session
+        
+        Integer orderId = (Integer) session.getAttribute("orderID");
+
+        // Debugging: Print orderId to console
+        System.out.println("orderId from session: " + orderId);
+    
+    
+    
+    %>
     <%@ include file="header.jsp"%> 
     <div align="center">
         <h1>Please Review Before Paying</h1>
