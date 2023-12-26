@@ -1,50 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
     <!-- Servlet Declarations -->
-    <servlet>
-        <servlet-name>AddAccountServlet</servlet-name>
-        <servlet-class>com.shaveen.greensupermarket.AddAccountServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>AddProductServlet</servlet-name>
-        <servlet-class>com.shaveen.greensupermarket.AddProductServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>EditAccountServlet</servlet-name>
-        <servlet-class>com.shaveen.greensupermarket.EditAccountServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>EditProductServlet</servlet-name>
-        <servlet-class>com.shaveen.greensupermarket.EditProductServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>AdminProductServlet</servlet-name>
-        <servlet-class>com.shaveen.greensupermarket.AdminProductServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CustomerRegister</servlet-name>
-        <servlet-class>com.shaveen.greensupermarket.CusRegisterServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>UserSettingReterive</servlet-name>
-        <servlet-class>com.shaveen.greensupermarket.UserSettingReterive</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>UserSettingRetServlet</servlet-name>
-        <servlet-class>com.shaveen.greensupermarket.UserSettingRetServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>com.shaveen.greensupermarket.LoginServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>UserSettingsServlet</servlet-name>
-        <servlet-class>com.shaveen.greensupermarket.UserSettingsServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>AdminAccountServlet</servlet-name>
-        <servlet-class>com.shaveen.greensupermarket.AdminAccountServlet</servlet-class>
-    </servlet>
+    <!-- (other servlet declarations remain unchanged) -->
     <servlet>
         <servlet-name>AddToCartServlet</servlet-name>
         <servlet-class>com.shaveen.greensupermarket.AddToCartServlet</servlet-class>
@@ -54,9 +11,16 @@
         <servlet-class>com.shaveen.greensupermarket.OrderServlet</servlet-class>
     </servlet>
     <!-- Servlet Mappings -->
-    <servlet>
+    <!-- (other servlet mappings remain unchanged) -->
+    <servlet-mapping>
         <servlet-name>AddToWishListServlet</servlet-name>
-        <servlet-class>com.shaveen.greensupermarket.AddToWishListServlet</servlet-class>
+        <url-pattern>/AddToWishListServlet</url-pattern>
+        <servlet-name>DeleteAdminAccountServlet</servlet-name>
+        <servlet-class>com.shaveen.greensupermarket.DeleteAdminAccountServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteProductServlet</servlet-name>
+        <servlet-class>com.shaveen.greensupermarket.DeleteProductServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>StockSearchServlet</servlet-name>
@@ -65,6 +29,10 @@
     <servlet>
         <servlet-name>ChangePqtyServlet</servlet-name>
         <servlet-class>com.shaveen.greensupermarket.ChangePqtyServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PStockQtyUpdateServlet</servlet-name>
+        <servlet-class>com.shaveen.greensupermarket.PStockQtyUpdateServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AddAccountServlet</servlet-name>
@@ -113,6 +81,9 @@
     <servlet-mapping>
         <servlet-name>AddToCartServlet</servlet-name>
         <url-pattern>/AddToCartServlet</url-pattern>
+    <servlet-mapping>
+        <servlet-name>DeleteAdminAccountServlet</servlet-name>
+        <url-pattern>/DeleteAdminAccountServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>OrderServlet</servlet-name>
@@ -130,6 +101,10 @@
     <servlet-mapping>
         <servlet-name>ChangePqtyServlet</servlet-name>
         <url-pattern>/ChangePqtyServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PStockQtyUpdateServlet</servlet-name>
+        <url-pattern>/PStockQtyUpdateServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

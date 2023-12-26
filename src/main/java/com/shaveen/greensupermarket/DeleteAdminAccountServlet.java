@@ -15,6 +15,18 @@ import jakarta.servlet.http.HttpServletResponse;
 /**
  *
  * @author DELL
+=======
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
+
+/**
+ *
+ * @author Jude Darren Victoria
  */
 @WebServlet(name = "DeleteAdminAccountServlet", urlPatterns = {"/DeleteAdminAccountServlet"})
 public class DeleteAdminAccountServlet extends HttpServlet {
@@ -40,6 +52,10 @@ public class DeleteAdminAccountServlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet DeleteAdminAccountServlet at " + request.getContextPath() + "</h1>");
+            out.println("<title>Servlet DeleteAccountServlet</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet DeleteAccountServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,6 +74,7 @@ public class DeleteAdminAccountServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        deleteaccount(request, response);
     }
 
     /**
@@ -71,6 +88,7 @@ public class DeleteAdminAccountServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+<<<<<<< HEAD
         String email = request.getParameter("email");
 
         // Perform the deletion in the database using the ManageConnection class
@@ -80,6 +98,35 @@ public class DeleteAdminAccountServlet extends HttpServlet {
         response.sendRedirect("AdminAccount.jsp");
     }
 
+=======
+        deleteaccount(request, response);
+    }
+
+
+    private void deleteaccount(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        // Retrieve email from the session
+        HttpSession session = request.getSession();
+        String email = (String) session.getAttribute("email");
+
+        // Check if the email is not null before proceeding
+        if (email != null) {
+            // Delete the user account from the database
+            UserDatabaseInteraction.deleteUserAccount(email);
+
+            // Clear the session attributes
+            session.invalidate();
+
+            // Redirect to the login page
+            response.sendRedirect("login.jsp");
+        } else {
+            // Handle the case where the email is not in the session
+            // You can redirect to an error page or the login page
+            response.sendRedirect("error.jsp");
+        }
+    }
+>>>>>>> main
     /**
      * Returns a short description of the servlet.
      *
