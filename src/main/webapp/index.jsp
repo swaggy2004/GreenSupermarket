@@ -32,14 +32,15 @@
   <div class="row justify-content-center">
     <!--card1-->
     <div class="col-lg-3 col-md-6 card-spacing">
-      <a href="link-to-your-page.html" class="card-link text-body text-decoration-none">
-      <div class="card card-custom">
-        <img src="assets/images/Product-images/fresh-fruits.svg" class="card-img-top" alt="Ladies Fingers">
-        <div class="card-body">
-          <h5 class="card-title text-center">Fresh Fruit</h5>
+      <a href="vegetable-catalog.jsp?category=Fruits" class="card-link text-body text-decoration-none"
+         name="fruits">
+        <div class="card card-custom">
+          <img src="assets/images/Product-images/fresh-fruits.svg" class="card-img-top" alt="Ladies Fingers">
+          <div class="card-body">
+            <h5 class="card-title text-center">Fresh Fruit</h5>
+          </div>
         </div>
-      </div>
-    </a>
+      </a>
     </div>
     <!--card2-->
     <div class="col-lg-3 col-md-6 card-spacing">
@@ -54,7 +55,8 @@
     </div>
      <!--card3-->
     <div class="col-lg-3 col-md-6 card-spacing">
-      <a href="link-to-your-page.html" class="card-link text-body text-decoration-none"><!--link to another page-->
+      <a href="vegetable-catalog.jsp?category=Protein" class="card-link text-body text-decoration-none"
+         name="protein">
       <div class="card card-custom">
         <img src="assets/images/Product-images/meat-fish.svg" class="card-img-top" alt="Ladies Fingers">
         <div class="card-body">
@@ -65,7 +67,8 @@
     </div>
      <!--card4-->
     <div class="col-lg-3 col-md-6 card-spacing">
-      <a href="link-to-your-page.html" class="card-link text-body text-decoration-none">
+      <a href="vegetable-catalog.jsp?category=Snacks" class="card-link text-body text-decoration-none"
+         name="vegetables">
       <div class="card card-custom">
         <img src="assets/images/Product-images/snack.svg" class="card-img-top" alt="Ladies Fingers">
         <div class="card-body">
@@ -93,7 +96,7 @@
         <div class="card-body d-flex flex-column align-items-center ">
           <h5 class="card-title3 text-center">WANT TO BUY HOUSEHOLD</h5>
           <h5 class="card-title4 text-center">VEGETABLES?</h5>
-          <button class="btn btn-success btn-vegetables">Vegetables  ➜</button>
+          <button class="btn btn-success btn-vegetables">Vegetables  ?</button>
         </div>
       </div>
     </div>
@@ -237,5 +240,3 @@
 <%@ include file="footer.jsp"%> 
 </body>
 </html>
-
-
