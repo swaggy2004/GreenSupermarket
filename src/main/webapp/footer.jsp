@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="footer.css">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
+
+
 <body>
 
   <footer class="footer">
@@ -43,7 +45,7 @@
   	 		<div class="footer-col">
   	 			<h4>follow us</h4>
   	 			<div class="social-links">
-            <img width='80px' src="assets/images/Product-images/footer-logo.svg"</img>
+            <img width="60" src="assets/images/Product-images/footer-logo.svg">
             <p>Your eco-friendly haven for sustainable living. Locally sourced, organic products, and a commitment to a greener future.</p>
   	 			</div>
   	 		</div>
