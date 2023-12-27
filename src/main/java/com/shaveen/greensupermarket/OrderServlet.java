@@ -90,6 +90,7 @@ public class OrderServlet extends HttpServlet {
                     int productId = item.getPID();
                     System.out.println("ProductID = " + productId);
                     Product product = FetchProduct.searchProduct(productId);
+                    assert product != null;
                     System.out.println("Product = " + product.getProductName());
                     totPrice += item.getPQty() * product.getPrice();
                 }
@@ -98,7 +99,8 @@ public class OrderServlet extends HttpServlet {
                 Order order = new Order();
                 order.setCEmail(email);
                 order.setTotalPrice(totPrice);
-
+                System.out.println(order.getCEmail());
+                System.out.println(order.getTotalPrice());
                 // Insert order details into the database and retrieve the order ID
                 int orderID = 0;
                 try {
@@ -123,7 +125,7 @@ public class OrderServlet extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(OrderServlet.class.getName()).log(Level.SEVERE, null, ex);
 //            // Handle the SQL exception appropriately (e.g., display an error message)
-//            response.sendRedirect("error.jsp");  // Adjust the URL accordingly
+           response.sendRedirect("order-error.jsp");  // Adjust the URL accordingly
         }
         
         response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/authorize_payment"));

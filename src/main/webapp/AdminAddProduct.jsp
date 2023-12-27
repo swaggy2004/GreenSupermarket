@@ -48,19 +48,19 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
             <a
               class="nav-link active cus-btn active"
               aria-current="page"
-              href="AdminProduct.html"
+              href="AdminProduct.jsp"
               ><i class="bi bi-pencil-fill me-2"></i> Product Edit</a
             >
             <a
               class="nav-link cus-btn"
               aria-current="page"
-              href="AdminAccount.html"
+              href="AdminAccount.jsp"
               ><i class="bi bi-person-circle me-2"></i> Account Management</a
             >
             <a
               class="nav-link cus-btn"
               aria-current="page"
-              href="AdminPromotion.html"
+              href="AdminPromotion.jsp"
               ><i class="bi bi-percent me-2"></i> Promotion</a
             >
             <a class="nav-link cus-btn" aria-current="page" href="#"
@@ -126,7 +126,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
               <div class="row col-md-12 mb-3">
                 <div class="col col-md-3 mb-3 col-12">
                   <label for="unitPrice" class="form-label"
-                    ><h5>Unit Price (LKR)</h5></label
+                    ><h5>Unit Price (USD)</h5></label
                   >
                   <input
                     type="number"

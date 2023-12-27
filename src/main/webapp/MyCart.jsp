@@ -23,186 +23,153 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+    />
+    <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"
+    ></script>
 </head>
 <body>
-<nav style="background-color: #d0f288;" class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img style="width: 110px" alt="Navbar Logo" src="assets/NavLogo.svg"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Meats</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link active" aria-current="page" href="#">Fruits</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Vegetables</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Snacks</a>
-                </li>
-            </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-            <div class="icons-container">  Container for icons in mobile view 
-                 Desktop icons 
-                <a class="nav-link active" aria-current="page" href="#"><img src="assets/shopping_bag.svg" alt="Cart"></a>
-                <a class="nav-link active" aria-current="page" href="#"><img src="assets/favorite.svg" alt="Favorite"></a>
-                <a class="nav-link active" aria-current="page" href="#"><img src="assets/person_2.svg" alt="Profile"></a>
-            </div>
-        </div>
-    </div>
-</nav>
-<%@ include file="header.jsp"%> 
+<%--<%@ include file="header.jsp"%>--%>
 <div class="container mt-5">
-    <div class="row">
+    <h1 class="text-center text-md-start mb-5">My Cart</h1>
+    <div class="row row-cols-5 d-md-flex mx-auto d-none d-md-flex mb-3">
+        <div class="col p-0">
+          <h6 class="text-uppercase">Product</h6>
+        </div>
+        <div class="col p-0">
+          <h6 class="text-uppercase">Status</h6>
+        </div>
+        <div class="col p-0">
+          <h6 class="text-uppercase">Unit Price</h6>
+        </div>
+        <div class="col p-0">
+          <h6 class="text-uppercase">Quantity</h6>
+        </div>
+        <div class="col p-0">
+          <h6 class="text-uppercase">Price</h6>
+        </div>
+    </div>
 
-
-        <div class="col-md-12">
-            <h1 style="margin-bottom: 50px;">My Cart</h1>
-            <div style="max-width: 1280px;">
-                <div class="row mb-2 d-none d-lg-flex">
-                    <div class="col-md-6">
-                        <div class="card-body">
-                            <h6>PRODUCT</h6>
+    <c:set var="email" value="${sessionScope.email}" />
+    <c:set var="outofStock" value="0" />
+    <c:set var="totalPrice" value="0.0" />
+    <c:forEach var="cartItem" items="${FetchShoppingCart.searchCart(email)}">
+        <c:set var="productId" value="${cartItem.PID}" />
+        <c:set var="products" value="${FetchProduct.SearchProduct(productId)}" />
+        <c:forEach var="product" items="${products}">
+            <div
+                    class="row row-cols-1 row-cols-md-5 m-0 border border-2 rounded-5 mb-3"
+            >
+                <div class="col p-0">
+                    <div class="row row-cols-2 m-0">
+                        <div class="col p-0">
+                            <img
+                                    src="https://befreshcorp.net/wp-content/uploads/2017/06/product-packshot-Carrot.jpg"
+                                    alt="Carrots"
+                                    srcset=""
+                                    class="img-md-fluid w-100 rounded-5"
+                            />
+                        </div>
+                        <div class="col align-self-center p-4">
+                            <h6
+                                    class="text-capitalize text-break m-0">${product.productName}</h6>
                         </div>
                     </div>
-                    <div class="col-md-2">
-                        <div class="card-body">
-                            <h6>UNIT PRICE</h6>
+                </div>
+                <div class="col p-0 align-self-md-center">
+                    <h6 class="text-uppercase text-center text-md-start m-0 p-2 p-md-0 ${product.stockQty > 0 ?
+                    "text-success" : "text-danger"}">
+                        ${product.stockQty > 0 ? "IN STOCK" : "OUT OF STOCK"}
+                    </h6>
+                </div>
+                <div class="col p-0 align-self-md-center">
+                    <h6 class="text-uppercase text-md-start text-center m-0 p-2 p-md-0">
+                        USD <fmt:formatNumber value="${product.price}" type="currency" currencySymbol="$" maxFractionDigits="2" />
+                    </h6>
+                </div>
+                <div class="col p-0 px-5 px-md-0 pe-md-5 align-self-md-center">
+                    <form action="ChangePqtyServlet" method="post" class="align-self-md-center my-auto">
+                        <input type="hidden" name="productID" value="${product.productID}">
+                        <input
+                            type="number"
+                            min="1"
+                            max="${product.stockQty}"
+                            name="PQty"
+                            id="PQty"
+                            value="${cartItem.PQty}"
+                            placeholder="${cartItem.PQty}"
+                            class="form-control text-center text-md-start"
+                        />
+                    </form>
+                </div>
+                <div class="col p-0 align-self-center">
+                    <div
+                            class="row row-cols-md-2 row-cols-1 m-0 text-center text-md-start"
+                    >
+                        <div class="col p-0 m-0 align-self-center">
+                            <h6 class="text-uppercase m-0 p-2 p-md-0 text-md-start text-center">USD <fmt:formatNumber value="${cartItem.PQty * product.price}" type="currency" currencySymbol="$" maxFractionDigits="2" />
                         </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="card-body">
-                            <h6>QTY</h6>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="card-body">
-                            <h6>PRICE</h6>
+                        <div class="col p-0 text-center align-self-center">
+                            <form action="RemoveFromCartServlet" method="post" class="my-auto">
+                                <input type="hidden" name="productID" value="${product.productID}">
+                                <button
+                                        type="submit"
+                                        class="btn-close p-2 p-md-0"
+                                        aria-label="Close"
+                                ></button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <c:set var="email" value="${sessionScope.email}" />
-
-            <c:forEach var="cartItem" items="${FetchShoppingCart.searchCart(email)}">
-                <c:set var="productId" value="${cartItem.PID}" />
-                <c:set var="products" value="${FetchProduct.SearchProduct(productId)}" />
-
-                <c:forEach var="product" items="${products}">
-                    <div class="card mb-3" style="max-width: 1280px; border-radius: 20px;">
-                        <div class="row g-0">
-                            <div class="col-md-2 mx-2 border">
-                                <img src="assets/vegi1.png" style="width: 100px; border-radius: 20px;" class="img-fluid rounded-start " alt="...">
-                            </div>
-                            <div class="col-md-4 my-auto ">
-                                <div class="card-body">
-                                    <h5>${product.productName}</h5>
-                                </div>
-                            </div>
-                            <div class="col-md-2 my-auto ">
-                                <div class="card-body">
-                                    <h5>USD ${product.price}</h5>
-                                </div>
-                            </div>
-                            <div class="col-md-1 my-auto">
-                                <div class="card-body">
-                                    <input type="number" class="form-control" name="PQty" value="${cartItem.PQty}">
-                                </div>
-                            </div>
-                            <div class="col-md-1 my-auto">
-                                <div class="card-body">
-                                    <h5>USD ${String.format("%.2f", cartItem.PQty * product.price)}</h5>
-                                </div>
-                            </div>
-
-                            <div class="col-md-1 my-auto ">
-                                <div class="card-body">
-                                    <button type="button" class="btn-close" aria-label="Close"></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </c:forEach>
-            </c:forEach>
+            <c:set var="totalPrice" value="${totalPrice + (product.price * cartItem.PQty)}" />
+            <c:set var="outofStock" value="${product.stockQty > 0 ? (outofStock + 0) : (outofStock + 1)}" />
+        </c:forEach>
+    </c:forEach>
+    
+      <div
+        class="row row-cols-md-2 justify-content-center justify-content-md-end mx-auto mb-3"
+      >
+        <div class="col p-0 m-0 w-25">
+          <h3 class="p-0 m-0 text-md-end text-center fw-bold">Total:</h3>
         </div>
-
-    </div>
-    <div class="row">
-        <div class="col-md-9"></div>
-        <div class="col-md-3"style="background-color:#F2F2F2;">
-            <div class="row mb-2">
-                <div class="col-md-6"><h3>Total</h3></div>
-                <div class="col-md-6"><h3>USD</h3></div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-md-12 ">
-                    <div class="d-grid 2">
-                        
-                        <form id="checkoutForm" action="OrderServlet" method="post">
-                            <button id="checkoutBtn" class="btn btn-primary" style="background-color: #34A853; border-color: #34A853;" type="submit">Check Out</button>
-                        </form>
-                        
-                        <div class="modal" id="myModal">
-                            <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <div class="container">
-                                            <div class="row">
-                                                <div class="col-md-3 ms-auto" style="text-align: left;"><button type="button" class="btn-info" style="background-color:white; border:none;"><img src="assets/MyCartpopuparrowback.svg" style="width: 40px;border:none; " class="img-thumbnail" alt="..."></button></div>
-                                                <div class="col-md-6 center"><h4 class="modal-title" style="text-align: center;">Order Placed</h4></div>
-                                                <div class="col-md-3 my-auto" style="text-align: right;"><button type="button"  class="btn-close " data-bs-dismiss="modal"></button></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="container">
-                                            <div class="row">
-                                                <div class="col-md-12 mb-3 mt-3" style="text-align: center;"><h4 class="modal-title">Order No #123826526578612</h4></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12" style="text-align: center;"><img src="assets/MyCartpopupcheck.svg" style="width: 100px" class="rounded" alt="..."></div>
-                                            </div>
-                                            <div class="row mt-4">
-                                                <div class="col-md-12" style="text-align: center;"><h5 class="modal-title">Success</h5></div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <div class="container">
-                                            <div class="row ">
-                                                <div class="col-md-12" style="text-align: center;"><div class="d-grid gap-2 col-3 mx-auto"><button type="submit" class="btn btn-primary">Proceed To Payment</button></div></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+          <div class="col p-0 m-0 w-25">
+              <h3 class="p-0 m-0 text-md-end fw-bold">USD <fmt:formatNumber value="${totalPrice}" type="currency" currencySymbol="$" maxFractionDigits="2" /></h3>
+          </div>
+      </div>
+      <div class="row mx-auto">
+        <div class="col p-0 m-0 text-center text-md-end">
+            <form id="checkoutForm" action="OrderServlet" method="post">
+                <button ${outofStock == 0 ? '' : 'disabled'} class="btn btn-success">Check Out</button>
+            </form>
         </div>
-
-    </div>
+      </div>
 </div>
-<%@ include file="footer.jsp"%>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-<script src="MyCartQuantityfunction.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var quantityInput = document.getElementById("PQty");
+
+        quantityInput.addEventListener("change", function () {
+            var currentValue = parseInt(this.value, 10);
+
+            // Check if the entered value is less than 1
+            if (currentValue < 1 || isNaN(currentValue)) {
+                // Set the input value to 1
+                this.value = 1;
+            }
+        });
+    });
+    
+    quantityInput.addEventListener("change", function () {
+        this.form.submit();
+    });
+</script>
 </body>
 </html>

@@ -72,14 +72,14 @@ public class UserFedbackReviewServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int OrderID = Integer.parseInt(request.getParameter("OrderId"));
-        int RatingVal = Integer.parseInt(request.getParameter("flexRadioDefault"));
+        int RatingVal = Integer.parseInt(request.getParameter("inlineRadioOptions"));
         String WrittenReview = request.getParameter("writtenReview");
 
-        // Perform database update
+        
         try {
             UserFeedbackReview.insertFeedback(OrderID, RatingVal, WrittenReview);
-            // Forward the request to the Review.jsp page for displaying the result
-            request.getRequestDispatcher("/review.jsp");
+            
+        response.sendRedirect("UserDashboard.jsp");
         } catch (Exception e) {
             e.printStackTrace();
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error processing the request");
