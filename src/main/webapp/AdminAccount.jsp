@@ -40,7 +40,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
   <link rel="stylesheet" href="AdminCommon.css" />
 </head>
 <body>
-    <%@ include file="header.jsp"%> 
+<%@ include file="header.jsp"%> 
 <!--main container for all the body elements-->
 <div class="container-fluid">
   <!--starting a row, removing the gutter value and adding a padding-->
