@@ -137,7 +137,7 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title">Sweet Corn</h5>
-                            <p class="card-text"><small class="text-body-secondary">LKR 372</small></p>
+                            <p class="card-text"><small class="text-body-secondary">USD 372</small></p>
                         </div>
                     </div>
                 </div>
@@ -150,7 +150,7 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title">Sweet Corn</h5>
-                            <p class="card-text"><small class="text-body-secondary">LKR 372</small></p>
+                            <p class="card-text"><small class="text-body-secondary">USD 372</small></p>
                         </div>
                     </div>
                 </div>
@@ -163,7 +163,7 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title">Sweet Corn</h5>
-                            <p class="card-text"><small class="text-body-secondary">LKR 372</small></p>
+                            <p class="card-text"><small class="text-body-secondary">USD 372</small></p>
                         </div>
                     </div>
                 </div>
@@ -184,7 +184,7 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title">Sweet Corn</h5>
-                            <p class="card-text"><small class="text-body-secondary">LKR 372</small></p>
+                            <p class="card-text"><small class="text-body-secondary">USD 372</small></p>
                         </div>
                     </div>
                 </div>
@@ -198,7 +198,7 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title">Sweet Corn</h5>
-                            <p class="card-text"><small class="text-body-secondary">LKR 372</small></p>
+                            <p class="card-text"><small class="text-body-secondary">USD 372</small></p>
                         </div>
                     </div>
                 </div>
@@ -211,7 +211,7 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title">Sweet Corn</h5>
-                            <p class="card-text"><small class="text-body-secondary">LKR 372</small></p>
+                            <p class="card-text"><small class="text-body-secondary">USD 372</small></p>
                         </div>
                     </div>
                 </div>

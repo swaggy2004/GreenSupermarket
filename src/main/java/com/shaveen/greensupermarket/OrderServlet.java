@@ -123,7 +123,7 @@ public class OrderServlet extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(OrderServlet.class.getName()).log(Level.SEVERE, null, ex);
 //            // Handle the SQL exception appropriately (e.g., display an error message)
-//            response.sendRedirect("error.jsp");  // Adjust the URL accordingly
+           response.sendRedirect("order-error.jsp");  // Adjust the URL accordingly
         }
         
         response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/authorize_payment"));

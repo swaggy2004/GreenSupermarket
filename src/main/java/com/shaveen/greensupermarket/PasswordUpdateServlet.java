@@ -91,16 +91,20 @@ public class PasswordUpdateServlet extends HttpServlet {
                     if (newPassword.equals(confirmPassword)) {
                         // Passwords match, update the password in the database
                         UserDatabaseInteraction.updateUserPassword(email, newPassword);
-                        out.println("<h3>Password updated successfully!</h3>");
+                        // out.println("<h3>Password updated successfully!</h3>");
+                        response.sendRedirect("password-updation-sucess.jsp");
                     } else {
-                        out.println("<h3>New password and confirmation do not match. Please try again.</h3>");
+                        // out.println("<h3>New password and confirmation do not match. Please try again.</h3>");
+                       response.sendRedirect("password-unmatching-error.jsp");
                     }
                 } else {
-                    out.println("<h3>Invalid current password. Please enter the correct current password.</h3>");
+                        // out.println("<h3>Invalid current password. Please enter the correct current password.</h3>");
+                        response.sendRedirect("current-password-error.jsp");
                 }
             } else {
                 // Handle the case where the email is not in the session
-                out.println("<h3>Email not found in session. Please log in again.</h3>");
+                //out.println("<h3>Email not found in session. Please log in again.</h3>");
+                response.sendRedirect("Error.jsp");
             }
         }
     }
