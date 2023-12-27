@@ -8,6 +8,7 @@ import Model.EOrderDetail;
 import Model.OrderCustomerDetail;
 import Model.OrderDetail;
 import Model.OrderProduct;
+import Model.OrderProductNew;
 import com.paypal.api.payments.Order;
 import com.paypal.api.payments.Payer;
 import com.paypal.api.payments.PayerInfo;
@@ -254,12 +255,96 @@ public class OrderDAO {
     return orderDetails;
 }
 
+    
+    
+ public static List<OrderProductNew> getOrderProductsByOrderID(int orderID) {
+     List<OrderProductNew> orderProductsnew = new ArrayList<>();
 
-    
-    
-    
+        try (Connection connection = Model.Connection.start()) {
+            String sql = "SELECT * FROM order_product WHERE OrderID = ?";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setInt(1, orderID);
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    while (resultSet.next()) {
+                        int productID = resultSet.getInt("ProductID");
+                        String productName = resultSet.getString("PName");
+                        int Quantity = resultSet.getInt("OPqty");
+                        float price = resultSet.getFloat("PPrice");
+
+                        // Create OrderProduct object and add to the list
+                        OrderProductNew orderProductnew = new OrderProductNew(productID, productName, Quantity, price);
+                        orderProductsnew.add(orderProductnew);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Handle the exception appropriately in your application
+        }
+
+        return orderProductsnew;
+    }   
    
-    
+    public static void updateProductStockQuantity(int orderId) {
+        Connection connection = null;
+        PreparedStatement orderProductStatement = null;
+        PreparedStatement productUpdateStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            // Establish database connection
+            connection = Model.Connection.start();
+
+            // SQL query to get product information and ordered quantities
+            String sql = "SELECT op.ProductID, op.OPqty, p.StockQty " +
+                         "FROM order_product op " +
+                         "JOIN product p ON op.ProductID = p.ProductID " +
+                         "WHERE op.OrderID = ?";
+            
+            orderProductStatement = connection.prepareStatement(sql);
+            orderProductStatement.setInt(1, orderId);
+
+            resultSet = orderProductStatement.executeQuery();
+
+            // Update product stock quantities based on ordered quantities
+            String updateSql = "UPDATE product SET StockQty = StockQty - ? WHERE ProductID = ?";
+            productUpdateStatement = connection.prepareStatement(updateSql);
+
+            while (resultSet.next()) {
+                int productId = resultSet.getInt("ProductID");
+                int orderedQuantity = resultSet.getInt("OPqty");
+                int currentStockQty = resultSet.getInt("StockQty");
+
+                // Calculate the new stock quantity
+                int newStockQty = currentStockQty - orderedQuantity;
+
+                // Set parameters for the update statement
+                productUpdateStatement.setInt(1, orderedQuantity);
+                productUpdateStatement.setInt(2, productId);
+
+                // Execute the update
+                productUpdateStatement.executeUpdate();
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace(); // Handle the exception appropriately
+        } finally {
+            // Close resources in a finally block
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (orderProductStatement != null) {
+                    orderProductStatement.close();
+                }
+                if (productUpdateStatement != null) {
+                    productUpdateStatement.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace(); // Handle the exception appropriately
+            }
+            Model.Connection.end();
+        }
+    }
 
 
    

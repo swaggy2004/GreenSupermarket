@@ -3,10 +3,29 @@
     Created on : 22 Dec 2023, 00:42:19
     Author     : Jude Darren Victoria
 --%>
+<%@page import="paypalpayment.OrderDAO"%>
+<%@page import="Model.OrderProductNew"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c"%>
+<%@page import="java.util.List"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="jakarta.servlet.http.HttpSession"%>
 
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
+<%
+    Integer orderID = (Integer) session.getAttribute("orderID");
+
+    // Ensure orderID is not null (add your logic to handle null or invalid orderID)
+    if (orderID == null) {
+        // Handle the case where orderID is not available in the session
+        // You may redirect the user to an error page or perform some other action
+        response.sendRedirect("error.jsp");
+    }
+    
+    List<OrderProductNew> orderProductsnew = OrderDAO.getOrderProductsByOrderID(orderID);
+    pageContext.setAttribute("orderProductsnew", orderProductsnew);
+    
+    OrderDAO.updateProductStockQuantity(orderID);
+%>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -53,14 +72,15 @@
                         <th>Unit Price</th>
                         <th>Subtotal</th>
                     </tr>
-                    <c:forEach var="product" items="${orderProduct.products}">
+                    <c:forEach items="${orderProductsnew}" var="product">
                         <tr>
-                            <td>${product.name}</td>
-                            <td>${product.quantity}</td>
-                            <td>${product.unitPrice} USD</td>
-                            <td>${product.quantity * product.unitPrice} USD</td>
+                            <td>${product.getName()}</td>
+                            <td>${product.getQuantity()}</td>
+                            <td>${product.getUnitPrice()} USD</td>
+                            <td>${String.format("%.2f", product.getQuantity() * product.getUnitPrice())} USD</td>
                         </tr>
                     </c:forEach>
+
                 </table>
             </td>
         </tr>

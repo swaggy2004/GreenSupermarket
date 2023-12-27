@@ -1,0 +1,87 @@
+body{
+    font-family: 'Poppins', sans-serif;
+}
+/*.full-screen-background {
+    height: 100vh;
+    }*/
+.rectangle {
+        border: double 2px transparent;
+        border-radius: 10px;
+        background-image: linear-gradient(white, white), radial-gradient(circle at top , red, green);
+        background-origin: border-box;
+        background-clip: content-box, border-box; 
+        position: relative; 
+        width: 50%;
+        height: 80%;
+        margin: auto;
+        justify-content: center;
+       
+      }
+@media (max-width: 768px) {
+    .rectangle {
+            width: 95%; 
+            height: auto; 
+            
+        }
+    }
+.error-section {
+        text-align: center;  
+        padding: 20px; 
+        padding-top: 80px;
+        
+    }
+.error-text1 {
+        font-size: 35px;
+        font-weight: 600;
+        line-height: 28px;
+        letter-spacing: 0.9px;
+        margin-bottom: 20px; 
+        color:#223263;
+    }
+.error-text2 {
+        font-size: 15px;
+        font-weight: 450;
+        line-height: 20px;
+        letter-spacing: 1.6px;
+        margin-bottom: 20px;  
+        color:#9098B1;
+    }
+.image-icon {
+        width: 115px;
+        height: 115px;
+        margin: 0 auto 30px; 
+        margin-top: -30px;
+        background-image: url('assets/images/errors/X-icon.svg');  
+        background-size: cover;
+    }
+.buttons {
+        display: flex;
+        padding-left: 10px;
+        margin-bottom: 50px;
+    }
+.home-button {
+        width: 428px;
+        height: 55px;
+        border-radius: 10px;
+        background-color: rgba(0, 178, 7, 1); 
+        color: white;  
+        border: none;
+        font-size: 18px;
+        text-align: center;
+    }
+ 
+.home-button:hover {
+        background-color: rgba(0, 178, 7, 1); 
+        color: white; 
+        box-shadow: 0 0 20px rgba(0, 128, 0, 0.3);  
+        transition: box-shadow 0.3s ease, transform 0.3s ease; 
+    }
+.arrow{
+    width: 16px; 
+    height: 16px;
+    margin-left: -90px;
+    margin-right: 70px;
+}
+/*nav*/
+ 
+  

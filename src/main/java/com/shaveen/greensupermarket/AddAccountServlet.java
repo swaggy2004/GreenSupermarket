@@ -78,7 +78,7 @@ public class AddAccountServlet extends HttpServlet {
                 role = request.getParameter("role");
         ManageConnection SendData = new ManageConnection();
         SendData.addAccount(fullName, email, pwd, role);
-        response.sendRedirect("AdminAddAccount.jsp");
+        response.sendRedirect("account-creation-success.jsp");
         
     }
 

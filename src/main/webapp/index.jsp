@@ -107,7 +107,7 @@
         <img src="assets/images/Product-images/lettuce.svg" class="card-img-top" alt="Lettuce">
         <div class="card-body">
           <h5 class="card-title">Lettuce (100g)</h5>
-          <h5 class="card-title2">LKR 30.00</h5>
+          <h5 class="card-title2">USD 30.00</h5>
           <div class="circle text-center">
             <img src="assets/images/individual-catalogs/vegetables/cart-icon.svg" class="circle-img" alt="cart-icon">
           </div>
@@ -121,7 +121,7 @@
         <img src="assets/images/Product-images/cabbage.svg" class="card-img-top" alt="Ladies Fingers">
         <div class="card-body">
           <h5 class="card-title">cabbage(100g)</h5>
-          <h5 class="card-title2">LKR 70.00</h5>
+          <h5 class="card-title2">USD 70.00</h5>
           <div class="circle text-center">
             <img src="assets/images/individual-catalogs/vegetables/cart-icon.svg" class="circle-img" alt="cart-icon">
           </div>
@@ -135,7 +135,7 @@
         <img src="assets/images/Product-images/lettuce.svg" class="card-img-top" alt="Lettuce">
         <div class="card-body">
           <h5 class="card-title">Lettuce (100g)</h5>
-          <h5 class="card-title2">LKR 30.00</h5>
+          <h5 class="card-title2">USD 30.00</h5>
           <div class="circle text-center">
             <img src="assets/images/individual-catalogs/vegetables/cart-icon.svg" class="circle-img" alt="cart-icon">
           </div>
@@ -149,7 +149,7 @@
         <img src="assets/images/Product-images/lettuce.svg" class="card-img-top" alt="Lettuce">
         <div class="card-body">
           <h5 class="card-title">Lettuce (100g)</h5>
-          <h5 class="card-title2">LKR 30.00</h5>
+          <h5 class="card-title2">USD 30.00</h5>
           <div class="circle text-center">
             <img src="assets/images/individual-catalogs/vegetables/cart-icon.svg" class="circle-img" alt="cart-icon">
           </div>

@@ -1,174 +1,90 @@
+/* styles.css */
+
 body, html {
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
     font-family: 'Poppins', sans-serif;
     margin: 0;
-    margin-top: 10px; 
+    padding: 0;
 }
-
 
 .review-container {
     width: 90%;
-    min-width: 92vw;
+    max-width: 600px;
+    margin: 0 auto;
     border: 2px solid green;
     border-radius: 6px;
     padding: 20px;
-    padding-left: 15; /* Corrected unit */
-    padding-right: 15; /* Corrected unit */
     box-sizing: border-box;
-    height: 200;
-    overflow-y: auto; /* Allows vertical scrolling within the container */
-    max-height: calc(100% - 50px); /* Maximum height adjusted for the fixed top margin */
+    overflow-y: auto;
+    max-height: calc(100% - 50px);
 }
 
-
 .review-text1 {
-    color: black;
     font-size: 40px;
     font-weight: 700;
     word-wrap: break-word;
-    text-align: left;  
+    text-align: left;
 }
+
 .review-text2 {
-    color: black;
     font-size: 20px;
     font-weight: 400;
     word-wrap: break-word;
     color: black;
 }
-.feedback-container {
-    height: 280px;
-    background-color:rgb(225, 225, 225);
-    padding: 20px;  
-    border-radius: 6px;  
+
+.feedback-container,
+.thankyou-container,
+.written-review {
+    margin-top: 10px;
 }
+
 .feedback-text {
     font-size: 25px;
     font-weight: 400;
     line-height: 56px;
     letter-spacing: 0em;
     text-align: left;
-    margin-left: 10px;  
-}
-.rating_stars {
-    margin-top: 15px;
-    display: inline-block;
-    font-size: 20px;
-    font-weight: 200;
-    color: black;
-    position: relative;
-}
-
-.rating_stars span .fa, .rating_stars span.active-low .fa-star-o, .rating_stars span.active-high .fa-star-o{
-	display: none;
-}
-
-.rating_stars span .fa-star-o{
-	display: inline-block;
-}
-
-.rating_stars span.s.active-high .fa-star{
-	display: inline-block; color: #feb645;
-}
-
-.rating_stars span.s.active-low .fa-star-half-o{
-	display: inline-block; color: #feb645;
-}
-
-.rating_stars span.r {
-	position: absolute;
-	top: 0;
-	height: 20px;
-	width: 10px;
-	left: 0;
-}
-
-.rating_stars span.r.r0_5 {left:0px;}
-.rating_stars span.r.r1 {left:10px; width: 11px;}
-.rating_stars span.r.r1_5 {left:21px; width: 13px;}
-.rating_stars span.r.r2 {left:34px; width: 12px;}
-.rating_stars span.r.r2_5 {left:46px; width: 12px;}
-.rating_stars span.r.r3 {left:58px; width: 11px;}
-.rating_stars span.r.r3_5 {left:69px; width: 12px;}
-.rating_stars span.r.r4 {left:81px; width: 12px;}
-.rating_stars span.r.r4_5 {left:93px; width: 12px;}
-.rating_stars span.r.r5 {left:105px; width: 12px;}
-
-/* Just to make things look pretty ;) */
-
-
-input {width: 50px; text-align: center;}
-
-
-.rating-text {
-    font-size: 40px;
-    font-weight: 700;
-    line-height: 1;
-    letter-spacing: 0em;
-    text-align: center;  
-    margin: 0;
-}
-
-.rating-image {
-    margin: 0;
-    width: 253px;
-    height: 45px;
-    
-}
-.thankyou-container {
-    margin-top: 10px;
-    height: 70px;
-    background-color:rgba(234, 247, 233, 1);
-    padding: 20px;  
-    border-radius: 6px;  
-}
-.thankyou-text {
-    color:rgba(52, 120, 9, 1);
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 29px;
-    letter-spacing: 0em;
-    text-align: left;
-    margin-left: 10px;  
-   
-
-}
-.written-review {
-    height: 280px;
-    background-color:rgb(225, 225, 225);
-    padding: 20px;  
-    border-radius: 6px;  
-    margin-top: 10px;
+    margin-left: 10px;
 }
 
 .review-textbox {
-    width: 797px;
-    height: 160.86px;
-    margin: 0 auto; /* Center the textbox */
-    border-radius: 13px;
-    outline: none;
-    
-}
-.review-textbox::placeholder {
-    font-family: 'Poppins', sans-serif;
-    color:rgb(60, 60, 60);
-
+    width: 100%;
 }
 
 .submit-button {
-    width: 100%; /* Full width of the container */
-    height: 50px;
-    background-color: green;
-    color: white;
-    font-size: 20px; /* Adjust the font size as needed */
-    border: none; /* No border */
-    margin-top: 20px; /* Space above the button */
+    width: 100%;
 }
 
-.submit-button:hover {
-    background-color: black;
-    color: white;
+/* Media query for smaller screens */
+@media (max-width: 600px) {
+    .review-text1 {
+        font-size: 30px;
+    }
+
+    .review-text2 {
+        font-size: 16px;
+    }
+
+    .rating-text {
+        font-size: 30px;
+    }
+
+    .thankyou-text {
+        font-size: 16px;
+    }
+
+    .feedback-container,
+    .thankyou-container,
+    .written-review {
+        height: auto;
+    }
+
+    .review-container {
+        padding: 10px;
+    }
+
+    .review-textbox {
+        width: 100%;
+    }
 }
