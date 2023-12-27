@@ -112,20 +112,14 @@ public class OrderServlet extends HttpServlet {
                 // Set the order ID in the session attribute
                 session.setAttribute("orderID", orderID);
                 System.out.println("Order ID stored in session: " + session.getAttribute("orderID"));
-                
-//
-//                // Redirect to a confirmation page or do further processing
-//                response.sendRedirect("orderConfirmation.jsp");  // Adjust the URL accordingly
 
             } else {
-//                // Handle the case where the email is not set in the session
-//                // You might want to redirect the user to a login page or take appropriate action
-//                response.sendRedirect("login.jsp");  // Adjust the URL accordingly
+                response.sendRedirect("login.jsp");
             }
         } catch (SQLException ex) {
             Logger.getLogger(OrderServlet.class.getName()).log(Level.SEVERE, null, ex);
 //            // Handle the SQL exception appropriately (e.g., display an error message)
-           response.sendRedirect("order-error.jsp");  // Adjust the URL accordingly
+                response.sendRedirect("order-error.jsp");  // Adjust the URL accordingly
         }
         
         response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/authorize_payment"));

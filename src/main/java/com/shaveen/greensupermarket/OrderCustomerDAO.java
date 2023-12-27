@@ -19,11 +19,13 @@ import java.sql.PreparedStatement;
  */
 public class OrderCustomerDAO {
     public static int insertOrderDetails(Order order) throws Exception {
+
         try (var connection = Connection.start()) {
             assert connection != null;
             try (PreparedStatement statement = connection.prepareStatement("INSERT INTO `placed_order`(`CEmail`, `TotalPrice`) VALUES(?, ?)", Statement.RETURN_GENERATED_KEYS)) {
                 statement.setString(1, order.getCEmail());
                 statement.setFloat(2, order.getTotalPrice());
+
 
                 int affectedRows = statement.executeUpdate();
 
