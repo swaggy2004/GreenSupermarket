@@ -1,11 +1,12 @@
-
 <%--
   Created by IntelliJ IDEA.
   User: Jude Darren Victoria
   Date: 06/12/2023
   Time: 07:32 pm
-  To change this template use File | Settings | File Templates.
+  To change this template use File | Se
+ttings | File Templates.
 --%>
+
 <%@taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="jakarta.servlet.http.HttpServletResponse" %>
 <%@page import="com.shaveen.greensupermarket.UserDatabaseInteraction" %>
@@ -19,6 +20,7 @@
 <%@page import="java.sql.*" %>
 <%@page import="java.util.List" %>
 <%@page import="java.util.ArrayList" %>
+
 
 <html>
 <head>
@@ -165,12 +167,12 @@
 </table>
 
 
-<%@ include file="footer.jsp"%>
  <script>
   function logout() {
         window.location.href = "<%=request.getContextPath()%>/LogoutServlet";
   }
-</script>   
+</script>  
+
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 
