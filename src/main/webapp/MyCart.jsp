@@ -39,29 +39,33 @@
 <%--<%@ include file="header.jsp"%>--%>
 <div class="container mt-5">
     <h1 class="text-center text-md-start mb-5">My Cart</h1>
-    <div class="row row-cols-4 d-md-flex mx-auto d-none d-md-flex">
+    <div class="row row-cols-5 d-md-flex mx-auto d-none d-md-flex mb-3">
         <div class="col p-0">
-            <h6 class="text-uppercase">Product</h6>
+          <h6 class="text-uppercase">Product</h6>
         </div>
         <div class="col p-0">
-            <h6 class="text-uppercase">Unit Price</h6>
+          <h6 class="text-uppercase">Status</h6>
         </div>
         <div class="col p-0">
-            <h6 class="text-uppercase">Quantity</h6>
+          <h6 class="text-uppercase">Unit Price</h6>
         </div>
         <div class="col p-0">
-            <h6 class="text-uppercase">Price</h6>
+          <h6 class="text-uppercase">Quantity</h6>
+        </div>
+        <div class="col p-0">
+          <h6 class="text-uppercase">Price</h6>
         </div>
     </div>
 
     <c:set var="email" value="${sessionScope.email}" />
+    <c:set var="outofStock" value="0" />
     <c:set var="totalPrice" value="0.0" />
     <c:forEach var="cartItem" items="${FetchShoppingCart.searchCart(email)}">
         <c:set var="productId" value="${cartItem.PID}" />
         <c:set var="products" value="${FetchProduct.SearchProduct(productId)}" />
         <c:forEach var="product" items="${products}">
             <div
-                    class="row row-cols-1 row-cols-md-4 m-0 border border-2 rounded-5 mb-3"
+                    class="row row-cols-1 row-cols-md-5 m-0 border border-2 rounded-5 mb-3"
             >
                 <div class="col p-0">
                     <div class="row row-cols-2 m-0">
@@ -80,16 +84,23 @@
                     </div>
                 </div>
                 <div class="col p-0 align-self-md-center">
+                    <h6 class="text-uppercase text-center text-md-start m-0 p-2 p-md-0 ${product.stockQty > 0 ?
+                    "text-success" : "text-danger"}">
+                        ${product.stockQty > 0 ? "IN STOCK" : "OUT OF STOCK"}
+                    </h6>
+                </div>
+                <div class="col p-0 align-self-md-center">
                     <h6 class="text-uppercase text-md-start text-center m-0 p-2 p-md-0">
                         USD <fmt:formatNumber value="${product.price}" type="currency" currencySymbol="$" maxFractionDigits="2" />
                     </h6>
                 </div>
-                <div class="col p-0 px-5 px-md-0 pe-md-5 align-self-center">
-                    <form action="ChangePqtyServlet" method="post">
+                <div class="col p-0 px-5 px-md-0 pe-md-5 align-self-md-center">
+                    <form action="ChangePqtyServlet" method="post" class="align-self-md-center my-auto">
                         <input type="hidden" name="productID" value="${product.productID}">
                         <input
                             type="number"
                             min="1"
+                            max="${product.stockQty}"
                             name="PQty"
                             id="PQty"
                             value="${cartItem.PQty}"
@@ -106,16 +117,20 @@
                             <h6 class="text-uppercase m-0 p-2 p-md-0 text-md-start text-center">USD <fmt:formatNumber value="${cartItem.PQty * product.price}" type="currency" currencySymbol="$" maxFractionDigits="2" />
                         </div>
                         <div class="col p-0 text-center align-self-center">
-                            <button
-                                    type="button"
-                                    class="btn-close p-2 p-md-0"
-                                    aria-label="Close"
-                            ></button>
+                            <form action="RemoveFromCartServlet" method="post" class="my-auto">
+                                <input type="hidden" name="productID" value="${product.productID}">
+                                <button
+                                        type="submit"
+                                        class="btn-close p-2 p-md-0"
+                                        aria-label="Close"
+                                ></button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
             <c:set var="totalPrice" value="${totalPrice + (product.price * cartItem.PQty)}" />
+            <c:set var="outofStock" value="${product.stockQty > 0 ? (outofStock + 0) : (outofStock + 1)}" />
         </c:forEach>
     </c:forEach>
     
@@ -132,7 +147,7 @@
       <div class="row mx-auto">
         <div class="col p-0 m-0 text-center text-md-end">
             <form id="checkoutForm" action="OrderServlet" method="post">
-                <button class="btn btn-success">Check Out</button>
+                <button ${outofStock == 0 ? '' : 'disabled'} class="btn btn-success">Check Out</button>
             </form>
         </div>
       </div>

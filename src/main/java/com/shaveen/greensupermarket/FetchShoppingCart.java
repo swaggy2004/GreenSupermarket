@@ -70,5 +70,16 @@ public class FetchShoppingCart {
         }
     }
 
+    public static void deleteProduct(String CEmail, int PID){
+        try (var connection = Model.Connection.start();
+             PreparedStatement statement = connection.prepareStatement(
+                     "DELETE FROM shopping_cart WHERE CEmail = ? AND Product_ID = ?;")) {
+            statement.setString(1, CEmail);
+            statement.setInt(2, PID);
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
 
