@@ -21,6 +21,7 @@
         // Set the productList as an attribute in the page context
         pageContext.setAttribute("product", product);     
 %>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
