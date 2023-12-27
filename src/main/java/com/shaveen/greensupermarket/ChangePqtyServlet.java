@@ -5,33 +5,31 @@
 package com.shaveen.greensupermarket;
 
 import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 /**
  *
  * @author Shaveen
  */
-@WebServlet(name = "AddToCartServlet", urlPatterns = {"/AddToCartServlet"})
-public class AddToCartServlet extends HttpServlet {
+public class ChangePqtyServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
-     * @param request  servlet request
+     * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException      if an I/O error occurs
+     * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -41,40 +39,45 @@ public class AddToCartServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddToCartServlet</title>");
+            out.println("<title>Servlet ChangePqtyServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AddToCartServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ChangePqtyServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
     }
-
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         HttpSession session = request.getSession();
+        // Read the parameters from the request
+        String productId = request.getParameter("productID");
+        String newQty = request.getParameter("PQty");
         String Email = (String) session.getAttribute("email");
-        if (Email != null) {
-            String Para = request.getParameter("PID");
-            int PID = 0;
-            try {
-                PID = Integer.parseInt(Para);
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-            }
-            int qty = 1;
-            try {
-                FetchShoppingCart.insertToCart(Email, PID, qty);
-            } catch (SQLException ex) {
-                Logger.getLogger(AddToCartServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/MyCart.jsp");
-            dispatcher.forward(request, response);
+        
+        int PID = 0;
+        int qty = 0;
+        try {
+            PID = Integer.parseInt(productId);
+            qty = Integer.parseInt(newQty);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
         }
-        else
-        {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
-            dispatcher.forward(request, response);
-        }
+        FetchShoppingCart.increaseQty(Email, qty, PID);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/MyCart.jsp");
+        dispatcher.forward(request, response);
+        
     }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
 }

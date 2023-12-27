@@ -36,7 +36,7 @@ public class FetchWishList {
     
     public static void insertToWishList(String CEmail, int PID) throws SQLException{
         try (var connection = Model.Connection.start();
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO wishlist (CEmail, Product_ID) VALUES(?, ?)")){
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO wishlist (CEmail, ProductID) VALUES(?, ?)")){
             statement.setString(1, CEmail);
             statement.setInt(2, PID);
             statement.executeUpdate();

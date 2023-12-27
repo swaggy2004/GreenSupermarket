@@ -4,7 +4,9 @@
  */
 package com.shaveen.greensupermarket;
 
-import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -16,9 +18,7 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author Shaveen
  */
-
-@WebServlet (name = "AddAccountServlet", urlPatterns = {"/AddAccountServlet"})
-public class AddAccountServlet extends HttpServlet {
+public class RemoveFromCartServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +37,10 @@ public class AddAccountServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddAccountServlet</title>");            
+            out.println("<title>Servlet RemoveFromCartServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AddAccountServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet RemoveFromCartServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -72,14 +72,13 @@ public class AddAccountServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String fullName = request.getParameter("fullName"),
-                email = request.getParameter("email"),
-                pwd = request.getParameter("password"),
-                role = request.getParameter("role");
-        ManageConnection SendData = new ManageConnection();
-        SendData.addAccount(fullName, email, pwd, role);
-        response.sendRedirect("account-creation-success.jsp");
-        
+        HttpSession session = request.getSession();
+        String Email = (String) session.getAttribute("email");
+        String ProductID = request.getParameter("productID");
+        int PID = Integer.parseInt(ProductID);
+        FetchShoppingCart.deleteProduct(Email, PID);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/MyCart.jsp");
+        dispatcher.forward(request, response);
     }
 
     /**

@@ -89,7 +89,7 @@ public class LoginServlet extends HttpServlet {
             response.sendRedirect("index.jsp");
         } else {
             // Invalid credentials
-            response.sendRedirect("login.jsp"); // Redirect back to the login page
+            response.sendRedirect("login-error.jsp"); // Redirect back to the login page
         }
     }
         

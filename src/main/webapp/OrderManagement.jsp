@@ -84,7 +84,7 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
                         <th scope="row">${order.orderId}</th>
                         <td>${order.orderStatusDelivered == 1 ? 'Delivered' : 'In Progress'}</td>
                         <td>${order.orderDate}</td>
-                        <td>LKR ${order.totalPrice}</td>
+                        <td>USD ${order.totalPrice}</td>
                         <td><a href="IndividualOrder.jsp?orderId=${order.orderId}" class="btn btn-success">View Details</a></td>
                     </tr>
             </c:forEach>

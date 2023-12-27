@@ -17,7 +17,7 @@ public class Order {
     private Boolean StatusPlaced;
     private Boolean StatusPackaging;
     private Boolean StatusDelivered;
-    private String CEmail;
+    private static String CEmail;
     private int FeedbackID;
     private LocalDateTime OrderPackagedTime = LocalDateTime.now();
     private LocalDateTime OrderPlacedTime = LocalDateTime.now();
