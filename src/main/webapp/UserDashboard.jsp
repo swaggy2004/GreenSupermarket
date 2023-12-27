@@ -21,6 +21,7 @@ ttings | File Templates.
 <%@page import="java.util.List" %>
 <%@page import="java.util.ArrayList" %>
 
+<!DOCTYPE html>
 
 <html>
 <head>

@@ -78,6 +78,10 @@
         <servlet-name>RemoveFromCartServlet</servlet-name>
         <servlet-class>com.shaveen.greensupermarket.RemoveFromCartServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminLogoutServlet</servlet-name>
+        <servlet-class>com.shaveen.greensupermarket.AdminLogoutServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddAccountServlet</servlet-name>
         <url-pattern>/AddAccountServlet</url-pattern>
@@ -154,6 +158,10 @@
     <servlet-mapping>
         <servlet-name>RemoveFromCartServlet</servlet-name>
         <url-pattern>/RemoveFromCartServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminLogoutServlet</servlet-name>
+        <url-pattern>/AdminLogoutServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
