@@ -45,7 +45,7 @@
 
                     <div class="col-md-2 my-auto ">
                         <div class="card-body">
-                            <h3 style="color: #276A07;font-weight: 700;letter-spacing: 0.5px;">LKR ${orderstatus.getTotalPrice()}</h3>
+                            <h3 style="color: #276A07;font-weight: 700;letter-spacing: 0.5px;">USD ${String.format("%.2f",orderstatus.getTotalPrice())}</h3>
                         </div>
                     </div>
                 </div>

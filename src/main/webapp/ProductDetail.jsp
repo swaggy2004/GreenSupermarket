@@ -113,7 +113,7 @@
                             <h5 class="card-title">Green Lettuce (100g)</h5>
                         </div>
                         <div class="col-md-6">
-                            <p class="card-text"><b>LKR 24</b></p>
+                            <p class="card-text"><b>USD 24</b></p>
                         </div>
                         <div class="col-md-6" style="text-align: right;">
                             <button type="button" class="btn btn-light"><img src="assets/ProductDetailBagIcon.svg"></button>
@@ -167,7 +167,7 @@
                             <h5 class="card-title">Corn (100g)</h5>
                         </div>
                         <div class="col-md-6">
-                            <p class="card-text"><b>LKR 24</b></p>
+                            <p class="card-text"><b>USD 24</b></p>
                         </div>
                         <div class="col-md-6" style="text-align: right;">
                             <button type="button" class="btn btn-light"><img src="assets/ProductDetailBagIcon.svg"></button>
@@ -185,7 +185,7 @@
                             <h5 class="card-title">Chanise Cabbage (100g)</h5>
                         </div>
                         <div class="col-md-6">
-                            <p class="card-text"><b>LKR 24</b></p>
+                            <p class="card-text"><b>USD 24</b></p>
                         </div>
                         <div class="col-md-6" style="text-align: right;">
                             <button type="button" class="btn btn-light"><img src="assets/ProductDetailBagIcon.svg"></button>
@@ -203,7 +203,7 @@
                             <h5 class="card-title">Green Lettuce (100g)</h5>
                         </div>
                         <div class="col-md-6">
-                            <p class="card-text"><b>LKR 24</b></p>
+                            <p class="card-text"><b>USD 24</b></p>
                         </div>
                         <div class="col-md-6" style="text-align: right;">
                             <button type="button" class="btn btn-light"><img src="assets/ProductDetailBagIcon.svg"></button>
@@ -221,7 +221,7 @@
                             <h5 class="card-title">Corn (100g)</h5>
                         </div>
                         <div class="col-md-6">
-                            <p class="card-text"><b>LKR 24</b></p>
+                            <p class="card-text"><b>USD 24</b></p>
                         </div>
                         <div class="col-md-6" style="text-align: right;">
                             <button type="button" class="btn btn-light"><img src="assets/ProductDetailBagIcon.svg"></button>
@@ -239,7 +239,7 @@
                             <h5 class="card-title">Chanise Cabbage (100g)</h5>
                         </div>
                         <div class="col-md-6">
-                            <p class="card-text"><b>LKR 24</b></p>
+                            <p class="card-text"><b>USD 24</b></p>
                         </div>
                         <div class="col-md-6" style="text-align: right;">
                             <button type="button" class="btn btn-light"><img src="assets/ProductDetailBagIcon.svg"></button>
@@ -257,7 +257,7 @@
                             <h5 class="card-title">Green Lettuce (100g)</h5>
                         </div>
                         <div class="col-md-6">
-                            <p class="card-text"><b>LKR 24</b></p>
+                            <p class="card-text"><b>USD 24</b></p>
                         </div>
                         <div class="col-md-6" style="text-align: right;">
                             <button type="button" class="btn btn-light"><img src="assets/ProductDetailBagIcon.svg"></button>
@@ -275,7 +275,7 @@
                             <h5 class="card-title">Green Lettuce (100g)</h5>
                         </div>
                         <div class="col-md-6">
-                            <p class="card-text"><b>LKR 24</b></p>
+                            <p class="card-text"><b>USD 24</b></p>
                         </div>
                         <div class="col-md-6" style="text-align: right;">
                             <button type="button" class="btn btn-light"><img src="assets/ProductDetailBagIcon.svg"></button>

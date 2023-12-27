@@ -153,7 +153,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
               <div class="row col-md-12 mb-3">
                 <div class="col col-md-3 mb-3 col-12">
                   <label for="unitPrice" class="form-label"
-                    ><h5>Unit Price (LKR)</h5></label
+                    ><h5>Unit Price (USD)</h5></label
                   >
                   <input
                     type="number"

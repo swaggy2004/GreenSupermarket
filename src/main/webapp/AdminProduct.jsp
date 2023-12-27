@@ -136,7 +136,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
                         />
                     </div>
                     <div class="col">${admproduct.getProductName()}(${admproduct.getUnitQuantity()})</div>
-                    <div class="col">LKR${admproduct.getUnitPrice()}</div>
+                    <div class="col">USD${admproduct.getUnitPrice()}</div>
                     <div class="col">
                         <a href="AdminEditProduct.jsp?productId=${admproduct.getProductID()}"><button type="button" class="btn edit-btn">
                             <i class="bi bi-pencil-square"></i>

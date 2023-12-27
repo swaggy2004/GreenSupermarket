@@ -23,37 +23,49 @@
         <input type="hidden" name="OrderId" value="<%= OrderID %>">
         <div class="feedback-container d-flex flex-column justify-content-center ">
             <h4>Please share your experience with us</h4>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"value="1">
-                <label class="form-check-label" for="flexRadioDefault1">
+<!--            <div class="row no-gutters">-->
+<!--            <div class="col-sm-1 px-10">-->
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioOptions1"value="1">
+                <label class="form-check-label" for="inlineRadioOptions1">
                   Fair
                 </label>
             </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"value="2" >
-                <label class="form-check-label" for="flexRadioDefault2">
+<!--            </div>-->
+<!--            <div class="col-sm-1 px-10"> -->
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioOptions2"value="2" >
+                <label class="form-check-label" for="inlineRadioOptions2">
                   Good
                 </label>
             </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="3">
-                <label class="form-check-label" for="flexRadioDefault2">
+<!--            </div>-->
+                
+<!--            <div class="col-sm-1 px-10">  -->
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioOptions2" value="3">
+                <label class="form-check-label" for="inlineRadioOptions2">
                   Very Good
                 </label>
             </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="4" >
-                <label class="form-check-label" for="flexRadioDefault2">
+<!--            </div>-->
+<!--            <div class="col-sm-1 px-10">-->
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioOptions2" value="4" >
+                <label class="form-check-label" for="inlineRadioOptions2">
                   Excellent
                 </label>
             </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="5">
-                <label class="form-check-label" for="flexRadioDefault2">
+<!--            </div>-->
+<!--            <div class="col-sm-1 px-10">-->
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioOptions2" value="5">
+                <label class="form-check-label" for="inlineRadioOptions2">
                   Superb
                 </label>
             </div>
-            
+<!--            </div>-->
+<!--            </div>-->
           <!--add here the rating code-->
 <!--          
 <!--            <p class="feedback-text">Please share your experience with us</p>
