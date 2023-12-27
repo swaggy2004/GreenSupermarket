@@ -3,75 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <style>
-/*footer styles start here*/
-.text-lg-start {
-    background-color: #F2F2F2;
-    height: 390px;
-  }
-  .footer-logo{
-    margin-left: -180px;
-    padding-bottom: 10px;
-  }
-  .footer-text{
-  text-align: left;
-  }
-  .footer-contact{
-  text-align: left;
-  font-size: 15px;
-  color: black;
-  }
-  .or-contact{
-  text-align: center;
-  font-size: 15px; 
-  color: dimgrey;
-  }
-  .my-account{
-  text-align: left;
-  }
-  .my-account1{
-  text-align: left;
-  }
-  .col-md-0{
-  margin-right: 100px; 
-  }
-  @media (max-width: 992px) {
-  .footer-logo{
-    margin-left: 1px;
-   
-    }
-  }
-  @media (max-width: 992px) {
-  .footer-text{
-  text-align: center;
-    }
-  }
-  @media (max-width: 992px) {
-  .text-lg-start {
-    height: 1400px;
-    }
-  }
-  @media (max-width: 992px) {
-  .footer-contact{
-  text-align: center;
-    }
-  }
-  @media (max-width: 992px) {
-  .my-account{
-    text-align: center !important;
-    }
-  } 
-  @media (max-width: 992px) {
-  .my-account1{
-    text-align: center !important;
-    }
-  } 
-   /*footer end*/
-</style>
+  
+  <link rel="stylesheet" href="footer.css">
+  
+  
+ 
 </head>
 <body>
 <!--footer-->
@@ -177,9 +113,14 @@
  
   <!-- Copyright section -->
   <div class=" p-4" style="background-color:white;">
-    Green Supermarket Â© 2023. All Rights Reserved
+    Green Supermarket © 2023. All Rights Reserved
   </div>
 </footer>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
 

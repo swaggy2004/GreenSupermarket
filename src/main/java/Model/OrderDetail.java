@@ -92,6 +92,8 @@ public class OrderDetail {
     // Format the total amount to a string with two decimal places
     return String.format("%.2f", totalAmount);
 }
+     
+    
 
     
 }

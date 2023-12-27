@@ -50,7 +50,10 @@
 
 
 
-<%@ include file="header.jsp"%> 
+
+
+
+
 
 <h1 style="margin-top: 2rem;margin-left: 1rem;">Account Settings</h1>
 <div class="row" style="margin-top: 2rem;margin-left: 1rem; margin-right: 1rem">
@@ -234,8 +237,8 @@
                 
             </div>
         </div>
-                    <input type="submit" id="submit" class="btn btn-update" value="Update" style="margin-top: 2rem">
-                    <button class="btn btn-update" style="margin-top: 2rem; background-color: red;" onclick="deleteacc()">Delete Account</button>
+                    <input type="submit" id="submit" class="btn btn-update custom-update-btn" value="Update" style="margin-top: 2rem">
+                    
 
 
     </div>
@@ -278,13 +281,17 @@
             </table>
 
             <div style="display: flex; margin-top:1rem ">
-                <input type="submit" id="password-submit" class="btn btn-update" value="Update" style="margin-top: 2rem">
+                <input type="submit" id="password-submit" class="btn btn-update custom-update-btn" value="Update" style="margin-top: 2rem">
             </div>
         </form>
     </div>
+            
+           
 
 </div>
+             <button class="btn btn-update" style="margin-top: 2rem; background-color: red;" onclick="deleteacc()">Delete Account</button>
 </div>
+
 <%@ include file="footer.jsp"%>
 
 <script>
