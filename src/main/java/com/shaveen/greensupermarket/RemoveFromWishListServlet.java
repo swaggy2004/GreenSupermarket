@@ -18,7 +18,7 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author Shaveen
  */
-public class RemoveFromCartServlet extends HttpServlet {
+public class RemoveFromWishListServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +37,10 @@ public class RemoveFromCartServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet RemoveFromCartServlet</title>");            
+            out.println("<title>Servlet RemoveFromWishListServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet RemoveFromCartServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet RemoveFromWishListServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -74,10 +74,10 @@ public class RemoveFromCartServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         String Email = (String) session.getAttribute("email");
-        String ProductID = request.getParameter("productID");
+        String ProductID = request.getParameter("PID");
         int PID = Integer.parseInt(ProductID);
-        FetchShoppingCart.deleteProduct(Email, PID);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/MyCart.jsp");
+        FetchWishList.deleteProduct(Email, PID);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WishList.jsp");
         dispatcher.forward(request, response);
     }
 
