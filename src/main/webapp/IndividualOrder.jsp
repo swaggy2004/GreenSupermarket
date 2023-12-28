@@ -38,7 +38,7 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
     <link href="IndividualOrder.css" rel="stylesheet">
 </head>
 <body>
-    <%@ include file="header.jsp"%> 
+    <%--<%@ include file="header.jsp"%>--%> 
 <div class="card order-placement" style="width: 80%; margin-top:2rem; margin-left: 10%; text-align: center">
     <div class="card-body">
         <h5 class="card-title"style="margin-bottom: 2%">Order ID #${corder.getOrderId()}</h5>
@@ -134,7 +134,7 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
     </form>
 </div>
 
-<%@ include file="footer.jsp"%>
+ <%--<%@ include file="footer.jsp"%>--%>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 </body>
