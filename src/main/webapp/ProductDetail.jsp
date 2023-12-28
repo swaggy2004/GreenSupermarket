@@ -21,6 +21,7 @@
         // Set the productList as an attribute in the page context
         pageContext.setAttribute("product", product);     
 %>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -32,7 +33,7 @@
 </head>
 <body>
 
-<%@ include file="header.jsp"%> 
+<%--<%@ include file="header.jsp"%> --%>
 <!--Grid for product image and details-->
 <div class="container text-left" style="margin-top: 180px;margin-left: 75px;margin-right:102px ;">
     <div class="row">

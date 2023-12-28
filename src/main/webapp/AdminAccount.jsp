@@ -40,7 +40,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
   <link rel="stylesheet" href="AdminCommon.css" />
 </head>
 <body>
-    <%@ include file="header.jsp"%> 
+<%@ include file="header.jsp"%> 
 <!--main container for all the body elements-->
 <div class="container-fluid">
   <!--starting a row, removing the gutter value and adding a padding-->
@@ -64,9 +64,10 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
                 href="AdminAccount.jsp"
         ><i class="bi bi-person-circle me-2"></i> Account Management</a
         >
-        <a class="nav-link cus-btn" aria-current="page" href="adminLogin.jsp">
-          <i class="bi bi-box-arrow-right me-2"></i> Log-out</a
-        >
+        <form action="AdminLogoutServlet" method="post">
+            <input type="hidden">
+            <button type="submit"><i class="bi bi-box-arrow-right me-2">Log-out</i></button>
+        </form>
       </nav>
     </div>
 
