@@ -5,6 +5,7 @@
   Time: 2:50 AM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="com.shaveen.greensupermarket.UserOrderDetails"%>
 <%@page import="Model.OrderStatusInfo"%>
 <%@page contentType="text/html;charset=UTF-8" language="java" %>
@@ -183,6 +184,23 @@
     </div>-->
 
 </div>
+
+            <div class="container mt-5">
+            <div class="row">
+                <!-- other content... -->
+
+                <c:if test="${orderstatus.getOrderStatusPlaced() == 1 && orderstatus.getOrderStatusPackaging() != 1 && orderstatus.getOrderStatusDelivered() != 1}">
+                    <form action="DeleteOrderServlet" method="post" onsubmit="return confirm('Are you sure you want to delete this order?');">
+                        <input type="hidden" name="orderId" value="${orderstatus.getOrderId()}">
+                        <button type="submit" class="btn btn-danger">Delete Order</button>
+                    </form>
+                </c:if>
+
+                <!-- other content... -->
+            </div>
+        </div>
+
+       
 
 <%@ include file="footer.jsp"%>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>

@@ -39,8 +39,13 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
     <li class="nav-item">
         <a class="nav-link active" href="StockManagement.jsp">Stock Management</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="LogoutServlet">Logout</a>
+    <li class="nav-item" >
+        <form action="AdminLogoutServlet" method="post">
+            <input type="hidden">
+            <button class="nav-link" type="submit"><i class="bi me-2">Log-out</i></button>
+        </form>
+        
+       
     </li>
 
 </ul>
@@ -59,8 +64,8 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
     <form action="StockSearchServlet" method="get">
     <div class="col-md-3 mb-3" style="padding-right: 2rem;">
 
-        <div class="input-group">
-            <input type="text" class="form-control" id="searchBox" name="searchBox" placeholder="Search" aria-label="Search" aria-describedby="button-addon">
+        <div class="input-group" style="margin-left: 2rem ;">
+            <input type="text" class="form-control" id="searchBox" name="searchBox" placeholder="Search Products" aria-label="Search" aria-describedby="button-addon">
             <button class="btn btn-outline-secondary" type="submit"  id="button-addon">Search</button>
         </div>
     </div>
@@ -116,7 +121,7 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
     </c:if>
 
 
-    <h3>All Results</h3>
+    <h3 style="margin-left: 2rem ;">All Results</h3>
     <table style="margin-top: 2rem ; margin-left: 2rem ; margin-right: 2rem;" class="table">
         <thead>
         <tr>
@@ -164,25 +169,7 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
     
     
 
-<div class="col d-flex justify-content-center">
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</div>
+
 <script>
       document.addEventListener("DOMContentLoaded", function () {
         var quantityInput = document.getElementById("PQty");
@@ -202,7 +189,7 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 
- <%--<%@ include file="footer.jsp"%>--%>
+<%@ include file="footer.jsp"%>
 </body>
 </html>
 <%

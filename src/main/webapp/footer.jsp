@@ -17,6 +17,7 @@
   	 		<div class="footer-col">
   	 			<h4>Customer Access</h4>
   	 			<ul>
+                                        <li><a href="<%= request.getContextPath() %>/login.jsp">Customer Login</a></li>
   	 				<li><a href="<%= request.getContextPath() %>/UserDashboard.jsp">User Dashboard</a></li>
   	 				<li><a href="<%= request.getContextPath() %>/UserSettings.jsp">User Settings</a></li>
   	 				<li><a href="<%= request.getContextPath() %>/MyCart.jsp">My Cart</a></li>
@@ -26,6 +27,7 @@
   	 		<div class="footer-col">
   	 			<h4>Manager Control</h4>
   	 			<ul>
+                                        <li><a href="<%= request.getContextPath() %>/adminlogin.jsp">Manager Login</a></li>
   	 				<li><a href="<%= request.getContextPath() %>/ManagerDashboard.jsp">Manager Dashboard</a></li>
   	 				<li><a href="<%= request.getContextPath() %>/OrderManagement.jsp">Orders Management</a></li>
   	 				<li><a href="<%= request.getContextPath() %>/FeedbackManagement.jsp">Feedback Management</a></li>
@@ -35,6 +37,7 @@
   	 		<div class="footer-col">
   	 			<h4>Admin Control</h4>
   	 			<ul>
+                                        <li><a href="<%= request.getContextPath() %>/adminlogin.jsp">Admin Login</a></li>
   	 				<li><a href="<%= request.getContextPath() %>/AdminProduct.jsp">Product Edit</a></li>
   	 				<li><a href="<%= request.getContextPath() %>/AdminAccount.jsp">Account Edit</a></li>
   	 			</ul>

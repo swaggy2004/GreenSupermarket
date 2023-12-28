@@ -41,36 +41,26 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
     <link rel="stylesheet" href="AdminCommon.css" />
 </head>
 <body>
+    
     <%--<%@ include file="header.jsp"%>--%>
-<!--main container for all the body elements-->
-<div class="container-fluid">
-    <!--starting a row, removing the gutter value and adding a padding-->
-    <div class="row gx-0 p-3 mx-auto">
-        <!--starting a column-->
-        <div class="col border">
-            <!--just adding a heading-->
-            <h4 class="m-3">Navigation</h4>
-            <!--starting a vertical navbar for the buttons-->
-            <nav class="nav flex-column">
-        <!--adding the buttons and making them active-->
-        <a
-                class="nav-link cus-btn active"
-                aria-current="page"
-                href="AdminProduct.jsp"
-        ><i class="bi bi-pencil-fill me-2"></i> Product Edit</a
-        >
-        <a
-                class="nav-link cus-btn"
-                aria-current="page"
-                href="AdminAccount.jsp"
-        ><i class="bi bi-person-circle me-2"></i> Account Management</a
-        >
+    
+    <ul class="nav nav-tabs" style="margin-top: 1rem; ">
+    <li class="nav-item" style="margin-left: 1rem;">
+        <a class="nav-link active "  href="AdminProduct.jsp">Product Edit</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" aria-current="page" href="AdminAccount.jsp">Account Management</a>
+    </li>
+    <li class="nav-item" >
         <form action="AdminLogoutServlet" method="post">
             <input type="hidden">
-            <button type="submit"><i class="bi bi-box-arrow-right me-2">Log-out</i></button>
+            <button class="nav-link" type="submit"><i class="bi me-2">Log-out</i></button>
         </form>
-      </nav>
-        </div>
+        
+       
+    </li>
+
+    </ul>
 
         <!--this is the edit product panne-->
         <!-- made it wider than the nav section -->
@@ -92,24 +82,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
                 </div>
 
                 <!-- this is the row with the two select boxes and search box: Have to add the search box -->
-                <div class="row">
-                    <div class="col col-md-3 col-sm-12">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Select Category</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-                    </div>
-                    <div class="col col-md-3 col-sm-12">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Select Price</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-                    </div>
-                </div>
+                
                 <!-- added the column titles and made them all capital -->
                 <div
                         class="row align-items-center row-cols-xs-1 row-cols-sm-1 row-cols-lg-5 gx-5 py-1 my-2 bg-ribbon border d-none d-lg-flex"
@@ -156,31 +129,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
                 
               
                 <!-- added the pagination feature: Have to edit this -->
-                <div class="col d-flex justify-content-center">
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">1</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">2</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">3</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+                
             </div>
             
         </form>
@@ -192,6 +141,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"
 ></script>
+<%@ include file="footer.jsp"%>
 </body>
 </html>
 <%
