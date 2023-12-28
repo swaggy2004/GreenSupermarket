@@ -77,8 +77,7 @@ public class RemoveFromCartServlet extends HttpServlet {
         String ProductID = request.getParameter("productID");
         int PID = Integer.parseInt(ProductID);
         FetchShoppingCart.deleteProduct(Email, PID);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/MyCart.jsp");
-        dispatcher.forward(request, response);
+        response.sendRedirect(request.getContextPath() + "/MyCart.jsp");
     }
 
     /**

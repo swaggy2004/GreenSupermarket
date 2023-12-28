@@ -77,8 +77,7 @@ public class RemoveFromWishListServlet extends HttpServlet {
         String ProductID = request.getParameter("PID");
         int PID = Integer.parseInt(ProductID);
         FetchWishList.deleteProduct(Email, PID);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WishList.jsp");
-        dispatcher.forward(request, response);
+        response.sendRedirect(request.getContextPath() + "/WishList.jsp");
     }
 
     /**
