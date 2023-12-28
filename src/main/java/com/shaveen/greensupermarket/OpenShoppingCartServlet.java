@@ -4,23 +4,20 @@
  */
 package com.shaveen.greensupermarket;
 
-import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.RequestDispatcher;
 
 /**
  *
  * @author Shaveen
  */
-public class AddToWishListServlet extends HttpServlet {
+public class OpenShoppingCartServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +36,10 @@ public class AddToWishListServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddToWishListServlet</title>");            
+            out.println("<title>Servlet OpenProductServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AddToWishListServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet OpenProductServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,29 +55,36 @@ public class AddToWishListServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        String Email = (String) session.getAttribute("email");
+        if (Email == null) {
+            response.sendRedirect(request.getContextPath() + "/login.jsp");
+        }
+        else{
+            response.sendRedirect(request.getContextPath() + "/MyCart.jsp");
+        }
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         String Email = (String) session.getAttribute("email");
-        if (Email != null){
-            String Para = request.getParameter("PID");
-            int PID = 0;
-            try{
-                PID = Integer.parseInt(Para);
-            }
-            catch (NumberFormatException e)
-            {
-                e.printStackTrace();
-            }
-            try {
-                FetchWishList.insertToWishList(Email, PID);
-            } catch (SQLException ex) {
-                Logger.getLogger(AddToWishListServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            response.sendRedirect(request.getContextPath() + "/WishList.jsp");
+        if (Email == null) {
+            response.sendRedirect(request.getContextPath() + "/login.jsp");
         }
         else{
-            response.sendRedirect(request.getContextPath() + "/login.jsp");
+            response.sendRedirect(request.getContextPath() + "/MyCart.jsp");
         }
     }
 

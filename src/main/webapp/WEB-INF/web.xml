@@ -82,6 +82,18 @@
         <servlet-name>AdminLogoutServlet</servlet-name>
         <servlet-class>com.shaveen.greensupermarket.AdminLogoutServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>OpenShoppingCartServlet</servlet-name>
+        <servlet-class>com.shaveen.greensupermarket.OpenShoppingCartServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RemoveFromWishListServlet</servlet-name>
+        <servlet-class>com.shaveen.greensupermarket.RemoveFromWishListServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OpenWishListServlet</servlet-name>
+        <servlet-class>com.shaveen.greensupermarket.OpenWishListServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddAccountServlet</servlet-name>
         <url-pattern>/AddAccountServlet</url-pattern>
@@ -162,6 +174,18 @@
     <servlet-mapping>
         <servlet-name>AdminLogoutServlet</servlet-name>
         <url-pattern>/AdminLogoutServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OpenShoppingCartServlet</servlet-name>
+        <url-pattern>/OpenShoppingCartServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoveFromWishListServlet</servlet-name>
+        <url-pattern>/RemoveFromWishListServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OpenWishListServlet</servlet-name>
+        <url-pattern>/OpenWishListServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

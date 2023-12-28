@@ -46,4 +46,15 @@ public class FetchWishList {
             throw e;
         }
     }
+    public static void deleteProduct(String CEmail, int PID){
+        try (var connection = Model.Connection.start();
+             PreparedStatement statement = connection.prepareStatement(
+                     "DELETE FROM wishlist WHERE CEmail = ? AND ProductID = ?;")) {
+            statement.setString(1, CEmail);
+            statement.setInt(2, PID);
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
