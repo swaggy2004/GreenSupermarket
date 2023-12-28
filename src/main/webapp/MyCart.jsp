@@ -23,7 +23,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bootstrap demo</title>
+    <title>My Cart</title>
     <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -41,21 +41,22 @@
     />
 </head>
 <body>
+
 <%@ include file="header.jsp"%>
 <main>
     <div class="container mt-5">
         <h1 class="text-center text-md-start mb-5">My Cart</h1>
-        <div class="row row-cols-5 d-md-flex mx-auto d-none d-md-flex mb-3">
-            <div class="col p-0">
+        <div class="row d-md-flex mx-auto d-none d-md-flex mb-3">
+            <div class="col-4 p-0">
                 <h6 class="text-uppercase">Product</h6>
             </div>
-            <div class="col p-0">
+            <div class="col-2 p-0">
                 <h6 class="text-uppercase">Status</h6>
             </div>
-            <div class="col p-0">
+            <div class="col-2 p-0">
                 <h6 class="text-uppercase">Unit Price</h6>
             </div>
-            <div class="col p-0">
+            <div class="col-2 p-0">
                 <h6 class="text-uppercase">Quantity</h6>
             </div>
             <div class="col p-0">
@@ -71,11 +72,11 @@
             <c:set var="products" value="${FetchProduct.SearchProduct(productId)}" />
             <c:forEach var="product" items="${products}">
                 <div
-                        class="row row-cols-1 row-cols-md-5 m-0 border border-2 rounded-5 mb-3"
+                        class="row d-md-flex m-0 border border-2 rounded-5 mb-3"
                 >
-                    <div class="col p-0">
-                        <div class="row row-cols-2 m-0">
-                            <div class="col p-0">
+                    <div class="col-md-4 p-0 mb-3 mb-md-0">
+                        <div class="row m-0">
+                            <div class="col col-md-4 col-5 p-0">
                                 <img
                                         src="https://befreshcorp.net/wp-content/uploads/2017/06/product-packshot-Carrot.jpg"
                                         alt="Carrots"
@@ -83,24 +84,25 @@
                                         class="img-md-fluid w-100 rounded-5"
                                 />
                             </div>
-                            <div class="col align-self-center p-4">
+                            <div class="col-md-8 col-7 align-self-center p-4">
                                 <h6
-                                        class="text-capitalize text-break m-0">${product.productName}</h6>
+                                        class="text-capitalize text-center text-md-start text-break
+                                        m-0">${product.productName} ${product.unitQty}g</h6>
                             </div>
                         </div>
                     </div>
-                    <div class="col p-0 align-self-md-center">
+                    <div class="col-md-2 p-0 align-self-md-center mb-3 mb-md-0">
                         <h6 class="text-uppercase text-center text-md-start m-0 p-2 p-md-0 ${product.stockQty > 0 ?
                     "text-success" : "text-danger"}">
                                 ${product.stockQty > 0 ? "IN STOCK" : "OUT OF STOCK"}
                         </h6>
                     </div>
-                    <div class="col p-0 align-self-md-center">
+                    <div class="col-md-2 p-0 align-self-md-center mb-3 mb-md-0">
                         <h6 class="text-uppercase text-md-start text-center m-0 p-2 p-md-0">
                             USD <fmt:formatNumber value="${product.price}" type="currency" currencySymbol="$" maxFractionDigits="2" />
                         </h6>
                     </div>
-                    <div class="col p-0 px-5 px-md-0 pe-md-5 align-self-md-center">
+                    <div class="col-md-2 p-0 px-5 px-md-0 pe-md-5 align-self-center mb-3 mb-md-0">
                         <form action="ChangePqtyServlet" method="post" class="align-self-md-center my-auto">
                             <input type="hidden" name="productID" value="${product.productID}">
                             <input
@@ -115,23 +117,31 @@
                             />
                         </form>
                     </div>
-                    <div class="col p-0 align-self-center">
+                    <div class="col p-0 align-self-center mb-3 mb-md-0">
                         <div
-                                class="row row-cols-md-2 row-cols-1 m-0 text-center text-md-start"
+                                class="row m-0 text-center gap-3 gap-md-0"
                         >
-                            <div class="col p-0 m-0 align-self-center">
-                                <h6 class="text-uppercase m-0 p-2 p-md-0 text-md-start text-center">USD <fmt:formatNumber value="${cartItem.PQty * product.price}" type="currency" currencySymbol="$" maxFractionDigits="2" />
+                            <div class="col-12 col-md-7 p-0 m-0 align-self-center">
+                                <h6 class="text-uppercase m-0 p-2 p-md-0 text-md-start text-center text-break">USD <fmt:formatNumber value="${cartItem.PQty * product.price}" type="currency" currencySymbol="$" maxFractionDigits="2" />
                             </div>
-                            <div class="col p-0 text-center align-self-center">
+                            <div class="col text-center">
                                 <form action="RemoveFromCartServlet" method="post" class="my-auto">
                                     <input type="hidden" name="productID" value="${product.productID}">
-                                    <button
-                                            type="submit"
-                                            class="btn-close p-2 p-md-0"
-                                            aria-label="Close"
-                                    ></button>
+                                    <button type="submit" class="btn bg-danger" aria-label="Close">
+                                        <i class="bi bi-x-lg fs-6"></i>
+                                    </button>
                                 </form>
                             </div>
+<%--                            <div class="col p-0 text-center align-self-center">--%>
+<%--                                <form action="RemoveFromCartServlet" method="post" class="my-auto">--%>
+<%--                                    <input type="hidden" name="productID" value="${product.productID}">--%>
+<%--                                    <button--%>
+<%--                                            type="submit"--%>
+<%--                                            class="btn-close p-2 p-md-0"--%>
+<%--                                            aria-label="Close"--%>
+<%--                                    ></button>--%>
+<%--                                </form>--%>
+<%--                            </div>--%>
                         </div>
                     </div>
                 </div>
@@ -156,6 +166,11 @@
                 </form>
             </div>
         </div>
+        <a href="index.jsp">
+            <button type="button" class="btn btn-dark mt-3 mb-3">
+                <i class="bi bi-arrow-left fs-5"> Back to Shopping</i>
+            </button>
+        </a>
     </div>
 </main>
 <script>

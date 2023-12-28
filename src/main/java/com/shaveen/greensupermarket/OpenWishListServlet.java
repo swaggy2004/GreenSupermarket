@@ -18,7 +18,7 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author Shaveen
  */
-public class RemoveFromCartServlet extends HttpServlet {
+public class OpenWishListServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +37,10 @@ public class RemoveFromCartServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet RemoveFromCartServlet</title>");            
+            out.println("<title>Servlet OpenWishListServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet RemoveFromCartServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet OpenWishListServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -56,9 +56,16 @@ public class RemoveFromCartServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+    protected void doGet(jakarta.servlet.http.HttpServletRequest request, jakarta.servlet.http.HttpServletResponse response)
+            throws jakarta.servlet.ServletException, IOException {
+        HttpSession session = request.getSession();
+        String Email = (String) session.getAttribute("email");
+        if (Email == null) {
+            response.sendRedirect(request.getContextPath() + "/login.jsp");
+        }
+        else{
+            response.sendRedirect(request.getContextPath() + "/WishList.jsp");
+        }
     }
 
     /**
@@ -66,19 +73,20 @@ public class RemoveFromCartServlet extends HttpServlet {
      *
      * @param request servlet request
      * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
+     * @throws jakarta.servlet.ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(jakarta.servlet.http.HttpServletRequest request, jakarta.servlet.http.HttpServletResponse response)
+            throws jakarta.servlet.ServletException, IOException {
         HttpSession session = request.getSession();
         String Email = (String) session.getAttribute("email");
-        String ProductID = request.getParameter("productID");
-        int PID = Integer.parseInt(ProductID);
-        FetchShoppingCart.deleteProduct(Email, PID);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/MyCart.jsp");
-        dispatcher.forward(request, response);
+        if (Email == null) {
+            response.sendRedirect(request.getContextPath() + "/login.jsp");
+        }
+        else{
+            response.sendRedirect(request.getContextPath() + "/WishList.jsp");
+        }
     }
 
     /**
