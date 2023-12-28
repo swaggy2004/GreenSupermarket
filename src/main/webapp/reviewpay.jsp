@@ -31,7 +31,7 @@
     %>
     <%@ include file="header.jsp"%> 
     <div align="center">
-        <h1>Please Review Before Paying</h1>
+        <h1 style="margin-top:2rem; margin-bottom:1rem ">Please Review Before Paying</h1>
         <form action="execute_payment" method="post">
             <table>
                 <!-- Transaction Details -->
@@ -99,10 +99,6 @@
                     <td>${shippingAddress.city}</td>
                 </tr>
                 <tr>
-                    <td>State:</td>
-                    <td>${shippingAddress.state}</td>
-                </tr>
-                <tr>
                     <td>Country Code:</td>
                     <td>${shippingAddress.countryCode}</td>
                 </tr>
@@ -110,14 +106,19 @@
                     <td>Postal Code:</td>
                     <td>${shippingAddress.postalCode}</td>
                 </tr>
+                <tr>
+                    <td colspan="2"></td>
+                </tr>
 
                 <!-- Submit Button -->
                 <tr>
                     <td colspan="2" align="center">
-                        <input type="submit" value="Pay Now" />
+                        <input style="margin:2rem" class="btn btn-success" type="submit" value="Pay Now" />
                     </td>
                 </tr>
+                
             </table>
+                <p style="text-align: center; color:red;">The attached receipt above is final, covering all charges you are subject to.<br> Kindly note, payments are non-refundable after paid even on post-cancellation.</p>
         </form>
     </div>
     <%@ include file="footer.jsp"%>

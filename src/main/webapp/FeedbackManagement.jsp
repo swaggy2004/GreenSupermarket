@@ -57,8 +57,13 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
     <li class="nav-item">
         <a class="nav-link" href="StockManagement.jsp">Stock Management</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="LogoutServlet">Logout</a>
+    <li class="nav-item" >
+        <form action="AdminLogoutServlet" method="post">
+            <input type="hidden">
+            <button class="nav-link" type="submit"><i class="bi me-2">Log-out</i></button>
+        </form>
+        
+       
     </li>
 
 </ul>
@@ -78,7 +83,7 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
 
 
 
-<table style="margin-top: 2rem ; margin-left: 2rem ; margin-right: 2rem;" class="table">
+<table style="margin-top: 2rem ; margin-left: 2rem ; margin-right: 2rem; margin-bottom: 8rem;" class="table">
     <thead>
     <tr>
         <th scope="col">Feedback ID </th>
@@ -103,25 +108,8 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
     
     </tbody>
 </table>
-<div class="col d-flex justify-content-center">
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</div>
+
+<%@ include file="footer.jsp"%>
 
 
 

@@ -40,40 +40,28 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
   <link rel="stylesheet" href="AdminCommon.css" />
 </head>
 <body>
-<%@ include file="header.jsp"%> 
-<!--main container for all the body elements-->
-<div class="container-fluid">
-  <!--starting a row, removing the gutter value and adding a padding-->
-  <div class="row gx-0 p-3 mx-auto">
-    <!--starting a column-->
-    <div class="col border">
-      <!--just adding a heading-->
-      <h4 class="m-3">Navigation</h4>
-      <!--starting a vertical navbar for the buttons-->
-      <nav class="nav flex-column">
-        <!--adding the buttons and making them active-->
-        <a
-                class="nav-link cus-btn"
-                aria-current="page"
-                href="AdminProduct.jsp"
-        ><i class="bi bi-pencil-fill me-2"></i> Product Edit</a
-        >
-        <a
-                class="nav-link cus-btn active"
-                aria-current="page"
-                href="AdminAccount.jsp"
-        ><i class="bi bi-person-circle me-2"></i> Account Management</a
-        >
+
+     <ul class="nav nav-tabs" style="margin-top: 1rem; ">
+    <li class="nav-item" style="margin-left: 1rem;">
+        <a class="nav-link"  href="AdminProduct.jsp">Product Edit</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link  active " aria-current="page" href="AdminAccount.jsp">Account Management</a>
+    </li>
+    <li class="nav-item" >
         <form action="AdminLogoutServlet" method="post">
             <input type="hidden">
-            <button type="submit"><i class="bi bi-box-arrow-right me-2">Log-out</i></button>
+            <button class="nav-link" type="submit"><i class="bi me-2">Log-out</i></button>
         </form>
-      </nav>
-    </div>
+        
+       
+    </li>
+
+    </ul>
 
     <!--this is the edit product panne-->
     <!-- made it wider than the nav section -->
-    <form action="DeleteAdminAccountServlet"method="post" class="col col-md-9 p-md-4 mx-md-auto">
+    <form action="DeleteAdminAccountServlet" method="post" class="col col-md-9 p-md-4 mx-md-auto">
       <!-- made it inside a container and made all the text in here to be centered -->
       <div class="container text-center pt-4 pt-md-0">
         <!-- this is the title pane with the currently selected option and add a product button -->

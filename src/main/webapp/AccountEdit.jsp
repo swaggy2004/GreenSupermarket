@@ -41,38 +41,24 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
     <link rel="stylesheet" href="AdminEditProduct.css">
   </head>
   <body>
-      <%--<%@ include file="header.jsp"%>--%>
-    <!--main container for all the body elements-->
-    <div class="container-fluid my-4">
-      <!--starting a row, removing the gutter value and adding a padding-->
-      <div class="row mx-auto gap-5">
-        <!--starting a column-->
-        <div class="col p-0 border mb-4 mb-md-0">
-          <!--just adding a heading-->
-          <h4 class="m-3">Navigation</h4>
-          <!--starting a vertical navbar for the buttons-->
-          <nav class="nav flex-column">
-        <!--adding the buttons and making them active-->
-        <a
-                class="nav-link cus-btn"
-                aria-current="page"
-                href="AdminProduct.jsp"
-        ><i class="bi bi-pencil-fill me-2"></i> Product Edit</a
-        >
-        <a
-                class="nav-link cus-btn"
-                aria-current="page"
-                href="AdminAccount.jsp"
-        ><i class="bi bi-person-circle me-2"></i> Account Management</a
-        >
-        <form action="AdminLogoutServlet" method="post">
-            <input type="hidden">
-            <button type="submit"><i class="bi bi-box-arrow-right me-2">Log-out</i></button>
-        </form>
-      </nav>
-        </div>
+     <ul class="nav nav-tabs" style="margin-top: 1rem; margin-bottom: 2rem; ">
+                <li class="nav-item" style="margin-left: 1rem;">
+                    <a class="nav-link"  href="AdminProduct.jsp">Product Edit</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="AdminAccount.jsp">Account Management</a>
+                </li>
+                <li class="nav-item" >
+                    <form action="AdminLogoutServlet" method="post">
+                        <input type="hidden">
+                        <button class="nav-link" type="submit"><i class="bi me-2">Log-out</i></button>
+                    </form>
+                </li>
 
-        <form
+          </ul>
+        
+
+        <form style="margin-bottom: 2rem"
           action="<%=request.getContextPath()%>/EditAccountServlet"
           class="col col-md-9 p-md-4 mx-md-auto col-12 border rounded-3 border-opacity-25"
           method="post"
@@ -156,6 +142,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"
     ></script>
+    <%@ include file="footer.jsp"%>
   </body>
 </html>
 <%
