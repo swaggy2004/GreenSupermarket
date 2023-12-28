@@ -50,7 +50,7 @@
 
 
 
-
+<%@ include file="header.jsp"%>
 
 
 
@@ -94,8 +94,9 @@
                                 <input type="hidden" name="email" value="${userData.email}">
                             </div>
                             <div class="col">
+                                
                                 <label class="input-group-text" for="inputGroupFile01">Edit Profile Avatar</label>
-                                <input type="file" class="form-control" name="inputGroupFile01" id="inputGroupFile01" value="${userData.getAvatarPath()}">
+                                <input type="file" class="form-control" name="inputGroupFile01" id="inputGroupFile01" >
                             </div>
 
                         </div>
