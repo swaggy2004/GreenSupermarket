@@ -33,7 +33,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
     <link rel="stylesheet" href="AdminEditProduct.css" />
   </head>
   <body>
-      <%@ include file="header.jsp"%> 
+      <%--<%@ include file="header.jsp"%>--%> 
     <!--main container for all the body elements-->
     <div class="container-fluid">
       <!--starting a row, removing the gutter value and adding a padding-->
@@ -73,6 +73,11 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
         </div>
 
         <form action="<%=request.getContextPath()%>/AddProductServlet" class="col col-md-9 p-md-4 mx-md-auto col-12" method="post" enctype="multipart/form-data">
+             <a href="AdminProduct.jsp"<button class="btn px-0 mb-4 go-back fw-semibold border border-0 go-back-btn">
+            
+              <i class="bi bi-arrow-left"></i><span class="mx-2">Go Back</span>
+           
+              </button></a>
           <h3 class="mb-5 text-center text-md-start text-uppercase">Add Product</h3>
           <div class="row row-cols-md-12">
             <div class="col col-md-3 col-12">
@@ -111,15 +116,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
                     <option value="1">Vegetable</option>
                     <option value="2">Fruit</option>
                     <option value="3">Meat</option>
-                    <option value="4">Seafood</option>
-                    <option value="5">Dairy</option>
-                    <option value="6">Beverage</option>
-                    <option value="7">Snack</option>
-                    <option value="8">Bakery</option>
-                    <option value="9">Frozen</option>
-                    <option value="10">Canned</option>
-                    <option value="11">Instant</option>
-                    <option value="12">Others</option>
+                    <option value="4">Snack</option>
                   </select>
                 </div>
               </div>
@@ -187,7 +184,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
         </form>
       </div>
     </div>
-    <%@ include file="footer.jsp"%>
+        <%--<%@ include file="footer.jsp"%>--%>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
