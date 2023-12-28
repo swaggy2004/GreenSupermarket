@@ -42,7 +42,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
     <link rel="stylesheet" href="AdminEditProduct.css" />
   </head>
   <body>
-      <%@ include file="header.jsp"%> 
+      <%--<%@ include file="header.jsp"%>--%>
     <!--main container for all the body elements-->
     <div class="container-fluid">
       <!--starting a row, removing the gutter value and adding a padding-->
@@ -52,36 +52,33 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
           <!--just adding a heading-->
           <h4 class="m-3">Navigation</h4>
           <!--starting a vertical navbar for the buttons-->
-          <nav class="nav flex-column">
-            <!--adding the buttons and making them active-->
-            <a
-              class="nav-link active cus-btn active"
-              aria-current="page"
-              href="AdminProduct.html"
-              ><i class="bi bi-pencil-fill me-2"></i> Product Edit</a
-            >
-            <a
-              class="nav-link cus-btn"
-              aria-current="page"
-              href="AdminAccount.html"
-              ><i class="bi bi-person-circle me-2"></i> Account Management</a
-            >
-            <a
-              class="nav-link cus-btn"
-              aria-current="page"
-              href="AdminPromotion.html"
-              ><i class="bi bi-percent me-2"></i> Promotion</a
-            >
-            <a class="nav-link cus-btn" aria-current="page" href="#"
-              ><i class="bi bi-gear-wide-connected me-2"></i> Settings</a
-            >
-            <a class="nav-link cus-btn" aria-current="page" href="#">
-              <i class="bi bi-box-arrow-right me-2"></i> Log-out</a
-            >
-          </nav>
+         <nav class="nav flex-column">
+        <!--adding the buttons and making them active-->
+        <a
+                class="nav-link cus-btn "
+                aria-current="page"
+                href="AdminProduct.jsp"
+        ><i class="bi bi-pencil-fill me-2"></i> Product Edit</a
+        >
+        <a
+                class="nav-link cus-btn"
+                aria-current="page"
+                href="AdminAccount.jsp"
+        ><i class="bi bi-person-circle me-2"></i> Account Management</a
+        >
+        <form action="AdminLogoutServlet" method="post">
+            <input type="hidden">
+            <button type="submit"><i class="bi bi-box-arrow-right me-2">Log-out</i></button>
+        </form>
+      </nav>
         </div>
 
         <form action="<%=request.getContextPath()%>/EditProductServlet" class="col col-md-9 p-md-4 mx-md-auto col-12" method="post" enctype="multipart/form-data">
+             <a href="AdminProduct.jsp"<button class="btn px-0 mb-4 go-back fw-semibold border border-0 go-back-btn">
+            
+              <i class="bi bi-arrow-left"></i><span class="mx-2">Go Back</span>
+           
+              </button></a>
           <h3 class="mb-5 text-center text-md-start text-uppercase">Edit Product</h3>
           <div class="row row-cols-md-12">
              
@@ -135,18 +132,10 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
                     name="productCategory"
                     id="productCategory"
                   >
-                    <option value="1"${product.getCategory() == '1' ? 'selected' : ''}>Vegetable</option>
-                    <option value="2"${product.getCategory() == '2' ? 'selected' : ''}>Fruit</option>
-                    <option value="3"${product.getCategory() == '3' ? 'selected' : ''}>Meat</option>
-                    <option value="4"${product.getCategory() == '4' ? 'selected' : ''}>Seafood</option>
-                    <option value="5"${product.getCategory() == '5' ? 'selected' : ''}>Dairy</option>
-                    <option value="6"${product.getCategory() == '6' ? 'selected' : ''}>Beverage</option>
-                    <option value="7"${product.getCategory() == '7' ? 'selected' : ''}>Snack</option>
-                    <option value="8"${product.getCategory() == '8' ? 'selected' : ''}>Bakery</option>
-                    <option value="9"${product.getCategory() == '9' ? 'selected' : ''}>Frozen</option>
-                    <option value="10"${product.getCategory() == '10' ? 'selected' : ''}>Canned</option>
-                    <option value="11"${product.getCategory() == '11' ? 'selected' : ''}>Instant</option>
-                    <option value="12"${product.getCategory() == '12' ? 'selected' : ''}>Others</option>
+                    <option value="1">Vegetable</option>
+                    <option value="2">Fruit</option>
+                    <option value="3">Meat</option>
+                    <option value="4">Snack</option>
                   </select>
                 </div>
               </div>
@@ -220,7 +209,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
         </form>
       </div>
     </div>
-    <%@ include file="footer.jsp"%>
+     <%--<%@ include file="footer.jsp"%>--%>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"

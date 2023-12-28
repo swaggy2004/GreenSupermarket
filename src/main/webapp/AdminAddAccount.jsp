@@ -44,32 +44,24 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
           <h4 class="m-3">Navigation</h4>
           <!--starting a vertical navbar for the buttons-->
           <nav class="nav flex-column">
-            <!--adding the buttons and making them active-->
-            <a
-              class="nav-link cus-btn"
-              aria-current="page"
-              href="AdminProduct.html"
-              ><i class="bi bi-pencil-fill me-2"></i> Product Edit</a
-            >
-            <a
-              class="nav-link cus-btn active"
-              aria-current="page"
-              href="AdminAccount.html"
-              ><i class="bi bi-person-circle me-2"></i> Account Management</a
-            >
-            <a
-              class="nav-link cus-btn"
-              aria-current="page"
-              href="AdminPromotion.html"
-              ><i class="bi bi-percent me-2"></i> Promotion</a
-            >
-            <a class="nav-link cus-btn" aria-current="page" href="#"
-              ><i class="bi bi-gear-wide-connected me-2"></i> Settings</a
-            >
-            <a class="nav-link cus-btn" aria-current="page" href="#">
-              <i class="bi bi-box-arrow-right me-2"></i> Log-out</a
-            >
-          </nav>
+        <!--adding the buttons and making them active-->
+        <a
+                class="nav-link cus-btn"
+                aria-current="page"
+                href="AdminProduct.jsp"
+        ><i class="bi bi-pencil-fill me-2"></i> Product Edit</a
+        >
+        <a
+                class="nav-link cus-btn"
+                aria-current="page"
+                href="AdminAccount.jsp"
+        ><i class="bi bi-person-circle me-2"></i> Account Management</a
+        >
+        <form action="AdminLogoutServlet" method="post">
+            <input type="hidden">
+            <button type="submit"><i class="bi bi-box-arrow-right me-2">Log-out</i></button>
+        </form>
+      </nav>
         </div>
 
         <form
