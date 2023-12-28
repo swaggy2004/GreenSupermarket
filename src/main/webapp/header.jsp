@@ -85,13 +85,13 @@
         </button>
       </form>
       <div class="text-center p-0">
-        <form action="MyCart.jsp" method="post" class="d-inline">
+        <form action="OpenShoppingCartServlet" method="post" class="d-inline">
           <input type="hidden">
           <button type="submit" class="btn btn-outline-dark py-0">
             <i class="bi bi-cart4 fs-4"></i>
           </button>
         </form>
-        <form action="WishList.jsp" method="post" class="d-inline">
+        <form action="OpenWishListServlet" method="post" class="d-inline">
           <input type="hidden">
           <button type="submit" class="btn btn-outline-dark py-0">
             <i class="bi bi-bag-heart fs-4"></i>
