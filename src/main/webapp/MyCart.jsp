@@ -132,16 +132,6 @@
                                     </button>
                                 </form>
                             </div>
-<%--                            <div class="col p-0 text-center align-self-center">--%>
-<%--                                <form action="RemoveFromCartServlet" method="post" class="my-auto">--%>
-<%--                                    <input type="hidden" name="productID" value="${product.productID}">--%>
-<%--                                    <button--%>
-<%--                                            type="submit"--%>
-<%--                                            class="btn-close p-2 p-md-0"--%>
-<%--                                            aria-label="Close"--%>
-<%--                                    ></button>--%>
-<%--                                </form>--%>
-<%--                            </div>--%>
                         </div>
                     </div>
                 </div>

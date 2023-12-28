@@ -77,12 +77,10 @@ public class AddToWishListServlet extends HttpServlet {
             } catch (SQLException ex) {
                 Logger.getLogger(AddToWishListServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WishList.jsp");
-            dispatcher.forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/WishList.jsp");
         }
         else{
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
-            dispatcher.forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/login.jsp");
         }
     }
 

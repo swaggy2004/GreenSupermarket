@@ -68,13 +68,11 @@ public class AddToCartServlet extends HttpServlet {
             } catch (SQLException ex) {
                 Logger.getLogger(AddToCartServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/MyCart.jsp");
-            dispatcher.forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/MyCart.jsp");
         }
         else
         {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
-            dispatcher.forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/login.jsp");
         }
     }
 }
