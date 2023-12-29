@@ -54,8 +54,13 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
     <li class="nav-item">
         <a class="nav-link" href="StockManagement.jsp">Stock Management</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="LogoutServlet">Logout</a>
+    <li class="nav-item" >
+        <form action="AdminLogoutServlet" method="post">
+            <input type="hidden">
+            <button class="nav-link" type="submit"><i class="bi me-2">Log-out</i></button>
+        </form>
+        
+       
     </li>
 
 </ul>
@@ -97,7 +102,7 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-
+<%@ include file="footer.jsp"%>
 </body>
 </html>
 <%

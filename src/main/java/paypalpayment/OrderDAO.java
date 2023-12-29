@@ -347,6 +347,42 @@ public class OrderDAO {
     }
 
 
-   
+    public static void deleteOrder(int orderId) throws SQLException {
+        Connection connection = null;
+        PreparedStatement deleteOrderStatement = null;
+
+        try {
+            connection = Model.Connection.start();
+            connection.setAutoCommit(false);
+
+            // Delete items from order_product table
+            String deleteOrderProductsQuery = "DELETE FROM order_product WHERE OrderID = ?";
+            deleteOrderStatement = connection.prepareStatement(deleteOrderProductsQuery);
+            deleteOrderStatement.setInt(1, orderId);
+            deleteOrderStatement.executeUpdate();
+
+            // Delete order from placed_order table
+            String deleteOrderQuery = "DELETE FROM placed_order WHERE OrderID = ?";
+            deleteOrderStatement = connection.prepareStatement(deleteOrderQuery);
+            deleteOrderStatement.setInt(1, orderId);
+            deleteOrderStatement.executeUpdate();
+
+            connection.commit();
+        } catch (SQLException e) {
+            if (connection != null) {
+                connection.rollback();
+            }
+            throw e;
+        } finally {
+            if (deleteOrderStatement != null) {
+                deleteOrderStatement.close();
+            }
+            if (connection != null) {
+                connection.setAutoCommit(true);
+                connection.close();
+            }
+        }
+    }
+
 
 }

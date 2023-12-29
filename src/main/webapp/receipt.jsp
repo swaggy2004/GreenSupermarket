@@ -90,7 +90,7 @@
         </tr>
     </table>
 </div>
-            <a href="OrderStatus1.jsp?orderId=${orderID}" >View Details</a>
+            <a class="btn btn-success" href="OrderStatus1.jsp?orderId=${orderID}" >View Details</a>
 <%@ include file="footer.jsp"%>
         
 </body>

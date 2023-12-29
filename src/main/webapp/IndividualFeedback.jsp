@@ -69,7 +69,11 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
 </head>
 <body>
     <%--<%@ include file="header.jsp"%>--%>
-<div class="card mb-3" style=" margin: 3rem 2rem 0 2rem; min-height:300px">
+    
+    <div class="back-button-container">
+    <button style="margin-left: 2rem" class="btn btn-back" onclick="goBack()">Back</button>
+    </div>
+<div class="card mb-3" style=" margin: 1rem 2rem 0 2rem; min-height:300px">
     <div class="card-header">
         <h3 >Feedback ID:${cfeedback.getFeedbackID()}</h3>
     </div>
@@ -97,9 +101,7 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
         </p>
     </div>
 </div>
-<div class="back-button-container">
-    <button style="margin-left: 3rem" class="btn btn-back" onclick="goBack()">Back</button>
-</div>
+
 
 
 

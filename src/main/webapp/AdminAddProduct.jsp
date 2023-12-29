@@ -34,35 +34,26 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
   </head>
   <body>
       <%--<%@ include file="header.jsp"%>--%>
-    <!--main container for all the body elements-->
-    <div class="container-fluid">
-      <!--starting a row, removing the gutter value and adding a padding-->
-      <div class="row gx-0 p-3 mx-auto">
-        <!--starting a column-->
-        <div class="col border mb-4 mb-md-0">
-          <!--just adding a heading-->
-          <h4 class="m-3">Navigation</h4>
-          <!--starting a vertical navbar for the buttons-->
-          <nav class="nav flex-column">
-        <!--adding the buttons and making them active-->
-        <a
-                class="nav-link cus-btn"
-                aria-current="page"
-                href="AdminProduct.jsp"
-        ><i class="bi bi-pencil-fill me-2"></i> Product Edit</a
-        >
-        <a
-                class="nav-link cus-btn "
-                aria-current="page"
-                href="AdminAccount.jsp"
-        ><i class="bi bi-person-circle me-2"></i> Account Management</a
-        >
-        <form action="AdminLogoutServlet" method="post">
-            <input type="hidden">
-            <button type="submit"><i class="bi bi-box-arrow-right me-2">Log-out</i></button>
-        </form>
-      </nav>
-        </div>
+      
+         <ul class="nav nav-tabs" style="margin-top: 1rem; ">
+                <li class="nav-item" style="margin-left: 1rem;">
+                    <a class="nav-link"  href="AdminProduct.jsp">Product Edit</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="AdminAccount.jsp">Account Management</a>
+                </li>
+                <li class="nav-item" >
+                    <form action="AdminLogoutServlet" method="post">
+                        <input type="hidden">
+                        <button class="nav-link" type="submit"><i class="bi me-2">Log-out</i></button>
+                    </form>
+                </li>
+
+          </ul>
+            
+      
+      
+      
 
         <form action="<%=request.getContextPath()%>/AddProductServlet" class="col col-md-9 p-md-4 mx-md-auto col-12" method="post" enctype="multipart/form-data">
              <a href="AdminProduct.jsp"<button class="btn px-0 mb-4 go-back fw-semibold border border-0 go-back-btn">
@@ -71,19 +62,16 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
            
               </button></a>
           <h3 class="mb-5 text-center text-md-start text-uppercase">Add Product</h3>
+          
           <div class="row row-cols-md-12">
-            <div class="col col-md-3 col-12">
-              <input
-                type="file"
-                src="baby-carrots.png"
-                alt="picture of a carrot"
-                class="img-fluid w-100 border-cus"
-                name="productImage"
-              />
-            </div>
-            <div class="col col-md-9">
+              
+           
               <div class="row col-md-12 mb-3">
                 <div class="col col-3 mb-3 col-12">
+                    <div class="input-group mb-3">
+                    <label class="input-group-text" for="productImage">Upload</label>
+                    <input type="file" class="form-control" id="productImage" name="productImage">
+                  </div>
                   <label for="productName" class="form-label"
                     ><h5>Product Name</h5></label
                   >
@@ -124,6 +112,9 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
                     class="form-control"
                   />
                 </div>
+                                 
+                
+              </div>
                 <div class="col col-md-2 mb-3 col-12">
                   <label for="Visibility" class="form-label"
                     ><h5>Visibility</h5></label
@@ -137,7 +128,6 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
                     <option value="2">Hide</option>
                   </select>
                 </div>
-              </div>
               <div class="row col-md-12 mb-3">
                 <div class="col col-md-12 mb-3 col-12">
                   <label for="description" class="form-label"
