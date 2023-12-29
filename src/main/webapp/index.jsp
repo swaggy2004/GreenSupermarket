@@ -32,7 +32,7 @@
   <div class="row justify-content-center">
     <!--card1-->
     <div class="col-lg-3 col-md-6 card-spacing">
-      <a href="vegetable-catalog.jsp?category=Fruits" class="card-link text-body text-decoration-none"
+      <a href="ProductCatalogue.jsp?category=Fruits" class="card-link text-body text-decoration-none"
          name="fruits">
         <div class="card card-custom">
           <img src="assets/images/Product-images/fresh-fruits.svg" class="card-img-top" alt="Ladies Fingers">
@@ -44,7 +44,7 @@
     </div>
     <!--card2-->
     <div class="col-lg-3 col-md-6 card-spacing">
-      <a href="vegetable-catalog.jsp?category=Vegetable" class="card-link text-body text-decoration-none" name="vegetables">
+      <a href="ProductCatalogue.jsp?category=Vegetable" class="card-link text-body text-decoration-none" name="vegetables">
       <div class="card card-custom">
         <img src="assets/images/Product-images/fresh-vegetables.svg" class="card-img-top" alt="Ladies Fingers">
         <div class="card-body">
@@ -55,7 +55,7 @@
     </div>
      <!--card3-->
     <div class="col-lg-3 col-md-6 card-spacing">
-      <a href="vegetable-catalog.jsp?category=Protein" class="card-link text-body text-decoration-none"
+      <a href="ProductCatalogue.jsp?category=Protein" class="card-link text-body text-decoration-none"
          name="protein">
       <div class="card card-custom">
         <img src="assets/images/Product-images/meat-fish.svg" class="card-img-top" alt="Ladies Fingers">
@@ -67,7 +67,7 @@
     </div>
      <!--card4-->
     <div class="col-lg-3 col-md-6 card-spacing">
-      <a href="vegetable-catalog.jsp?category=Snacks" class="card-link text-body text-decoration-none"
+      <a href="ProductCatalogue.jsp?category=Snacks" class="card-link text-body text-decoration-none"
          name="vegetables">
       <div class="card card-custom">
         <img src="assets/images/Product-images/snack.svg" class="card-img-top" alt="Ladies Fingers">
