@@ -38,7 +38,7 @@
 <div class="container text-left" style="margin-top: 180px;margin-left: 75px;margin-right:102px ;">
     <div class="row">
         <div class="col-md-5 ">
-            <img src="assets/vegi1.png" class="img-fluid" alt="cabbage">
+            <img src="${product.getImgPath()}" class="img-fluid" alt="cabbage">
         </div>
         <div class="col-md-7">
             <nav aria-label="breadcrumb">
@@ -47,7 +47,7 @@
                     <li class="breadcrumb-item active" aria-current="page">Vegetables</li>
                 </ol>
             </nav>
-            <h2>${product.getProductName()}</h2>
+            <h2>${product.getProductName()} ${product.getUnitQty()}g </h2>
             <p>Availability: In stock</p>
             <p>${product.getDescription()}</p>
             <h3 style="color: #276A07;font-weight: 700;">USD ${product.getPrice()}</h3>

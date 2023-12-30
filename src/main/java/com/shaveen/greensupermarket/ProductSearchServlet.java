@@ -4,28 +4,23 @@
  */
 package com.shaveen.greensupermarket;
 
-import jakarta.servlet.annotation.WebServlet;
-import java.io.File;
+import Model.Product;
+
 import java.io.IOException;
 import java.io.PrintWriter;
-//import java.nio.file.Files;
-//import java.nio.file.StandardCopyOption;
-import jakarta.servlet.http.Part;
+
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.annotation.MultipartConfig;
-
+import java.util.*;
 
 /**
  *
- * @author DELL
+ * @author Shaveen
  */
-@WebServlet(name = "EditProductServlet", urlPatterns = {"/EditProductServlet"})
-@MultipartConfig
-public class EditProductServlet extends HttpServlet {
-    
+public class ProductSearchServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,10 +39,10 @@ public class EditProductServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet EditProductServlet</title>");            
+            out.println("<title>Servlet ProductSearchServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet EditProductServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ProductSearchServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -65,8 +60,16 @@ public class EditProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        processRequest(request, response);
+        String search = request.getParameter("searchResult");
+        List<Product> result = FetchProduct.SearchResult(search);
+        if (result.size() == 0)
+        {
+            result = null;
+        }
+        request.setAttribute("result", result);
+        request.setAttribute("search", search);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("SearchPage.jsp");
+        dispatcher.forward(request, response);
     }
 
     /**
@@ -80,35 +83,17 @@ public class EditProductServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String productID = request.getParameter("productID");
-        String productName = request.getParameter("productName");
-        String productCategory = request.getParameter("productCategory");
-        Boolean visibility = Boolean.parseBoolean(request.getParameter("Visibility"));
-        String description = request.getParameter("description");
-        float unitPrice = Float.parseFloat(request.getParameter("unitPrice"));
-        int unitQuantity = Integer.parseInt(request.getParameter("unitQuantity"));
-        
+        processRequest(request, response);
+    }
 
-        String imageSavedDirectoryPath = request.getServletContext().getRealPath("assets/productimages/");
-        File imageSavedDirectory = new File(imageSavedDirectoryPath);
-        if (!imageSavedDirectory.exists()) {
-            try {
-                imageSavedDirectory.mkdirs();
-            } catch (SecurityException ex) {
-                System.out.println("Please fix directory permissions");
-                return;
-            }
-        }
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
 
-    
-        Part imgPart = request.getPart("productImage");
-        String imgName = imgPart.getSubmittedFileName();
-        imgPart.write(imageSavedDirectoryPath + File.separator + imgName);
-        String imgNameWithPath = "assets/productimages/" + imgName;
-
-        // Use ManageConnection class to add the product to the database
-        ManageConnection sendData = new ManageConnection();
-        sendData.editProduct(productID, productName, productCategory, visibility, description, unitPrice, unitQuantity, imgNameWithPath);
-        response.sendRedirect("AdminProduct.jsp");
-        }
 }

@@ -36,23 +36,24 @@
 <div class="jumbotron jumbotron-fluid position-relative">
     <img
             src="assets/images/HeaderImages/${category}.jpg" loading="lazy" class="img-fluid w-100"
-            style="max-height: 500px;" alt="">
+            style="max-height: 80vh;" alt="">
     <h1
-            class="display-1 fw-semibold bg-black bg-opacity-25 text-white text-center position-absolute top-50 start-50 translate-middle p-3"
+            class="display-1 fw-semibold text-white text-center position-absolute top-50 start-50 translate-middle p-3"
     >
         ${category}
     </h1>
 </div>
 
 <div class="container-fluid">
-    <div class="row">
+    <div class="row gap-1">
         <c:forEach items="${products}" var="product">
             <div
                     class="card border border-2 p-3 text-center mx-auto mt-4 mb-4"
-                    style="width: 18rem"
+                    style="width: 19.9rem"  onclick="redirectToServlet('ProductDetail.jsp',
+                    '${product.getProductID()}');"
             >
                 <img
-                        src="assets\images\Product-images\chilli.svg"
+                        src="${product.getImgPath()}"
                         class="card-img-top rounded-2"
                         style="border: 2px solid green"
                 />
@@ -76,7 +77,7 @@
                         </div>
                         <div class="col-3 p-0">
                             <form action="AddToWishListServlet" method="post">
-                                <intput type="hidden" name="PID" value="${product.getProductID()}"></intput>
+                                <input type="hidden" name="PID" value="${product.getProductID()}"/>
                                 <button type="submit" class="btn btn-danger card-link">
                                     <i class="bi bi-heart-fill"></i>
                                 </button>
@@ -88,6 +89,15 @@
         </c:forEach>
     </div>
 </div>
+<script>
+    function redirectToServlet(url, productID) {
+        // Construct the final URL with the Product ID
+        var finalURL = url + '?PID=' + encodeURIComponent(productID);
+
+        // Redirect to the final URL
+        window.location.href = finalURL;
+    }
+</script>
 <%@ include file="footer.jsp"%>
 </body>
 </html>

@@ -53,7 +53,8 @@ public class AddProductServlet extends HttpServlet {
         int unitQuantity = Integer.parseInt(request.getParameter("unitQuantity"));
         
         
-        String imageSavedDirectoryPath = request.getServletContext().getRealPath("/assets/productimages");
+        
+        String imageSavedDirectoryPath = request.getServletContext().getRealPath("assets/productimages");
         File imageSavedDirectory = new File(imageSavedDirectoryPath);
         if (!imageSavedDirectory.exists()) {
             try {
@@ -68,7 +69,11 @@ public class AddProductServlet extends HttpServlet {
         Part imgPart = request.getPart("productImage");
         String imgName = imgPart.getSubmittedFileName();
         imgPart.write(imageSavedDirectoryPath + File.separator + imgName);
-        String imgNameWithPath = "assets/productimages/" + imgName;
+        String imgNameWithPath = request.getServletContext().getContextPath() + "/assets/productimages/" + imgName;
+
+        
+        
+        
 
         ManageConnection sendData = new ManageConnection();
         sendData.addProduct(productName, productCategory, visibility, description, unitPrice, unitQuantity, imgNameWithPath);

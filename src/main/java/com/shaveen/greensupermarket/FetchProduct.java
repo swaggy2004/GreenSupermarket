@@ -34,6 +34,7 @@ public class FetchProduct {
                 product.setDescription(resultSet.getString("Description"));
                 product.setVisibility(resultSet.getBoolean("Visibility"));
                 product.setPrice(resultSet.getFloat("UnitPrice"));
+                product.setImgPath(resultSet.getString("ImagePath"));
                 products.add(product);
             }
         } catch (Exception e) {
@@ -58,6 +59,7 @@ public class FetchProduct {
                     product.setDescription(resultSet.getString("Description"));
                     product.setVisibility(resultSet.getBoolean("Visibility"));
                     product.setPrice(resultSet.getFloat("UnitPrice"));
+                    product.setImgPath(resultSet.getString("ImagePath"));
                     products.add(product);
                 }
             }
@@ -83,6 +85,7 @@ public class FetchProduct {
                     product.setDescription(resultSet.getString("Description"));
                     product.setVisibility(resultSet.getBoolean("Visibility"));
                     product.setPrice(resultSet.getFloat("UnitPrice"));
+                    product.setImgPath(resultSet.getString("ImagePath"));
                     products.add(product);
                 }
             }
@@ -108,6 +111,7 @@ public class FetchProduct {
                         product.setDescription(resultSet.getString("Description"));
                         product.setVisibility(resultSet.getBoolean("Visibility"));
                         product.setPrice(resultSet.getFloat("UnitPrice"));
+                        product.setImgPath(resultSet.getString("ImagePath"));
                         return product;
                     }
                 }
@@ -117,5 +121,58 @@ public class FetchProduct {
             e.printStackTrace(); // Handle the exception appropriately in a production environment
         }
         return null;
+    }
+
+    public static List<Product> getTopProducts() {
+        List<Product> productList = new ArrayList<>();
+        try (Connection connection = Model.Connection.start()) {
+            String query = "SELECT * FROM Product LIMIT 10";
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    while (resultSet.next()) {
+                        Product product = new Product();
+                        product.setProductID(resultSet.getInt("ProductID"));
+                        product.setProductName(resultSet.getString("Name"));
+                        product.setUnitQty(resultSet.getInt("UnitQty"));
+                        product.setStockQty(resultSet.getInt("StockQty"));
+                        product.setCategory(resultSet.getString("Category"));
+                        product.setDescription(resultSet.getString("Description"));
+                        product.setVisibility(resultSet.getBoolean("Visibility"));
+                        product.setPrice(resultSet.getFloat("UnitPrice"));
+                        product.setImgPath(resultSet.getString("ImagePath"));
+                        productList.add(product);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return productList;
+    }
+
+    public static List<Product> SearchResult(String SearchResult) {
+        List<Product> products = new ArrayList<>();
+        try (Connection connection = Model.Connection.start();
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM product WHERE Name LIKE ?")) {
+            statement.setString(1, "%" + SearchResult + "%");
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Product product = new Product();
+                    product.setProductID(resultSet.getInt("ProductID"));
+                    product.setProductName(resultSet.getString("Name"));
+                    product.setUnitQty(resultSet.getInt("UnitQty"));
+                    product.setStockQty(resultSet.getInt("StockQty"));
+                    product.setCategory(resultSet.getString("Category"));
+                    product.setDescription(resultSet.getString("Description"));
+                    product.setVisibility(resultSet.getBoolean("Visibility"));
+                    product.setPrice(resultSet.getFloat("UnitPrice"));
+                    product.setImgPath(resultSet.getString("ImagePath"));
+                    products.add(product);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Handle the exception appropriately in a production environment
+        }
+        return products;
     }
 }

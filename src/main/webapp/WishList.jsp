@@ -75,7 +75,7 @@
                 <div class="row m-0">
                     <div class="col-md-3 col-5 p-0">
                         <img
-                                src="https://befreshcorp.net/wp-content/uploads/2017/06/product-packshot-Carrot.jpg"
+                                src="${item.getImgPath()}"
                                 alt="Carrots"
                                 srcset=""
                                 class="img-md-fluid w-100 rounded-5"
