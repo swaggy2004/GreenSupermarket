@@ -151,7 +151,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
                   >
                     <option value="Vegetable" ${product.getCategory() == 'Vegetable' ? 'selected' : ''}>Vegetable</option>
                     <option value="Fruit" ${product.getCategory() == 'Fruit' ? 'selected' : ''}>Fruit</option>
-                    <option value="Protien" ${product.getCategory() == 'Protien' ? 'selected' : ''}>Meat</option>
+                    <option value="Protein" ${product.getCategory() == 'Protein' ? 'selected' : ''}>Meat</option>
                     <option value="Snack" ${product.getCategory() == 'Snack' ? 'selected' : ''}>Snack</option>
                   </select>
                 </div>
