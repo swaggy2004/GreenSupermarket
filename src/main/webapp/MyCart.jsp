@@ -110,7 +110,7 @@
                                     min="1"
                                     max="${product.stockQty}"
                                     name="PQty"
-                                    id="PQty"
+                                    id="PQty_${product.productID}"
                                     value="${cartItem.PQty}"
                                     placeholder="${cartItem.PQty}"
                                     class="form-control text-center text-md-start"
@@ -165,26 +165,28 @@
 </main>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        var quantityInput = document.getElementById("PQty");
+        var quantityInputs = document.querySelectorAll('[id^="PQty_"]');
 
-        quantityInput.addEventListener("change", function () {
-            var currentValue = parseInt(this.value, 10);
-            var maxStockQuantity = parseInt(this.getAttribute("max"), 10);
+        quantityInputs.forEach(function (quantityInput) {
+            quantityInput.addEventListener("change", function () {
+                var currentValue = parseInt(this.value, 10);
+                var maxStockQuantity = parseInt(this.getAttribute("max"), 10);
 
-            // Check if the entered value is less than 1
-            if (currentValue < 1 || isNaN(currentValue)) {
-                // Set the input value to 1
-                this.value = 1;
-            }
+                // Check if the entered value is less than 1
+                if (currentValue < 1 || isNaN(currentValue)) {
+                    // Set the input value to 1
+                    this.value = 1;
+                }
 
-            // Check if the entered value is greater than the stock quantity
-            if (currentValue > maxStockQuantity) {
-                // Set the input value to the stock quantity
-                this.value = maxStockQuantity;
-            }
+                // Check if the entered value is greater than the stock quantity
+                if (currentValue > maxStockQuantity) {
+                    // Set the input value to the stock quantity
+                    this.value = maxStockQuantity;
+                }
 
-            // Submit the form when the quantity changes
-            this.form.submit();
+                // Submit the form when the quantity changes
+                this.form.submit();
+            });
         });
     });
 </script>
