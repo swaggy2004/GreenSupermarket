@@ -70,7 +70,8 @@
                         <div class="col-3 p-0">
                             <form action="AddToCartServlet" method="post">
                                 <input type="hidden" name="PID" value="${product.getProductID()}">
-                                <button type="submit" class="btn btn-success card-link">
+                                <button type="submit" ${product.getStockQty() == 0 ? "disabled" : ""}
+                                        class="btn btn-success card-link">
                                     <i class="bi bi-cart4"></i>
                                 </button>
                             </form>
