@@ -73,12 +73,13 @@
           <a href="ProductCatalogue.jsp?category=Snacks" class="nav-link"> Snacks </a>
         </li>
       </ul>
-      <form class="d-flex me-md-2 mb-3 mb-md-0" role="search">
+      <form action="ProductSearchServlet" method="get" class="d-flex me-md-2 mb-3 mb-md-0" role="search">
         <input
                 class="form-control me-2"
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
+                name="searchResult"
         />
         <button class="btn btn-outline-success" type="submit">
           Search

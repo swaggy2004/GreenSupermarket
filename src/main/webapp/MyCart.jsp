@@ -78,7 +78,7 @@
                         <div class="row m-0">
                             <div class="col col-md-4 col-5 p-0">
                                 <img
-                                        src="https://befreshcorp.net/wp-content/uploads/2017/06/product-packshot-Carrot.jpg"
+                                        src="${product.getImgPath()}"
                                         alt="Carrots"
                                         srcset=""
                                         class="img-md-fluid w-100 rounded-5"
@@ -152,7 +152,7 @@
         <div class="row mx-auto">
             <div class="col p-0 m-0 text-center text-md-end">
                 <form id="checkoutForm" action="OrderServlet" method="post">
-                    <button ${outofStock == 0 ? '' : 'disabled'} class="btn btn-success">Check Out</button>
+                    <button ${outofStock == 0 ? '' : 'disabled'} class="btn btn-success fs-2">Check Out</button>
                 </form>
             </div>
         </div>

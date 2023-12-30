@@ -17,10 +17,12 @@ public class Product {
     private String Category;
     private Boolean Visibility;
     private String Description;
+    private String ImgPath;
     
     public void Product() {}
     
-    public void Product(int ProductID, String ProductName, int UnitQty, int StockQty, String Category, Boolean Visibility, String Description, float Price){
+    public void Product(int ProductID, String ProductName, int UnitQty, int StockQty, String Category,
+                        Boolean Visibility, String Description, float Price, String ImgPath){
         this.ProductID = ProductID;
         this.ProductName = ProductName;
         this.UnitQty = UnitQty;
@@ -29,6 +31,15 @@ public class Product {
         this.Visibility = Visibility;
         this.Description = Description;
         this.Price = Price;
+        this.ImgPath = ImgPath;
+    }
+
+    public String getImgPath() {
+        return this.ImgPath;
+    }
+
+    public void setImgPath(String ImgPath) {
+        this.ImgPath = ImgPath;
     }
 
     public float getPrice() {
