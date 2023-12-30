@@ -21,15 +21,9 @@
     List<Product> allProducts = new ArrayList<>();
 
     for (WishList witem : wishlist) {
-        System.out.println("Product ID = " + witem.getPID());
         List<Product> productsForItem = FetchProduct.SearchProduct(witem.getPID());
         allProducts.addAll(productsForItem);
     }
-
-    for (Product p : allProducts) {
-        System.out.println(p.getProductID());
-    }
-
     pageContext.setAttribute("product", allProducts);
 %>
 

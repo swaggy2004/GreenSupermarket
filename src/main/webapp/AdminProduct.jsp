@@ -64,7 +64,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
 
         <!--this is the edit product panne-->
         <!-- made it wider than the nav section -->
-        <form action="DeleteProductServlet" method="post" class="col col-md-9 p-md-4 mx-md-auto">
+        
             
             <!-- made it inside a container and made all the text in here to be centered -->
             <div class="container text-center pt-4 pt-md-0">
@@ -102,7 +102,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
                     <div class="col d-sm-flex justify-content-center">${admproduct.getProductID()}</div>
                     <div class="col">
                         <img
-                                src="assets/${admproduct.getImagePath()}"
+                                src="${admproduct.getImagePath()}"
                                 alt=""
                                 srcset=""
                                 class="pro-img img-fluid img-thumbnail rounded-5 border border-3"
@@ -111,17 +111,16 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
                     <div class="col">${admproduct.getProductName()}(${admproduct.getUnitQuantity()})</div>
                     <div class="col">USD${admproduct.getUnitPrice()}</div>
                     <div class="col">
-                        <a href="AdminEditProduct.jsp?productId=${admproduct.getProductID()}"><button type="button" class="btn edit-btn">
+                        <a href="AdminEditProduct.jsp?productId=${admproduct.getProductID()}">
+                        <button type="button" class="btn edit-btn">
                             <i class="bi bi-pencil-square"></i>
                         </button></a>
                         
+                        <form action="DeleteProductServlet" method="post" class="col col-md-9 p-md-4 mx-md-auto">
                         <input type="hidden" name="productId" value="${admproduct.getProductID()}">
-                        <button 
-                        type="submit" 
-                        class="btn delete-btn"
-                        >
+                        <button type="submit" class="btn delete-btn">
                         <i class="bi bi-trash"></i></button>
-                        
+                        </form>
                     </div>
                     
                 </div>
@@ -132,7 +131,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
                 
             </div>
             
-        </form>
+
     </div>
 </div>
  <%--<%@ include file="footer.jsp"%>--%>

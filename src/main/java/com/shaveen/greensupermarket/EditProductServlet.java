@@ -104,10 +104,11 @@ public class EditProductServlet extends HttpServlet {
         Part imgPart = request.getPart("productImage");
         String imgName = imgPart.getSubmittedFileName();
         imgPart.write(imageSavedDirectoryPath + File.separator + imgName);
+        String imgNameWithPath = "assets/productimages/" + imgName;
 
         // Use ManageConnection class to add the product to the database
         ManageConnection sendData = new ManageConnection();
-        sendData.editProduct(productID, productName, productCategory, visibility, description, unitPrice, unitQuantity, imgName);
+        sendData.editProduct(productID, productName, productCategory, visibility, description, unitPrice, unitQuantity, imgNameWithPath);
         response.sendRedirect("AdminProduct.jsp");
         }
 }

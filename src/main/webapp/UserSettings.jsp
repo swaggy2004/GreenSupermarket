@@ -60,7 +60,7 @@
     <form action="<%=request.getContextPath()%>/UserSettingsServlet" method="post" enctype="multipart/form-data">
     <div class="col-12 col-sm-2 avatar-container" >
         <div class="d-flex align-items-center">
-            <img style="width: 130px; margin-top:2rem; " src="assets/${userData.getAvatarPath()}" class="rounded-circle ms-2" alt="User Avatar">
+            <img style="width: 200px; height: 200px;" style=" margin-top:2rem; " src="assets/${userData.getAvatarPath()}" class="rounded-circle ms-2" alt="User Avatar">
         </div>
 
     </div>

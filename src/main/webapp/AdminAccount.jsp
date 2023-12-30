@@ -61,7 +61,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
 
     <!--this is the edit product panne-->
     <!-- made it wider than the nav section -->
-    <form action="DeleteAdminAccountServlet" method="post" class="col col-md-9 p-md-4 mx-md-auto">
+    
       <!-- made it inside a container and made all the text in here to be centered -->
       <div class="container text-center pt-4 pt-md-0">
         <!-- this is the title pane with the currently selected option and add a product button -->
@@ -87,19 +87,18 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
         </div>
         <!-- made a row and made it responsive for extra small, small and large displays -->
     <c:forEach items="${ManagerAccounts}" var="MngAccount">
-        <div
-                class="row text-start gx-auto gx-md-0 my-auto py-2 px-md-5 border-bottom border-1 text-center text-md-start gap-2 gap-md-0"
-        >
+        <div class="row text-start gx-auto gx-md-0 my-auto py-2 px-md-5 border-bottom border-1 text-center text-md-start gap-2 gap-md-0">
           <!-- these are the items that will be include in the grid once received from the database -->
           <div class="col col-md-5 col-sm-12 col-12">
+            
             <div class="fs-4">${MngAccount.getFullName()}</div>
             <!-- made the overflow of the email scrollable because it will be too long -->
-            <div
-                    class="fs-6 float-center overflow-x-scroll overflow-x-md-none"
-            >
+            <div class="fs-6 float-center overflow-x-scroll overflow-x-md-none">
               ${MngAccount.getEmail()}
             </div>
+            
           </div>
+            
           <div class="col col-md-3 col-sm-12 col-12 align-self-md-center">
             <c:choose>
                 <c:when test="${MngAccount.getType() eq 'M'}">Manager</c:when>
@@ -107,17 +106,24 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
                 <c:otherwise>Unknown</c:otherwise>
             </c:choose>
           </div>
-          <div class="col col-md-1 col-12 align-self-md-center">
-           <a href="AccountEdit.jsp?admaccemail=${MngAccount.getEmail()}"> <button type="button" class="btn edit-btn">
+            
+          <div class="col col-md-1 col-12 align-self-md-center ">
+              
+           <a href="AccountEdit.jsp?admaccemail=${MngAccount.getEmail()}"> 
+               <button type="button" class="btn edit-btn">
               <i class="bi bi-pencil-square"></i>
                </button></a>
                
-            
+                <form action="DeleteAdminAccountServlet" method="post" >
                 <input type="hidden" name="email" value="${MngAccount.getEmail()}">
-                <button type="submit" class="btn delete-btn"><i class="bi bi-trash"></i></button>
-            
+                <button type="submit" class="btn delete-btn">
+                <i class="bi bi-trash"></i>
                 
-          </div>
+              </button>
+                </form>
+                
+                
+           </div>
         </div>
     </c:forEach>
         
@@ -125,7 +131,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
         
         </div>
       </div>
-    </form>
+    
   </div>
 
 <%@ include file="footer.jsp"%>
