@@ -40,7 +40,7 @@
     <h1
             class="display-1 fw-semibold text-white text-center position-absolute top-50 start-50 translate-middle p-3"
     >
-        ${category}
+        ${category}s
     </h1>
 </div>
 
