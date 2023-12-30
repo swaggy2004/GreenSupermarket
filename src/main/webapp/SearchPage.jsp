@@ -31,16 +31,16 @@
 </head>
 <body>
 <%@ include file="header.jsp"%>
-<%--<div class="jumbotron jumbotron-fluid position-relative">--%>
-<%--    <img--%>
-<%--            src="assets/images/HeaderImages/Search.jpg" loading="lazy" class="img-fluid w-100"--%>
-<%--            style="max-height: 80vh;" alt="">--%>
-<%--    <h1--%>
-<%--            class="display-1 fw-semibold text-white text-center position-absolute top-50 start-50 translate-middle p-3"--%>
-<%--    >--%>
-<%--        Search Result--%>
-<%--    </h1>--%>
-<%--</div>--%>
+<div class="jumbotron jumbotron-fluid position-relative">
+    <img
+            src="assets/images/HeaderImages/Search.jpg" loading="lazy" class="img-fluid w-100"
+            style="max-height: 70vh;" alt="">
+    <h1
+            class="display-1 fw-semibold text-white text-center position-absolute top-50 start-50 translate-middle p-3"
+    >
+        Search Result
+    </h1>
+</div>
 
 <div class="container-fluid">
     <c:if test="${products != null}">

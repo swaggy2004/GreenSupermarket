@@ -41,7 +41,7 @@
   <div class="row justify-content-center">
     <!--card1-->
     <div class="col-lg-3 col-md-6 card-spacing">
-      <a href="ProductCatalogue.jsp?category=Fruits" class="card-link text-body text-decoration-none"
+      <a href="ProductCatalogue.jsp?category=Fruit" class="card-link text-body text-decoration-none"
          name="fruits">
         <div class="card card-custom">
           <img src="assets/images/Product-images/fresh-fruits.svg" class="card-img-top" alt="Ladies Fingers">

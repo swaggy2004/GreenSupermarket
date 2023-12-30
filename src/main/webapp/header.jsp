@@ -61,7 +61,7 @@
           <a href="index.jsp" class="nav-link"> Home </a>
         </li>
         <li class="nav-item">
-          <a href="ProductCatalogue.jsp?category=Fruits" class="nav-link"> Fruits </a>
+          <a href="ProductCatalogue.jsp?category=Fruit" class="nav-link"> Fruits </a>
         </li>
         <li class="nav-item">
           <a href="ProductCatalogue.jsp?category=Vegetable" class="nav-link"> Vegetables </a>
@@ -70,7 +70,7 @@
           <a href="ProductCatalogue.jsp?category=Protein" class="nav-link"> Meat </a>
         </li>
         <li class="nav-item">
-          <a href="ProductCatalogue.jsp?category=Snacks" class="nav-link"> Snacks </a>
+          <a href="ProductCatalogue.jsp?category=Snack" class="nav-link"> Snacks </a>
         </li>
       </ul>
       <form action="ProductSearchServlet" method="get" class="d-flex me-md-2 mb-3 mb-md-0" role="search">
