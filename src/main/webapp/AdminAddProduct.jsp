@@ -56,7 +56,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
       
 
         <form action="<%=request.getContextPath()%>/AddProductServlet" class="col col-md-9 p-md-4 mx-md-auto col-12" method="post" enctype="multipart/form-data">
-             <a href="AdminProduct.jsp"<button class="btn px-0 mb-4 go-back fw-semibold border border-0 go-back-btn">
+             <a href="AdminProduct.jsp"><button class="btn px-0 mb-4 go-back fw-semibold border border-0 go-back-btn">
             
               <i class="bi bi-arrow-left"></i><span class="mx-2">Go Back</span>
            
@@ -147,7 +147,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
                 >
                 <div class="input-group mb-3">
                   <input 
-                    type="number" 
+                    type="number"
                     name="unitQuantity"
                     id="unitQuantity" 
                     class="form-control" 

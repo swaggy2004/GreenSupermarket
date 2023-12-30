@@ -53,7 +53,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
           method="post"
           class="col col-md-9 p-md-4 mx-md-auto col-12 border rounded-3 border-opacity-25"
         >
-          <a href="AdminAccount.jsp"<button class="btn px-0 mb-4 go-back fw-semibold border border-0 go-back-btn">
+          <a href="AdminAccount.jsp"><button class="btn px-0 mb-4 go-back fw-semibold border border-0 go-back-btn">
             
               <i class="bi bi-arrow-left"></i><span class="mx-2">Go Back</span>
            
