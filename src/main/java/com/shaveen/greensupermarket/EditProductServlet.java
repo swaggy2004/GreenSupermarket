@@ -89,7 +89,7 @@ public class EditProductServlet extends HttpServlet {
         int unitQuantity = Integer.parseInt(request.getParameter("unitQuantity"));
         
 
-        String imageSavedDirectoryPath = request.getServletContext().getRealPath("/assets/");
+        String imageSavedDirectoryPath = request.getServletContext().getRealPath("assets/productimages/");
         File imageSavedDirectory = new File(imageSavedDirectoryPath);
         if (!imageSavedDirectory.exists()) {
             try {
