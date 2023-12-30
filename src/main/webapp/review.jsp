@@ -22,6 +22,7 @@
 </head>
 
 <body>
+    <%@ include file="header.jsp"%>
 
 <div class="container mt-3">
 
@@ -83,6 +84,6 @@
   </div>
 
 </div>
-
+<%@ include file="footer.jsp"%> 
 </body>
 </html>
