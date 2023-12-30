@@ -81,7 +81,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
                     
                     <div class="input-group mb-3">
                     <label class="input-group-text" for="productImage">Upload</label>
-                    <input type="file" class="form-control" id="productImage" name="productImage" name="productImage"  >
+                    <input type="file" class="form-control" id="productImage" name="productImage" name="productImage" >
                   </div>
                     
                   
@@ -139,7 +139,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
                     ><h5>Unit Price (USD)</h5></label
                   >
                   <input
-                    type="number"
+                    type="text"
                     name="unitPrice"
                     id="unitPrice"
                     class="form-control"

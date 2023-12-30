@@ -51,16 +51,16 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
 
           </ul>
             
-      
-      
-      
+      <a href="AdminProduct.jsp"><button class="btn px-0 mb-4 go-back fw-semibold border border-0 go-back-btn">
+      <i class="bi bi-arrow-left"></i><span class="mx-2">Go Back</span>
+      </button></a>
 
         <form action="<%=request.getContextPath()%>/AddProductServlet" class="col col-md-9 p-md-4 mx-md-auto col-12" method="post" enctype="multipart/form-data">
-             <a href="AdminProduct.jsp"><button class="btn px-0 mb-4 go-back fw-semibold border border-0 go-back-btn">
+             
             
-              <i class="bi bi-arrow-left"></i><span class="mx-2">Go Back</span>
+              
            
-              </button></a>
+              
           <h3 class="mb-5 text-center text-md-start text-uppercase">Add Product</h3>
           
           <div class="row row-cols-md-12">
@@ -106,7 +106,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
                     ><h5>Unit Price (USD)</h5></label
                   >
                   <input
-                    type="number"
+                    type="text"
                     name="unitPrice"
                     id="unitPrice"
                     class="form-control"

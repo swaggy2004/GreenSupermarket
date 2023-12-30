@@ -249,37 +249,37 @@
   <div class="row justify-content-center">
     <div class="client-review">
       <img src="assets/images/Product-images/comma.svg" alt="Image 1">
-      <p>Pellentesque eu nibh eget mauris congue mattis mattis nec tellus. Phasellus imperdiet elit eu magna dictum, bibendum cursus velit sodales. Donec sed neque eget</p>
+      <p>Had an amazing online shopping experience on your Green Supermarket site! User-friendly, found eco-products easily, smooth checkout, and loved the eco-friendly packaging. Impressed with the commitment to sustainability!</p>
       <div class="info">
-        <img src="assets/images/Product-images/profile.svg" alt="Image 2">
+        <img src="https://tovanidesign.com/wp-content/uploads/2019/02/C-_Users_Chrystina_Dropbox_tovani-design_size-examples-of-portraits_for-web_1-1-aspect-ratio-prints-at-square-for-social-media-for-web-photo-by-chrysti-tovani.jpg" alt="Image 2">
         <div>
-          <div class="name">Robert Fox</div>
+          <div class="name">Lark Farpton</div>
           <div class="role">Customer</div>
-          <div class="star"><img src="assets/images/Product-images/star-rating.svg" alt="Image 2"></div>
+          
         </div>
       </div>
     </div>
     <div class="client-review">
       <img src="assets/images/Product-images/comma.svg" alt="Image 1">
-      <p>Pellentesque eu nibh eget mauris congue mattis mattis nec tellus. Phasellus imperdiet elit eu magna dictum, bibendum cursus velit sodales. Donec sed neque eget</p>
+      <p>Kudos on a fantastic online shopping experience! Your Green Supermarket site's ease of use, detailed product info, and eco-friendly packaging exceeded my expectations. Looking forward to more sustainable purchases!</p>
       <div class="info">
-        <img src="assets/images/Product-images/profile.svg" alt="Image 2">
+        <img src="https://plus.college.indiana.edu/images/profiles/profiles-768x768/assistant.jpg" alt="Image 2">
         <div>
-          <div class="name">Robert Fox</div>
+          <div class="name">Mark Victor</div>
           <div class="role">Customer</div>
-          <div class="star"><img src="assets/images/Product-images/star-rating.svg" alt="Image 2"></div>
+          
         </div>
       </div>
     </div>
     <div class="client-review">
       <img src="assets/images/Product-images/comma.svg" alt="Image 1">
-      <p>Pellentesque eu nibh eget mauris congue mattis mattis nec tellus. Phasellus imperdiet elit eu magna dictum, bibendum cursus velit sodales. Donec sed neque eget</p>
+      <p>Thrilled with my online shopping on your Green Supermarket site! Effortless navigation, eco-friendly options, and the sustainable packaging really stood out. A top-notch experience, and I'll definitely be a repeat customer!</p>
       <div class="info">
-        <img src="assets/images/Product-images/profile.svg" alt="Image 2">
+        <img src="https://blog-pixomatic.s3.appcnt.com/image/22/01/26/61f166e1e3b25/_orig/pixomatic_1572877090227.png" alt="Image 2">
         <div>
-          <div class="name">Robert Fox</div>
+          <div class="name">Matthew John</div>
           <div class="role">Customer</div>
-          <div class="star"><img src="assets/images/Product-images/star-rating.svg" alt="Image 2"></div>
+          
         </div>
       </div>
     </div>
