@@ -40,6 +40,27 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
     <!--my custom css styling -->
     <link rel="stylesheet" href="AdminCommon.css" />
     <link rel="stylesheet" href="AdminEditProduct.css" />
+    
+    <script>
+        function validateFloat(inputId) {
+            var inputValue = document.getElementById(inputId).value;
+            var floatRegex = /^[-+]?[0-9]*\.?[0-9]+$/;
+
+            if (!floatRegex.test(inputValue)) {
+                alert("Please enter a valid float value for " + inputId);
+                return false;
+            }
+            return true;
+        }
+        
+         function validateForm() {
+            var isUnitPriceValid = validateFloat('unitPrice');
+
+            // Add more validation checks if needed
+
+            return isUnitPriceValid;
+        }
+    </script>
   </head>
   <body>
       <ul class="nav nav-tabs" style="margin-top: 1rem; ">
@@ -61,7 +82,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
     <!--main container for all the body elements-->
     
 
-        <form action="<%=request.getContextPath()%>/EditProductServlet" class="col col-md-9 p-md-4 mx-md-auto col-12" method="post" enctype="multipart/form-data">
+        <form action="<%=request.getContextPath()%>/EditProductServlet" class="col col-md-9 p-md-4 mx-md-auto col-12" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
              <a href="AdminProduct.jsp"<button class="btn px-0 mb-4 go-back fw-semibold border border-0 go-back-btn">
             
               <i class="bi bi-arrow-left"></i><span class="mx-2">Go Back</span>
@@ -108,6 +129,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
                     ><h5>Product Name</h5></label
                   >
                   <input
+                      required
                     type="text"
                     name="productName"
                     id="productName"
@@ -122,6 +144,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
                     ><h5>Category</h5></label
                   >
                   <select
+                     required
                     class="form-select form-control"
                     name="productCategory"
                     id="productCategory"
@@ -139,11 +162,13 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
                     ><h5>Unit Price (USD)</h5></label
                   >
                   <input
+                      required
                     type="text"
                     name="unitPrice"
                     id="unitPrice"
                     class="form-control"
                     value="${product.getUnitPrice()}"
+                    onblur="validateFloat('unitPrice')"
                   />
                 </div>
                 
@@ -155,6 +180,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
                   >
                   
                   <select
+                      required
                     class="form-select form-control"
                     name="Visibility"
                     id="Visibility"
@@ -170,6 +196,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
                     ><h5>Description</h5></label
                   >
                   <textarea
+                    required
                     class="form-control"
                     name="description"
                     id="description"
@@ -186,6 +213,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
                 >
                 <div class="input-group mb-3">
                   <input 
+                      required
                     type="number" 
                     name="unitQuantity"
                     id="unitQuantity" 
