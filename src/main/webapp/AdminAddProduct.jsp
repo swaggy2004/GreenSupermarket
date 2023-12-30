@@ -137,7 +137,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
                   >
                     <option value="Vegetable">Vegetable</option>
                     <option value="Fruit">Fruit</option>
-                    <option value="Protien">Meat</option>
+                    <option value="Protein">Meat</option>
                     <option value="Snack">Snack</option>
                   </select>
                 </div>
