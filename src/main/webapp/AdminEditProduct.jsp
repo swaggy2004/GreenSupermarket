@@ -77,11 +77,11 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
               <div class="row col-md-12 mb-3">
                 <div class="col col-3 mb-3 col-12">
                         
-                    <img width="200px" src="assets/${product.getImagePath()}" class="img-fluid border-cus" style="margin:1rem">
+                    <img width="200px" src="${product.getImagePath()}" class="img-fluid border-cus" style="margin:1rem">
                     
                     <div class="input-group mb-3">
                     <label class="input-group-text" for="productImage">Upload</label>
-                    <input type="file" class="form-control" id="productImage" name="productImage" name="productImage" value="assets/${product.getImagePath()}" >
+                    <input type="file" class="form-control" id="productImage" name="productImage" name="productImage" value="${product.getImagePath()}" >
                   </div>
                     
                   
@@ -126,10 +126,10 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
                     name="productCategory"
                     id="productCategory"
                   >
-                    <option value="1">Vegetable</option>
-                    <option value="2">Fruit</option>
-                    <option value="3">Meat</option>
-                    <option value="4">Snack</option>
+                    <option value="Vegetable" ${product.getCategory() == 'Vegetable' ? 'selected' : ''}>Vegetable</option>
+                    <option value="Fruit" ${product.getCategory() == 'Fruit' ? 'selected' : ''}>Fruit</option>
+                    <option value="Protien" ${product.getCategory() == 'Protien' ? 'selected' : ''}>Meat</option>
+                    <option value="Snack" ${product.getCategory() == 'Snack' ? 'selected' : ''}>Snack</option>
                   </select>
                 </div>
               </div>
