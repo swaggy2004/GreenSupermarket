@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
-
     <!-- Servlet Declarations -->
     <servlet>
         <servlet-name>AddAccountServlet</servlet-name>
@@ -94,8 +93,15 @@
         <servlet-name>OpenWishListServlet</servlet-name>
         <servlet-class>com.shaveen.greensupermarket.OpenWishListServlet</servlet-class>
     </servlet>
-
     <!-- Servlet Mappings -->
+    <servlet>
+        <servlet-name>SerachServlet</servlet-name>
+        <servlet-class>com.shaveen.greensupermarket.SerachServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProductSearchServlet</servlet-name>
+        <servlet-class>com.shaveen.greensupermarket.ProductSearchServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddAccountServlet</servlet-name>
         <url-pattern>/AddAccountServlet</url-pattern>
@@ -188,12 +194,18 @@
         <servlet-name>OpenWishListServlet</servlet-name>
         <url-pattern>/OpenWishListServlet</url-pattern>
     </servlet-mapping>
-
     <!-- Session Configuration -->
+    <servlet-mapping>
+        <servlet-name>SerachServlet</servlet-name>
+        <url-pattern>/SerachServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductSearchServlet</servlet-name>
+        <url-pattern>/ProductSearchServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
-
     <!-- JSP Configuration -->
     <jsp-config>
         <taglib>
