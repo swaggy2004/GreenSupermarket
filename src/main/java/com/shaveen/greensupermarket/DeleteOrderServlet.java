@@ -92,6 +92,7 @@ public class DeleteOrderServlet extends HttpServlet {
             response.sendRedirect("UserDashboard.jsp");
         } catch (Exception e) {
             // Handle exceptions
+            response.sendRedirect("DeleteOrder_Error.jsp");
         }
         
                
