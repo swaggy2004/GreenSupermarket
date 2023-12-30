@@ -81,7 +81,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
                     
                     <div class="input-group mb-3">
                     <label class="input-group-text" for="productImage">Upload</label>
-                    <input type="file" class="form-control" id="productImage" name="productImage" name="productImage" value="${product.getImagePath()}" >
+                    <input type="file" class="form-control" id="productImage" name="productImage" name="productImage"  >
                   </div>
                     
                   
