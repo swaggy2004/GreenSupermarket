@@ -3,6 +3,7 @@
 <%@page import="com.shaveen.greensupermarket.FetchProduct"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@page import="Model.Product"%>
 <!DOCTYPE html>
 <c:set var="products" value="${requestScope.result}" />
@@ -43,7 +44,7 @@
 
 <div class="container-fluid">
     <c:if test="${products != null}">
-        <h1 class="text-center my-5">Your Searched for "${search}"</h1>
+        <h1 class="text-center my-5">Your Searched for "${fn:escapeXml(search)}"</h1>
     </c:if>
     <div class="row gap-1">
         <c:if test="${products != null}">
@@ -90,7 +91,8 @@
             </c:forEach>
         </c:if>
         <c:if test="${products == null}">
-            <h1 class="text-center my-5 text-wrap">Sorry we couldn't find "${search}" anywhere in our store <i
+            <h1 class="text-center my-5 text-wrap">Sorry we couldn't find "${fn:escapeXml(search)}" anywhere in our
+                store <i
                     class="bi bi-emoji-frown-fill"></i></h1>
         </c:if>
     </div>
