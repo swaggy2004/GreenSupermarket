@@ -11,18 +11,20 @@
     <link rel="stylesheet" href="adress-error.css">
 </head>
 <body>
-   
+  
   <!--Navbar over-->
     <div class="full-screen-background d-flex justify-content-center align-items-center">
         <div class="rectangle"> 
             <div class="error-section" >
                 <div class="image-icon"></div>
-                <p class="error-text1 ">Invalid Adress!</p>
-                <p class="error-text2">Check if your adress is correct and try again</p>
+                <p class="error-text1 ">Cancellation Failed !!</p>
+                <p class="error-text2">Please try again later !!</p>
                 <div class="buttons justify-content-center">
+                    <a href="UserDashboard.jsp">
                     <button type="button" class="btn home-button mx-6">
                         <b>Try again</b>
                     </button>
+                    </a>
                 </div>
             </div>
         </div>

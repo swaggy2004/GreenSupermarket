@@ -1,4 +1,10 @@
-
+body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 /*Nav bar*/
   .navbar{
     background-color: #D0F288; 
@@ -105,7 +111,7 @@
           justify-content: center;
          
         }
-  @media (max-width: 768px) {
+  @media (min-width: 768px) {
       .rectangle {
               width: 95%; 
               height: auto; 
