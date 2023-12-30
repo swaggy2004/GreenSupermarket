@@ -93,10 +93,10 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
                     name="productCategory"
                     id="productCategory"
                   >
-                    <option value="1">Vegetable</option>
-                    <option value="2">Fruit</option>
-                    <option value="3">Meat</option>
-                    <option value="4">Snack</option>
+                    <option value="Vegetable">Vegetable</option>
+                    <option value="Fruit">Fruit</option>
+                    <option value="Protien">Meat</option>
+                    <option value="Snack">Snack</option>
                   </select>
                 </div>
               </div>
