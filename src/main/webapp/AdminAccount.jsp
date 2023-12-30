@@ -67,7 +67,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
         <!-- this is the title pane with the currently selected option and add a product button -->
         <div class="row pb-5 mx-md-auto row-cols-2">
           <div class="col cols-1 text-start cols-md-6 gx-0">
-            <h3 class="">Account Management</h3>
+            <h3 style="margin-top:2rem">Account Management</h3>
           </div>
           <div
                   class="col d-md-flex justify-content-md-end"
