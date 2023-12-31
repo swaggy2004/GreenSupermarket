@@ -90,15 +90,19 @@ public class OrderServlet extends HttpServlet {
                     int productId = item.getPID();
                     System.out.println("ProductID = " + productId);
                     Product product = FetchProduct.searchProduct(productId);
-                    assert product != null;
-                    System.out.println("Product = " + product.getProductName());
-                    if (product.getStockQty() <= 0)
-                    {
-                        response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/MyCart.jsp"));
-                        return;
+                    if (product != null){
+                        if (product.getStockQty() <= 0)
+                        {
+                            response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/MyCart.jsp"));
+                            return;
+                        }
+                        else{
+                            totPrice += item.getPQty() * product.getPrice();
+                        }
                     }
                     else{
-                        totPrice += item.getPQty() * product.getPrice();
+                        response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/MyCart.jsp"));
+                        return;
                     }
                 }
 
