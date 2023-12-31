@@ -78,6 +78,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
                 ><h5>Full Name</h5></label
               >
               <input
+                  required
                 type="text"
                 name="fullName"
                 id="fullName"
@@ -100,6 +101,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
                 ><h5>Password</h5></label
               >
               <input
+                  required
                 type="text"
                 name="password"
                 id="password"
@@ -109,7 +111,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
             </div>
             <div class="col-md-4 mb-3 col-12">
               <label for="role" class="form-label"><h5>Role</h5></label>
-        <select name="role" id="role" class="form-select form-control">
+        <select required name="role" id="role" class="form-select form-control">
                 <option value="M" id="M" ${account.getType() == 'M' ? 'selected' : ''}>Manager</option>
                 <option value="A" id="A" ${account.getType() == 'A' ? 'selected' : ''}>Admin</option>
         </select>

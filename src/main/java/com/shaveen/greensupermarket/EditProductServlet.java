@@ -5,6 +5,7 @@
 package com.shaveen.greensupermarket;
 
 import jakarta.servlet.annotation.WebServlet;
+import Model.ProductEdit;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -87,25 +88,28 @@ public class EditProductServlet extends HttpServlet {
         String description = request.getParameter("description");
         float unitPrice = Float.parseFloat(request.getParameter("unitPrice"));
         int unitQuantity = Integer.parseInt(request.getParameter("unitQuantity"));
-        
+        ProductEdit objProduct = ManageConnection.getProductById(productID);
+        String imgNameWithPath = objProduct.getImagePath();
+        System.out.println(imgNameWithPath);
+        if (request.getPart("productImage").getSize() > 0) {
 
-        String imageSavedDirectoryPath = request.getServletContext().getRealPath("/assets/");
-        File imageSavedDirectory = new File(imageSavedDirectoryPath);
-        if (!imageSavedDirectory.exists()) {
-            try {
-                imageSavedDirectory.mkdirs();
-            } catch (SecurityException ex) {
-                System.out.println("Please fix directory permissions");
-                return;
+            String imageSavedDirectoryPath = request.getServletContext().getRealPath("assets/productimages/");
+            File imageSavedDirectory = new File(imageSavedDirectoryPath);
+            if (!imageSavedDirectory.exists()) {
+                try {
+                    imageSavedDirectory.mkdirs();
+                } catch (SecurityException ex) {
+                    System.out.println("Please fix directory permissions");
+                    return;
+                }
             }
+
+
+            Part imgPart = request.getPart("productImage");
+            String imgName = imgPart.getSubmittedFileName();
+            imgPart.write(imageSavedDirectoryPath + File.separator + imgName);
+            imgNameWithPath = "assets/productimages/" + imgName;
         }
-
-    
-        Part imgPart = request.getPart("productImage");
-        String imgName = imgPart.getSubmittedFileName();
-        imgPart.write(imageSavedDirectoryPath + File.separator + imgName);
-        String imgNameWithPath = "assets/productimages/" + imgName;
-
         // Use ManageConnection class to add the product to the database
         ManageConnection sendData = new ManageConnection();
         sendData.editProduct(productID, productName, productCategory, visibility, description, unitPrice, unitQuantity, imgNameWithPath);

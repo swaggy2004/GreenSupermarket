@@ -54,6 +54,7 @@ public class AddToCartServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         String Email = (String) session.getAttribute("email");
+        String referer = request.getHeader("Referer");
         if (Email != null) {
             String Para = request.getParameter("PID");
             int PID = 0;
@@ -62,13 +63,19 @@ public class AddToCartServlet extends HttpServlet {
             } catch (NumberFormatException e) {
                 e.printStackTrace();
             }
-            int qty = 1;
-            try {
-                FetchShoppingCart.insertToCart(Email, PID, qty);
-            } catch (SQLException ex) {
-                Logger.getLogger(AddToCartServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Model.Product product = FetchProduct.searchProduct(PID);
+            if (product.getStockQty() <= 0){
+                response.sendRedirect(referer);
             }
-            response.sendRedirect(request.getContextPath() + "/MyCart.jsp");
+            else{
+                int qty = 1;
+                try {
+                    FetchShoppingCart.insertToCart(Email, PID, qty);
+                } catch (SQLException ex) {
+                    Logger.getLogger(AddToCartServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                response.sendRedirect(request.getContextPath() + "/MyCart.jsp");
+            }
         }
         else
         {

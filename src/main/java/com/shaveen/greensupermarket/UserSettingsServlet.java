@@ -79,6 +79,11 @@ public class UserSettingsServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        // Retrieve user data
+        String session_email = (String) request.getSession().getAttribute("email");
+        UserData userData = UserDatabaseInteraction.getUserData(session_email);
+        
         // Retrieve form data
         String email = request.getParameter("email");
         String fullName = request.getParameter("fullName");
@@ -93,29 +98,30 @@ public class UserSettingsServlet extends HttpServlet {
         String s_Zipc = request.getParameter("Shipping-PC");
         String s_Country = request.getParameter("Shipping-country");
         String s_Phone = request.getParameter("Shipping-UserPhone");
+        String avatarPath = userData.getAvatarPath();
         
         
         
-        
-        String avatarSavedDirectoryPath = request.getServletContext().getRealPath("/assets/");
-        File avatarSavedDirectory = new File(avatarSavedDirectoryPath);
-        if (!avatarSavedDirectory.exists()) {
-            try {
-                avatarSavedDirectory.mkdirs();
-            } catch (SecurityException ex) {
-                System.out.println("Please fix directory permissions");
-                return;
+        if (request.getPart("inputGroupFile01").getSize() > 0){
+            String avatarSavedDirectoryPath = request.getServletContext().getRealPath("/assets/");
+            File avatarSavedDirectory = new File(avatarSavedDirectoryPath);
+            if (!avatarSavedDirectory.exists()) {
+                try {
+                    avatarSavedDirectory.mkdirs();
+                } catch (SecurityException ex) {
+                    System.out.println("Please fix directory permissions");
+                    return;
+                }
             }
+
+            Part avatarPart = request.getPart("inputGroupFile01");
+            avatarPath = avatarPart.getSubmittedFileName();
+    //        in the log its pointing out the below line as the error
+            avatarPart.write(avatarSavedDirectoryPath + File.separator + avatarPath);
         }
 
-        Part avatarPart = request.getPart("inputGroupFile01");
-        String avatar_userprof = avatarPart.getSubmittedFileName();
-//        in the log its pointing out the below line as the error
-        avatarPart.write(avatarSavedDirectoryPath + File.separator + avatar_userprof);
-
-
         // Update user data in the database
-        UserDatabaseInteraction.updateUserData(email, fullName, phoneNumber,b_adress,b_city, b_Zipc, b_Country, b_Phone, s_adress, s_city, s_Zipc, s_Country, s_Phone, avatar_userprof);
+        UserDatabaseInteraction.updateUserData(email, fullName, phoneNumber,b_adress,b_city, b_Zipc, b_Country, b_Phone, s_adress, s_city, s_Zipc, s_Country, s_Phone, avatarPath);
 
         response.sendRedirect("UserSettings.jsp");
         

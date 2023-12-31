@@ -53,7 +53,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
           method="post"
           class="col col-md-9 p-md-4 mx-md-auto col-12 border rounded-3 border-opacity-25"
         >
-          <a href="AdminAccount.jsp"<button class="btn px-0 mb-4 go-back fw-semibold border border-0 go-back-btn">
+          <a href="AdminAccount.jsp"><button class="btn px-0 mb-4 go-back fw-semibold border border-0 go-back-btn">
             
               <i class="bi bi-arrow-left"></i><span class="mx-2">Go Back</span>
            
@@ -68,6 +68,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
                 ><h5>Full Name</h5></label
               >
               <input
+                required
                 type="text"
                 name="fullName"
                 id="fullName"
@@ -76,7 +77,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
             </div>
             <div class="col-md-4 mb-3 col-12">
               <label for="email" class="form-label"><h5>Email</h5></label>
-              <input type="text" name="email" id="email" class="form-control" />
+              <input required type="text" name="email" id="email" class="form-control" />
             </div>
           </div>
 
@@ -86,6 +87,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
                 ><h5>Password</h5></label
               >
               <input
+                 required
                 type="text"
                 name="password"
                 id="password"
@@ -94,7 +96,7 @@ if ("A".equals(role) && isLoggedIn  && email != null) {
             </div>
             <div class="col-md-4 mb-3 col-12">
               <label for="role" class="form-label"><h5>Role</h5></label>
-              <select name="role" id="role" class="form-select form-control">
+              <select required name="role" id="role" class="form-select form-control">
                 <option value="M" id="M">Manager</option>
                 <option value="A" id="A">Admin</option>
               </select>

@@ -22,6 +22,7 @@
 </head>
 
 <body>
+    <%@ include file="header.jsp"%>
 
 <div class="container mt-3">
 
@@ -38,30 +39,35 @@
           Order ID #<%= OrderID %>  
         </h6>
 
-        <div class="form-group">
-        
-          <h6 class="text-center">Please share your experience</h6>
-        
-          <div class="form-check form-inline justify-content-center mb-4">
+                    <div class="form-group">
+              <h6 class="text-center">Please share your experience</h6>
 
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioOptions1" value="1">
-            <label class="form-check-label" for="inlineRadioOptions1">Fair</label>
+              <div class="form-check text-center">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioOptions1" value="1">
+                <label class="form-check-label" for="inlineRadioOptions1">Fair</label>
+              </div>
 
-            <input class="form-check-input ml-3" type="radio" name="inlineRadioOptions" id="inlineRadioOptions2" value="2"> 
-            <label class="form-check-label" for="inlineRadioOptions2">Good</label>
+              <div class="form-check text-center">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioOptions2" value="2"> 
+                <label class="form-check-label" for="inlineRadioOptions2">Good</label>
+              </div>
 
-            <input class="form-check-input ml-3" type="radio" name="inlineRadioOptions" id="inlineRadioOptions3" value="3">
-            <label class="form-check-label" for="inlineRadioOptions3">Very Good</label>
-            
-            <input class="form-check-input ml-3" type="radio" name="inlineRadioOptions" id="inlineRadioOptions4" value="4">
-            <label class="form-check-label" for="inlineRadioOptions4">Excellent</label>
-            
-            <input class="form-check-input ml-3" type="radio" name="inlineRadioOptions" id="inlineRadioOptions5" value="5">
-            <label class="form-check-label" for="inlineRadioOptions5">Superb</label>
+              <div class="form-check text-center">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioOptions3" value="3">
+                <label class="form-check-label" for="inlineRadioOptions3">Very Good</label>
+              </div>
 
-          </div>
-        
-        </div>
+              <div class="form-check text-center">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioOptions4" value="4">
+                <label class="form-check-label" for="inlineRadioOptions4">Excellent</label>
+              </div>
+
+              <div class="form-check text-center">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioOptions5" value="5">
+                <label class="form-check-label" for="inlineRadioOptions5">Superb</label>
+              </div>
+            </div>
+
 
         <div class="form-group text-center">
          <p>Thank you for your rating!</p>
@@ -75,7 +81,7 @@
         
         </div> 
         
-        <button type="submit" class="btn btn-success btn-block">Submit</button>
+        <button style="margin-bottom:2rem" type="submit" class="btn btn-success btn-block">Submit</button>
         
       </form>
     
@@ -83,6 +89,6 @@
   </div>
 
 </div>
-
+<%@ include file="footer.jsp"%> 
 </body>
 </html>
