@@ -109,7 +109,7 @@
                   style="border: 2px solid green"
           />
           <div class="card-body">
-            <h4 class="card-title">${product.getProductName()} ${product.getUnitQty()}g</h4>
+            <h4 class="card-title text-capitalize">${product.getProductName()} ${product.getUnitQty()}g</h4>
           </div>
           <div class="card-body pb-0 pt-0 px-auto">
             <div class="row justify-content-center text-center">
@@ -121,6 +121,7 @@
               <div class="col-3 p-0">
                 <form action="AddToCartServlet" method="post">
                   <input type="hidden" name="PID" value="${product.getProductID()}">
+                  <input type="hidden" name="itemQty" id="itemQty" value="1">
                   <button type="submit" ${product.getStockQty() == 0 ? "disabled" : ""} class="btn btn-success card-link">
                     <i class="bi bi-cart4"></i>
                   </button>
@@ -128,7 +129,7 @@
               </div>
               <div class="col-3 p-0">
                 <form action="AddToWishListServlet" method="post">
-                  <intput type="hidden" name="PID" value="${product.getProductID()}"/>
+                  <input type="hidden" name="PID" value="${product.getProductID()}"/>
                   <button type="submit" class="btn btn-danger card-link">
                     <i class="bi bi-heart-fill"></i>
                   </button>

@@ -108,6 +108,7 @@
                     <div class="col text-center p-0 text-md-end">
                         <form action="AddToCartServlet" method="post">
                             <input type="hidden" name="PID" value="${item.getProductID()}">
+                            <input type="hidden" name="itemQty" id="itemQty" value="1">
                             <button type="submit" ${item.getStockQty() == 0 ? "disabled" : ""}
                                     class="btn bg-success">
                                 <i class="bi bi-cart-plus-fill fs-6"></i>
