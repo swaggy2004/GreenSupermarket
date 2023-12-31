@@ -92,7 +92,14 @@ public class OrderServlet extends HttpServlet {
                     Product product = FetchProduct.searchProduct(productId);
                     assert product != null;
                     System.out.println("Product = " + product.getProductName());
-                    totPrice += item.getPQty() * product.getPrice();
+                    if (product.getStockQty() <= 0)
+                    {
+                        response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/MyCart.jsp"));
+                        return;
+                    }
+                    else{
+                        totPrice += item.getPQty() * product.getPrice();
+                    }
                 }
 
                 // Create an order and set customer details
