@@ -72,6 +72,7 @@
                             <div class="col-3 p-0">
                                 <form action="AddToCartServlet" method="post">
                                     <input type="hidden" name="PID" value="${product.getProductID()}">
+                                    <input type="hidden" name="itemQty" id="itemQty" value="1">
                                     <button type="submit" class="btn btn-success card-link">
                                         <i class="bi bi-cart4"></i>
                                     </button>
