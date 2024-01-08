@@ -1,27 +1,32 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <title>Footer Design</title>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="footer.css">
+  <link rel="stylesheet"  type="text/css" href="footer.css">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
 
-<body>
+<body class="footer-body">
 
   <footer class="footer">
-  	 <div class="container">
-  	 	<div class="row">
+  	 <div class="container footer-container">
+  	 	<div class="row footer-row">
   	 		<div class="footer-col">
   	 			<h4>Customer Access</h4>
   	 			<ul>
                                         <li><a href="<%= request.getContextPath() %>/login.jsp">Customer Login</a></li>
   	 				<li><a href="<%= request.getContextPath() %>/UserDashboard.jsp">User Dashboard</a></li>
   	 				<li><a href="<%= request.getContextPath() %>/UserSettings.jsp">User Settings</a></li>
-  	 				<li><a href="<%= request.getContextPath() %>/MyCart.jsp">My Cart</a></li>
-  	 				<li><a href="<%= request.getContextPath() %>/WishList.jsp">Wish list</a></li>
+  	 				<li><form id="myCartForm" action="<%= request.getContextPath() %>/OpenShoppingCartServlet" method="post">
+                                            <a href="javascript:void(0);" onclick="document.getElementById('myCartForm').submit();">My Cart</a>
+                                            </form>
+                                        </li>
+  	 				<li><form id="myWishlistForm" action="<%= request.getContextPath() %>/OpenWishListServlet" method="post">
+                                            <a href="javascript:void(0);" onclick="document.getElementById('myWishlistForm').submit();">Wish List</a>
+                                            </form>
+                                        </li>                                            
   	 			</ul>
   	 		</div>
   	 		<div class="footer-col">
@@ -52,6 +57,5 @@
   	 	</div>
   	 </div>
   </footer>
-
 </body>
 </html>

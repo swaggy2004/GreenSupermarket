@@ -24,6 +24,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Cart</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -44,8 +45,11 @@
 
 <%@ include file="header.jsp"%>
 <main>
-    <div class="container mt-5">
-        <h1 class="text-center text-md-start mb-5">My Cart</h1>
+    <div class="container mt-5 mb-3">
+        <h1 class="text-center text-md-start mb-4 display-3">My Cart</h1>
+        <c:set var="email" value="${sessionScope.email}" />
+        <c:choose>
+        <c:when test="${not empty FetchShoppingCart.searchCart(email)}">
         <div class="row d-md-flex mx-auto d-none d-md-flex mb-3">
             <div class="col-4 p-0">
                 <h6 class="text-uppercase">Product</h6>
@@ -77,17 +81,22 @@
                     <div class="col-md-4 p-0 mb-3 mb-md-0">
                         <div class="row m-0">
                             <div class="col col-md-4 col-5 p-0">
+                                <a href="ProductDetail.jsp?PID=${product.productID}"
+                                   class="text-decoration-none">
                                 <img
-                                        src="${product.getImgPath()}"
-                                        alt="Carrots"
+                                        src="${product.imgPath}"
+                                        alt="${product.productName}"
                                         srcset=""
-                                        class="img-md-fluid w-100 rounded-5"
-                                />
+                                        class="img-md-fluid w-100 rounded-5 p-3"
+                                /></a>
                             </div>
                             <div class="col-md-8 col-7 align-self-center p-4">
+                                <a href="ProductDetail.jsp?PID=${product.productID}"
+                                   class="text-decoration-none text-dark">
                                 <h6
                                         class="text-capitalize text-center text-md-start text-break
                                         m-0">${product.productName} ${product.unitQty}g</h6>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -156,9 +165,22 @@
                 </form>
             </div>
         </div>
+        </c:when>
+        <c:otherwise>
+            <div class="mb-4">
+                <img
+                    src="assets/images/errors/shopping-cart.jpg"
+                    alt=""
+                    srcset=""
+                    class="mx-auto d-block w-25"
+                />
+                <h1 class="display-5 text-center mt-4">Your cart seems to be empty!</h1>
+            </div>
+        </c:otherwise>
+        </c:choose>
         <a href="index.jsp">
             <button type="button" class="btn btn-dark mt-3 mb-3">
-                <i class="bi bi-arrow-left fs-5"> Back to Shopping</i>
+                <i class="bi bi-arrow-left fs-6"> Back to Shopping</i>
             </button>
         </a>
     </div>

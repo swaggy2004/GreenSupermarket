@@ -79,24 +79,25 @@
                         max="${product.getStockQty()}"
                         class="form-control w-25 d-inline"
                 />
+                    <div class="text-md-start text-center mt-3">
+                        <input type="hidden" name="PID" value="${product.getProductID()}">
+                        <button type="submit" ${product.getStockQty() > 0 ? '' : 'disabled'}
+                                class="btn btn-success">
+                            <i class="bi bi-cart-plus"></i>
+                        </button>
+                        <form action="AddToWishListServlet" method="post" class="d-inline">
+                            <input type="hidden" name="PID" value="${product.getProductID()}">
+                            <button
+                                    type="submit"
+                                    value="Add to Cart"
+                                    class="btn btn-danger"
+                            >
+                                <i class="bi bi-heart-fill"></i>
+                            </button>
+                        </form>
+                    </div>
+                </form>
             </h5>
-
-
-                <input type="hidden" name="PID" value="${product.getProductID()}">
-                <button type="submit" ${product.getStockQty() > 0 ? '' : 'disabled'} class="btn btn-success">
-                    <i class="bi bi-cart-plus"></i>
-                </button>
-            </form>
-            <form action="AddToWishListServlet" method="post" class="d-inline">
-                <input type="hidden" name="PID" value="${product.getProductID()}">
-                <button
-                        type="submit"
-                        value="Add to Cart"
-                        class="btn btn-danger inline"
-                >
-                    <i class="bi bi-heart-fill"></i>
-                </button>
-            </form>
         </div>
     </div>
 </div>
