@@ -25,17 +25,19 @@ public class FetchProduct {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
             while(resultSet.next()){
-                Product product = new Product();
-                product.setProductID(resultSet.getInt("ProductID"));
-                product.setProductName(resultSet.getString("Name"));
-                product.setUnitQty(resultSet.getInt("UnitQty"));
-                product.setStockQty(resultSet.getInt("StockQty"));
-                product.setCategory(resultSet.getString("Category"));
-                product.setDescription(resultSet.getString("Description"));
-                product.setVisibility(resultSet.getBoolean("Visibility"));
-                product.setPrice(resultSet.getFloat("UnitPrice"));
-                product.setImgPath(resultSet.getString("ImagePath"));
-                products.add(product);
+                if(resultSet.getBoolean("Visibility")){
+                    Product product = new Product();
+                    product.setProductID(resultSet.getInt("ProductID"));
+                    product.setProductName(resultSet.getString("Name"));
+                    product.setUnitQty(resultSet.getInt("UnitQty"));
+                    product.setStockQty(resultSet.getInt("StockQty"));
+                    product.setCategory(resultSet.getString("Category"));
+                    product.setDescription(resultSet.getString("Description"));
+                    product.setVisibility(resultSet.getBoolean("Visibility"));
+                    product.setPrice(resultSet.getFloat("UnitPrice"));
+                    product.setImgPath(resultSet.getString("ImagePath"));
+                    products.add(product);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -50,17 +52,19 @@ public class FetchProduct {
             statement.setInt(1, PID);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Product product = new Product();
-                    product.setProductID(resultSet.getInt("ProductID"));
-                    product.setProductName(resultSet.getString("Name"));
-                    product.setUnitQty(resultSet.getInt("UnitQty"));
-                    product.setStockQty(resultSet.getInt("StockQty"));
-                    product.setCategory(resultSet.getString("Category"));
-                    product.setDescription(resultSet.getString("Description"));
-                    product.setVisibility(resultSet.getBoolean("Visibility"));
-                    product.setPrice(resultSet.getFloat("UnitPrice"));
-                    product.setImgPath(resultSet.getString("ImagePath"));
-                    products.add(product);
+                    if(resultSet.getBoolean("Visibility")) {
+                        Product product = new Product();
+                        product.setProductID(resultSet.getInt("ProductID"));
+                        product.setProductName(resultSet.getString("Name"));
+                        product.setUnitQty(resultSet.getInt("UnitQty"));
+                        product.setStockQty(resultSet.getInt("StockQty"));
+                        product.setCategory(resultSet.getString("Category"));
+                        product.setDescription(resultSet.getString("Description"));
+                        product.setVisibility(resultSet.getBoolean("Visibility"));
+                        product.setPrice(resultSet.getFloat("UnitPrice"));
+                        product.setImgPath(resultSet.getString("ImagePath"));
+                        products.add(product);
+                    }
                 }
             }
         } catch (SQLException e) {
@@ -76,17 +80,19 @@ public class FetchProduct {
             statement.setString(1, category);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Product product = new Product();
-                    product.setProductID(resultSet.getInt("ProductID"));
-                    product.setProductName(resultSet.getString("Name"));
-                    product.setUnitQty(resultSet.getInt("UnitQty"));
-                    product.setStockQty(resultSet.getInt("StockQty"));
-                    product.setCategory(resultSet.getString("Category"));
-                    product.setDescription(resultSet.getString("Description"));
-                    product.setVisibility(resultSet.getBoolean("Visibility"));
-                    product.setPrice(resultSet.getFloat("UnitPrice"));
-                    product.setImgPath(resultSet.getString("ImagePath"));
-                    products.add(product);
+                    if(resultSet.getBoolean("Visibility")){
+                        Product product = new Product();
+                        product.setProductID(resultSet.getInt("ProductID"));
+                        product.setProductName(resultSet.getString("Name"));
+                        product.setUnitQty(resultSet.getInt("UnitQty"));
+                        product.setStockQty(resultSet.getInt("StockQty"));
+                        product.setCategory(resultSet.getString("Category"));
+                        product.setDescription(resultSet.getString("Description"));
+                        product.setVisibility(resultSet.getBoolean("Visibility"));
+                        product.setPrice(resultSet.getFloat("UnitPrice"));
+                        product.setImgPath(resultSet.getString("ImagePath"));
+                        products.add(product);
+                    }
                 }
             }
         } catch (SQLException e) {
@@ -102,17 +108,19 @@ public class FetchProduct {
                 statement.setInt(1, PID);
                 try (ResultSet resultSet = statement.executeQuery()) {
                     if (resultSet.next()) {
-                        Product product = new Product();
-                        product.setProductID(resultSet.getInt("ProductID"));
-                        product.setProductName(resultSet.getString("Name"));
-                        product.setUnitQty(resultSet.getInt("UnitQty"));
-                        product.setStockQty(resultSet.getInt("StockQty"));
-                        product.setCategory(resultSet.getString("Category"));
-                        product.setDescription(resultSet.getString("Description"));
-                        product.setVisibility(resultSet.getBoolean("Visibility"));
-                        product.setPrice(resultSet.getFloat("UnitPrice"));
-                        product.setImgPath(resultSet.getString("ImagePath"));
-                        return product;
+                        if (resultSet.getBoolean("Visibility")){
+                            Product product = new Product();
+                            product.setProductID(resultSet.getInt("ProductID"));
+                            product.setProductName(resultSet.getString("Name"));
+                            product.setUnitQty(resultSet.getInt("UnitQty"));
+                            product.setStockQty(resultSet.getInt("StockQty"));
+                            product.setCategory(resultSet.getString("Category"));
+                            product.setDescription(resultSet.getString("Description"));
+                            product.setVisibility(resultSet.getBoolean("Visibility"));
+                            product.setPrice(resultSet.getFloat("UnitPrice"));
+                            product.setImgPath(resultSet.getString("ImagePath"));
+                            return product;
+                        }
                     }
                 }
             }
@@ -130,17 +138,19 @@ public class FetchProduct {
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 try (ResultSet resultSet = statement.executeQuery()) {
                     while (resultSet.next()) {
-                        Product product = new Product();
-                        product.setProductID(resultSet.getInt("ProductID"));
-                        product.setProductName(resultSet.getString("Name"));
-                        product.setUnitQty(resultSet.getInt("UnitQty"));
-                        product.setStockQty(resultSet.getInt("StockQty"));
-                        product.setCategory(resultSet.getString("Category"));
-                        product.setDescription(resultSet.getString("Description"));
-                        product.setVisibility(resultSet.getBoolean("Visibility"));
-                        product.setPrice(resultSet.getFloat("UnitPrice"));
-                        product.setImgPath(resultSet.getString("ImagePath"));
-                        productList.add(product);
+                        if(resultSet.getBoolean("Visibility")){
+                            Product product = new Product();
+                            product.setProductID(resultSet.getInt("ProductID"));
+                            product.setProductName(resultSet.getString("Name"));
+                            product.setUnitQty(resultSet.getInt("UnitQty"));
+                            product.setStockQty(resultSet.getInt("StockQty"));
+                            product.setCategory(resultSet.getString("Category"));
+                            product.setDescription(resultSet.getString("Description"));
+                            product.setVisibility(resultSet.getBoolean("Visibility"));
+                            product.setPrice(resultSet.getFloat("UnitPrice"));
+                            product.setImgPath(resultSet.getString("ImagePath"));
+                            productList.add(product);
+                        }
                     }
                 }
             }
@@ -157,17 +167,19 @@ public class FetchProduct {
             statement.setString(1, "%" + SearchResult + "%");
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Product product = new Product();
-                    product.setProductID(resultSet.getInt("ProductID"));
-                    product.setProductName(resultSet.getString("Name"));
-                    product.setUnitQty(resultSet.getInt("UnitQty"));
-                    product.setStockQty(resultSet.getInt("StockQty"));
-                    product.setCategory(resultSet.getString("Category"));
-                    product.setDescription(resultSet.getString("Description"));
-                    product.setVisibility(resultSet.getBoolean("Visibility"));
-                    product.setPrice(resultSet.getFloat("UnitPrice"));
-                    product.setImgPath(resultSet.getString("ImagePath"));
-                    products.add(product);
+                    if(resultSet.getBoolean("Visibility")){
+                        Product product = new Product();
+                        product.setProductID(resultSet.getInt("ProductID"));
+                        product.setProductName(resultSet.getString("Name"));
+                        product.setUnitQty(resultSet.getInt("UnitQty"));
+                        product.setStockQty(resultSet.getInt("StockQty"));
+                        product.setCategory(resultSet.getString("Category"));
+                        product.setDescription(resultSet.getString("Description"));
+                        product.setVisibility(resultSet.getBoolean("Visibility"));
+                        product.setPrice(resultSet.getFloat("UnitPrice"));
+                        product.setImgPath(resultSet.getString("ImagePath"));
+                        products.add(product);
+                    }
                 }
             }
         } catch (SQLException e) {

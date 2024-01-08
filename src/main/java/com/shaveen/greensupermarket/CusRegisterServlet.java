@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
@@ -78,13 +79,12 @@ public class CusRegisterServlet extends HttpServlet {
                 Email = request.getParameter("email"),
                 pno = request.getParameter("pno"),
                 password = request.getParameter("password");
-        
-         
-        
+        String CypherPwd = BCrypt.hashpw(password, BCrypt.gensalt());
+               
         CustomerRegister SendCusData = new CustomerRegister();
         
         
-            int result = SendCusData.addAccount(Fullname,Email,pno,password);
+            int result = SendCusData.addAccount(Fullname,Email,pno,CypherPwd);
             // Registration successful, you may redirect the user to a success page or do other actions.
               
             if(result==0){

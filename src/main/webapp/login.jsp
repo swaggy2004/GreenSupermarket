@@ -30,11 +30,11 @@
                         <form action="LoginServlet" method="post">
                         <p class="header-p">Welcome Back</p>
                         <div class="input-field1">
-                            <input type="text" class="input" name="email" id="email" required autocomplete="off" placeholder="&nbsp;Email Address"> <!-- Corrected placeholder text -->
+                            <input type="email" class="input" name="email" id="email" required autocomplete="off" placeholder="&nbsp;Email Address"> <!-- Corrected placeholder text -->
                         </div>
                         <br>
                         <div class="input-field2">
-                            <input type="password" class="input" name="password" id="password" placeholder="&nbsp;Password" > <!-- Changed id to "password" -->
+                            <input type="password" class="input" name="password" id="password" placeholder="&nbsp;Password" required> <!-- Changed id to "password" -->
                         </div>
                         <br>
                         <div class="input-field">

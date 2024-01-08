@@ -32,7 +32,7 @@
                         </div>
                         <br>
                         <div class="input-field2">
-                            <input type="text" class="input" name="email"  id="email" required autocomplete="off" placeholder="Email Address">  
+                            <input type="email" class="input" name="email"  id="email" required autocomplete="off" placeholder="Email Address">  
                         </div>
                         <br>
                         <div class="input-field3">

@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
@@ -18,13 +19,15 @@ public class  LoginValidation {
     public static boolean validateLogin(String email, String password) {
         try {
             Connection connection = Model.Connection.start();
-            String query = "SELECT Email, Pwd FROM customer WHERE Email = ? AND Pwd = ?";
+            String query = "SELECT Pwd FROM customer WHERE Email = ?";
             try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
                 preparedStatement.setString(1, email);
-                preparedStatement.setString(2, password);
-
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                    return resultSet.next();
+                    if (resultSet.next()){
+                        String hashedPwd = resultSet.getString("Pwd");
+                        System.out.println(hashedPwd);
+                        return BCrypt.checkpw(password, hashedPwd);
+                    }
                 }
             }
         } catch (SQLException e) {

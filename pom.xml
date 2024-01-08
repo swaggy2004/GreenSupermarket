@@ -19,7 +19,6 @@
         <version>${jakartaee}</version>
         <scope>provided</scope>
     </dependency>
-
     <!-- Add MySQL Connector/J Dependency -->
         <dependency>
             <groupId>mysql</groupId>
@@ -57,6 +56,12 @@
             <groupId>com.sun.mail</groupId>
             <artifactId>javax.mail</artifactId>
             <version>1.6.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>0.3m</version>
+            <type>jar</type>
         </dependency>
     </dependencies>
     

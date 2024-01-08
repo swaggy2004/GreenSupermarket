@@ -1,0 +1,15 @@
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    border-color: green;
+}
+
+.card .card-title,
+.card .card-img-top {
+    transition: none;
+}
+
+.card .card-title:hover,
+.card .card-img-top:hover {
+    box-shadow: none;
+    border-color: initial;
+}
