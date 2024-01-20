@@ -31,8 +31,6 @@ Special thanks to the following contributors who dedicated their time and effort
 - [Janudi Thirimanna](Janudi2005).
 - [Isuru Bandara](IsuruUshanBandara).
 
-Feel free to add your name to the list if you were part of the development team!
-
 ## Project Structure
 The project is organized into different modules following the MDC architecture:
 
