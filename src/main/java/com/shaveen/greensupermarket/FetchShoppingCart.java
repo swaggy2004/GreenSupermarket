@@ -81,5 +81,15 @@ public class FetchShoppingCart {
             e.printStackTrace();
         }
     }
+    
+    public static void deleteCart(String CEmail){
+        try (var connection = Model.Connection.start();
+                PreparedStatement statement = connection.prepareStatement(
+                        "DELETE FROM shoopping_cart WHERE CEmail = ?")){
+            statement.setString(1, CEmail);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }
 
