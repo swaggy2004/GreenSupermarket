@@ -28,279 +28,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="ProductDetails.css">
-    <title>${product.getProductName()}</title>
-
+    <title class="text-capitalize">${product.getProductName()}</title>
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+    />
+    <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"
+    ></script>
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css"
+    />
 </head>
 <body>
-
-<%--<%@ include file="header.jsp"%>--%>
-<!--Grid for product image and details-->
-<div class="container text-left" style="margin-top: 180px;margin-left: 75px;margin-right:102px ;">
-    <div class="row">
-        <div class="col-md-5 ">
-            <img src="${product.getImgPath()}" class="img-fluid" alt="cabbage">
+<%@ include file="header.jsp"%>
+<div class="container p-4 my-5">
+    <div class="row border border-4 rounded-3 p-3">
+        <div class="col col-md-6 col-12">
+            <img
+                    src="${product.getImgPath()}"
+                    alt=""
+                    class="img-fluid rounded-3"
+            />
         </div>
-        <div class="col-md-7">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Vegetables</li>
-                </ol>
-            </nav>
-            <h2>${product.getProductName()} ${product.getUnitQty()}g </h2>
-            <p>Availability: In stock</p>
-            <p>${product.getDescription()}</p>
-            <h3 style="color: #276A07;font-weight: 700;">USD ${product.getPrice()}</h3>
-            <table class="table table-borderless"style="width: 250px; ">
-                <tbody>
-                <tr>
-                    <td style="vertical-align: middle;">Quantity</td>
-                    <td><div class="dropdown">
-                        <button
-                                class="btn btn-secondary dropdown-toggle"
-                                type="button"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false"
-                                style="background-color:white; color:black;border-color: #34A853;"
-                        >
-                            100g
+        <div class="col col-12 col-md-6">
+            <h3 class="my-3 text-capitalize">Product Name: ${product.getProductName()}</h3>
+            <h6 class="my-3 text-capitalize ${product.getStockQty() == 0 ? "text-danger": "text-success"}">
+                [${product.getStockQty() == 0 ? "Out of Stock": "In Stock"}]</h6>
+            <h5 class="my-3">Product Quantity: ${product.getUnitQty()}g </h5>
+            <h5 class="">Product Description</h5>
+            <p class="d-block" style="text-align: justify;">
+                ${product.getDescription()}
+            </p>
+            <h5 class="my-3">Product Category: ${product.getCategory()}</h5>
+            <h5 class="my-3">
+                <form action="AddToCartServlet" method="post" class="d-inline">
+                <label for="itemQty" class="form-label d-inline">Quantity:</label>
+                <input
+                        type="number"
+                        name="itemQty"
+                        id="itemQty"
+                        placeholder="1"
+                        value="1"
+                        min="1"
+                        max="${product.getStockQty()}"
+                        class="form-control w-25 d-inline"
+                />
+                    <div class="text-md-start text-center mt-3">
+                        <input type="hidden" name="PID" value="${product.getProductID()}">
+                        <button type="submit" ${product.getStockQty() > 0 ? '' : 'disabled'}
+                                class="btn btn-success">
+                            <i class="bi bi-cart-plus"></i>
                         </button>
-                        <ul class="dropdown-menu" style="background-color: white;">
-                            <li><button class="dropdown-item" type="button">100g</button></li>
-                            <li>
-                                <button class="dropdown-item" type="button">200g</button>
-                            </li>
-                            <li>
-                                <button class="dropdown-item" type="button">300g</button>
-                            </li>
-                        </ul>
-                    </div></td>
-                </tr>
-                </tbody>
-            </table>
-            <div class="btn-group" role="group" aria-label="Basic example">
-                <form action="AddToCartServlet" method="post">                    
-                    <input type="hidden" name="PID" value="${product.getProductID()}">
-                    <button type="submit" ${product.getStockQty() > 0 ? '' : 'disabled'} class="btn btn-primary" style="background-color: #34A853; border-color: #34A853">Add to Cart</button>
+                        <form action="AddToWishListServlet" method="post" class="d-inline">
+                            <input type="hidden" name="PID" value="${product.getProductID()}">
+                            <button
+                                    type="submit"
+                                    value="Add to Cart"
+                                    class="btn btn-danger"
+                            >
+                                <i class="bi bi-heart-fill"></i>
+                            </button>
+                        </form>
+                    </div>
                 </form>
-                <form action="AddToWishListServlet" method="post">
-                    <input type="hidden" name="PID" value="${product.getProductID()}">
-                    <button type="submit" class="btn btn-light"><img src="assets/ProductDetailHeartIcon.svg"></button>
-                </form>
-            </div>
+            </h5>
         </div>
     </div>
 </div>
-<!--Grid for product image and details-->
-<!--product detail-->
-<div style="background-color:#D0F288;padding: 40px;margin-top: 90px;margin-left: 150px;margin-right: 150px;">
-    <div class="h4 pb-2 mb-4 text-black border-bottom border-danger"style="color:black;">
-        <h3 >Product details</h3>
-    </div>
-    <h6><b>Product ID : </b>${product.getProductID()}</h6><br/>
-    <h6><b>Availability: </b>${product.getStockQty() > 0 ? "In Stock" : "Out of Stock"}</h6><br/>
-    <h6><b>Category : </b> ${product.getCategory()}</h6>
-</div>
-<!--product detail-->
-<!--Carousel-->
-<div id="ControlForCarousel" class="carousel">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <div class="card">
-                <div class="img-wrapper"><img src="assets/vegi1.png" class="d-block" alt="..."> </div>
-                <div class="card-body">
-                    <div class="row ">
-                        <div class="col-md-12">
-                            <h5 class="card-title">Green Lettuce (100g)</h5>
-                        </div>
-                        <div class="col-md-6">
-                            <p class="card-text"><b>USD 24</b></p>
-                        </div>
-                        <div class="col-md-6" style="text-align: right;">
-                            <button type="button" class="btn btn-light"><img src="assets/ProductDetailBagIcon.svg"></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="img-wrapper"><img src="assets/vegi2.png" class="" alt="..."> </div>
-                <div class="card-body">
-                    <div class="row ">
-                        <div class="col-md-12">
-                            <h5 class="card-title">Chanise Cabbage (100g)</h5>
-                        </div>
-                        <div class="col-md-6">
-                            <p class="card-text"><b>USD 24</b></p>
-                        </div>
-                        <div class="col-md-6" style="text-align: right;">
-                            <button type="button" class="btn btn-light"><img src="assets/ProductDetailBagIcon.svg"></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="img-wrapper"><img src="assets/vegi4.png" class="" alt="..."> </div>
-                <div class="card-body">
-                    <div class="row ">
-                        <div class="col-md-12">
-                            <h5 class="card-title">Corn (100g)</h5>
-                        </div>
-                        <div class="col-md-6">
-                            <p class="card-text"><b>USD 24</b></p>
-                        </div>
-                        <div class="col-md-6" style="text-align: right;">
-                            <button type="button" class="btn btn-light"><img src="assets/ProductDetailBagIcon.svg"></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="img-wrapper"><img src="assets/vegi4.png" class="" alt="..."> </div>
-                <div class="card-body">
-                    <div class="row ">
-                        <div class="col-md-12">
-                            <h5 class="card-title">Corn (100g)</h5>
-                        </div>
-                        <div class="col-md-6">
-                            <p class="card-text"><b>USD 24</b></p>
-                        </div>
-                        <div class="col-md-6" style="text-align: right;">
-                            <button type="button" class="btn btn-light"><img src="assets/ProductDetailBagIcon.svg"></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="img-wrapper"><img src="assets/vegi2.png" class="" alt="..."> </div>
-                <div class="card-body">
-                    <div class="row ">
-                        <div class="col-md-12">
-                            <h5 class="card-title">Chanise Cabbage (100g)</h5>
-                        </div>
-                        <div class="col-md-6">
-                            <p class="card-text"><b>USD 24</b></p>
-                        </div>
-                        <div class="col-md-6" style="text-align: right;">
-                            <button type="button" class="btn btn-light"><img src="assets/ProductDetailBagIcon.svg"></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="img-wrapper"><img src="assets/vegi1.png" class="" alt="..."> </div>
-                <div class="card-body">
-                    <div class="row ">
-                        <div class="col-md-12">
-                            <h5 class="card-title">Green Lettuce (100g)</h5>
-                        </div>
-                        <div class="col-md-6">
-                            <p class="card-text"><b>USD 24</b></p>
-                        </div>
-                        <div class="col-md-6" style="text-align: right;">
-                            <button type="button" class="btn btn-light"><img src="assets/ProductDetailBagIcon.svg"></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="img-wrapper"><img src="assets/vegi4.png" class="" alt="..."> </div>
-                <div class="card-body">
-                    <div class="row ">
-                        <div class="col-md-12">
-                            <h5 class="card-title">Corn (100g)</h5>
-                        </div>
-                        <div class="col-md-6">
-                            <p class="card-text"><b>USD 24</b></p>
-                        </div>
-                        <div class="col-md-6" style="text-align: right;">
-                            <button type="button" class="btn btn-light"><img src="assets/ProductDetailBagIcon.svg"></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="img-wrapper"><img src="assets/vegi2.png" class="" alt="..."> </div>
-                <div class="card-body">
-                    <div class="row ">
-                        <div class="col-md-12">
-                            <h5 class="card-title">Chanise Cabbage (100g)</h5>
-                        </div>
-                        <div class="col-md-6">
-                            <p class="card-text"><b>USD 24</b></p>
-                        </div>
-                        <div class="col-md-6" style="text-align: right;">
-                            <button type="button" class="btn btn-light"><img src="assets/ProductDetailBagIcon.svg"></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="img-wrapper"><img src="assets/vegi1.png" class="" alt="..."> </div>
-                <div class="card-body">
-                    <div class="row ">
-                        <div class="col-md-12">
-                            <h5 class="card-title">Green Lettuce (100g)</h5>
-                        </div>
-                        <div class="col-md-6">
-                            <p class="card-text"><b>USD 24</b></p>
-                        </div>
-                        <div class="col-md-6" style="text-align: right;">
-                            <button type="button" class="btn btn-light"><img src="assets/ProductDetailBagIcon.svg"></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="img-wrapper"><img src="assets/vegi1.png" class="" alt="..."> </div>
-                <div class="card-body">
-                    <div class="row ">
-                        <div class="col-md-12">
-                            <h5 class="card-title">Green Lettuce (100g)</h5>
-                        </div>
-                        <div class="col-md-6">
-                            <p class="card-text"><b>USD 24</b></p>
-                        </div>
-                        <div class="col-md-6" style="text-align: right;">
-                            <button type="button" class="btn btn-light"><img src="assets/ProductDetailBagIcon.svg"></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <button class="carousel-control-prev" type="button" data-bs-target="#ControlForCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#ControlForCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-</div>
-<!--Carousel-->
-<%--<%@ include file="footer.jsp"%>--%>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-<script src="ProductDetails.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var quantityInput = document.getElementById('itemQty');
+
+        if (quantityInput) {
+            quantityInput.addEventListener("change", function () {
+                var currentValue = parseInt(this.value, 10);
+                var maxStockQuantity = parseInt(this.getAttribute("max"), 10);
+
+                // Check if the entered value is less than 1
+                if (currentValue < 1 || isNaN(currentValue)) {
+                    // Set the input value to 1
+                    this.value = 1;
+                }
+
+                // Check if the entered value is greater than the stock quantity
+                if (currentValue > maxStockQuantity) {
+                    // Set the input value to the stock quantity
+                    this.value = maxStockQuantity;
+                }
+
+                // Submit the form when the quantity changes
+                this.form.submit();
+            });
+        }
+    });
+</script>
+
+
+<%@ include file="footer.jsp"%>
 </body>
 </html>

@@ -15,6 +15,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>${category} Catalogue</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -30,6 +31,7 @@
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css"
     />
+    <link rel="stylesheet" href="card.css">
 </head>
 <body>
 <%@ include file="header.jsp"%>
@@ -58,7 +60,7 @@
                         style="border: 2px solid green"
                 />
                 <div class="card-body">
-                    <h4 class="card-title">${product.getProductName()} ${product.getUnitQty()}g</h4>
+                    <h4 class="card-title text-capitalize">${product.getProductName()} ${product.getUnitQty()}g</h4>
                 </div>
                 <div class="card-body pb-0 pt-0 px-auto">
                     <div class="row justify-content-center text-center">
@@ -69,6 +71,7 @@
                         </div>
                         <div class="col-3 p-0">
                             <form action="AddToCartServlet" method="post">
+                                <input type="hidden" name="itemQty" id="itemQty" value="1">
                                 <input type="hidden" name="PID" value="${product.getProductID()}">
                                 <button type="submit" ${product.getStockQty() == 0 ? "disabled" : ""}
                                         class="btn btn-success card-link">

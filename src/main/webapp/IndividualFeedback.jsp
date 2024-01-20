@@ -97,7 +97,7 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
         </div>
 
         <p class="card-text mt-2">
-            ${cfeedback.getFeedbackText()}
+            ${fn:escapeXml(cfeedback.getFeedbackText())} <%--Sanitized this--%>
         </p>
     </div>
 </div>

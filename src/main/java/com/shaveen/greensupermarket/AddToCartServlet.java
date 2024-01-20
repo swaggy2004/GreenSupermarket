@@ -4,6 +4,7 @@
  */
 package com.shaveen.greensupermarket;
 
+import Model.Product;
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -57,9 +58,12 @@ public class AddToCartServlet extends HttpServlet {
         String referer = request.getHeader("Referer");
         if (Email != null) {
             String Para = request.getParameter("PID");
+            int Qty = Integer.parseInt(request.getParameter("itemQty"));
             int PID = 0;
+            int PQty = 0;
             try {
                 PID = Integer.parseInt(Para);
+
             } catch (NumberFormatException e) {
                 e.printStackTrace();
             }
@@ -68,9 +72,17 @@ public class AddToCartServlet extends HttpServlet {
                 response.sendRedirect(referer);
             }
             else{
-                int qty = 1;
+                if (Qty <= 0) {
+                    PQty = 1;
+                }
+                else if(Qty > product.getStockQty()){
+                    response.sendRedirect(referer);
+                }
+                else{
+                    PQty = Qty;
+                }
                 try {
-                    FetchShoppingCart.insertToCart(Email, PID, qty);
+                    FetchShoppingCart.insertToCart(Email, PID, PQty);
                 } catch (SQLException ex) {
                     Logger.getLogger(AddToCartServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }

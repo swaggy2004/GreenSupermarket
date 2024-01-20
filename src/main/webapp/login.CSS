@@ -12,24 +12,24 @@ body {
     min-height: 100vh;
 }
 .row {
-    
-    height: 100%;  
-    margin: 0 ; 
+
+    height: 100%;
+    margin: 0 ;
     align-items: left;
 }
 .--Gradient {
-    height: 100vh;  
+    height: 100vh;
     background: var(--Blue, linear-gradient(180deg, #D0F288 0%, #8ADAB2 100%));
     display: flex;
     flex-direction: column;
-    justify-content: center; 
+    justify-content: center;
     width: 650px;
     margin-right: 40px;
-   
+
 }
 .right {
-    height: 100vh;  
-    width: 40vw; 
+    height: 100vh;
+    width: 40vw;
 }
 .col-md-3 {
     padding-top: 15%;
@@ -44,14 +44,14 @@ body {
 }
 .big-text p{
     color: #347809;
-    
+
     font-size: 40px;
     font-style: normal;
     font-weight: 800;
     line-height: normal;
 }
-   
-.small-text p{  
+
+.small-text p{
     color: #59544B;
     font-size: 24px;
     font-weight: 600;
@@ -60,10 +60,10 @@ body {
     text-align: left;
 }
 .input-box {
-    max-width: 307px;  
+    max-width: 307px;
     align-items: center;
     padding: 1rem;
-   
+
 }
 .input-box header{
     color: #333;
@@ -92,9 +92,9 @@ body {
     border: 1px solid #EEE;
     background: var(--white-100, #FFF) url('assets/images/Login/mail-icon.svg') no-repeat;
     background-position: 26px 18px;
-    background-size: 24px 24px; 
+    background-size: 24px 24px;
     backface-visibility: 0.3;
-     
+
 }
 .input-field2 input{
     display: block;
@@ -108,12 +108,12 @@ body {
     border: 1px solid #EEE;
     background: var(--white-100, #FFF) url('assets/images/Login/lock-icon.svg') no-repeat;
     background-position: 26px 18px;
-    background-size: 24px 24px; 
+    background-size: 24px 24px;
     backface-visibility: 0.3
 }
 .input-field input::placeholder {
-    color: #333;  
-    opacity: 0.3;  
+    color: #333;
+    opacity: 0.3;
 }
 .input-field input[type="submit"] {
     display: flex;
@@ -127,22 +127,22 @@ body {
     background: #53A60F;
     border: none;
     color: white;
-    outline: none; 
+    outline: none;
 }
 .input-field input[type="submit"]:hover {
-    background: black;  
+    background: black;
 }
 .forgot-password{
     padding-top: 10px;
-    text-align: center;       
+    text-align: center;
 }
 
 .forgot-password a{
-    color: #333;       
+    color: #333;
 }
 .col-md-9 {
     padding-left: 65px;
-    margin-left: -60px;  
+    margin-left: -60px;
   }
 
 .backbutton{
@@ -160,4 +160,3 @@ body {
     outline: none;
 }
 
- 

@@ -90,9 +90,20 @@ public class OrderServlet extends HttpServlet {
                     int productId = item.getPID();
                     System.out.println("ProductID = " + productId);
                     Product product = FetchProduct.searchProduct(productId);
-                    assert product != null;
-                    System.out.println("Product = " + product.getProductName());
-                    totPrice += item.getPQty() * product.getPrice();
+                    if (product != null){
+                        if (product.getStockQty() <= 0)
+                        {
+                            response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/MyCart.jsp"));
+                            return;
+                        }
+                        else{
+                            totPrice += item.getPQty() * product.getPrice();
+                        }
+                    }
+                    else{
+                        response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/MyCart.jsp"));
+                        return;
+                    }
                 }
 
                 // Create an order and set customer details
@@ -112,6 +123,7 @@ public class OrderServlet extends HttpServlet {
                 // Set the order ID in the session attribute
                 session.setAttribute("orderID", orderID);
                 System.out.println("Order ID stored in session: " + session.getAttribute("orderID"));
+                FetchShoppingCart.deleteCart(email);
 
             } else {
                 response.sendRedirect("login.jsp");

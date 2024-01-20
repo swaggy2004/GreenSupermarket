@@ -21,9 +21,9 @@
   />
 </head>
 <body>
-<nav class="navbar navbar-expand-md px-3 px-md-0" style="background-color: #d0f288">
+<nav class="navbar navbar-expand-lg px-3 px-lg-0" style="background-color: #d0f288">
   <div class="container-fluid">
-    <a class="navbar-brand d-md-hide" href="index.jsp">
+    <a class="navbar-brand d-lg-hide" href="index.jsp">
       <img
               src="assets\images\BrandLogo\nav-logo.svg"
               alt="Brand Logo"
@@ -55,7 +55,7 @@
         />
       </a>
       <ul
-              class="navbar-nav me-auto mb-2 mb-md-0 text-center fs-5 fw-semibold"
+              class="navbar-nav me-auto mb-2 mb-lg-0 text-center fs-5 fw-semibold"
       >
         <li class="nav-item">
           <a href="index.jsp" class="nav-link"> Home </a>
@@ -73,7 +73,7 @@
           <a href="ProductCatalogue.jsp?category=Snack" class="nav-link"> Snacks </a>
         </li>
       </ul>
-      <form action="ProductSearchServlet" method="get" class="d-flex me-md-2 mb-3 mb-md-0" role="search">
+      <form action="ProductSearchServlet" method="get" class="d-flex me-md-2 mb-3 mb-lg-0" role="search">
         <input
                 class="form-control me-2"
                 type="search"

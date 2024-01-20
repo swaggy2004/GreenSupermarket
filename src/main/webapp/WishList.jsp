@@ -33,6 +33,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>My Wishlist</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -53,8 +54,10 @@
 <body style="font-family: 'Poppins', sans-serif; line-height: 1.5;">
 <%@ include file="header.jsp"%>
 <main>
-    <div class="container mt-5">
-        <h1 class="text-center text-md-start mb-5">My Wishlist</h1>
+    <div class="container mt-5 mb-3">
+        <h1 class="text-center text-md-start mb-5 display-3">My Wishlist</h1>
+        <c:choose>
+        <c:when test="${not empty product}">
         <div class="row d-md-flex mx-auto d-none d-md-flex mb-3">
             <div class="col col-5 p-0">
                 <h6 class="text-uppercase">Product</h6>
@@ -74,16 +77,22 @@
             <div class="col col-md-5 p-0 mb-3 mb-md-0">
                 <div class="row m-0">
                     <div class="col-md-3 col-5 p-0">
+                        <a href="ProductDetail.jsp?PID=${item.getProductID()}"
+                           class="text-decoration-none">
                         <img
                                 src="${item.getImgPath()}"
-                                alt="Carrots"
+                                alt="${item.getProductName()}"
                                 srcset=""
-                                class="img-md-fluid w-100 rounded-5"
+                                class="img-md-fluid w-100 rounded-5 p-3"
                         />
+                        </a>
                     </div>
                     <div class="col-md-9 col-7 align-self-center p-4">
+                        <a href="ProductDetail.jsp?PID=${item.getProductID()}"
+                           class="text-decoration-none text-dark">
                         <h6 class="text-capitalize text-break m-0">${item.getProductName()}
                                 ${item.getUnitQty()}g</h6>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -108,6 +117,7 @@
                     <div class="col text-center p-0 text-md-end">
                         <form action="AddToCartServlet" method="post">
                             <input type="hidden" name="PID" value="${item.getProductID()}">
+                            <input type="hidden" name="itemQty" id="itemQty" value="1">
                             <button type="submit" ${item.getStockQty() == 0 ? "disabled" : ""}
                                     class="btn bg-success">
                                 <i class="bi bi-cart-plus-fill fs-6"></i>
@@ -126,9 +136,22 @@
             </div>
         </div>
         </c:forEach>
+        </c:when>
+        <c:otherwise>
+            <div class="mb-4">
+                <img
+                    src="assets/images/errors/WishList.png"
+                    alt=""
+                    srcset=""
+                    class="mx-auto d-block w-25"
+                />
+                <h1 class="display-5 text-center mt-4">Your wish list seems to be empty!</h1>
+            </div>
+        </c:otherwise>
+        </c:choose>
         <a href="index.jsp">
             <button type="button" class="btn btn-dark mt-3 mb-3">
-                <i class="bi bi-arrow-left fs-5"> Back to Shopping</i>
+                <i class="bi bi-arrow-left fs-6"> Back to Shopping</i>
             </button>
         </a>
     </div>

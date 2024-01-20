@@ -36,10 +36,23 @@
     </style>
 </head>
 <body>
+    <%
+    String email = (String) session.getAttribute("email");
+    boolean isLoggedIn = session.getAttribute("isLoggedIn") != null && (boolean) session.getAttribute("isLoggedIn");
+
+    if (email == null || !isLoggedIn) {
+                
+        %>
+        <script>
+            window.location.href = "<%=request.getContextPath()%>/login.jsp";
+        </script>
+        <%
+    }
+%>
     <c:set var="orderID" value="${sessionScope.orderID}" />
     <%@ include file="header.jsp"%> 
 <div align="center">
-    <h1>Payment Done. Thank you for purchasing our products</h1>
+    <h1 class="mt-4 text-wrap">Payment Done. Thank you for purchasing our products</h1>
     <br/>
     <h2>Receipt Details:</h2>
     <table border="1">
@@ -89,8 +102,8 @@
             <td>$ 1</td>
         </tr>
     </table>
+    <a class="btn btn-success my-4" href="OrderStatus1.jsp?orderId=${orderID}" >View Details</a>
 </div>
-            <a class="btn btn-success" href="OrderStatus1.jsp?orderId=${orderID}" >View Details</a>
 <%@ include file="footer.jsp"%>
         
 </body>
