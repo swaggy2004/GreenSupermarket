@@ -123,6 +123,7 @@ public class OrderServlet extends HttpServlet {
                 // Set the order ID in the session attribute
                 session.setAttribute("orderID", orderID);
                 System.out.println("Order ID stored in session: " + session.getAttribute("orderID"));
+                FetchShoppingCart.deleteCart(email);
 
             } else {
                 response.sendRedirect("login.jsp");

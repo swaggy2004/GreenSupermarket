@@ -36,6 +36,19 @@
     </style>
 </head>
 <body>
+    <%
+    String email = (String) session.getAttribute("email");
+    boolean isLoggedIn = session.getAttribute("isLoggedIn") != null && (boolean) session.getAttribute("isLoggedIn");
+
+    if (email == null || !isLoggedIn) {
+                
+        %>
+        <script>
+            window.location.href = "<%=request.getContextPath()%>/login.jsp";
+        </script>
+        <%
+    }
+%>
     <c:set var="orderID" value="${sessionScope.orderID}" />
     <%@ include file="header.jsp"%> 
 <div align="center">

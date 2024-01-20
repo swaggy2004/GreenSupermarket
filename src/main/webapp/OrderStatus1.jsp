@@ -28,6 +28,19 @@
 <body>
 <%@ include file="header.jsp"%> 
 
+<%
+    String email = (String) session.getAttribute("email");
+    boolean isLoggedIn = session.getAttribute("isLoggedIn") != null && (boolean) session.getAttribute("isLoggedIn");
+
+    if (email == null || !isLoggedIn) {
+                
+        %>
+        <script>
+            window.location.href = "<%=request.getContextPath()%>/login.jsp";
+        </script>
+        <%
+    } 
+%>
 <div class="container mt-5">
     <div class="row">
 
