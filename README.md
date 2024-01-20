@@ -26,10 +26,10 @@ Thanks to GitHub Student Developer benefits, we were able to get a domain for on
 ## Contributors
 Special thanks to the following contributors who dedicated their time and effort to make this project a success:
 
-- Darren Victoria.
+- [Darren Victoria](DarrenVictoria).
 - [Shaveen Balasooriya](@swaggy2004).
-- Janudi Thirimanna.
-- Isuru Bandara.
+- [Janudi Thirimanna](Janudi2005).
+- [Isuru Bandara](IsuruUshanBandara).
 
 Feel free to add your name to the list if you were part of the development team!
 
