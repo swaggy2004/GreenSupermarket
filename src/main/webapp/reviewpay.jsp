@@ -53,11 +53,7 @@
                 <tr>
                     <td>Shipping:</td>
                     <td>${transaction.amount.details.shipping} USD</td>
-                </tr>
-                <tr>
-                    <td>Tax:</td>
-                    <td>${transaction.amount.details.tax} USD</td>
-                </tr>
+                </tr>              
                 <tr>
                     <td>Total:</td>
                     <td>${transaction.amount.total} USD</td>
