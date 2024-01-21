@@ -53,6 +53,7 @@
     <%@ include file="header.jsp"%> 
 <div align="center">
     <h1 class="mt-4 text-wrap">Payment Done. Thank you for purchasing our products</h1>
+    <h3 class="text-wrap text-danger">An email for the placed order has been sent to your email!</h3>
     <br/>
     <h2>Receipt Details:</h2>
     <table border="1">
@@ -78,7 +79,7 @@
         <tr>
             <td><b>Products:</b></td>
             <td>
-                <table>
+                <table class="border border-2">
                     <tr>
                         <th>Name</th>
                         <th>Quantity</th>
@@ -101,8 +102,12 @@
             <td><b>Shipping:</b></td>
             <td>$ 1</td>
         </tr>
+        <tr>
+            <td>Total:</td>
+            <td>${transaction.amount.total} USD</td>
+        </tr>
     </table>
-    <a class="btn btn-success my-4" href="OrderStatus1.jsp?orderId=${orderID}" >View Details</a>
+    <a class="btn btn-success my-4" href="OrderStatus1.jsp?orderId=${orderID}" >View Order Details</a>
 </div>
 <%@ include file="footer.jsp"%>
         

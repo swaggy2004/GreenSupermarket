@@ -1,5 +1,6 @@
 <%@page import="com.shaveen.greensupermarket.CIndividualFeedbackManagement"%>
 <%@page import="Model.IndividualFeedbackManagement"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page isELIgnored="false" %>
 <%
     String feedbackID = request.getParameter("feedbackID");
@@ -20,7 +21,7 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link href="IndividualFeedback.css" rel="stylesheet">
-    <title>BasePlate</title>
+    <title>Individual Feedback</title>
     <style>
         .card {
             border: 1px solid #ccc;
