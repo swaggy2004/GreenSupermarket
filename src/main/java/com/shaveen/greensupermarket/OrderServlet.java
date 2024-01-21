@@ -77,10 +77,10 @@ public class OrderServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        String email = "";
         try {
             HttpSession session = request.getSession();
-            String email = (String) session.getAttribute("email");
+            email = (String) session.getAttribute("email");
 
             if (email != null) {
                 List<ShoppingCart> cart = FetchShoppingCart.searchCart(email);
@@ -123,7 +123,6 @@ public class OrderServlet extends HttpServlet {
                 // Set the order ID in the session attribute
                 session.setAttribute("orderID", orderID);
                 System.out.println("Order ID stored in session: " + session.getAttribute("orderID"));
-                FetchShoppingCart.deleteCart(email);
 
             } else {
                 response.sendRedirect("login.jsp");
@@ -133,7 +132,7 @@ public class OrderServlet extends HttpServlet {
 //            // Handle the SQL exception appropriately (e.g., display an error message)
                 response.sendRedirect("order-error.jsp");  // Adjust the URL accordingly
         }
-        
+        FetchShoppingCart.deleteCart(email);
         response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/authorize_payment"));
     }
 

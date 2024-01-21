@@ -1,4 +1,5 @@
 
+<%@page import="com.shaveen.greensupermarket.ManagerDatabaseInteraction"%>
 <%@page import="com.shaveen.greensupermarket.CFeedbackManagement"%>
 <%@page import="Model.CustFeedbackManagement"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c"%>
@@ -43,6 +44,14 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
 <body>
 <%--<%@ include file="header.jsp"%>--%>
 
+<%
+    int totalFeedbackCount = ManagerDatabaseInteraction.getTotalFeedbackCount();
+    double averageFeedbackRating = ManagerDatabaseInteraction.getAverageFeedbackRating();
+
+    request.setAttribute("totalFeedbackCount", totalFeedbackCount);
+    request.setAttribute("averageFeedbackRating", averageFeedbackRating);
+%>
+
 
 <ul class="nav nav-tabs" style="margin-top: 1rem; ">
     <li class="nav-item" style="margin-left: 1rem;">
@@ -73,8 +82,8 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
         <div class="star-container" id="starContainer">
             <!-- Stars will be dynamically added here -->
         </div>
-        <h3 class="card-title"> <strong>4.5/5</strong></h3>
-        <p class="card-text"><small>90 ratings</small></p>
+        <h3 class="card-title"> <strong>${averageFeedbackRating}/5</strong></h3>
+        <p class="card-text"><small>${totalFeedbackCount} ratings</small></p>
 
     </div>
 </div>
@@ -117,28 +126,6 @@ if ("M".equals(role) && isLoggedIn  && email != null) {
 
  <%--<%@ include file="footer.jsp"%>--%>
 
-<script>
-    // Initialize the star rating with default value
-    let currentRating = 3.5; // Set your initial rating value here
-    updateRating(currentRating);
-
-    // Function to update the star rating based on a variable
-    function updateRating(rating) {
-        // Ensure the rating is within the valid range
-        currentRating = Math.min(5, Math.max(1, rating));
-
-        // Clear previous stars
-        document.getElementById('starContainer').innerHTML = '';
-
-        // Create stars based on the rating
-        for (let i = 1; i <= 5; i++) {
-            const star = document.createElement('span');
-            star.innerHTML = '&#9733;'; // You can use an SVG or an image for a more customized star
-            star.className = i <= currentRating ? 'star rated' : 'star';
-            document.getElementById('starContainer').appendChild(star);
-        }
-    }
-</script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 

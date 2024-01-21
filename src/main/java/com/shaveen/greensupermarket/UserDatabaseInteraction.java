@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import org.mindrot.jbcrypt.BCrypt;
 
 import static java.lang.System.out;
 
@@ -96,7 +97,7 @@ public class UserDatabaseInteraction {
                         String storedPassword = resultSet.getString("Pwd");
 
                         // Compare stored password with the provided current password
-                        return currentPassword.equals(storedPassword);
+                        return BCrypt.checkpw(currentPassword, storedPassword);
                     }
                 }
             }
@@ -108,10 +109,11 @@ public class UserDatabaseInteraction {
 
     public static void updateUserPassword(String email, String newPassword) {
         // Connect to the database and update user password
+        String CypherPassword =  BCrypt.hashpw(newPassword, BCrypt.gensalt());
         try (Connection connection = Model.Connection.start()) {
             String query = "UPDATE customer SET Pwd = ? WHERE Email = ?";
             try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-                preparedStatement.setString(1, newPassword);
+                preparedStatement.setString(1, CypherPassword);
                 preparedStatement.setString(2, email);
 
                 // Execute the update query
